@@ -1,0 +1,471 @@
+/* ==========================================================================
+   Pzone Portal Typography & Custom Fonts Registry
+   Official P-Zone ERP Fonts: IBM Plex Sans Arabic & Manrope Variable (/erp-assets/)
+   ========================================================================== */
+
+/* ── 0. Official P-Zone ERP Self-Hosted WOFF2 Fonts ── */
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('/erp-assets/manrope-latin-wght-normal-DHIcAJRg.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('/erp-assets/manrope-latin-ext-wght-normal-Ch3YOpNY.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('/erp-assets/ibm-plex-sans-arabic-arabic-400-normal-CyU-ddYS.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('/erp-assets/ibm-plex-sans-arabic-latin-400-normal-Bo5KPYvw.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('/erp-assets/ibm-plex-sans-arabic-arabic-500-normal-C4MQITzh.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('/erp-assets/ibm-plex-sans-arabic-latin-500-normal-Cd6jVIg7.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url('/erp-assets/ibm-plex-sans-arabic-arabic-600-normal-0pRdybE_.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url('/erp-assets/ibm-plex-sans-arabic-latin-600-normal-KrqB56Mw.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('/erp-assets/ibm-plex-sans-arabic-arabic-700-normal-DrtBj6UE.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('/erp-assets/ibm-plex-sans-arabic-latin-700-normal-BzSf6GNr.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── 1. Hayyakum Allah Taweel (الغريب - حيّاكم الله طويل) ── */
+@font-face {
+  font-family: 'Hayyakum Allah';
+  src: url('/fonts/hayyakum-allah/Elgharib-Hayyakum-Allah-Taweel-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hayyakum Allah';
+  src: url('/fonts/hayyakum-allah/Elgharib-Hayyakum-Allah-Taweel-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hayyakum Allah';
+  src: url('/fonts/hayyakum-allah/Elgharib-Hayyakum-Allah-Taweel-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hayyakum Allah';
+  src: url('/fonts/hayyakum-allah/Elgharib-Hayyakum-Allah-Taweel-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── 2. Tajarib Taweel (الغريب - تجاريب طويل) ── */
+@font-face {
+  font-family: 'Tajarib Taweel';
+  src: url('/fonts/tajarib-taweel/Elgharib-Tajarib-Taweel-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajarib Taweel';
+  src: url('/fonts/tajarib-taweel/Elgharib-Tajarib-Taweel-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajarib Taweel';
+  src: url('/fonts/tajarib-taweel/Elgharib-Tajarib-Taweel-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajarib Taweel';
+  src: url('/fonts/tajarib-taweel/Elgharib-Tajarib-Taweel-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajarib Taweel';
+  src: url('/fonts/tajarib-taweel/Elgharib-Tajarib-Taweel-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── 3. Grtsk (خط جرتسك الحديث متعدد الأوزان) ── */
+@font-face {
+  font-family: 'Grtsk';
+  src: url('/fonts/grtsk/TRYGrtsk-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grtsk';
+  src: url('/fonts/grtsk/TRYGrtsk-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grtsk';
+  src: url('/fonts/grtsk/TRYGrtsk-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grtsk';
+  src: url('/fonts/grtsk/TRYGrtsk-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grtsk';
+  src: url('/fonts/grtsk/TRYGrtsk-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── 4. Cordale (خط كورديل المعاصر) ── */
+@font-face {
+  font-family: 'Cordale';
+  src: url('/fonts/cordale/Cordale_Trial_Rg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cordale';
+  src: url('/fonts/cordale/Cordale_Trial_Bd.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cordale';
+  src: url('/fonts/cordale/Cordale_Trial_It.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cordale';
+  src: url('/fonts/cordale/Cordale_Trial_BdIt.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── 5. AS-WC26 (خط وورلد كاب العريض) ── */
+@font-face {
+  font-family: 'AS-WC26';
+  src: url('/fonts/as-wc26/AS-WC26-BOLD.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── 6. ZYAEA Collection (مجموعة ضياء الفنية) ── */
+@font-face {
+  font-family: 'ZYAEA Abyss';
+  src: url('/fonts/zyaea/ZYAEA-Abyss.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Celestial';
+  src: url('/fonts/zyaea/ZYAEA-Celestial.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Ethereal';
+  src: url('/fonts/zyaea/ZYAEA-Ethereal.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Meteor';
+  src: url('/fonts/zyaea/ZYAEA-Meteor.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Petrichor';
+  src: url('/fonts/zyaea/ZYAEA-Petrichor.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Sage';
+  src: url('/fonts/zyaea/ZYAEA-Sage.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Xanadu';
+  src: url('/fonts/zyaea/ZYAEA-Xanadu.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Ambidextrous';
+  src: url('/fonts/zyaea/ZYAEA-Ambidextrous.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Habseligkeit';
+  src: url('/fonts/zyaea/ZYAEA-Habseligkeit.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZYAEA Nooneandyou';
+  src: url('/fonts/zyaea/ZYAEA-Nooneandyou.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   Dynamic Font-Selection Attribute Rules
+   When html[data-font="..."] is applied, override typography stacks seamlessly
+   ========================================================================== */
+
+/* 1. Hayyakum Allah */
+html[data-font="hayyakum-allah"],
+html[data-font="hayyakum-allah"] body,
+html[data-font="hayyakum-allah"] [lang="ar"] {
+  --font-arabic-stack: 'Hayyakum Allah', 'Cairo', 'Tajawal', system-ui, sans-serif;
+  font-family: 'Hayyakum Allah', 'Cairo', 'Tajawal', system-ui, sans-serif !important;
+}
+
+/* 2. Tajarib Taweel */
+html[data-font="tajarib-taweel"],
+html[data-font="tajarib-taweel"] body,
+html[data-font="tajarib-taweel"] [lang="ar"] {
+  --font-arabic-stack: 'Tajarib Taweel', 'Cairo', 'Tajawal', system-ui, sans-serif;
+  font-family: 'Tajarib Taweel', 'Cairo', 'Tajawal', system-ui, sans-serif !important;
+}
+
+/* 3. Grtsk */
+html[data-font="grtsk"],
+html[data-font="grtsk"] body,
+html[data-font="grtsk"] [lang="ar"],
+html[data-font="grtsk"] [lang="en"] {
+  --font-arabic-stack: 'Grtsk', 'Cairo', system-ui, sans-serif;
+  font-family: 'Grtsk', 'Cairo', system-ui, sans-serif !important;
+}
+
+/* 4. Cordale */
+html[data-font="cordale"],
+html[data-font="cordale"] body,
+html[data-font="cordale"] [lang="ar"],
+html[data-font="cordale"] [lang="en"] {
+  --font-arabic-stack: 'Cordale', 'Cairo', system-ui, sans-serif;
+  font-family: 'Cordale', 'Cairo', system-ui, sans-serif !important;
+}
+
+/* 5. AS-WC26 */
+html[data-font="as-wc26"],
+html[data-font="as-wc26"] body,
+html[data-font="as-wc26"] [lang="ar"],
+html[data-font="as-wc26"] [lang="en"] {
+  --font-arabic-stack: 'AS-WC26', 'Cairo', system-ui, sans-serif;
+  font-family: 'AS-WC26', 'Cairo', system-ui, sans-serif !important;
+}
+
+/* 6. ZYAEA Series */
+html[data-font="zyaea-abyss"],
+html[data-font="zyaea-abyss"] body,
+html[data-font="zyaea-abyss"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Abyss', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Abyss', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-celestial"],
+html[data-font="zyaea-celestial"] body,
+html[data-font="zyaea-celestial"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Celestial', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Celestial', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-ethereal"],
+html[data-font="zyaea-ethereal"] body,
+html[data-font="zyaea-ethereal"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Ethereal', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Ethereal', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-meteor"],
+html[data-font="zyaea-meteor"] body,
+html[data-font="zyaea-meteor"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Meteor', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Meteor', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-petrichor"],
+html[data-font="zyaea-petrichor"] body,
+html[data-font="zyaea-petrichor"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Petrichor', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Petrichor', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-sage"],
+html[data-font="zyaea-sage"] body,
+html[data-font="zyaea-sage"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Sage', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Sage', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-xanadu"],
+html[data-font="zyaea-xanadu"] body,
+html[data-font="zyaea-xanadu"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Xanadu', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Xanadu', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-ambidextrous"],
+html[data-font="zyaea-ambidextrous"] body,
+html[data-font="zyaea-ambidextrous"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Ambidextrous', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Ambidextrous', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-habseligkeit"],
+html[data-font="zyaea-habseligkeit"] body,
+html[data-font="zyaea-habseligkeit"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Habseligkeit', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Habseligkeit', 'Cairo', system-ui, sans-serif !important;
+}
+
+html[data-font="zyaea-nooneandyou"],
+html[data-font="zyaea-nooneandyou"] body,
+html[data-font="zyaea-nooneandyou"] [lang="ar"] {
+  --font-arabic-stack: 'ZYAEA Nooneandyou', 'Cairo', system-ui, sans-serif;
+  font-family: 'ZYAEA Nooneandyou', 'Cairo', system-ui, sans-serif !important;
+}
+
+/* ==========================================================================
+   Font Utility Classes
+   ========================================================================== */
+.font-hayyakum { font-family: 'Hayyakum Allah', 'Cairo', sans-serif !important; }
+.font-tajarib { font-family: 'Tajarib Taweel', 'Cairo', sans-serif !important; }
+.font-grtsk { font-family: 'Grtsk', 'Cairo', sans-serif !important; }
+.font-cordale { font-family: 'Cordale', 'Cairo', sans-serif !important; }
+.font-aswc26 { font-family: 'AS-WC26', 'Cairo', sans-serif !important; }
+.font-zyaea-abyss { font-family: 'ZYAEA Abyss', 'Cairo', sans-serif !important; }
+.font-zyaea-celestial { font-family: 'ZYAEA Celestial', 'Cairo', sans-serif !important; }
+.font-zyaea-ethereal { font-family: 'ZYAEA Ethereal', 'Cairo', sans-serif !important; }
+.font-zyaea-meteor { font-family: 'ZYAEA Meteor', 'Cairo', sans-serif !important; }
+.font-zyaea-petrichor { font-family: 'ZYAEA Petrichor', 'Cairo', sans-serif !important; }
+.font-zyaea-sage { font-family: 'ZYAEA Sage', 'Cairo', sans-serif !important; }
+.font-zyaea-xanadu { font-family: 'ZYAEA Xanadu', 'Cairo', sans-serif !important; }
+.font-zyaea-ambidextrous { font-family: 'ZYAEA Ambidextrous', 'Cairo', sans-serif !important; }
+.font-zyaea-habseligkeit { font-family: 'ZYAEA Habseligkeit', 'Cairo', sans-serif !important; }
+.font-zyaea-nooneandyou { font-family: 'ZYAEA Nooneandyou', 'Cairo', sans-serif !important; }

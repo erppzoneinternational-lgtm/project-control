@@ -1,0 +1,128 @@
+/* From Uiverse.io by Maximinodotpy */
+.inputGroup {
+  font-family: inherit;
+  margin: 0.75em 0;
+  max-width: var(--input-max-width, 190px);
+  position: relative;
+  width: 100%;
+}
+
+.inputGroupFullWidth {
+  max-width: 100% !important;
+}
+
+.inputGroup input {
+  font-size: 0.95rem;
+  padding: 0.8em 1em;
+  outline: none;
+  border: 1.5px solid var(--border-color, #cbd5e1);
+  background-color: transparent;
+  border-radius: 14px;
+  width: 100%;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Hide placeholder when label is resting in the input to prevent collision */
+.inputGroup:not(.floated) input:not(:focus)::placeholder {
+  color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Show placeholder smoothly only when label has floated out of the way */
+.inputGroup.floated input::placeholder,
+.inputGroup input:focus::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+  transition: opacity 0.2s ease;
+}
+
+:global(.dark) .inputGroup input {
+  border-color: var(--border-color-dark, rgba(255, 255, 255, 0.18));
+  color: #f8fafc;
+}
+
+.inputGroup label {
+  font-size: 0.9rem;
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 0.8em;
+  margin-inline-start: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: rgb(100, 100, 100);
+  white-space: nowrap;
+  border-radius: 6px;
+  z-index: 1;
+}
+
+:global(.dark) .inputGroup label {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Floating label when focused, valid, or has value */
+.inputGroup :is(input:focus, input:valid, input[data-has-value="true"]) ~ label,
+.inputGroup.floated label {
+  top: 0;
+  bottom: auto;
+  transform: translateY(-50%) scale(0.85);
+  margin: 0;
+  margin-inline-start: 1.2em;
+  padding: 0.15em 0.5em;
+  background-color: var(--label-bg-light, #ffffff);
+  color: #059669;
+  font-weight: 700;
+}
+
+:global(.dark) .inputGroup :is(input:focus, input:valid, input[data-has-value="true"]) ~ label,
+:global(.dark) .inputGroup.floated label {
+  background-color: var(--label-bg-dark, #0f172a);
+  color: #34d399;
+}
+
+.inputGroup :is(input:focus, input:valid, input[data-has-value="true"]) {
+  border-color: var(--focus-border, #10b981);
+}
+
+.inputGroup input:focus {
+  border-color: var(--active-focus-border, #059669);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.inputGroup input:focus ~ label {
+  color: #047857;
+}
+
+:global(.dark) .inputGroup input:focus {
+  border-color: var(--active-focus-border-dark, #10b981);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+:global(.dark) .inputGroup input:focus ~ label {
+  color: #34d399;
+}
+
+/* Error state */
+.inputGroup.hasError input {
+  border-color: rgb(244, 63, 94) !important;
+}
+
+.inputGroup.hasError label {
+  color: rgb(244, 63, 94) !important;
+}
+
+.errorText {
+  font-size: 0.75rem;
+  color: rgb(244, 63, 94);
+  font-weight: 600;
+  margin-top: 0.35rem;
+  margin-inline-start: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}

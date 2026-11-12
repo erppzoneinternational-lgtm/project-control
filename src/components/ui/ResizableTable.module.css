@@ -1,0 +1,164 @@
+.resizableContainer {
+  position: relative;
+  width: 100%;
+}
+
+/* Draggable column resize handle */
+.resizeHandle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline-end: -7px;
+  inset-inline-start: auto;
+  width: 14px;
+  z-index: 30;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  outline: none;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Expanded touch/mouse hit area (28px) without altering visual width */
+.resizeHandle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 100%;
+  pointer-events: auto;
+}
+
+/* LTR vs RTL handle positioning fallbacks */
+:global([dir="ltr"]) .resizeHandle,
+.resizeHandleLtr {
+  right: -7px;
+  left: auto;
+}
+
+:global([dir="rtl"]) .resizeHandle,
+.resizeHandleRtl {
+  left: -7px;
+  right: auto;
+}
+
+/* Subtle resting column divider */
+.dividerLine {
+  position: absolute;
+  top: 25%;
+  bottom: 25%;
+  width: 1px;
+  background-color: rgba(148, 163, 184, 0.45);
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+  pointer-events: none;
+}
+
+:global(.dark) .dividerLine {
+  background-color: rgba(100, 116, 139, 0.55);
+}
+
+.resizeHandle:hover .dividerLine,
+.resizeHandleActive .dividerLine {
+  opacity: 0;
+}
+
+/* Hover and active states */
+.resizeHandle:hover {
+  background-color: rgba(14, 165, 233, 0.12);
+}
+
+:global(.dark) .resizeHandle:hover {
+  background-color: rgba(56, 189, 248, 0.15);
+}
+
+.resizeHandleActive {
+  background-color: rgba(14, 165, 233, 0.22) !important;
+}
+
+:global(.dark) .resizeHandleActive {
+  background-color: rgba(56, 189, 248, 0.28) !important;
+}
+
+/* Grip icon (two subtle vertical bars ||) */
+.grip {
+  display: flex;
+  gap: 2.5px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, transform 0.15s ease, color 0.15s ease;
+  pointer-events: none;
+  color: #64748b;
+  z-index: 1;
+}
+
+:global(.dark) .grip {
+  color: #94a3b8;
+  opacity: 0.65;
+}
+
+.gripBar {
+  width: 1.5px;
+  height: 12px;
+  background-color: currentColor;
+  border-radius: 999px;
+}
+
+.resizeHandle:hover .grip,
+.resizeHandleActive .grip {
+  opacity: 1;
+  color: #0284c7;
+  transform: scaleY(1.2);
+}
+
+:global(.dark) .resizeHandle:hover .grip,
+:global(.dark) .resizeHandleActive .grip {
+  color: #38bdf8;
+}
+
+/* Keyboard focus accessibility */
+.resizeHandle:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: -2px;
+  background-color: rgba(14, 165, 233, 0.18);
+  border-radius: 4px;
+}
+
+:global(.dark) .resizeHandle:focus-visible {
+  outline-color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.22);
+}
+
+.resizeHandle:focus-visible .grip {
+  opacity: 1;
+  color: #0284c7;
+  transform: scaleY(1.2);
+}
+
+:global(.dark) .resizeHandle:focus-visible .grip {
+  color: #38bdf8;
+}
+
+/* Vertical guide line spanning table height during active drag */
+.guideLine {
+  position: fixed !important;
+  width: 2px !important;
+  min-width: 2px !important;
+  max-width: 2px !important;
+  right: auto !important;
+  inset-inline-start: auto;
+  inset-inline-end: auto;
+  background: linear-gradient(180deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.8), 0 0 3px rgba(14, 165, 233, 1);
+  z-index: 100060;
+  pointer-events: none !important;
+  transform: translateX(-50%);
+  will-change: left;
+}

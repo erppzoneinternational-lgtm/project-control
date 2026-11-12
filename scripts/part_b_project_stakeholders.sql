@@ -1,0 +1,6000 @@
+BEGIN;
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Senior Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'client',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Hesham El Seifi')
+  OR lower(s.name_ar) = lower('Hesham El Seifi')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Evram Rafat')
+  OR lower(s.name_ar) = lower('Evram Rafat')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil project manger', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '283' <> '' AND s.code = '283')
+  OR lower(s.name) = lower('Ahmed Wageh Abd El Alim')
+  OR lower(s.name_ar) = lower('Ahmed Wageh Abd El Alim')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil site eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '79' <> '' AND s.code = '79')
+  OR lower(s.name) = lower('Bssam el bdry')
+  OR lower(s.name_ar) = lower('Bssam el bdry')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '96' <> '' AND s.code = '96')
+  OR lower(s.name) = lower('Khaled Ashraf Aly Khaled')
+  OR lower(s.name_ar) = lower('Khaled Ashraf Aly Khaled')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil site eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '195' <> '' AND s.code = '195')
+  OR lower(s.name) = lower('Ibrahim hasan abd El Alim sid')
+  OR lower(s.name_ar) = lower('Ibrahim hasan abd El Alim sid')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '245' <> '' AND s.code = '245')
+  OR lower(s.name) = lower('Mustafa mohammed saad abo gali')
+  OR lower(s.name_ar) = lower('Mustafa mohammed saad abo gali')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '300' <> '' AND s.code = '300')
+  OR lower(s.name) = lower('Omar Samy Abd El Hady Hlal')
+  OR lower(s.name_ar) = lower('Omar Samy Abd El Hady Hlal')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '340' <> '' AND s.code = '340')
+  OR lower(s.name) = lower('Ahmed Yhia Ismail Abd Alhmid')
+  OR lower(s.name_ar) = lower('Ahmed Yhia Ismail Abd Alhmid')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '348' <> '' AND s.code = '348')
+  OR lower(s.name) = lower('Ahmed Mohammed Mostafa Slim')
+  OR lower(s.name_ar) = lower('Ahmed Mohammed Mostafa Slim')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '385' <> '' AND s.code = '385')
+  OR lower(s.name) = lower('Karim mohamed Ali Mahmoud Mohamed')
+  OR lower(s.name_ar) = lower('Karim mohamed Ali Mahmoud Mohamed')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Electrical Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '387' <> '' AND s.code = '387')
+  OR lower(s.name) = lower('Osama Mohammady Mohammed ELE.')
+  OR lower(s.name_ar) = lower('Osama Mohammady Mohammed ELE.')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Electrical Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '391' <> '' AND s.code = '391')
+  OR lower(s.name) = lower('Saoudi Mohamed Issa')
+  OR lower(s.name_ar) = lower('Saoudi Mohamed Issa')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '178' <> '' AND s.code = '178')
+  OR lower(s.name) = lower('Mohammed hassan abo al liel')
+  OR lower(s.name_ar) = lower('Mohammed hassan abo al liel')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '286' <> '' AND s.code = '286')
+  OR lower(s.name) = lower('Adel Mohammed Sawy')
+  OR lower(s.name_ar) = lower('Adel Mohammed Sawy')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '339' <> '' AND s.code = '339')
+  OR lower(s.name) = lower('Karim Adel Adly')
+  OR lower(s.name_ar) = lower('Karim Adel Adly')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '89' <> '' AND s.code = '89')
+  OR lower(s.name) = lower('Ahmed Mohammed El Sahaty')
+  OR lower(s.name_ar) = lower('Ahmed Mohammed El Sahaty')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '181' <> '' AND s.code = '181')
+  OR lower(s.name) = lower('Ibrahim khaled abd el aty')
+  OR lower(s.name_ar) = lower('Ibrahim khaled abd el aty')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '145' <> '' AND s.code = '145')
+  OR lower(s.name) = lower('Fares Amer Ismael')
+  OR lower(s.name_ar) = lower('Fares Amer Ismael')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '174' <> '' AND s.code = '174')
+  OR lower(s.name) = lower('Badr ayman mohammed al sid')
+  OR lower(s.name_ar) = lower('Badr ayman mohammed al sid')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '266' <> '' AND s.code = '266')
+  OR lower(s.name) = lower('Ahmed Abd El Rahim')
+  OR lower(s.name_ar) = lower('Ahmed Abd El Rahim')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '361' <> '' AND s.code = '361')
+  OR lower(s.name) = lower('Abd el Rahman mostafa mohammed')
+  OR lower(s.name_ar) = lower('Abd el Rahman mostafa mohammed')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '388' <> '' AND s.code = '388')
+  OR lower(s.name) = lower('Hassan Atef Ahmd ali')
+  OR lower(s.name_ar) = lower('Hassan Atef Ahmd ali')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Zaki Gamal Zaki')
+  OR lower(s.name_ar) = lower('Zaki Gamal Zaki')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '59' <> '' AND s.code = '59')
+  OR lower(s.name) = lower('Abd el nabi Mehanni')
+  OR lower(s.name_ar) = lower('Abd el nabi Mehanni')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '325' <> '' AND s.code = '325')
+  OR lower(s.name) = lower('Anwar Magdy Mahmoud Mohamed')
+  OR lower(s.name_ar) = lower('Anwar Magdy Mahmoud Mohamed')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '146' <> '' AND s.code = '146')
+  OR lower(s.name) = lower('Mohammed Frg Abdelalim')
+  OR lower(s.name_ar) = lower('Mohammed Frg Abdelalim')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '375' <> '' AND s.code = '375')
+  OR lower(s.name) = lower('Mohamed Gmal Abd Alaziz Gafr')
+  OR lower(s.name_ar) = lower('Mohamed Gmal Abd Alaziz Gafr')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '363' <> '' AND s.code = '363')
+  OR lower(s.name) = lower('Amer hany Amer')
+  OR lower(s.name_ar) = lower('Amer hany Amer')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('DC', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '251' <> '' AND s.code = '251')
+  OR lower(s.name) = lower('Radwan Mohamed')
+  OR lower(s.name_ar) = lower('Radwan Mohamed')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('أمين مخزن', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '295' <> '' AND s.code = '295')
+  OR lower(s.name) = lower('Alaa Ali Mohamed Ali Almsry')
+  OR lower(s.name_ar) = lower('Alaa Ali Mohamed Ali Almsry')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('محاسب', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '347' <> '' AND s.code = '347')
+  OR lower(s.name) = lower('Omar Sabry Mostafa')
+  OR lower(s.name_ar) = lower('Omar Sabry Mostafa')
+)
+WHERE p.project_code = '2401'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Mina George')
+  OR lower(s.name_ar) = lower('Mina George')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil project manger', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '283' <> '' AND s.code = '283')
+  OR lower(s.name) = lower('Ahmed Wageh Abd El Alim')
+  OR lower(s.name_ar) = lower('Ahmed Wageh Abd El Alim')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil site eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '79' <> '' AND s.code = '79')
+  OR lower(s.name) = lower('Bssam el bdry')
+  OR lower(s.name_ar) = lower('Bssam el bdry')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '96' <> '' AND s.code = '96')
+  OR lower(s.name) = lower('Khaled Ashraf Aly Khaled')
+  OR lower(s.name_ar) = lower('Khaled Ashraf Aly Khaled')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil site eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '195' <> '' AND s.code = '195')
+  OR lower(s.name) = lower('Ibrahim hasan abd El Alim sid')
+  OR lower(s.name_ar) = lower('Ibrahim hasan abd El Alim sid')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '245' <> '' AND s.code = '245')
+  OR lower(s.name) = lower('Mustafa mohammed saad abo gali')
+  OR lower(s.name_ar) = lower('Mustafa mohammed saad abo gali')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '300' <> '' AND s.code = '300')
+  OR lower(s.name) = lower('Omar Samy Abd El Hady Hlal')
+  OR lower(s.name_ar) = lower('Omar Samy Abd El Hady Hlal')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '340' <> '' AND s.code = '340')
+  OR lower(s.name) = lower('Ahmed Yhia Ismail Abd Alhmid')
+  OR lower(s.name_ar) = lower('Ahmed Yhia Ismail Abd Alhmid')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '348' <> '' AND s.code = '348')
+  OR lower(s.name) = lower('Ahmed Mohammed Mostafa Slim')
+  OR lower(s.name_ar) = lower('Ahmed Mohammed Mostafa Slim')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '385' <> '' AND s.code = '385')
+  OR lower(s.name) = lower('Krim Mohamed Ali Mahmwd')
+  OR lower(s.name_ar) = lower('Krim Mohamed Ali Mahmwd')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Electrical Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '387' <> '' AND s.code = '387')
+  OR lower(s.name) = lower('Osama Mohammady Mohammed ELE.')
+  OR lower(s.name_ar) = lower('Osama Mohammady Mohammed ELE.')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Electrical Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '391' <> '' AND s.code = '391')
+  OR lower(s.name) = lower('Saoudi Mohamed Issa')
+  OR lower(s.name_ar) = lower('Saoudi Mohamed Issa')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '178' <> '' AND s.code = '178')
+  OR lower(s.name) = lower('Mohammed hassan abo al liel')
+  OR lower(s.name_ar) = lower('Mohammed hassan abo al liel')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '286' <> '' AND s.code = '286')
+  OR lower(s.name) = lower('Adel Mohammed Sawy')
+  OR lower(s.name_ar) = lower('Adel Mohammed Sawy')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '339' <> '' AND s.code = '339')
+  OR lower(s.name) = lower('Karim Adel Adly')
+  OR lower(s.name_ar) = lower('Karim Adel Adly')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '89' <> '' AND s.code = '89')
+  OR lower(s.name) = lower('Ahmed Mohammed El Sahaty')
+  OR lower(s.name_ar) = lower('Ahmed Mohammed El Sahaty')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '181' <> '' AND s.code = '181')
+  OR lower(s.name) = lower('Ibrahim khaled abd el aty')
+  OR lower(s.name_ar) = lower('Ibrahim khaled abd el aty')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '145' <> '' AND s.code = '145')
+  OR lower(s.name) = lower('Fares Amer Ismael')
+  OR lower(s.name_ar) = lower('Fares Amer Ismael')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '174' <> '' AND s.code = '174')
+  OR lower(s.name) = lower('Badr ayman mohammed al sid')
+  OR lower(s.name_ar) = lower('Badr ayman mohammed al sid')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '266' <> '' AND s.code = '266')
+  OR lower(s.name) = lower('Ahmed Abd El Rahim')
+  OR lower(s.name_ar) = lower('Ahmed Abd El Rahim')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '361' <> '' AND s.code = '361')
+  OR lower(s.name) = lower('Abd el Rahman mostafa mohammed')
+  OR lower(s.name_ar) = lower('Abd el Rahman mostafa mohammed')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '388' <> '' AND s.code = '388')
+  OR lower(s.name) = lower('Hassan Atef Ahmd ali')
+  OR lower(s.name_ar) = lower('Hassan Atef Ahmd ali')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Zaki Gamal Zaki')
+  OR lower(s.name_ar) = lower('Zaki Gamal Zaki')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '59' <> '' AND s.code = '59')
+  OR lower(s.name) = lower('Abd el nabi Mehanni')
+  OR lower(s.name_ar) = lower('Abd el nabi Mehanni')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '325' <> '' AND s.code = '325')
+  OR lower(s.name) = lower('Anwar Magdy Mahmoud Mohamed')
+  OR lower(s.name_ar) = lower('Anwar Magdy Mahmoud Mohamed')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '146' <> '' AND s.code = '146')
+  OR lower(s.name) = lower('Mohammed Frg Abdelalim')
+  OR lower(s.name_ar) = lower('Mohammed Frg Abdelalim')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '375' <> '' AND s.code = '375')
+  OR lower(s.name) = lower('Mohamed Gmal Abd Alaziz Gafr')
+  OR lower(s.name_ar) = lower('Mohamed Gmal Abd Alaziz Gafr')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '363' <> '' AND s.code = '363')
+  OR lower(s.name) = lower('Amer hany Amer')
+  OR lower(s.name_ar) = lower('Amer hany Amer')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('DC', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '251' <> '' AND s.code = '251')
+  OR lower(s.name) = lower('Radwan Mohamed')
+  OR lower(s.name_ar) = lower('Radwan Mohamed')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('أمين مخزن', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '295' <> '' AND s.code = '295')
+  OR lower(s.name) = lower('Alaa Ali Mohamed Ali Almsry')
+  OR lower(s.name_ar) = lower('Alaa Ali Mohamed Ali Almsry')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('محاسب', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '347' <> '' AND s.code = '347')
+  OR lower(s.name) = lower('Omar Sabry Mostafa')
+  OR lower(s.name_ar) = lower('Omar Sabry Mostafa')
+)
+WHERE p.project_code = '2402'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil project manger', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '283' <> '' AND s.code = '283')
+  OR lower(s.name) = lower('Ahmed Wageh Abd El Alim')
+  OR lower(s.name_ar) = lower('Ahmed Wageh Abd El Alim')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil site eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '174' <> '' AND s.code = '174')
+  OR lower(s.name) = lower('Bssam El Bdry')
+  OR lower(s.name_ar) = lower('Bssam El Bdry')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '96' <> '' AND s.code = '96')
+  OR lower(s.name) = lower('Khaled Ashraf Aly Khaled')
+  OR lower(s.name_ar) = lower('Khaled Ashraf Aly Khaled')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil site eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '195' <> '' AND s.code = '195')
+  OR lower(s.name) = lower('Ibrahim hasan abd El Alim sid')
+  OR lower(s.name_ar) = lower('Ibrahim hasan abd El Alim sid')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Karim Said')
+  OR lower(s.name_ar) = lower('Karim Said')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '245' <> '' AND s.code = '245')
+  OR lower(s.name) = lower('Mustafa mohammed saad abo gali')
+  OR lower(s.name_ar) = lower('Mustafa mohammed saad abo gali')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '300' <> '' AND s.code = '300')
+  OR lower(s.name) = lower('Omar Samy Abd El Hady Hlal')
+  OR lower(s.name_ar) = lower('Omar Samy Abd El Hady Hlal')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '340' <> '' AND s.code = '340')
+  OR lower(s.name) = lower('Ahmed Yhia Ismail Abd Alhmid')
+  OR lower(s.name_ar) = lower('Ahmed Yhia Ismail Abd Alhmid')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '348' <> '' AND s.code = '348')
+  OR lower(s.name) = lower('Ahmed Mohammed Mostafa Slim')
+  OR lower(s.name_ar) = lower('Ahmed Mohammed Mostafa Slim')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '385' <> '' AND s.code = '385')
+  OR lower(s.name) = lower('Krim Mohamed Ali Mahmwd')
+  OR lower(s.name_ar) = lower('Krim Mohamed Ali Mahmwd')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Electrical Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '387' <> '' AND s.code = '387')
+  OR lower(s.name) = lower('Osama Mohammady Mohammed')
+  OR lower(s.name_ar) = lower('Osama Mohammady Mohammed')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Electrical Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '391' <> '' AND s.code = '391')
+  OR lower(s.name) = lower('Saoudi Mohamed Issa')
+  OR lower(s.name_ar) = lower('Saoudi Mohamed Issa')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '178' <> '' AND s.code = '178')
+  OR lower(s.name) = lower('Mohammed hassan abo al liel')
+  OR lower(s.name_ar) = lower('Mohammed hassan abo al liel')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '286' <> '' AND s.code = '286')
+  OR lower(s.name) = lower('Adel Mohammed Sawy')
+  OR lower(s.name_ar) = lower('Adel Mohammed Sawy')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '339' <> '' AND s.code = '339')
+  OR lower(s.name) = lower('Karim Adel Adly')
+  OR lower(s.name_ar) = lower('Karim Adel Adly')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '89' <> '' AND s.code = '89')
+  OR lower(s.name) = lower('Ahmed Mohammed El Sahaty')
+  OR lower(s.name_ar) = lower('Ahmed Mohammed El Sahaty')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '181' <> '' AND s.code = '181')
+  OR lower(s.name) = lower('Ibrahim khaled abd el aty')
+  OR lower(s.name_ar) = lower('Ibrahim khaled abd el aty')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '145' <> '' AND s.code = '145')
+  OR lower(s.name) = lower('Fares Amer Ismael')
+  OR lower(s.name_ar) = lower('Fares Amer Ismael')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '174' <> '' AND s.code = '174')
+  OR lower(s.name) = lower('Badr ayman mohammed al sid')
+  OR lower(s.name_ar) = lower('Badr ayman mohammed al sid')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '266' <> '' AND s.code = '266')
+  OR lower(s.name) = lower('Ahmed Abd El Rahim')
+  OR lower(s.name_ar) = lower('Ahmed Abd El Rahim')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '361' <> '' AND s.code = '361')
+  OR lower(s.name) = lower('Abd el Rahman mostafa mohammed')
+  OR lower(s.name_ar) = lower('Abd el Rahman mostafa mohammed')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '388' <> '' AND s.code = '388')
+  OR lower(s.name) = lower('Hassan Atef Ahmd ali')
+  OR lower(s.name_ar) = lower('Hassan Atef Ahmd ali')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Zaki Gamal Zaki')
+  OR lower(s.name_ar) = lower('Zaki Gamal Zaki')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '59' <> '' AND s.code = '59')
+  OR lower(s.name) = lower('Abd el nabi Mehanni')
+  OR lower(s.name_ar) = lower('Abd el nabi Mehanni')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '325' <> '' AND s.code = '325')
+  OR lower(s.name) = lower('Anwar Magdy Mahmoud Mohamed')
+  OR lower(s.name_ar) = lower('Anwar Magdy Mahmoud Mohamed')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '146' <> '' AND s.code = '146')
+  OR lower(s.name) = lower('Mohammed Frg Abdelalim')
+  OR lower(s.name_ar) = lower('Mohammed Frg Abdelalim')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '375' <> '' AND s.code = '375')
+  OR lower(s.name) = lower('Mohamed Gmal Abd Alaziz Gafr')
+  OR lower(s.name_ar) = lower('Mohamed Gmal Abd Alaziz Gafr')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '363' <> '' AND s.code = '363')
+  OR lower(s.name) = lower('Amer hany Amer')
+  OR lower(s.name_ar) = lower('Amer hany Amer')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('DC', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '251' <> '' AND s.code = '251')
+  OR lower(s.name) = lower('Radwan Mohamed')
+  OR lower(s.name_ar) = lower('Radwan Mohamed')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('أمين مخزن', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '295' <> '' AND s.code = '295')
+  OR lower(s.name) = lower('Alaa Ali Mohamed Ali Almsry')
+  OR lower(s.name_ar) = lower('Alaa Ali Mohamed Ali Almsry')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('محاسب', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '347' <> '' AND s.code = '347')
+  OR lower(s.name) = lower('Omar Sabry Mostafa')
+  OR lower(s.name_ar) = lower('Omar Sabry Mostafa')
+)
+WHERE p.project_code = '2403'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Abdel Menem Yassine')
+  OR lower(s.name_ar) = lower('Abdel Menem Yassine')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '288' <> '' AND s.code = '288')
+  OR lower(s.name) = lower('Ahmed Maher Fahmy')
+  OR lower(s.name_ar) = lower('Ahmed Maher Fahmy')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '248' <> '' AND s.code = '248')
+  OR lower(s.name) = lower('Alaa el Hennawy')
+  OR lower(s.name_ar) = lower('Alaa el Hennawy')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Mohamed Atef Mohamed Zidan')
+  OR lower(s.name_ar) = lower('Mohamed Atef Mohamed Zidan')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Hotel Security', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('إبراهيم عطا إبراهيم خليل')
+  OR lower(s.name_ar) = lower('إبراهيم عطا إبراهيم خليل')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Hotel Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('أحمد حمام كامل الأمير')
+  OR lower(s.name_ar) = lower('أحمد حمام كامل الأمير')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '346' <> '' AND s.code = '346')
+  OR lower(s.name) = lower('Mohammed Mamdouh Hassan Ali')
+  OR lower(s.name_ar) = lower('Mohammed Mamdouh Hassan Ali')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '287' <> '' AND s.code = '287')
+  OR lower(s.name) = lower('Mohammed Abd El Razek Fahmy الشباسي')
+  OR lower(s.name_ar) = lower('Mohammed Abd El Razek Fahmy الشباسي')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '324' <> '' AND s.code = '324')
+  OR lower(s.name) = lower('Galal Abd El Aty Sadek')
+  OR lower(s.name_ar) = lower('Galal Abd El Aty Sadek')
+)
+WHERE p.project_code = '2511'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Construction Manager', ''), 'عضو فريق'),
+  'accountable',
+  'client',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Omar Magdi')
+  OR lower(s.name_ar) = lower('Omar Magdi')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '91' <> '' AND s.code = '91')
+  OR lower(s.name) = lower('Ahmed Mohammed Shehata abd alglil')
+  OR lower(s.name_ar) = lower('Ahmed Mohammed Shehata abd alglil')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '151' <> '' AND s.code = '151')
+  OR lower(s.name) = lower('Mostafa Amir Ahmed')
+  OR lower(s.name_ar) = lower('Mostafa Amir Ahmed')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '331' <> '' AND s.code = '331')
+  OR lower(s.name) = lower('Mahmoud Khaled Ahmed')
+  OR lower(s.name_ar) = lower('Mahmoud Khaled Ahmed')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Electrical Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '373' <> '' AND s.code = '373')
+  OR lower(s.name) = lower('Mohamed Mohsn Barkat Moamed')
+  OR lower(s.name_ar) = lower('Mohamed Mohsn Barkat Moamed')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '212' <> '' AND s.code = '212')
+  OR lower(s.name) = lower('Mohammed ali hasan Ibrahim El lbani')
+  OR lower(s.name_ar) = lower('Mohammed ali hasan Ibrahim El lbani')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '210' <> '' AND s.code = '210')
+  OR lower(s.name) = lower('Ali Ayman Ali')
+  OR lower(s.name_ar) = lower('Ali Ayman Ali')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('DC', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '294' <> '' AND s.code = '294')
+  OR lower(s.name) = lower('Mohamed Nasser Mahmoud')
+  OR lower(s.name_ar) = lower('Mohamed Nasser Mahmoud')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('حامد السيد إبراهيم الخواجة')
+  OR lower(s.name_ar) = lower('حامد السيد إبراهيم الخواجة')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('رجب عبد البديع')
+  OR lower(s.name_ar) = lower('رجب عبد البديع')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Accountant', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '284' <> '' AND s.code = '284')
+  OR lower(s.name) = lower('Ahmed Rateb Mahmoud')
+  OR lower(s.name_ar) = lower('Ahmed Rateb Mahmoud')
+)
+WHERE p.project_code = '2405'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '91' <> '' AND s.code = '91')
+  OR lower(s.name) = lower('Ahmed Mohammed Shehata abd alglil')
+  OR lower(s.name_ar) = lower('Ahmed Mohammed Shehata abd alglil')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '151' <> '' AND s.code = '151')
+  OR lower(s.name) = lower('Mostafa Amir Ahmed')
+  OR lower(s.name_ar) = lower('Mostafa Amir Ahmed')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '331' <> '' AND s.code = '331')
+  OR lower(s.name) = lower('Mahmoud Khaled Ahmed')
+  OR lower(s.name_ar) = lower('Mahmoud Khaled Ahmed')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Electrical Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '373' <> '' AND s.code = '373')
+  OR lower(s.name) = lower('Mohamed Mohsn Barkat Moamed')
+  OR lower(s.name_ar) = lower('Mohamed Mohsn Barkat Moamed')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '212' <> '' AND s.code = '212')
+  OR lower(s.name) = lower('Mohammed ali hasan Ibrahim El lbani')
+  OR lower(s.name_ar) = lower('Mohammed ali hasan Ibrahim El lbani')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '210' <> '' AND s.code = '210')
+  OR lower(s.name) = lower('Ali Ayman Ali')
+  OR lower(s.name_ar) = lower('Ali Ayman Ali')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('DC', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '294' <> '' AND s.code = '294')
+  OR lower(s.name) = lower('Mohamed Nasser Mahmoud')
+  OR lower(s.name_ar) = lower('Mohamed Nasser Mahmoud')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('حامد السيد إبراهيم الخواجة')
+  OR lower(s.name_ar) = lower('حامد السيد إبراهيم الخواجة')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('رجب عبد البديع')
+  OR lower(s.name_ar) = lower('رجب عبد البديع')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Accountant', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '284' <> '' AND s.code = '284')
+  OR lower(s.name) = lower('Ahmed Rateb Mahmoud')
+  OR lower(s.name_ar) = lower('Ahmed Rateb Mahmoud')
+)
+WHERE p.project_code = '2419'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Tarek Shawkat')
+  OR lower(s.name_ar) = lower('Tarek Shawkat')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '41' <> '' AND s.code = '41')
+  OR lower(s.name) = lower('Osama ShahIn')
+  OR lower(s.name_ar) = lower('Osama ShahIn')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '398' <> '' AND s.code = '398')
+  OR lower(s.name) = lower('Mhmwd Mohamed Abd Altif Mohamed')
+  OR lower(s.name_ar) = lower('Mhmwd Mohamed Abd Altif Mohamed')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('civil site Eng', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '384' <> '' AND s.code = '384')
+  OR lower(s.name) = lower('Akram Mohammed Abd Al-Alim')
+  OR lower(s.name_ar) = lower('Akram Mohammed Abd Al-Alim')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Planning Eng ( civil )', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '383' <> '' AND s.code = '383')
+  OR lower(s.name) = lower('Mahmoud Mostafa Abd al kader')
+  OR lower(s.name_ar) = lower('Mahmoud Mostafa Abd al kader')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Safety', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '341' <> '' AND s.code = '341')
+  OR lower(s.name) = lower('Ahmed Kamel Abd El Razek')
+  OR lower(s.name_ar) = lower('Ahmed Kamel Abd El Razek')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Accountant', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '315' <> '' AND s.code = '315')
+  OR lower(s.name) = lower('Mostafa Ali Ahmed Rabee''')
+  OR lower(s.name_ar) = lower('Mostafa Ali Ahmed Rabee''')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '267' <> '' AND s.code = '267')
+  OR lower(s.name) = lower('Amr Ahmed gouda Mhmwd Aldwi')
+  OR lower(s.name_ar) = lower('Amr Ahmed gouda Mhmwd Aldwi')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Basem Abd Al Daim Mohamed')
+  OR lower(s.name_ar) = lower('Basem Abd Al Daim Mohamed')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyors', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Eslam Said Abd Alrazek Mostfa')
+  OR lower(s.name_ar) = lower('Eslam Said Abd Alrazek Mostfa')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('DC', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Mohamed Al Sid Ahmed Al Sid')
+  OR lower(s.name_ar) = lower('Mohamed Al Sid Ahmed Al Sid')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '333' <> '' AND s.code = '333')
+  OR lower(s.name) = lower('Abdulkhaliq Gharib Abdulkhaliq Muhammad')
+  OR lower(s.name_ar) = lower('Abdulkhaliq Gharib Abdulkhaliq Muhammad')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '230' <> '' AND s.code = '230')
+  OR lower(s.name) = lower('Ahmed Shaaban Ahmed Morsy')
+  OR lower(s.name_ar) = lower('Ahmed Shaaban Ahmed Morsy')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('أحمد أشرف محمد فرج جاد')
+  OR lower(s.name_ar) = lower('أحمد أشرف محمد فرج جاد')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('محمود عادل')
+  OR lower(s.name_ar) = lower('محمود عادل')
+)
+WHERE p.project_code = '2604'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Ahmed Youssef')
+  OR lower(s.name_ar) = lower('Ahmed Youssef')
+)
+WHERE p.project_code = '2421'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '41' <> '' AND s.code = '41')
+  OR lower(s.name) = lower('Osama ShahIn')
+  OR lower(s.name_ar) = lower('Osama ShahIn')
+)
+WHERE p.project_code = '2421'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Architecture Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '241' <> '' AND s.code = '241')
+  OR lower(s.name) = lower('Sherif Sayed')
+  OR lower(s.name_ar) = lower('Sherif Sayed')
+)
+WHERE p.project_code = '2421'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Nabil Abd El Aal')
+  OR lower(s.name_ar) = lower('Nabil Abd El Aal')
+)
+WHERE p.project_code = '2421'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '231' <> '' AND s.code = '231')
+  OR lower(s.name) = lower('EL Sayed Amer')
+  OR lower(s.name_ar) = lower('EL Sayed Amer')
+)
+WHERE p.project_code = '2421'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Projects Director', ''), 'عضو فريق'),
+  'accountable',
+  'client',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Tamer Safwat')
+  OR lower(s.name_ar) = lower('Tamer Safwat')
+)
+WHERE p.project_code = '2404'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '41' <> '' AND s.code = '41')
+  OR lower(s.name) = lower('Osama ShahIn')
+  OR lower(s.name_ar) = lower('Osama ShahIn')
+)
+WHERE p.project_code = '2404'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '122' <> '' AND s.code = '122')
+  OR lower(s.name) = lower('Wael said mahmoud Daha')
+  OR lower(s.name_ar) = lower('Wael said mahmoud Daha')
+)
+WHERE p.project_code = '2404'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mech Eng', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '213' <> '' AND s.code = '213')
+  OR lower(s.name) = lower('Abd El Rahman Saad')
+  OR lower(s.name_ar) = lower('Abd El Rahman Saad')
+)
+WHERE p.project_code = '2404'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '335' <> '' AND s.code = '335')
+  OR lower(s.name) = lower('Omar Nabil Abd El Aal')
+  OR lower(s.name_ar) = lower('Omar Nabil Abd El Aal')
+)
+WHERE p.project_code = '2404'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '231' <> '' AND s.code = '231')
+  OR lower(s.name) = lower('EL Sayed Amer')
+  OR lower(s.name_ar) = lower('EL Sayed Amer')
+)
+WHERE p.project_code = '2404'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Ahmed Ashraf Al-Tigani')
+  OR lower(s.name_ar) = lower('Ahmed Ashraf Al-Tigani')
+)
+WHERE p.project_code = '2404'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '41' <> '' AND s.code = '41')
+  OR lower(s.name) = lower('Osama ShahIn')
+  OR lower(s.name_ar) = lower('Osama ShahIn')
+)
+WHERE p.project_code = '2512'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Abdel Menem Yassine')
+  OR lower(s.name_ar) = lower('Abdel Menem Yassine')
+)
+WHERE p.project_code = '2412'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Civil Site Eng.', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '247' <> '' AND s.code = '247')
+  OR lower(s.name) = lower('Mina Nabil')
+  OR lower(s.name_ar) = lower('Mina Nabil')
+)
+WHERE p.project_code = '2412'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Surveyor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '293' <> '' AND s.code = '293')
+  OR lower(s.name) = lower('Mohammed Gamal Zaki')
+  OR lower(s.name_ar) = lower('Mohammed Gamal Zaki')
+)
+WHERE p.project_code = '2412'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Store Keeper', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Mohamed Nasef Roshdy')
+  OR lower(s.name_ar) = lower('Mohamed Nasef Roshdy')
+)
+WHERE p.project_code = '2412'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('MEP Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Zaho')
+  OR lower(s.name_ar) = lower('Zaho')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '152' <> '' AND s.code = '152')
+  OR lower(s.name) = lower('Ibrahim Gomaa Ibrahim Abd Alrhman')
+  OR lower(s.name_ar) = lower('Ibrahim Gomaa Ibrahim Abd Alrhman')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '217' <> '' AND s.code = '217')
+  OR lower(s.name) = lower('Mokhtar Qodb Krim Gmaa')
+  OR lower(s.name_ar) = lower('Mokhtar Qodb Krim Gmaa')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('MEP Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Zaho')
+  OR lower(s.name_ar) = lower('Zaho')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Site Engeneer', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '152' <> '' AND s.code = '152')
+  OR lower(s.name) = lower('Ibrahim Gomaa Ibrahim Abd Alrhman')
+  OR lower(s.name_ar) = lower('Ibrahim Gomaa Ibrahim Abd Alrhman')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '217' <> '' AND s.code = '217')
+  OR lower(s.name) = lower('Mokhtar Qodb Krim Gmaa')
+  OR lower(s.name_ar) = lower('Mokhtar Qodb Krim Gmaa')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '224' <> '' AND s.code = '224')
+  OR lower(s.name) = lower('Nagy Neseim')
+  OR lower(s.name_ar) = lower('Nagy Neseim')
+)
+WHERE p.project_code = '2606'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Senior Surveyor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Ahmed Emad')
+  OR lower(s.name_ar) = lower('Ahmed Emad')
+)
+WHERE p.project_code = '2606'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2606'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '55' <> '' AND s.code = '55')
+  OR lower(s.name) = lower('Mostafa Adel')
+  OR lower(s.name_ar) = lower('Mostafa Adel')
+)
+WHERE p.project_code = '2602'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Construction Manager', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Shady El-Kordy')
+  OR lower(s.name_ar) = lower('Shady El-Kordy')
+)
+WHERE p.project_code = '2602'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '109' <> '' AND s.code = '109')
+  OR lower(s.name) = lower('El-Sayed Mohamed Ali')
+  OR lower(s.name_ar) = lower('El-Sayed Mohamed Ali')
+)
+WHERE p.project_code = '2602'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Mohamed Alaa')
+  OR lower(s.name_ar) = lower('Mohamed Alaa')
+)
+WHERE p.project_code = '2602'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2602'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '55' <> '' AND s.code = '55')
+  OR lower(s.name) = lower('Mostafa Adel')
+  OR lower(s.name_ar) = lower('Mostafa Adel')
+)
+WHERE p.project_code = '2603'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Construction Manager', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Shady El-Kordy')
+  OR lower(s.name_ar) = lower('Shady El-Kordy')
+)
+WHERE p.project_code = '2603'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '109' <> '' AND s.code = '109')
+  OR lower(s.name) = lower('El-Sayed Mohamed Ali')
+  OR lower(s.name_ar) = lower('El-Sayed Mohamed Ali')
+)
+WHERE p.project_code = '2603'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '135' <> '' AND s.code = '135')
+  OR lower(s.name) = lower('Mohamed Alaa')
+  OR lower(s.name_ar) = lower('Mohamed Alaa')
+)
+WHERE p.project_code = '2603'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2603'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '90' <> '' AND s.code = '90')
+  OR lower(s.name) = lower('Mohamed Shaaban')
+  OR lower(s.name_ar) = lower('Mohamed Shaaban')
+)
+WHERE p.project_code = '2272'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Construction Manager', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '25' <> '' AND s.code = '25')
+  OR lower(s.name) = lower('Abdel Rahman Azab')
+  OR lower(s.name_ar) = lower('Abdel Rahman Azab')
+)
+WHERE p.project_code = '2272'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '108' <> '' AND s.code = '108')
+  OR lower(s.name) = lower('Abdel Razek Mohamed')
+  OR lower(s.name_ar) = lower('Abdel Razek Mohamed')
+)
+WHERE p.project_code = '2272'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2272'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Naser Gomaa')
+  OR lower(s.name_ar) = lower('Naser Gomaa')
+)
+WHERE p.project_code = '2272'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Kamal Abdel Hameed')
+  OR lower(s.name_ar) = lower('Kamal Abdel Hameed')
+)
+WHERE p.project_code = '2272'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2272'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '90' <> '' AND s.code = '90')
+  OR lower(s.name) = lower('Mohamed Shaaban')
+  OR lower(s.name_ar) = lower('Mohamed Shaaban')
+)
+WHERE p.project_code = '2406'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Construction Manager', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '25' <> '' AND s.code = '25')
+  OR lower(s.name) = lower('Abdel Rahman Azab')
+  OR lower(s.name_ar) = lower('Abdel Rahman Azab')
+)
+WHERE p.project_code = '2406'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '108' <> '' AND s.code = '108')
+  OR lower(s.name) = lower('Abdel Razek Mohamed')
+  OR lower(s.name_ar) = lower('Abdel Razek Mohamed')
+)
+WHERE p.project_code = '2406'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2406'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Naser Gomaa')
+  OR lower(s.name_ar) = lower('Naser Gomaa')
+)
+WHERE p.project_code = '2406'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Kamal Abdel Hameed')
+  OR lower(s.name_ar) = lower('Kamal Abdel Hameed')
+)
+WHERE p.project_code = '2406'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2406'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '90' <> '' AND s.code = '90')
+  OR lower(s.name) = lower('Mohamed Shaaban')
+  OR lower(s.name_ar) = lower('Mohamed Shaaban')
+)
+WHERE p.project_code = '2601'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Construction Manager', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '25' <> '' AND s.code = '25')
+  OR lower(s.name) = lower('Abdel Rahman Azab')
+  OR lower(s.name_ar) = lower('Abdel Rahman Azab')
+)
+WHERE p.project_code = '2601'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '108' <> '' AND s.code = '108')
+  OR lower(s.name) = lower('Abdel Razek Mohamed')
+  OR lower(s.name_ar) = lower('Abdel Razek Mohamed')
+)
+WHERE p.project_code = '2601'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2601'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Naser Gomaa')
+  OR lower(s.name_ar) = lower('Naser Gomaa')
+)
+WHERE p.project_code = '2601'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Kamal Abdel Hameed')
+  OR lower(s.name_ar) = lower('Kamal Abdel Hameed')
+)
+WHERE p.project_code = '2601'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2601'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('MEP Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Zaho')
+  OR lower(s.name_ar) = lower('Zaho')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '152' <> '' AND s.code = '152')
+  OR lower(s.name) = lower('Ibrahim Gomaa')
+  OR lower(s.name_ar) = lower('Ibrahim Gomaa')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '217' <> '' AND s.code = '217')
+  OR lower(s.name) = lower('Mokhtar Kotb')
+  OR lower(s.name_ar) = lower('Mokhtar Kotb')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '344' <> '' AND s.code = '344')
+  OR lower(s.name) = lower('Mohamed El-Bakry')
+  OR lower(s.name_ar) = lower('Mohamed El-Bakry')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2308'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Eng. Tamer')
+  OR lower(s.name_ar) = lower('Eng. Tamer')
+)
+WHERE p.project_code = '2414'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '152' <> '' AND s.code = '152')
+  OR lower(s.name) = lower('Ibrahim Gomaa')
+  OR lower(s.name_ar) = lower('Ibrahim Gomaa')
+)
+WHERE p.project_code = '2414'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2414'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '217' <> '' AND s.code = '217')
+  OR lower(s.name) = lower('Mokhtar Kotb')
+  OR lower(s.name_ar) = lower('Mokhtar Kotb')
+)
+WHERE p.project_code = '2414'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '344' <> '' AND s.code = '344')
+  OR lower(s.name) = lower('Mohamed El-Bakry')
+  OR lower(s.name_ar) = lower('Mohamed El-Bakry')
+)
+WHERE p.project_code = '2414'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2414'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '152' <> '' AND s.code = '152')
+  OR lower(s.name) = lower('Ibrahim Gomaa')
+  OR lower(s.name_ar) = lower('Ibrahim Gomaa')
+)
+WHERE p.project_code = '2333'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2333'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '217' <> '' AND s.code = '217')
+  OR lower(s.name) = lower('Mokhtar Kotb')
+  OR lower(s.name_ar) = lower('Mokhtar Kotb')
+)
+WHERE p.project_code = '2333'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '344' <> '' AND s.code = '344')
+  OR lower(s.name) = lower('Mohamed El-Bakry')
+  OR lower(s.name_ar) = lower('Mohamed El-Bakry')
+)
+WHERE p.project_code = '2333'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2333'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Technical Office Manager', ''), 'عضو فريق'),
+  'accountable',
+  'contractor',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('Mohamed Hosny')
+  OR lower(s.name_ar) = lower('Mohamed Hosny')
+)
+WHERE p.project_code = '2269'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '152' <> '' AND s.code = '152')
+  OR lower(s.name) = lower('Ibrahim Gomaa')
+  OR lower(s.name_ar) = lower('Ibrahim Gomaa')
+)
+WHERE p.project_code = '2269'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '249' <> '' AND s.code = '249')
+  OR lower(s.name) = lower('Ali Khalifa Nazeef')
+  OR lower(s.name_ar) = lower('Ali Khalifa Nazeef')
+)
+WHERE p.project_code = '2269'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '217' <> '' AND s.code = '217')
+  OR lower(s.name) = lower('Mokhtar Kotb')
+  OR lower(s.name_ar) = lower('Mokhtar Kotb')
+)
+WHERE p.project_code = '2269'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '344' <> '' AND s.code = '344')
+  OR lower(s.name) = lower('Mohamed El-Bakry')
+  OR lower(s.name_ar) = lower('Mohamed El-Bakry')
+)
+WHERE p.project_code = '2269'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Mechanical Section Head', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '226' <> '' AND s.code = '226')
+  OR lower(s.name) = lower('Pola Morris')
+  OR lower(s.name_ar) = lower('Pola Morris')
+)
+WHERE p.project_code = '2269'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('', ''), 'عضو فريق'),
+  'accountable',
+  'client',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '' <> '' AND s.code = '')
+  OR lower(s.name) = lower('العميد جمال سالم')
+  OR lower(s.name_ar) = lower('العميد جمال سالم')
+)
+WHERE p.project_code = '1044'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Project Manager', ''), 'عضو فريق'),
+  'accountable',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '19' <> '' AND s.code = '19')
+  OR lower(s.name) = lower('Mostafa Omar')
+  OR lower(s.name_ar) = lower('Mostafa Omar')
+)
+WHERE p.project_code = '1044'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '67' <> '' AND s.code = '67')
+  OR lower(s.name) = lower('Mawhoub Mahmoud Ahmed')
+  OR lower(s.name_ar) = lower('Mawhoub Mahmoud Ahmed')
+)
+WHERE p.project_code = '1044'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '13' <> '' AND s.code = '13')
+  OR lower(s.name) = lower('Salah Azzazi Abd el fattah')
+  OR lower(s.name_ar) = lower('Salah Azzazi Abd el fattah')
+)
+WHERE p.project_code = '1044'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '67' <> '' AND s.code = '67')
+  OR lower(s.name) = lower('Mawhoub Mahmoud Ahmed')
+  OR lower(s.name_ar) = lower('Mawhoub Mahmoud Ahmed')
+)
+WHERE p.project_code = '2105'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '13' <> '' AND s.code = '13')
+  OR lower(s.name) = lower('Salah Azzazi Abd el fattah')
+  OR lower(s.name_ar) = lower('Salah Azzazi Abd el fattah')
+)
+WHERE p.project_code = '2105'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '67' <> '' AND s.code = '67')
+  OR lower(s.name) = lower('Mawhoub Mahmoud Ahmed')
+  OR lower(s.name_ar) = lower('Mawhoub Mahmoud Ahmed')
+)
+WHERE p.project_code = '2106'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('Supervisor', ''), 'عضو فريق'),
+  'responsible',
+  'employee',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND '13' <> '' AND s.code = '13')
+  OR lower(s.name) = lower('Salah Azzazi Abd el fattah')
+  OR lower(s.name_ar) = lower('Salah Azzazi Abd el fattah')
+)
+WHERE p.project_code = '2106'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 1099858552', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Project Manager' <> '' AND s.code = 'Project Manager')
+  OR lower(s.name) = lower('184')
+  OR lower(s.name_ar) = lower('184')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('01070474455', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Site Engeneer' <> '' AND s.code = 'Site Engeneer')
+  OR lower(s.name) = lower('138')
+  OR lower(s.name_ar) = lower('138')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('01090177295-01044992840', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Site Engeneer' <> '' AND s.code = 'Site Engeneer')
+  OR lower(s.name) = lower('400/1000')
+  OR lower(s.name_ar) = lower('400/1000')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('1066220357', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Technical Office Manager' <> '' AND s.code = 'Technical Office Manager')
+  OR lower(s.name) = lower('57')
+  OR lower(s.name_ar) = lower('57')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('1021111762', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Planning Section Head' <> '' AND s.code = 'Planning Section Head')
+  OR lower(s.name) = lower('329')
+  OR lower(s.name_ar) = lower('329')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 10 69826535', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Mechanical Section Head' <> '' AND s.code = 'Mechanical Section Head')
+  OR lower(s.name) = lower('226')
+  OR lower(s.name_ar) = lower('226')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 1050222189', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Electrical Section Head' <> '' AND s.code = 'Electrical Section Head')
+  OR lower(s.name) = lower('25')
+  OR lower(s.name_ar) = lower('25')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('1066220351', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Team Leader DC' <> '' AND s.code = 'Team Leader DC')
+  OR lower(s.name) = lower('56')
+  OR lower(s.name_ar) = lower('56')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 1025485140', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Senior Document Control' <> '' AND s.code = 'Senior Document Control')
+  OR lower(s.name) = lower('205')
+  OR lower(s.name_ar) = lower('205')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 1020100511', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Senior Civil Technical Office' <> '' AND s.code = 'Senior Civil Technical Office')
+  OR lower(s.name) = lower('179')
+  OR lower(s.name_ar) = lower('179')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 1012342472', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Civil Technical Office' <> '' AND s.code = 'Civil Technical Office')
+  OR lower(s.name) = lower('229')
+  OR lower(s.name_ar) = lower('229')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 1080015702', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Senior Technical Office' <> '' AND s.code = 'Senior Technical Office')
+  OR lower(s.name) = lower('93')
+  OR lower(s.name_ar) = lower('93')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 10 64666801', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Electrical Technical Office' <> '' AND s.code = 'Electrical Technical Office')
+  OR lower(s.name) = lower('94')
+  OR lower(s.name_ar) = lower('94')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 10 80015694', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Electrical Technical Office' <> '' AND s.code = 'Electrical Technical Office')
+  OR lower(s.name) = lower('358')
+  OR lower(s.name_ar) = lower('358')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 10 50434497', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Mechanical Technical Office' <> '' AND s.code = 'Mechanical Technical Office')
+  OR lower(s.name) = lower('302')
+  OR lower(s.name_ar) = lower('302')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 10 32980999', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Mechanical Technical Office' <> '' AND s.code = 'Mechanical Technical Office')
+  OR lower(s.name) = lower('299')
+  OR lower(s.name_ar) = lower('299')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 10 60289473', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Civil Supervisor' <> '' AND s.code = 'Civil Supervisor')
+  OR lower(s.name) = lower('403/1003')
+  OR lower(s.name_ar) = lower('403/1003')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 10 92565747', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Civil Supervisor' <> '' AND s.code = 'Civil Supervisor')
+  OR lower(s.name) = lower('249')
+  OR lower(s.name_ar) = lower('249')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 1090043116', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Technical Supervisor' <> '' AND s.code = 'Technical Supervisor')
+  OR lower(s.name) = lower('1')
+  OR lower(s.name_ar) = lower('1')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Surveyor' <> '' AND s.code = 'Surveyor')
+  OR lower(s.name) = lower('210')
+  OR lower(s.name_ar) = lower('210')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+
+
+INSERT INTO public.project_stakeholders  (id, organization_id, project_id, stakeholder_id, project_role, raci_role, party_kind, assigned_at)
+SELECT 
+  gen_random_uuid(),
+  '00000000-0000-0000-0000-000000000001',
+  p.id,
+  s.id,
+  COALESCE(NULLIF('0 1065736661', ''), 'عضو فريق'),
+  'accountable',
+  'consultant',
+  NOW()
+FROM public.pm_projects p
+JOIN public.stakeholders s ON (
+  (s.code IS NOT NULL AND 'Technical Supervisor' <> '' AND s.code = 'Technical Supervisor')
+  OR lower(s.name) = lower('123')
+  OR lower(s.name_ar) = lower('123')
+)
+WHERE p.project_code = '12 منشأ مائي + خرسانة وميكانيكا"'
+  AND NOT EXISTS (
+    SELECT 1 FROM public.project_stakeholders ps
+    WHERE ps.project_id = p.id AND ps.stakeholder_id = s.id
+  );
+
+COMMIT;

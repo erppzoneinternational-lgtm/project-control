@@ -1,0 +1,229 @@
+/* From Uiverse.io by Zain-Muhammad */ 
+.tooltipWrapper {
+  --clr-btn: rgb(2, 22, 36);
+  --clr-dropdown: rgb(2, 22, 36);
+  --clr-nav-hover: rgb(3, 30, 48);
+  --clr-dropdown-hov: rgb(4, 38, 62);
+  --clr-dropdown-link-hov: rgb(5, 45, 75);
+  --clr-light: #ffffff;
+  --clr-accent: #00c1d5;
+  --clr-glow: rgba(0, 193, 213, 0.35);
+  display: inline-block;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* Variants */
+.cyan {
+  --clr-btn: rgb(2, 22, 36);
+  --clr-dropdown: rgb(2, 22, 36);
+  --clr-nav-hover: rgb(3, 30, 48);
+  --clr-accent: #00c1d5;
+  --clr-glow: rgba(0, 193, 213, 0.35);
+}
+
+.emerald {
+  --clr-btn: rgb(3, 26, 20);
+  --clr-dropdown: rgb(3, 26, 20);
+  --clr-nav-hover: rgb(4, 38, 30);
+  --clr-accent: #10b981;
+  --clr-glow: rgba(16, 185, 129, 0.35);
+}
+
+.blue {
+  --clr-btn: rgb(8, 20, 42);
+  --clr-dropdown: rgb(8, 20, 42);
+  --clr-nav-hover: rgb(12, 30, 60);
+  --clr-accent: #3b82f6;
+  --clr-glow: rgba(59, 130, 246, 0.35);
+}
+
+.amber {
+  --clr-btn: rgb(28, 20, 6);
+  --clr-dropdown: rgb(28, 20, 6);
+  --clr-nav-hover: rgb(42, 30, 10);
+  --clr-accent: #f59e0b;
+  --clr-glow: rgba(245, 158, 11, 0.35);
+}
+
+.navLink {
+  position: relative;
+  list-style: none;
+  display: inline-block;
+}
+
+.tooltipTab {
+  color: var(--clr-light);
+  background: var(--clr-btn);
+  padding: 0.65rem 1.1rem;
+  letter-spacing: 0.5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 10px;
+  justify-content: space-between;
+  cursor: pointer;
+  border: 1px solid var(--clr-accent);
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  user-select: none;
+  box-shadow: 0 0 10px var(--clr-glow);
+  outline: none;
+}
+
+/* Sizes */
+.sm .tooltipTab {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.7rem;
+  column-gap: 8px;
+}
+
+.sm .triggerSvg {
+  width: 14px;
+  height: 14px;
+}
+
+.triggerSvg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.4s ease-in-out;
+  color: var(--clr-accent);
+  flex-shrink: 0;
+}
+
+.navLink:hover .triggerSvg,
+.open .triggerSvg {
+  transform: rotate(180deg);
+}
+
+.navLink:hover .tooltipTab,
+.open .tooltipTab {
+  background-color: var(--clr-nav-hover);
+  box-shadow: 0 0 18px var(--clr-glow);
+}
+
+/* Dropdown Container */
+.tooltip {
+  position: absolute;
+  top: 100%;
+  min-width: 13rem;
+  max-width: 17rem;
+  transform: translateY(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  padding-top: 10px;
+  z-index: 60;
+}
+
+.alignLeft {
+  left: 0;
+}
+.alignRight {
+  right: 0;
+}
+
+/* Indicator arrow */
+.tooltip::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: var(--clr-accent);
+  top: 4px;
+  position: absolute;
+  display: inline-block;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  z-index: 1;
+  box-shadow: 0px 4px 15px var(--clr-btn);
+}
+
+.alignLeft::after {
+  left: 14px;
+}
+.alignRight::after {
+  right: 14px;
+}
+
+.navLink:hover .tooltip,
+.open .tooltip {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tooltipMenu {
+  padding: 6px 0;
+  background-color: var(--clr-dropdown);
+  border: 1px solid var(--clr-accent);
+  border-radius: 8px;
+  position: relative;
+  list-style: none;
+  margin: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px var(--clr-glow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.tooltipItem {
+  position: relative;
+  list-style: none;
+}
+
+.tooltipItem:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.menuAction {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  background-color: transparent;
+  color: var(--clr-light);
+  padding: 0.6rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  text-align: inherit;
+}
+
+.menuAction:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--clr-accent);
+  padding-inline-start: 1.25rem;
+}
+
+.menuAction.danger:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.itemIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--clr-accent);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.menuAction:hover .itemIcon {
+  transform: scale(1.15);
+}
+
+.itemBadge {
+  margin-inline-start: auto;
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--clr-accent);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+}

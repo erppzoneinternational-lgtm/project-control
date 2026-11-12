@@ -1,0 +1,457 @@
+/* CollectUI Dashboard Grid & Cards Design System
+ * ──────────────────────────────────────────────────────────────────────────
+ * Source: https://collectui.com/designs/dashboard-ui-design-inspiration/b4e496d5-52bb-4710-8167-fc21779ad5a9
+ * Base spacing unit: 4px
+ * Canvas: #ffffff | Secondary: #f5f6f8 | Primary Accent: #155dfc | Secondary Accent: #248a3d
+ * Cards: #242424 (dark) or #f5f6f8 (light) with 16px radius and 6px outer padding
+ * Buttons: .btnPrimary (#f5f6f8 / #248a3d), .btnFilled, .btnOutline, .btnCta
+ * Typography: Geist 24px (600, -0.96px), 14px body, 11px code
+ */
+
+.container {
+  width: 100%;
+  background: var(--color-bg, #ffffff);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--color-border, #f5f6f8);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  font-family: var(--font-geist-sans, 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  box-sizing: border-box;
+}
+
+:global(.dark) .container {
+  background: #121212;
+  border-color: #242424;
+}
+
+/* Header & Hero Section */
+.headerRow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border, #f5f6f8);
+}
+
+:global(.dark) .headerRow {
+  border-bottom-color: #242424;
+}
+
+@media (min-width: 640px) {
+  .headerRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: #f5f6f8;
+  color: #248a3d;
+  font-size: 11px;
+  font-weight: 600;
+  width: fit-content;
+  letter-spacing: -0.11px;
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+}
+
+:global(.dark) .badge {
+  background: rgba(36, 138, 61, 0.15);
+  color: #4ade80;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.96px;
+  color: var(--color-text, #000000);
+}
+
+:global(.dark) .title {
+  color: #ffffff;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22.75px;
+  color: var(--color-text-secondary, #666666);
+}
+
+:global(.dark) .subtitle {
+  color: #a3a3a3;
+}
+
+/* Grid Layout: 3-column, 12px gap */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+@media (min-width: 640px) {
+  .grid.cols2,
+  .grid.cols3,
+  .grid.cols4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid.cols3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid.cols4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Card Outer Shell - 16px radius, 6px padding */
+.cardDark {
+  background: #242424;
+  border-radius: 16px;
+  padding: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.cardDark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.cardLight {
+  background: #f5f6f8;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+:global(.dark) .cardLight {
+  background: #1c1c1c;
+  border-color: #2c2c2c;
+}
+
+.cardLight:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Inner Card Body */
+.cardInnerDark {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cardInnerLight {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+:global(.dark) .cardInnerLight {
+  background: #141414;
+}
+
+/* Card Header */
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardTitleDark {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+}
+
+.cardTitleLight {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: -0.3px;
+}
+
+:global(.dark) .cardTitleLight {
+  color: #ffffff;
+}
+
+.cardSubtitleDark {
+  margin: 0;
+  font-size: 13px;
+  color: #888888;
+  line-height: 18px;
+}
+
+.cardSubtitleLight {
+  margin: 0;
+  font-size: 13px;
+  color: #666666;
+  line-height: 18px;
+}
+
+:global(.dark) .cardSubtitleLight {
+  color: #a3a3a3;
+}
+
+.cardIconDark {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: #155dfc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardIconLight {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #f5f6f8;
+  color: #155dfc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+:global(.dark) .cardIconLight {
+  background: #242424;
+}
+
+/* Metric Display Area */
+.metricArea {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.metricValueDark {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 33.6px;
+  color: #ffffff;
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+}
+
+.metricValueLight {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 33.6px;
+  color: #000000;
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+}
+
+:global(.dark) .metricValueLight {
+  color: #ffffff;
+}
+
+.metricLabelDark {
+  font-size: 12px;
+  color: #888888;
+}
+
+.metricLabelLight {
+  font-size: 12px;
+  color: #666666;
+}
+
+/* Trend Pill */
+.trendPositive {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #248a3d;
+  background: rgba(36, 138, 61, 0.12);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.trendNegative {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #d92d20;
+  background: rgba(217, 45, 32, 0.12);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* Code Snippet Tag */
+.codeTag {
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: -0.11px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: #2a2a2a;
+  color: #e5e5e5;
+  width: fit-content;
+}
+
+/* Card Bottom Actions */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cardFooterLight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border, #f5f6f8);
+}
+
+:global(.dark) .cardFooterLight {
+  border-top-color: #242424;
+}
+
+/* CollectUI Official Buttons */
+.btnPrimary {
+  background: #f5f6f8;
+  color: #248a3d;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background: #e9ecf0;
+  transform: translateY(-1px);
+}
+
+.btnFilled {
+  background: #f5f6f8;
+  color: #464646;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btnFilled:hover {
+  background: #e9ecf0;
+  color: #111111;
+  transform: translateY(-1px);
+}
+
+.btnOutline {
+  background: transparent;
+  color: #464646;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #e3e8ee;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+:global(.dark) .btnOutline {
+  color: #d4d4d4;
+  border-color: #383838;
+}
+
+.btnOutline:hover {
+  background: #f5f6f8;
+  color: #111111;
+}
+
+:global(.dark) .btnOutline:hover {
+  background: #242424;
+  color: #ffffff;
+}
+
+.btnCta {
+  background: #155dfc;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(21, 93, 252, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btnCta:hover {
+  background: #0d4ed8;
+  box-shadow: 0 4px 12px rgba(21, 93, 252, 0.35);
+  transform: translateY(-1px);
+}

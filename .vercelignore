@@ -1,0 +1,2 @@
+# Exclude Schedule Pulse standalone HTML from Vercel deployment
+public/schedule-pulse.html

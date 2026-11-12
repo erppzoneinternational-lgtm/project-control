@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نموذج معاينة: محرك ربط المقايسة والتدفق النقدي (BOQ & Cash Flow S-Curve)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+              950: '#022c22',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Cairo', sans-serif; }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+  </style>
+</head>
+<body class="bg-[#070d18] text-slate-100 min-h-screen p-4 md:p-8">
+
+  <!-- Main Container -->
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- Top Decision Header / Banner -->
+    <header class="bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider">
+            معاينة النموذج التفاعلي (Interactive Prototype)
+          </span>
+          <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-[11px] font-mono">
+            V3.0 Proposed
+          </span>
+        </div>
+        <h1 class="text-xl md:text-2xl font-black text-white tracking-tight">
+          محرك ربط المقايسة (BOQ) والتدفقات النقدية (Financial S-Curve)
+        </h1>
+        <p class="text-xs text-slate-400">
+          إعداد: م. حسن أحمد سليمان · 01229994728 · نموذج قرار تنفيذي قبل بدء البرمجة الفعلية
+        </p>
+      </div>
+
+      <!-- Action Decision Controls -->
+      <div class="flex items-center gap-2 shrink-0">
+        <button onclick="approvePrototype()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-1.5 cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>موافق، ابدأ التنفيذ</span>
+        </button>
+        <button onclick="alert('سجل ملاحظاتك في الشات لتعديل التصميم فوراً')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700 transition-all cursor-pointer">
+          طلب تعديل على الشكل
+        </button>
+      </div>
+    </header>
+
+    <!-- Architecture & Concept Explanation Card -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-slate-900/80 border border-slate-800/90 rounded-2xl p-4 space-y-2">
+        <div class="w-8 h-8 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-sm">1</div>
+        <h3 class="text-sm font-bold text-white">حل تنبيه فقدان التكاليف</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          ملفات XER الواردة غالباً لا تحتوي على موارد أو تكاليف مسجلة (<span class="font-mono text-amber-400">PROJCOST</span>). سنقوم بربط أنشطة الجدول ببنود مقايسة الـ ERP تلقائياً بناءً على كود الـ WBS.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800/90 rounded-2xl p-4 space-y-2">
+        <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-sm">2</div>
+        <h3 class="text-sm font-bold text-white">التدفق المالي الحقيقي (Cash Out / In)</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          توزيع القيمة التعاقدية للبنود على مدد الأنشطة المرتبطة بها زمنياً لتوليد منحنى التدفق النقدي المخطط (Planned Cash Flow) شهرياً وتراكمياً.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800/90 rounded-2xl p-4 space-y-2">
+        <div class="w-8 h-8 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-sm">3</div>
+        <h3 class="text-sm font-bold text-white">مقارنة المستخلصات بـ Earned Value</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          مقارنة الإنجاز المالي المحسوب من الموقع مع مستخلصات المالك المعتمدة لكشف أي فجوة تمويلية (Cash Shortage) أو تعثر فوري.
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactive Interactive Tool Mockup Area -->
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-6">
+      
+      <!-- Toolbar & Filters -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-bold text-slate-400">المشروع النشط:</span>
+          <span class="px-3 py-1 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
+            #2619 — مشروع سراي (القاهرة الجديدة)
+          </span>
+          <span class="text-xs text-slate-500 font-mono">إجمالي المقايسة: 48,500,000 ج.م</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="toggleMode('chart')" id="btnChart" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white">
+            منحنى التدفق (S-Curve)
+          </button>
+          <button onclick="toggleMode('matrix')" id="btnMatrix" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-400 hover:bg-slate-700">
+            جدول ربط الأنشطة بالمقايسة
+          </button>
+        </div>
+      </div>
+
+      <!-- Mode 1: S-Curve Chart Preview -->
+      <div id="viewChart" class="space-y-4">
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="p-3.5 rounded-2xl bg-slate-850 border border-slate-800 space-y-1">
+            <span class="text-[11px] text-slate-400 font-bold">المخطط التراكمي (PV)</span>
+            <div class="text-lg font-black text-cyan-400 mono">18,250,000 ج.م</div>
+            <div class="text-[10px] text-slate-500">حتى تاريخ اليوم (37.6%)</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-850 border border-slate-800 space-y-1">
+            <span class="text-[11px] text-slate-400 font-bold">المحقق الفعلي (EV)</span>
+            <div class="text-lg font-black text-emerald-400 mono">16,800,000 ج.م</div>
+            <div class="text-[10px] text-emerald-500">نسبة الإنجاز 34.6%</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-850 border border-slate-800 space-y-1">
+            <span class="text-[11px] text-slate-400 font-bold">الانحراف المالي (CV)</span>
+            <div class="text-lg font-black text-amber-400 mono">-1,450,000 ج.م</div>
+            <div class="text-[10px] text-amber-500">تأخر في تحصيل الإنجاز</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-850 border border-slate-800 space-y-1">
+            <span class="text-[11px] text-slate-400 font-bold">مؤشر الأداء المالي (CPI)</span>
+            <div class="text-lg font-black text-emerald-300 mono">0.92</div>
+            <div class="text-[10px] text-slate-500">قريب من المستهدف (0.90+)</div>
+          </div>
+        </div>
+
+        <!-- Chart Canvas Container -->
+        <div class="relative bg-slate-950/60 border border-slate-800/80 rounded-2xl p-4 h-[380px]">
+          <canvas id="sCurveCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Mode 2: Activity to BOQ Linkage Matrix -->
+      <div id="viewMatrix" class="hidden space-y-3">
+        <div class="text-xs text-slate-400">
+          توضيح لكيفية الربط الآلي بين جدول أنشطة XER وبنود المقايسة المسجلة بالنظام:
+        </div>
+        <div class="overflow-x-auto rounded-xl border border-slate-800">
+          <table class="w-full text-right text-xs">
+            <thead class="bg-slate-800/80 text-slate-300 font-bold">
+              <tr>
+                <th class="p-3">كود النشاط (XER)</th>
+                <th class="p-3">اسم النشاط بالبرنامج</th>
+                <th class="p-3">بند المقايسة المرتبط (BOQ)</th>
+                <th class="p-3">قيمة البند (ج.م)</th>
+                <th class="p-3">الوزن النسبي (%)</th>
+                <th class="p-3">حالة الربط</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-mono text-cyan-400">ACT-STR-010</td>
+                <td class="p-3 font-bold">أعمال حفر الأساسات والردم</td>
+                <td class="p-3 text-emerald-400">بند 1.1: حفر في تربة رملية مع الترحيل</td>
+                <td class="p-3 font-mono">1,250,000</td>
+                <td class="p-3 font-mono">2.5%</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">ربط آلي 100%</span></td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-mono text-cyan-400">ACT-STR-020</td>
+                <td class="p-3 font-bold">خرسانة عادية للأساسات</td>
+                <td class="p-3 text-emerald-400">بند 2.1: توريد وصب خرسانة عادية سُمك 10سم</td>
+                <td class="p-3 font-mono">3,400,000</td>
+                <td class="p-3 font-mono">7.0%</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">ربط آلي 100%</span></td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-mono text-cyan-400">ACT-STR-030</td>
+                <td class="p-3 font-bold">خرسانة مسلحة للقواعد والميد</td>
+                <td class="p-3 text-emerald-400">بند 2.2: توريد وصب خرسانة مسلحة عيار 350</td>
+                <td class="p-3 font-mono">9,800,000</td>
+                <td class="p-3 font-mono">20.2%</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">ربط آلي 100%</span></td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-mono text-cyan-400">ACT-FIN-105</td>
+                <td class="p-3 font-bold">أعمال مباني القواطع الداخلية</td>
+                <td class="p-3 text-amber-400">بند 3.1: مباني طوب أسمنتي مصمت</td>
+                <td class="p-3 font-mono">2,100,000</td>
+                <td class="p-3 font-mono">4.3%</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px]">يحتاج مراجعة</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Decision Box Footer -->
+    <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs text-slate-400">
+      <div>
+        هل هذا الشكل والوظيفة متوافق مع رؤيتك الهندسية لربط المقايسة بالجدول الزمني؟
+      </div>
+      <div class="font-bold text-emerald-400">
+        بانتظار قرارك في المحادثة
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleMode(mode) {
+      const viewChart = document.getElementById('viewChart');
+      const viewMatrix = document.getElementById('viewMatrix');
+      const btnChart = document.getElementById('btnChart');
+      const btnMatrix = document.getElementById('btnMatrix');
+
+      if (mode === 'chart') {
+        viewChart.classList.remove('hidden');
+        viewMatrix.classList.add('hidden');
+        btnChart.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white";
+        btnMatrix.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-400 hover:bg-slate-700";
+      } else {
+        viewChart.classList.add('hidden');
+        viewMatrix.classList.remove('hidden');
+        btnChart.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-400 hover:bg-slate-700";
+        btnMatrix.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white";
+      }
+    }
+
+    function approvePrototype() {
+      alert("تم تسجيل موافقتك! يمكنك الآن كتابة 'موافق' في الشات للبدء فوراً في بناء الكود البرمجي.");
+    }
+
+    // Initialize Mock S-Curve Chart
+    window.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('sCurveCanvas').getContext('2d');
+      const months = ['يناير 26', 'فبراير 26', 'مارس 26', 'أبريل 26', 'مايو 26', 'يونيو 26', 'يوليو 26', 'أغسطس 26', 'سبتمبر 26', 'أكتوبر 26', 'نوفمبر 26', 'ديسمبر 26'];
+      
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: months,
+          datasets: [
+            {
+              label: 'التدفق التراكمي المخطط Planned (PV) - ج.م',
+              data: [1.2, 3.5, 7.8, 13.0, 19.5, 27.0, 34.2, 40.0, 44.5, 47.0, 48.0, 48.5],
+              borderColor: '#06b6d4',
+              backgroundColor: 'rgba(6, 182, 212, 0.08)',
+              fill: true,
+              tension: 0.35,
+              borderWidth: 3,
+            },
+            {
+              label: 'التدفق التراكمي الفعلي Earned (EV) - ج.م',
+              data: [1.1, 3.2, 7.0, 11.8, 17.5, 24.2, 31.0, 36.8, 41.5, 44.0, null, null],
+              borderColor: '#10b981',
+              backgroundColor: 'transparent',
+              borderDash: [],
+              tension: 0.35,
+              borderWidth: 3,
+            },
+            {
+              label: 'مستخلصات المالك المعتمدة Invoiced - ج.م',
+              data: [0.8, 2.5, 6.0, 10.0, 15.0, 21.5, 28.0, 33.5, 38.0, null, null, null],
+              borderColor: '#f59e0b',
+              backgroundColor: 'transparent',
+              borderDash: [5, 5],
+              tension: 0.35,
+              borderWidth: 2,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: '#94a3b8',
+                font: { family: 'Cairo', size: 11, weight: 'bold' }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + (context.raw ? context.raw.toFixed(1) + ' مليون ج.م' : '—');
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: '#94a3b8', font: { family: 'Cairo', size: 10 } }
+            },
+            y: {
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: {
+                color: '#94a3b8',
+                font: { family: 'Cairo', size: 10 },
+                callback: function(value) { return value + ' م ج.م'; }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

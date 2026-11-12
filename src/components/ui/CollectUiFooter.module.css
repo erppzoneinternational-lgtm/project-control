@@ -1,0 +1,242 @@
+/* CollectUI Footer Design System
+ * ──────────────────────────────────────────────────────────────────────────
+ * Source: https://collectui.com/designs/dashboard-ui-design-inspiration/bce957c6-c066-4c9a-a28f-ff95f2a4dbaa
+ * Spec: #000000 background, #ffffff text, #242424 borders & secondary cards, 8px padding
+ * Accents: #155dfc (CTA), #248a3d (Operational status), #ffc37a (Amber telemetry)
+ * Typography: Geist headings & body, Geist Mono 11px code
+ */
+
+.footer {
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  border-top: 1px solid #242424;
+  padding: 48px 24px 24px 24px;
+  font-family: var(--font-geist-sans, 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  box-sizing: border-box;
+}
+
+.topSection {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 32px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #242424;
+}
+
+@media (min-width: 768px) {
+  .topSection {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brandHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandLogo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #155dfc;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(21, 93, 252, 0.35);
+}
+
+.brandName {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.4px;
+}
+
+.tagline {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: #888888;
+  max-width: 360px;
+}
+
+/* Operational Status Pill */
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: #1c1c1c;
+  border: 1px solid #242424;
+  width: fit-content;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.statusIndicatorOnline {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #248a3d;
+  box-shadow: 0 0 8px rgba(36, 138, 61, 0.6);
+  animation: pulse 2s infinite;
+}
+
+.statusIndicatorAmber {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffc37a;
+  box-shadow: 0 0 8px rgba(255, 195, 122, 0.6);
+}
+
+.latencyTag {
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+  color: #ffc37a;
+  font-size: 10px;
+  background: rgba(255, 195, 122, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Links Columns */
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .linksGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.columnTitle {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.linksList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.linkItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #888888;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.linkItem:hover {
+  color: #155dfc;
+  transform: translateX(2px);
+}
+
+:global([dir="rtl"]) .linkItem:hover {
+  transform: translateX(-2px);
+}
+
+.badge {
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 100px;
+  background: #242424;
+  color: #ffc37a;
+}
+
+/* Bottom Bar */
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .bottomSection {
+    flex-direction: row;
+  }
+}
+
+.copyright {
+  margin: 0;
+  font-size: 12px;
+  color: #666666;
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+}
+
+.bottomBadges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.specBadge {
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+  font-size: 11px;
+  color: #a3a3a3;
+  background: #1c1c1c;
+  border: 1px solid #242424;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+/* CollectUI Button */
+.btnCta {
+  background: #155dfc;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btnCta:hover {
+  background: #0d4ed8;
+  transform: translateY(-1px);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

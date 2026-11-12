@@ -1,0 +1,206 @@
+/* From Uiverse.io by andrew-demchenk0 */ 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 14px;
+  gap: 8px;
+  height: 36px;
+  min-width: 120px;
+  width: fit-content;
+  border: none;
+  background: #5e41de33;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.25s ease, transform 0.15s ease, opacity 0.2s ease;
+  user-select: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.lable {
+  line-height: 20px;
+  font-size: 14px;
+  color: #5D41DE;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.button:hover {
+  background: #5e41de4d;
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.button:hover .svgIcon {
+  animation: spin 2s linear infinite;
+}
+
+.button.spinning .svgIcon {
+  animation: spin 1s linear infinite;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button:disabled:not(.spinning):hover .svgIcon {
+  animation: none;
+}
+
+.svgIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5D41DE;
+  flex-shrink: 0;
+  transition: color 0.25s ease;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Color Variants */
+/* Purple (Default Original) */
+.purple {
+  background: #5e41de33;
+}
+.purple:hover:not(:disabled) {
+  background: #5e41de4d;
+}
+.purple .lable,
+.purple .svgIcon {
+  color: #5D41DE;
+}
+
+/* Emerald (ERP Green) */
+.emerald {
+  background: rgba(16, 185, 129, 0.15);
+}
+.emerald:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.25);
+}
+.emerald .lable,
+.emerald .svgIcon {
+  color: #059669;
+}
+
+/* Blue */
+.blue {
+  background: rgba(59, 130, 246, 0.15);
+}
+.blue:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.25);
+}
+.blue .lable,
+.blue .svgIcon {
+  color: #2563eb;
+}
+
+/* Amber */
+.amber {
+  background: rgba(245, 158, 11, 0.15);
+}
+.amber:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 0.25);
+}
+.amber .lable,
+.amber .svgIcon {
+  color: #d97706;
+}
+
+/* Size Variants */
+.sm {
+  height: 30px;
+  min-width: 100px;
+  padding: 4px 10px;
+  gap: 6px;
+  border-radius: 16px;
+}
+.sm .lable {
+  font-size: 12px;
+}
+.sm .svgIcon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.md {
+  height: 36px;
+  min-width: 120px;
+  padding: 6px 14px;
+}
+
+.lg {
+  height: 44px;
+  min-width: 140px;
+  padding: 8px 18px;
+  border-radius: 24px;
+  gap: 10px;
+}
+.lg .lable {
+  font-size: 15px;
+}
+.lg .svgIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Dark mode overrides */
+:global(.dark) .purple .lable,
+:global(.dark) .purple .svgIcon {
+  color: #a78bfa;
+}
+:global(.dark) .purple {
+  background: rgba(94, 65, 222, 0.25);
+}
+:global(.dark) .purple:hover:not(:disabled) {
+  background: rgba(94, 65, 222, 0.4);
+}
+
+:global(.dark) .emerald .lable,
+:global(.dark) .emerald .svgIcon {
+  color: #34d399;
+}
+:global(.dark) .emerald {
+  background: rgba(16, 185, 129, 0.2);
+}
+:global(.dark) .emerald:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.35);
+}
+
+:global(.dark) .blue .lable,
+:global(.dark) .blue .svgIcon {
+  color: #60a5fa;
+}
+:global(.dark) .blue {
+  background: rgba(59, 130, 246, 0.2);
+}
+:global(.dark) .blue:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.35);
+}
+
+:global(.dark) .amber .lable,
+:global(.dark) .amber .svgIcon {
+  color: #fbbf24;
+}
+:global(.dark) .amber {
+  background: rgba(245, 158, 11, 0.2);
+}
+:global(.dark) .amber:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 0.35);
+}

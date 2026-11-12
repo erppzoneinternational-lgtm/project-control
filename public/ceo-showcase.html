@@ -1,0 +1,3210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P.ZONE ERP 2026 | البوابة التنفيذية الشاملة للرئيس التنفيذي — CEO Master Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #040914;
+      --bg-main: #071022;
+      --bg-card: rgba(15, 25, 48, 0.82);
+      --bg-card-solid: #0f1930;
+      --bg-card-hover: rgba(22, 38, 71, 0.95);
+      --bg-glass: rgba(10, 18, 36, 0.78);
+      --bg-subbox: rgba(4, 9, 20, 0.45);
+      --hero-bg: linear-gradient(135deg, #071329 0%, #0b2942 52%, #091d26 100%);
+      --hero-title-grad: linear-gradient(90deg, #ffffff 0%, #7dd3fc 60%, #5eead4 100%);
+      --hero-desc-color: #cbd5e1;
+      --hero-eyebrow-bg: rgba(14, 165, 233, 0.18);
+      --hero-eyebrow-color: #7dd3fc;
+      --tech-badge-bg: rgba(15, 23, 42, 0.75);
+      --tech-badge-color: #e2e8f0;
+      --telemetry-panel-bg: rgba(4, 9, 20, 0.72);
+      --telemetry-item-bg: rgba(15, 25, 48, 0.85);
+      --telemetry-item-border: rgba(255, 255, 255, 0.08);
+      --kpi-card-bg: rgba(10, 19, 38, 0.78);
+      --kpi-card-border: rgba(255, 255, 255, 0.14);
+      --text-main: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(56, 189, 248, 0.16);
+      --border-strong: rgba(56, 189, 248, 0.38);
+      --cyan: #0ea5e9;
+      --cyan-light: #38bdf8;
+      --cyan-glow: rgba(14, 165, 233, 0.25);
+      --teal: #14b8a6;
+      --emerald: #34d399;
+      --emerald-bg: rgba(16, 185, 129, 0.12);
+      --amber: #fbbf24;
+      --amber-bg: rgba(245, 158, 11, 0.12);
+      --rose: #fb7185;
+      --rose-bg: rgba(244, 63, 94, 0.12);
+      --violet: #c4b5fd;
+      --violet-bg: rgba(139, 92, 246, 0.14);
+      --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+    }
+
+    body.light-mode {
+      --bg-deep: #f8fafc;
+      --bg-main: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-solid: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-glass: rgba(255, 255, 255, 0.92);
+      --bg-subbox: #f8fafc;
+      --hero-bg: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+      --hero-title-grad: linear-gradient(90deg, #0f172a 0%, #0369a1 55%, #0f766e 100%);
+      --hero-desc-color: #334155;
+      --hero-eyebrow-bg: #e0f2fe;
+      --hero-eyebrow-color: #0369a1;
+      --tech-badge-bg: #ffffff;
+      --tech-badge-color: #0f172a;
+      --telemetry-panel-bg: rgba(255, 255, 255, 0.92);
+      --telemetry-item-bg: #f8fafc;
+      --telemetry-item-border: #e2e8f0;
+      --kpi-card-bg: #ffffff;
+      --kpi-card-border: #cbd5e1;
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-subtle: #e2e8f0;
+      --border-strong: #94a3b8;
+      --cyan: #0284c7;
+      --cyan-light: #0284c7;
+      --cyan-glow: rgba(2, 132, 199, 0.14);
+      --teal: #0d9488;
+      --emerald: #059669;
+      --emerald-bg: #ecfdf5;
+      --amber: #d97706;
+      --amber-bg: #fffbeb;
+      --rose: #e11d48;
+      --rose-bg: #fff1f2;
+      --violet: #7c3aed;
+      --violet-bg: #f5f3ff;
+      --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(14, 165, 233, 0.08) 0%, transparent 38%),
+        radial-gradient(circle at 88% 15%, rgba(20, 184, 166, 0.07) 0%, transparent 40%);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* Top Sticky Command Bar */
+    .command-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      background: var(--bg-glass);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 24px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .command-bar-inner {
+      max-width: 1540px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-cube {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0284c7 0%, #0d9488 65%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-title h2 {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--emerald-bg);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulseAnim 1.8s infinite;
+    }
+
+    @keyframes pulseAnim {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.55; }
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .theme-switcher {
+      display: inline-flex;
+      background: var(--bg-subbox);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 3px;
+      gap: 4px;
+    }
+
+    .theme-opt {
+      padding: 6px 12px;
+      border-radius: 9px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .theme-opt.active {
+      background: var(--cyan);
+      color: #ffffff;
+      box-shadow: 0 2px 8px var(--cyan-glow);
+    }
+
+    .ctrl-btn {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .ctrl-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--cyan-light);
+      transform: translateY(-1px);
+    }
+
+    .ctrl-btn.primary {
+      background: linear-gradient(135deg, #0284c7, #0d9488);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1540px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* Executive Hero Banner */
+    .hero-banner {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: var(--hero-bg);
+      border: 1px solid var(--border-subtle);
+      padding: 36px 36px 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      color: var(--text-main);
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: var(--hero-eyebrow-bg);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      color: var(--hero-eyebrow-color);
+      font-size: 12.5px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      background: var(--hero-title-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--hero-desc-color);
+      max-width: 840px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-badge {
+      padding: 6px 13px;
+      border-radius: 10px;
+      background: var(--tech-badge-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--tech-badge-color);
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    /* Right Hero Telemetry Panel */
+    .hero-telemetry {
+      background: var(--telemetry-panel-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .telemetry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--cyan-light);
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .telemetry-item {
+      background: var(--telemetry-item-bg);
+      border: 1px solid var(--telemetry-item-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .telemetry-item .val {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--text-main);
+      display: block;
+    }
+
+    .telemetry-item .lbl {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* Executive Top KPI Ribbon (6 Cards) */
+    .kpi-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .kpi-card {
+      background: var(--kpi-card-bg);
+      border: 1px solid var(--kpi-card-border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan-light);
+    }
+
+    .kpi-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .kpi-label {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      font-weight: 800;
+    }
+
+    .kpi-tag {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .kpi-value {
+      font-size: 23px;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .kpi-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Main 8-Tab Navigation */
+    .nav-tabs-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 10px;
+      margin-bottom: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-tab {
+      flex: 1 1 170px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .nav-tab:hover {
+      color: var(--text-main);
+      background: rgba(2, 132, 199, 0.08);
+    }
+
+    .nav-tab.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.16), rgba(13, 148, 136, 0.12));
+      color: var(--text-main);
+      border-color: var(--cyan-light);
+      box-shadow: 0 4px 14px var(--cyan-glow);
+    }
+
+    .tab-count {
+      background: rgba(2, 132, 199, 0.14);
+      color: var(--cyan-light);
+      padding: 1px 7px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    /* Tab Panes */
+    .tab-pane {
+      display: none;
+      animation: fadeSlide 0.28s ease;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section Headers */
+    .section-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-hdr h2 {
+      font-size: 23px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+    }
+
+    .section-hdr p {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 980px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cards */
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--text-main);
+    }
+
+    /* Filter Bar for Modules Explorer */
+    .explorer-controls {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-pill {
+      padding: 8px 14px;
+      border-radius: 11px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-subbox);
+      color: var(--text-secondary);
+      font-family: 'Cairo', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-pill:hover,
+    .filter-pill.active {
+      background: var(--cyan);
+      color: #ffffff;
+      border-color: var(--cyan-light);
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 290px;
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-subbox);
+      color: var(--text-main);
+      font-family: 'Cairo', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--cyan-light);
+      box-shadow: 0 0 0 3px var(--cyan-glow);
+    }
+
+    /* Module Card */
+    .module-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan-light);
+      background: var(--bg-card-hover);
+      box-shadow: 0 18px 40px rgba(2, 132, 199, 0.14);
+    }
+
+    .mod-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .mod-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      background: rgba(2, 132, 199, 0.1);
+      border: 1px solid rgba(2, 132, 199, 0.25);
+      flex-shrink: 0;
+    }
+
+    .mod-route {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      padding: 4px 9px;
+      border-radius: 8px;
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--cyan-light);
+      border: 1px solid rgba(2, 132, 199, 0.25);
+      direction: ltr;
+      font-weight: 700;
+    }
+
+    .mod-title {
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 3px;
+      color: var(--text-main);
+    }
+
+    .mod-title-en {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .mod-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .mod-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .mod-chip {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 7px;
+      background: var(--bg-subbox);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .mod-footer {
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .status-ready {
+      color: var(--emerald);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .preview-trigger {
+      color: var(--cyan-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    table.exec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    table.exec-table th {
+      background: rgba(2, 132, 199, 0.08);
+      color: var(--text-main);
+      font-weight: 800;
+      text-align: right;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    table.exec-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+    }
+
+    table.exec-table tr:hover td {
+      background: rgba(2, 132, 199, 0.04);
+    }
+
+    /* Progress Bars */
+    .bar-track {
+      width: 100%;
+      height: 9px;
+      background: rgba(148, 163, 184, 0.2);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+
+    /* State Machine Flow Nodes */
+    .flow-chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+      background: var(--bg-subbox);
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 14px;
+    }
+
+    .flow-node {
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card-solid);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .flow-node span {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .flow-arrow {
+      color: var(--cyan-light);
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    /* Interactive EVM Simulator */
+    .sim-slider-group {
+      margin-bottom: 16px;
+    }
+
+    .sim-slider-group label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .sim-slider-group input[type="range"] {
+      width: 100%;
+      accent-color: #0284c7;
+      cursor: pointer;
+    }
+
+    /* RBAC Role Grid */
+    .role-btn {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-subbox);
+      color: var(--text-main);
+      font-family: 'Cairo', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: right;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .role-btn:hover,
+    .role-btn.active {
+      border-color: var(--cyan-light);
+      background: rgba(2, 132, 199, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* Frosted Glass Modal (ADR-0011 Standard) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.32);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-window {
+      width: 100%;
+      max-width: 960px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--bg-card-solid);
+      border: 1px solid var(--border-strong);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.22);
+      animation: fadeSlide 0.22s ease;
+    }
+
+    .modal-close {
+      background: var(--rose-bg);
+      color: var(--rose);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      padding: 7px 14px;
+      border-radius: 10px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Badge Utilities */
+    .badge-emerald { background: var(--emerald-bg); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.35); padding: 3px 9px; border-radius: 8px; font-size: 11.5px; font-weight: 800; }
+    .badge-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.35); padding: 3px 9px; border-radius: 8px; font-size: 11.5px; font-weight: 800; }
+    .badge-rose { background: var(--rose-bg); color: var(--rose); border: 1px solid rgba(244, 63, 94, 0.35); padding: 3px 9px; border-radius: 8px; font-size: 11.5px; font-weight: 800; }
+    .badge-violet { background: var(--violet-bg); color: var(--violet); border: 1px solid rgba(139, 92, 246, 0.35); padding: 3px 9px; border-radius: 8px; font-size: 11.5px; font-weight: 800; }
+    .badge-cyan { background: rgba(2, 132, 199, 0.1); color: var(--cyan-light); border: 1px solid rgba(2, 132, 199, 0.3); padding: 3px 9px; border-radius: 8px; font-size: 11.5px; font-weight: 800; }
+
+    @media print {
+      .command-bar, .explorer-controls, .nav-tabs-wrapper { display: none !important; }
+      .tab-pane { display: block !important; page-break-after: always; }
+      body { background: #fff !important; color: #000 !important; }
+      .panel-card, .module-card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <!-- Top Sticky Command Bar -->
+  <header class="command-bar">
+    <div class="command-bar-inner">
+      <div class="brand-cluster">
+        <div class="brand-cube">PZ</div>
+        <div class="brand-title">
+          <h2>
+            <span>بوابة بي زون التنفيذية الشاملة | P.ZONE ERP 2026</span>
+            <span class="live-pill"><span class="pulse-dot"></span> جميع المراحل الـ 7 مكتملة (PRODUCTION READY)</span>
+          </h2>
+          <div class="brand-subtitle">عرض الرئيس التنفيذي ومجلس الإدارة — منظومة التحكم المتكاملة في المشروعات، المكتب الفني، التخطيط P6، والماليات</div>
+        </div>
+      </div>
+
+      <div class="toolbar-actions">
+        <div class="theme-switcher">
+          <button class="theme-opt active" id="btnWhiteTheme" onclick="setTheme('light')">☀️ White Theme (أبيض)</button>
+          <button class="theme-opt" id="btnDarkTheme" onclick="setTheme('dark')">🌙 Dark Theme (داكن)</button>
+        </div>
+        <button class="ctrl-btn" onclick="cycleSlide(-1)" title="الشريحة السابقة">◀ السابق</button>
+        <button class="ctrl-btn" onclick="cycleSlide(1)" title="الشريحة التالية">التالي ▶</button>
+        <button class="ctrl-btn" onclick="window.print()">🖨️ طباعة (A4)</button>
+        <a class="ctrl-btn primary" href="http://localhost:3000/dashboard" target="_blank">🚀 فتح النظام الحي (Next.js Live)</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Executive Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow">⚡ EXECUTIVE MASTER SHOWCASE · POST-CONTRACT & ENTERPRISE CONTROLS</div>
+          <h1 class="hero-title">منظومة P.ZONE ERP المتكاملة لإدارة المشروعات المائية والإنشائية</h1>
+          <p class="hero-desc">
+            أول نظام ERP هندسي ومالي ثنائي اللغة مصمم خصيصاً لقطاع المقاولات والمشروعات المائية (Crystal Lagoons, Olympic Pools, Musical Fountains, Hydraulic Infrastructure) في مصر. يربط الموقع الميداني، المكتب الفني (E1/E2)، محرك الجداول الزمنية (Primavera P6 XER)، العقود والمطالبات (FIDIC)، وسركي العمالة (SARAKY) بقاعدة بيانات حية موحدة.
+          </p>
+          <div class="hero-badges">
+            <span class="tech-badge">⚡ Next.js 16 App Router</span>
+            <span class="tech-badge">🛡️ Supabase PostgreSQL (292 RLS)</span>
+            <span class="tech-badge">📊 53 شاشة إنتاجية جاهزة</span>
+            <span class="tech-badge">📈 106+ تقرير تنفيذي (13 نوع رسم بياني)</span>
+            <span class="tech-badge">🔐 22 دور وظيفي RBAC + PriceGate</span>
+            <span class="tech-badge">✅ 892/892 اختبار آلي ناجح (0 أخطاء)</span>
+          </div>
+        </div>
+
+        <!-- Right Telemetry Box -->
+        <div class="hero-telemetry">
+          <div class="telemetry-header">
+            <span>📡 نبض البنية الهندسية وقاعدة البيانات الحية</span>
+            <span class="mono">VERIFIED 2026</span>
+          </div>
+          <div class="telemetry-grid">
+            <div class="telemetry-item">
+              <span class="val mono" style="color:var(--cyan-light);">32+ Module</span>
+              <span class="lbl">موديول وبوابة جاهزة للتشغيل (53 Route)</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="val mono" style="color:var(--emerald);">892 / 892</span>
+              <span class="lbl">اختبار Vitest ناجح · 0 TypeScript Errors</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="val mono" style="color:var(--amber);">160 Tables</span>
+              <span class="lbl">78 Migration · 52 View · 101 RPC</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="val mono" style="color:var(--violet);">403 Codes</span>
+              <span class="lbl">كود تكلفة قياسي مربوط بـ 868 بند BOQ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top 6 Portfolio KPI Cards -->
+      <div class="kpi-ribbon">
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">إجمالي محفظة العقود (50 مشروع)</span>
+            <span class="kpi-tag badge-cyan">PORTFOLIO</span>
+          </div>
+          <div class="kpi-value mono">2,056,374,652 EGP</div>
+          <div class="kpi-sub">2.056 مليار ج.م · مسطحات مائية تتجاوز 150,000 م²</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">التحصيلات النقدية الفعلية (يناير–سبتمبر)</span>
+            <span class="kpi-tag badge-emerald">27.1% FLOW</span>
+          </div>
+          <div class="kpi-value mono" style="color:var(--emerald);">556,509,560 EGP</div>
+          <div class="kpi-sub">ذروة التحصيل في يونيو: 145,051,117 ج.م</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">محتجز ضمان الأعمال (Retention Held)</span>
+            <span class="kpi-tag badge-amber">19.98%</span>
+          </div>
+          <div class="kpi-value mono" style="color:var(--amber);">410,808,610 EGP</div>
+          <div class="kpi-sub">موزعة على كبار المطورين والمقاولين الرئيسيين</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">فجوة اعتماد المستخلصات (WIP Gap)</span>
+            <span class="kpi-tag badge-rose">ACTION REQ</span>
+          </div>
+          <div class="kpi-value mono" style="color:var(--rose);">50,004,188 EGP</div>
+          <div class="kpi-sub">أعمال منفذة قيد التصديق والاعتماد الاستشاري</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">حوكمة الصلاحيات وحماية الأسعار</span>
+            <span class="kpi-tag badge-violet">ZERO-TRUST</span>
+          </div>
+          <div class="kpi-value mono" style="color:var(--violet);">22 Role · 15 RACI</div>
+          <div class="kpi-sub">تشفير أسعار المقايسات تلقائياً عبر بوابة &lt;PriceGate&gt;</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">محرك التقارير والذكاء التنفيذي</span>
+            <span class="kpi-tag badge-emerald">LIVE ENGINE</span>
+          </div>
+          <div class="kpi-value mono" style="color:var(--cyan-light);">106+ Reports</div>
+          <div class="kpi-sub">10 تصنيفات · 13 نوع رسم بياني · تصدير PDF و Excel</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Interactive Main Tabs -->
+    <nav class="nav-tabs-wrapper" id="mainTabs">
+      <button class="nav-tab active" onclick="switchTab('tab-cockpit', this)">
+        🏛️ الملخص التنفيذي والمحفظة <span class="tab-count">2.05B</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('tab-modules', this)">
+        🧩 كتالوج الموديولات الجاهزة <span class="tab-count">32+</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('tab-workflows', this)">
+        🔄 مسارات العمل وآلات الحالة <span class="tab-count">5 Loops</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('tab-pulse', this)">
+        📐 محرك P6 XER ومحاكي EVM <span class="tab-count">DCMA-14</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('tab-cost', this)">
+        💰 الهيكل المحاسبي والمقايسات <span class="tab-count">403 كود</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('tab-rbac', this)">
+        🛡️ الصلاحيات ومصفوفة RACI <span class="tab-count">22 دور</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('tab-arch', this)">
+        🏗️ المعمارية، سركي العمالة و ADRs <span class="tab-count">11 ADR</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('tab-launchpad', this)">
+        🚀 سابقة الأعمال ومنصة الإطلاق <span class="tab-count">Live</span>
+      </button>
+    </nav>
+
+    <!-- =====================================================================
+         TAB 1: CEO EXECUTIVE COCKPIT & 2.056B PORTFOLIO
+         ===================================================================== -->
+    <section id="tab-cockpit" class="tab-pane active">
+      <div class="section-hdr">
+        <div>
+          <h2>🏛️ مركز القيادة التنفيذية للرئيس التنفيذي (CEO & Board Portfolio Intelligence)</h2>
+          <p>رؤية لحظية لمحفظة المشروعات الـ 50، التدفقات النقدية، محتجزات الضمان لدى كبار العملاء، والقواعد الحاكمة لمنع تسرب الإيرادات.</p>
+        </div>
+      </div>
+
+      <!-- The 7 Official Portals Banner -->
+      <div class="panel-card" style="margin-bottom:24px;">
+        <div class="panel-title">
+          <span>🌐 البوابات السبع الرسمية للنظام (The 7 Official Core Portals) + الموديولات التوسعية</span>
+          <span class="badge-cyan">UNIFIED MONOREPO ARCHITECTURE</span>
+        </div>
+        <div class="grid-4" style="margin-bottom:0;">
+          <div class="telemetry-item" style="border-right:4px solid #0ea5e9;">
+            <span class="val" style="font-size:16px;">1. اللوحة التنفيذية والـ CEO</span>
+            <span class="lbl mono">/dashboard · /board · /coo</span>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;">مؤشرات المحفظة، منحنى S-Curve، رادار المواقع الصامتة (&gt;48 ساعة)، وحوكمة أصول العقود.</p>
+          </div>
+          <div class="telemetry-item" style="border-right:4px solid #14b8a6;">
+            <span class="val" style="font-size:16px;">2. إعداد وحوكمة المشاريع</span>
+            <span class="lbl mono">/projects · /project-setup</span>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;">معالج إنشاء المشروع (5 خطوات)، خريطة GIS، 15 تبويب تفصيلي لكل مشروع، وبنك الأرشيف.</p>
+          </div>
+          <div class="telemetry-item" style="border-right:4px solid #8b5cf6;">
+            <span class="val" style="font-size:16px;">3. التخطيط الهندسي و P6</span>
+            <span class="lbl mono">/planning · /schedule-pulse · /boq</span>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;">محرك قراءة ملفات Primavera XER، فحص DCMA-14، المقايسات BOQ/BOM، والتقدم اليومي.</p>
+          </div>
+          <div class="telemetry-item" style="border-right:4px solid #10b981;">
+            <span class="val" style="font-size:16px;">4. المكتب الفني والاعتمادات</span>
+            <span class="lbl mono">/technical-office · /deliverables</span>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;">لوحات E1 والعينات E2، محرك Unifier، عداد SLA الـ 14 يوماً للاستشاري، والضمانات المائية.</p>
+          </div>
+          <div class="telemetry-item" style="border-right:4px solid #f59e0b;">
+            <span class="val" style="font-size:16px;">5. العقود والمطالبات FIDIC</span>
+            <span class="lbl mono">/contracts · /contracts/claims</span>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;">عقود الملاك، أوامر التغيير VO، مطالبات التمديد الزمني EOT (بند 20.1 و8.4)، والمستخلصات IPC.</p>
+          </div>
+          <div class="telemetry-item" style="border-right:4px solid #ec4899;">
+            <span class="val" style="font-size:16px;">6. مقاولي الباطن والمناقصات</span>
+            <span class="lbl mono">/subcontractors · /tender</span>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;">تقييم مقاولي الباطن، حساب الاستقطاعات والضمان، وإدارة عروض المناقصات قبل التعاقد.</p>
+          </div>
+          <div class="telemetry-item" style="border-right:4px solid #ef4444;">
+            <span class="val" style="font-size:16px;">7. التنفيذ، الجودة والسلامة</span>
+            <span class="lbl mono">/site-workspace · /qc-dashboard · /hse</span>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;">تطبيق الموقع (يعمل بدون إنترنت + وضع الشمس)، استلامات WIR/MIR/NCR، وتصاريح السلامة.</p>
+          </div>
+          <div class="telemetry-item" style="border-right:4px solid #3b82f6;">
+            <span class="val" style="font-size:16px;">8. التكاليف، التقارير والـ RBAC</span>
+            <span class="lbl mono">/cost-control · /reports · /system-admin</span>
+            <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;">القيمة المكتسبة الحية (CPI/SPI/EAC)، 106+ تقرير، و22 دور وظيفي مع سجل تدقيق غير قابل للتعديل.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Monthly Cash Collections & S-Curve SVG Chart -->
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>📈 التدفقات النقدية والتحصيلات الشهرية الفعلية (يناير – سبتمبر 2026)</span>
+            <span class="badge-emerald mono">TOTAL: 556.51M EGP</span>
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">
+            بيانات حقيقية من لوحة مجلس الإدارة (`Board Member DashBoard`) توضح تطور التحصيلات النقدية مقارنة بالمستخلصات المعتمدة، مع ذروة التحصيل في شهر يونيو (145.05 مليون ج.م).
+          </p>
+          <svg viewBox="0 0 680 260" style="width:100%;height:auto;background:var(--bg-subbox);border-radius:14px;padding:12px;border:1px solid var(--border-subtle);">
+            <defs>
+              <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0284c7" />
+                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.65" />
+              </linearGradient>
+              <linearGradient id="peakGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#059669" />
+                <stop offset="100%" stop-color="#10b981" stop-opacity="0.7" />
+              </linearGradient>
+            </defs>
+            <!-- Grid lines -->
+            <line x1="50" y1="30" x2="650" y2="30" stroke="rgba(148,163,184,0.25)" stroke-dasharray="4" />
+            <line x1="50" y1="80" x2="650" y2="80" stroke="rgba(148,163,184,0.25)" stroke-dasharray="4" />
+            <line x1="50" y1="130" x2="650" y2="130" stroke="rgba(148,163,184,0.25)" stroke-dasharray="4" />
+            <line x1="50" y1="180" x2="650" y2="180" stroke="rgba(148,163,184,0.25)" stroke-dasharray="4" />
+            <line x1="50" y1="215" x2="650" y2="215" stroke="rgba(148,163,184,0.5)" />
+
+            <!-- Bars Jan to Sep -->
+            <!-- Jan: 42M -->
+            <rect x="70" y="160" width="38" height="55" rx="6" fill="url(#barGrad)" />
+            <text x="89" y="153" fill="var(--text-muted)" font-size="10" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">42M</text>
+            <text x="89" y="236" fill="var(--text-main)" font-size="11" text-anchor="middle" font-weight="bold">يناير</text>
+
+            <!-- Feb: 38M -->
+            <rect x="135" y="165" width="38" height="50" rx="6" fill="url(#barGrad)" />
+            <text x="154" y="158" fill="var(--text-muted)" font-size="10" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">38M</text>
+            <text x="154" y="236" fill="var(--text-main)" font-size="11" text-anchor="middle" font-weight="bold">فبراير</text>
+
+            <!-- Mar: 54M -->
+            <rect x="200" y="144" width="38" height="71" rx="6" fill="url(#barGrad)" />
+            <text x="219" y="137" fill="var(--text-muted)" font-size="10" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">54M</text>
+            <text x="219" y="236" fill="var(--text-main)" font-size="11" text-anchor="middle" font-weight="bold">مارس</text>
+
+            <!-- Apr: 49M -->
+            <rect x="265" y="151" width="38" height="64" rx="6" fill="url(#barGrad)" />
+            <text x="284" y="144" fill="var(--text-muted)" font-size="10" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">49M</text>
+            <text x="284" y="236" fill="var(--text-main)" font-size="11" text-anchor="middle" font-weight="bold">أبريل</text>
+
+            <!-- May: 62M -->
+            <rect x="330" y="134" width="38" height="81" rx="6" fill="url(#barGrad)" />
+            <text x="349" y="127" fill="var(--text-muted)" font-size="10" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">62M</text>
+            <text x="349" y="236" fill="var(--text-main)" font-size="11" text-anchor="middle" font-weight="bold">مايو</text>
+
+            <!-- Jun: 145.05M PEAK -->
+            <rect x="395" y="28" width="38" height="187" rx="6" fill="url(#peakGrad)" />
+            <text x="414" y="20" fill="var(--emerald)" font-size="11" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">145.1M★</text>
+            <text x="414" y="236" fill="var(--emerald)" font-size="11" text-anchor="middle" font-weight="bold">يونيو</text>
+
+            <!-- Jul: 58M -->
+            <rect x="460" y="139" width="38" height="76" rx="6" fill="url(#barGrad)" />
+            <text x="479" y="132" fill="var(--text-muted)" font-size="10" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">58M</text>
+            <text x="479" y="236" fill="var(--text-main)" font-size="11" text-anchor="middle" font-weight="bold">يوليو</text>
+
+            <!-- Aug: 52M -->
+            <rect x="525" y="147" width="38" height="68" rx="6" fill="url(#barGrad)" />
+            <text x="544" y="140" fill="var(--text-muted)" font-size="10" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">52M</text>
+            <text x="544" y="236" fill="var(--text-main)" font-size="11" text-anchor="middle" font-weight="bold">أغسطس</text>
+
+            <!-- Sep: 56.4M -->
+            <rect x="590" y="141" width="38" height="74" rx="6" fill="url(#barGrad)" />
+            <text x="609" y="134" fill="var(--text-muted)" font-size="10" font-weight="bold" text-anchor="middle" font-family="JetBrains Mono">56.4M</text>
+            <text x="609" y="236" fill="var(--text-main)" font-size="11" text-anchor="middle" font-weight="bold">سبتمبر</text>
+
+            <!-- Cumulative S-Curve Line Overlay -->
+            <path d="M89 195 Q 219 165, 349 120 T 609 38" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,4" />
+          </svg>
+        </div>
+
+        <!-- Top 6 Clients by Retention Held -->
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>🏦 تمركز محتجزات ضمان الأعمال لدى كبار العملاء (410.81M EGP)</span>
+            <span class="badge-amber">RETENTION RADAR</span>
+          </div>
+          <div class="table-wrap">
+            <table class="exec-table">
+              <thead>
+                <tr>
+                  <th>العميل / المقاول الرئيسي</th>
+                  <th>المشروعات</th>
+                  <th>قيمة المحتجز (EGP)</th>
+                  <th>النسبة</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>حسن علام للإنشاءات (HAC)</strong></td>
+                  <td>14 مشروع نشط</td>
+                  <td class="mono" style="color:var(--cyan-light);font-weight:800;">168,767,117</td>
+                  <td><span class="badge-cyan mono">41.1%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>أوراسكوم للإنشاءات (Orascom)</strong></td>
+                  <td>8 مشروعات نشطة</td>
+                  <td class="mono" style="color:var(--cyan-light);font-weight:800;">122,230,078</td>
+                  <td><span class="badge-cyan mono">29.8%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>ريدكون للتعمير (Redcon)</strong></td>
+                  <td>4 مشروعات نشطة</td>
+                  <td class="mono" style="color:var(--emerald);font-weight:800;">41,894,846</td>
+                  <td><span class="badge-emerald mono">10.2%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>مراكز (Marakez - Katameya Mall)</strong></td>
+                  <td>مشروع رئيسي</td>
+                  <td class="mono" style="color:var(--emerald);font-weight:800;">31,521,080</td>
+                  <td><span class="badge-emerald mono">7.7%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>لاند مارك صبور (LMD - Zoya)</strong></td>
+                  <td>الساحل الشمالي</td>
+                  <td class="mono" style="color:var(--amber);font-weight:800;">24,792,028</td>
+                  <td><span class="badge-amber mono">6.0%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>كونكورد للهندسة (Concord)</strong></td>
+                  <td>قطارات العاصمة</td>
+                  <td class="mono" style="color:var(--violet);font-weight:800;">9,977,933</td>
+                  <td><span class="badge-violet mono">2.4%</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 Golden Enterprise Invariants -->
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>🛡️ القواعد الذهبية الصارمة للحوكمة ومنع تسرب الأرباح (Deterministic System Invariants)</span>
+          <span class="badge-rose">ENFORCED IN DB &amp; RPC</span>
+        </div>
+        <div class="grid-3" style="margin-bottom:0;">
+          <div class="telemetry-item">
+            <span class="badge-emerald">قاعدة 1 · بوابة المستخلصات</span>
+            <h4 style="margin:8px 0 4px;">لا مستخلص مالي بدون لوحة معتمدة (Code A/B) + WIR</h4>
+            <p style="font-size:12.5px;color:var(--text-secondary);">لا يمكن صرف أو فوترة أي بند في المستخلص (IPC) إلا بعد اعتماد اللوحة التنفيذية E1 والخامة E2 من الاستشاري واجتياز فحص الجودة الميداني WIR.</p>
+          </div>
+          <div class="telemetry-item">
+            <span class="badge-cyan">قاعدة 2 · SITE_TASK_REQUIRED</span>
+            <h4 style="margin:8px 0 4px;">منع التقارير الميدانية العشوائية (ADR-0003)</h4>
+            <p style="font-size:12.5px;color:var(--text-secondary);">يرفض النظام حفظ أي تقرير تقدم يومي (`pm_daily_progress`) ما لم يكن مربوطاً بمهمة موقع نشطة ومفتوحة (`site_task_id`) مرتبطة بالجدول الزمني.</p>
+          </div>
+          <div class="telemetry-item">
+            <span class="badge-violet">قاعدة 3 · كشف أوامر التغيير التلقائي</span>
+            <h4 style="margin:8px 0 4px;">توليد مسودة VO تلقائياً من الموقع (ADR-0006)</h4>
+            <p style="font-size:12.5px;color:var(--text-secondary);">عند تسجيل مهندس الموقع لكميات تتجاوز العقد (`is_claimable_vo = true`)، ينشئ النظام فوراً مسودة أمر تغيير في `pm_variation_orders` لإخطار الإدارة التجارية.</p>
+          </div>
+          <div class="telemetry-item">
+            <span class="badge-amber">قاعدة 4 · درع الفيديك 28 يوماً</span>
+            <h4 style="margin:8px 0 4px;">تحويل معوقات المسار الحرج إلى مطالبة EOT (ADR-0008)</h4>
+            <p style="font-size:12.5px;color:var(--text-secondary);">أي إعاقة ميدانية على نشاط حرج (`float = 0`) أو تأخير استشاري يتجاوز 14 يوماً يتحول بضغطة زر إلى مطالبة تمديد زمني EOT لحماية الحق التعاقدي قبل سقوطه بالتقادم (FIDIC 20.1).</p>
+          </div>
+          <div class="telemetry-item">
+            <span class="badge-rose">قاعدة 5 · المراجعة الآلية لـ Code C</span>
+            <h4 style="margin:8px 0 4px;">ترقية رقم الإصدار تلقائياً عند ملاحظات الاستشاري</h4>
+            <p style="font-size:12.5px;color:var(--text-secondary);">عند حصول أي لوحة أو عينة على كود `C` (إعادة تقديم)، يقوم النظام آلياً بزيادة `submission_revision` وإعادة الحالة إلى `in_progress` في لوحة مهندس المكتب الفني.</p>
+          </div>
+          <div class="telemetry-item">
+            <span class="badge-cyan">قاعدة 6 · سجل تدقيق غير قابل للمسح</span>
+            <h4 style="margin:8px 0 4px;">Append-Only Immutable Audit Trail</h4>
+            <p style="font-size:12.5px;color:var(--text-secondary);">جميع حركات المهام (`pm_task_events`) وسجلات المراجعة محمية ضد الحذف أو التعديل، مع رصد المواقع الصامتة (&gt;48 ساعة بدون تقرير) وإرسال تنبيه فوري للـ COO والـ CEO.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 2: 32+ READY MODULES INTERACTIVE CATALOG
+         ===================================================================== -->
+    <section id="tab-modules" class="tab-pane">
+      <div class="section-hdr">
+        <div>
+          <h2>🧩 الكتالوج التفاعلي لجميع الموديولات والشاشات الجاهزة (32+ Ready Production Modules)</h2>
+          <p>اضغط على أي موديول لفتح <strong>معاينة حية تفصيلية (Interactive Module Simulator)</strong> تعرض التبويبات، المعادلات، الجداول، ورابط التشغيل المباشر.</p>
+        </div>
+      </div>
+
+      <div class="explorer-controls">
+        <div class="filter-pills" id="domainFilters">
+          <button class="filter-pill active" onclick="filterModules('all', this)">الكل (32 موديول)</button>
+          <button class="filter-pill" onclick="filterModules('executive', this)">🏛️ القيادة العليا ومجلس الإدارة (5)</button>
+          <button class="filter-pill" onclick="filterModules('projects', this)">🏗️ إعداد وحوكمة المشاريع (6)</button>
+          <button class="filter-pill" onclick="filterModules('planning', this)">📐 التخطيط، المقايسات و P6 (7)</button>
+          <button class="filter-pill" onclick="filterModules('site', this)">👷 التنفيذ الميداني، QC و HSE (6)</button>
+          <button class="filter-pill" onclick="filterModules('technical', this)">📋 المكتب الفني والوثائق (5)</button>
+          <button class="filter-pill" onclick="filterModules('commercial', this)">💼 العقود، التكاليف والمناقصات (6)</button>
+          <button class="filter-pill" onclick="filterModules('ecosystem', this)">⚙️ التقارير، الصلاحيات و SARAKY/HR (5)</button>
+        </div>
+
+        <div class="search-box">
+          <input type="text" id="moduleSearch" placeholder="🔍 ابحث باسم الموديول، المسار (/boq)، أو الوظيفة..." oninput="searchModules(this.value)" />
+        </div>
+      </div>
+
+      <div class="grid-3" id="modulesGrid">
+        <!-- Populated dynamically via JS from grounded dataset -->
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 3: END-TO-END WORKFLOWS & STATE MACHINES
+         ===================================================================== -->
+    <section id="tab-workflows" class="tab-pane">
+      <div class="section-hdr">
+        <div>
+          <h2>🔄 مسارات العمل الحتمية وآلات الحالة (Procedural Workflows &amp; State Machines)</h2>
+          <p>تحويل دورة حياة المشروع من إجراءات ورقية متفرقة إلى آلات حالة (State Machines) محكومة برمجياً داخل قاعدة البيانات.</p>
+        </div>
+      </div>
+
+      <!-- Loop 1: Site Task State Machine -->
+      <div class="panel-card" style="margin-bottom:20px;">
+        <div class="panel-title">
+          <span>1️⃣ آلة حالة مهام الموقع الميدانية (`rpc_site_task_transition` — Migration 025)</span>
+          <span class="badge-emerald mono">DB ENFORCED STATE MACHINE</span>
+        </div>
+        <div class="flow-chain">
+          <div class="flow-node">⏳ قيد الانتظار<span>pending</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#0ea5e9;">🔨 قيد التنفيذ الميداني<span>in_progress</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#f59e0b;">👨‍💼 مراجعة مدير المشروع<span>pm_review (Soft Review)</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#8b5cf6;">🔬 فحص الجودة WIR<span>qc_pending</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#10b981;">✅ معتمدة للفوترة<span>approved / done</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-secondary);">
+          <strong>مسار الرفض وإعادة العمل (Rework Loop):</strong> في حال رفض مدير المشروع أو إصدار مهندس الجودة لتقرير عدم مطابقة (`NCR`)، تنتقل المهمة إلى حالة <span class="mono badge-rose">rejected</span> وتعود فوراً إلى لوحة مهندس الموقع لإعادة المعالجة ثم إعادة الفحص، ولا تُقفل إلا بعد الاعتماد الهندسي الكامل.
+        </p>
+      </div>
+
+      <!-- Loop 2: Technical Office Unifier & 14-Day SLA -->
+      <div class="panel-card" style="margin-bottom:20px;">
+        <div class="panel-title">
+          <span>2️⃣ محرك المكتب الفني القياسي (Unifier / ACC Engine) وعداد SLA الـ 14 يوماً للاستشاري</span>
+          <span class="badge-cyan mono">BALL-IN-COURT TRACKER</span>
+        </div>
+        <div class="flow-chain">
+          <div class="flow-node">📝 مسودة<span>draft (Ball: Manager)</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#0ea5e9;">📐 إعداد هندسي (7 أيام)<span>in_progress (Ball: Engineer)</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#f59e0b;">🔍 مراجعة مدير المكتب (3 أيام)<span>under_review (Ball: Manager)</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#8b5cf6;">📨 إرسال عبر DC<span>approved_internal (Ball: DC)</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#ec4899;">⏱️ مراجعة الاستشاري (14 يوم)<span>submitted_to_consultant</span></div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-node" style="border-color:#10b981;">🏆 كود A / B (إغلاق)<span>closed (Ready for Site/IPC)</span></div>
+        </div>
+        <div class="grid-3" style="margin-bottom:0;margin-top:12px;">
+          <div class="telemetry-item">
+            <span class="badge-emerald">Code A / Code B</span>
+            <p style="font-size:12.5px;margin-top:6px;">اعتماد نهائي أو بملاحظات بسيطة — يفتح بوابة الصب/التركيب الميداني وبوابة المستخلص المالي.</p>
+          </div>
+          <div class="telemetry-item">
+            <span class="badge-amber">Code C (Revise &amp; Resubmit)</span>
+            <p style="font-size:12.5px;margin-top:6px;">يزيد عداد الإصدار `submission_revision` تلقائياً (+1) ويعيد اللوحة إلى `in_progress` لدى المهندس المختص.</p>
+          </div>
+          <div class="telemetry-item">
+            <span class="badge-rose">تجاوز 14 يوماً لدى الاستشاري</span>
+            <p style="font-size:12.5px;margin-top:6px;">يرصد النظام التأخير كحدث مطالبة تعاقدي (`+Xd SLA Breached - Employer Delay`) لحماية الشركة من غرامات التأخير.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loop 3: Aquatic Safeguards & 3-Layer Progress -->
+      <div class="grid-2">
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>3️⃣ الضمانات الهيدروليكية والمائية الخاصة بـ P.ZONE (`AquaticSafeguardsHub`)</span>
+            <span class="badge-cyan">WATER SPECIALIZATION</span>
+          </div>
+          <ul style="list-style:none;display:grid;gap:10px;font-size:13.5px;color:var(--text-secondary);">
+            <li>💧 <strong>اختبار العزل المائي 72 ساعة (72h Hydro-Testing):</strong> توثيق منسوب المياه والهبوط المسموح قبل التسليم.</li>
+            <li>🔧 <strong>اختبار ضغط المواسير المدفونة (1.5x Working Pressure):</strong> إلزامي قبل صب الخرسانة (`Pre-Pour WIR`).</li>
+            <li>🔄 <strong>معدلات التدوير والفلترة (Turnover &amp; Filtration):</strong> مطابقة تدفق الطلمبات (`m³/h`) مع حجم المسطح المائي (`m³`).</li>
+            <li>⚡ <strong>التأريض والحماية الكهروميكانيكية (Earthing &amp; Bonding):</strong> فحص كشافات الإضاءة الغاطسة والطلمبات.</li>
+          </ul>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>4️⃣ طبقات التقدم الثلاث ومزامنة الفعليات الآلية (ADR-0005 &amp; ADR-0007)</span>
+            <span class="badge-violet">AUTO-SYNC ACTUALS</span>
+          </div>
+          <ul style="list-style:none;display:grid;gap:10px;font-size:13.5px;color:var(--text-secondary);">
+            <li>📊 <strong>الطبقة 1 (Reported Progress):</strong> الكميات المسجلة فورياً من مهندس الموقع في التقرير اليومي.</li>
+            <li>👁️ <strong>الطبقة 2 (PM Soft Review &amp; Planning Verified):</strong> مراجعة مدير المشروع غير المعطلة متبوعة بتصديق مهندس التخطيط الذي يحدث `actual_qty` و`progress_pct` في الجدول الزمني آلياً.</li>
+            <li>🏅 <strong>الطبقة 3 (QC Certified / WIR Approved):</strong> الكميات المعتمدة هندسياً وجاهزة للإدراج في مستخلص المالك أو مقاول الباطن.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 4: SCHEDULE PULSE P6 ENGINE & LIVE EVM SIMULATOR
+         ===================================================================== -->
+    <section id="tab-pulse" class="tab-pane">
+      <div class="section-hdr">
+        <div>
+          <h2>📐 محرك النبض الزمني (Schedule Pulse P6 XER) ومحاكي القيمة المكتسبة الحي (Live EVM Simulator)</h2>
+          <p>استوديو تحليلي متكامل لقراءة ملفات Primavera P6 (إصدارات v8 إلى v24) وفحص جودة الجدول الزمني وفق معيار وكالة عقود الدفاع الأمريكية DCMA-14.</p>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <a class="ctrl-btn primary" href="Project Management/2. Post Contract/1. Project Setup/1. Project/pzone-project-setup/public/schedule-pulse-ar.html" target="_blank">🚀 فتح استوديو Schedule Pulse المستقل</a>
+          <a class="ctrl-btn" href="Project Management/2. Post Contract/1. Project Setup/1. Project/pzone-project-setup/public/previews/boq-cashflow-preview.html" target="_blank">💹 معاينة ربط BOQ بملف XER</a>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Interactive Live EVM Simulator -->
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>🎛️ محاكي القيمة المكتسبة التفاعلي للرئيس التنفيذي (Interactive EVM Stress-Tester)</span>
+            <span class="badge-emerald">LIVE MATH ENGINE</span>
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">
+            حرّك المؤشرات لمحاكاة تأثير تغير نسبة الإنجاز الفعلي أو التكلفة الفعلية على مؤشرات الأداء (`CPI`, `SPI`, `EAC`, `VAC`, `TCPI`) بنفس المعادلات المزروعة في `costControl.service.ts`:
+          </p>
+
+          <div class="sim-slider-group">
+            <label>
+              <span>الميزانية المعتمدة عند الإتمام (BAC):</span>
+              <span class="mono" id="simBacVal" style="color:var(--cyan-light);">100.0M EGP</span>
+            </label>
+            <input type="range" id="simBac" min="20" max="500" value="100" step="5" oninput="runEvmSim()" />
+          </div>
+
+          <div class="sim-slider-group">
+            <label>
+              <span>نسبة الإنجاز المخطط حتى تاريخه (Planned % - PV):</span>
+              <span class="mono" id="simPvPctVal" style="color:var(--cyan-light);">50%</span>
+            </label>
+            <input type="range" id="simPvPct" min="5" max="100" value="50" step="1" oninput="runEvmSim()" />
+          </div>
+
+          <div class="sim-slider-group">
+            <label>
+              <span>نسبة الإنجاز الفعلي المعتمد (Earned % - EV):</span>
+              <span class="mono" id="simEvPctVal" style="color:var(--emerald);">46%</span>
+            </label>
+            <input type="range" id="simEvPct" min="5" max="100" value="46" step="1" oninput="runEvmSim()" />
+          </div>
+
+          <div class="sim-slider-group">
+            <label>
+              <span>التكلفة الفعلية المنصرفة (Actual Cost - AC):</span>
+              <span class="mono" id="simAcVal" style="color:var(--amber);">43.0M EGP</span>
+            </label>
+            <input type="range" id="simAc" min="5" max="500" value="43" step="1" oninput="runEvmSim()" />
+          </div>
+
+          <div class="telemetry-grid" style="margin-top:16px;">
+            <div class="telemetry-item">
+              <span class="lbl">مؤشر كفاءة التكلفة (CPI = EV / AC)</span>
+              <span class="val mono" id="outCpi" style="color:var(--emerald);">1.07</span>
+              <span class="lbl" id="outCv">وفر مالي (CV): +3.0M EGP</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="lbl">مؤشر كفاءة الجدول (SPI = EV / PV)</span>
+              <span class="val mono" id="outSpi" style="color:var(--amber);">0.92</span>
+              <span class="lbl" id="outSv">انحراف زمني (SV): -4.0M EGP</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="lbl">التكلفة المتوقعة عند الإتمام (EAC)</span>
+              <span class="val mono" id="outEac" style="color:var(--cyan-light);">93.5M EGP</span>
+              <span class="lbl" id="outVac">انحراف الميزانية (VAC): +6.5M EGP</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="lbl">مؤشر الأداء المطلوب للإتمام (TCPI)</span>
+              <span class="val mono" id="outTcpi" style="color:var(--violet);">0.95</span>
+              <span class="lbl" id="outStatus">الحالة: أداء مالي ممتاز</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DCMA-14 Assessment Matrix -->
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>🛡️ مصفوفة الفحص القياسي للجدول الزمني (DCMA 14-Point Schedule Assessment)</span>
+            <span class="badge-cyan mono">calculateDCMA14()</span>
+          </div>
+          <div class="table-wrap" style="max-height:390px;overflow-y:auto;">
+            <table class="exec-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>معيار الفحص (DCMA-14 Metric)</th>
+                  <th>الحد المسموح</th>
+                  <th>القاعدة البرمجية في النظام</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td><strong>Logic (الروابط المنطقية)</strong></td><td><span class="badge-emerald mono">&le; 5%</span></td><td>رصد الأنشطة المفتوحة بدون Predecessor أو Successor</td></tr>
+                <tr><td>2</td><td><strong>Leads (التداخل السالب)</strong></td><td><span class="badge-emerald mono">0%</span></td><td>منع أي علاقة زمنية ذات `lag_days &lt; 0`</td></tr>
+                <tr><td>3</td><td><strong>Lags (الانتظار الموجب)</strong></td><td><span class="badge-emerald mono">&le; 5%</span></td><td>نسبة العلاقات ذات `lag_days &gt; 0` من إجمالي العلاقات</td></tr>
+                <tr><td>4</td><td><strong>Relationship Types (نوع العلاقة)</strong></td><td><span class="badge-emerald mono">&ge; 90% FS</span></td><td>نسبة العلاقات غير `Finish-to-Start` لا تتجاوز 10%</td></tr>
+                <tr><td>5</td><td><strong>Hard Constraints (القيود الصلبة)</strong></td><td><span class="badge-emerald mono">&le; 5%</span></td><td>فحص قيود `Must Start / Must Finish`</td></tr>
+                <tr><td>6</td><td><strong>High Float (السماحية العالية)</strong></td><td><span class="badge-emerald mono">&le; 5%</span></td><td>الأنشطة ذات `Total Float &gt; 44` يوم عمل</td></tr>
+                <tr><td>7</td><td><strong>Negative Float (السماحية السالبة)</strong></td><td><span class="badge-emerald mono">0</span></td><td>أثر فوري لأي نشاط يتجاوز تاريخ التعاقد (`floatDays &lt; 0`)</td></tr>
+                <tr><td>8</td><td><strong>High Duration (المدد الطويلة)</strong></td><td><span class="badge-emerald mono">&le; 5%</span></td><td>الأنشطة غير المرحلية التي تتجاوز مدتها 44 يوم عمل</td></tr>
+                <tr><td>9</td><td><strong>Invalid Dates (تواريخ غير منطقية)</strong></td><td><span class="badge-emerald mono">0</span></td><td>تواريخ فعلية في المستقبل أو بداية بعد النهاية</td></tr>
+                <tr><td>10</td><td><strong>Resources / BOQ Links</strong></td><td><span class="badge-emerald mono">&le; 5%</span></td><td>التحقق من ربط الأنشطة بمهندس مسؤول وبنود المقايسة</td></tr>
+                <tr><td>11</td><td><strong>Missed Tasks (أنشطة متأخرة)</strong></td><td><span class="badge-emerald mono">&le; 5%</span></td><td>الأنشطة التي تجاوزت `planned_finish` ولم تصل 100%</td></tr>
+                <tr><td>12</td><td><strong>Critical Path Test</strong></td><td><span class="badge-emerald mono">Pass</span></td><td>التحقق من سلامة واتصال المسار الحرج الأطول (`Longest Path`)</td></tr>
+                <tr><td>13</td><td><strong>CPLI (مؤشر طول المسار الحرج)</strong></td><td><span class="badge-emerald mono">&ge; 0.95</span></td><td>`(cpDuration + minFloat) / cpDuration`</td></tr>
+                <tr><td>14</td><td><strong>BEI (مؤشر تنفيذ خط الأساس)</strong></td><td><span class="badge-emerald mono">&ge; 0.95</span></td><td>`completedCount / shouldHaveCompletedCount`</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 5: 403 COST CODES & 868 BOQ SPINE
+         ===================================================================== -->
+    <section id="tab-cost" class="tab-pane">
+      <div class="section-hdr">
+        <div>
+          <h2>💰 العمود الفقري المحاسبي: 403 كود تكلفة معياري مربوط بـ 868 بند مقايسة (BOQ &amp; Cost Code Spine)</h2>
+          <p>توحيد شجرة الحسابات الهندسية والمالية بين المقايسات (`/boq`)، التخطيط (`/planning`)، سركي العمالة (`SARAKY`)، ومراقبة التكاليف (`/cost-control`).</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>🧱 قسم M — المواد والتوريدات (Materials)</span>
+            <span class="badge-cyan mono">204 كود قياسي</span>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;">
+            يشمل كافة خامات التنفيذ الإنشائي والمائي (`M220` الخرسانات الجاهزة، `M240` الشدات، العزل المائي، المواسير، الطلمبات الغاطسة، الفلاتر، السيراميك والموزاييك).
+          </p>
+          <div class="bar-track"><div class="bar-fill" style="width:52.5%;background:#0ea5e9;"></div></div>
+          <span style="font-size:11.5px;color:var(--text-muted);">52.5% من إجمالي الأكواد المعيارية (388 كود نظام + 15 كود تاريخي)</span>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>🚜 قسم E — المعدات ومصاريف الموقع والرواتب</span>
+            <span class="badge-emerald mono">125 كود قياسي</span>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);margin-top:4px;margin-bottom:10px;">
+            يشمل إيجار المعدات، مصاريف الموقع، ورواتب الكادر الهندسي والإداري (`E000–E010`: مهندسي الموقع، المكتب الفني، التخطيط، العقود، السلامة، ومراقبة الوثائق).
+          </p>
+          <div class="bar-track"><div class="bar-fill" style="width:32.2%;background:#10b981;"></div></div>
+          <span style="font-size:11.5px;color:var(--text-muted);">32.2% من إجمالي الأكواد المعيارية — متصل مباشرة بموديول الـ HR</span>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>👷 قسم L — العمالة المباشرة (Direct Labour)</span>
+            <span class="badge-amber mono">42 كود قياسي</span>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;">
+            يشمل مصنعيات العمالة المباشرة (نجارين، حدادين، بنائين، فنيي ميكانيكا وكهرباء المسابح، فنيي العزل) ويتغذى يومياً من نظام <strong>سركي العمالة (SARAKY)</strong>.
+          </p>
+          <div class="bar-track"><div class="bar-fill" style="width:10.8%;background:#f59e0b;"></div></div>
+          <span style="font-size:11.5px;color:var(--text-muted);">10.8% من الأكواد — مربوط بالحضور اليومي وبدلات الانتقال والوجبات</span>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>💵 قسم R — الإيرادات والمستخلصات (Revenue)</span>
+            <span class="badge-violet mono">8 أكواد قياسية</span>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);">يرصد مستخلصات المالك الجارية والختامية، الدفعات المقدمة، وأوامر التغيير المعتمدة.</p>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>⚖️ قسم A — المخصصات والتسويات (Accruals)</span>
+            <span class="badge-rose mono">5 أكواد قياسية</span>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);">يرصد المخصصات المالية، الاستقطاعات، والتسويات المحاسبية للمشروعات.</p>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>🤝 قسم S — مقاولي الباطن (Subcontractors)</span>
+            <span class="badge-cyan mono">4 أكواد قياسية</span>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);">يرصد مستخلصات مقاولي الباطن، استقطاعات التأمين والضمان، وغرامات التأخير.</p>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>🔒 الحماية البرمجية لشجرة الأكواد (`trg_guard_system_cost_codes`) ومصفوفة التخصيص v3.1</span>
+          <span class="badge-emerald mono">ZERO BROKEN FKs Across 868 BOQ Items</span>
+        </div>
+        <p style="font-size:13.5px;color:var(--text-secondary);">
+          تم تأمين الـ 388 كود نظام أساسي (`is_system = true`) عبر Trigger داخل قاعدة بيانات PostgreSQL يمنع الحذف أو التعديل العشوائي، مع السماح للمدير التجاري ومدير التكاليف بإضافة أكواد فرعية مخصصة تحت الـ 40 مجموعة رئيسية. كما يتيح موديول <strong>توزيع الكميات (`/planning/allocation`)</strong> ربط بنود المقايسة بأنشطة الجدول الزمني عبر مصفوفة ذكية تحاكي الرصيد المتبقي وتمنع التخصيص الزائد (`Over-Allocation`).
+        </p>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 6: 22-ROLE RBAC, PRICEGATE & 15 RACI PROCESSES
+         ===================================================================== -->
+    <section id="tab-rbac" class="tab-pane">
+      <div class="section-hdr">
+        <div>
+          <h2>🛡️ مصفوفة الصلاحيات الصفرية (22-Role Zero-Trust RBAC)، بوابة `&lt;PriceGate&gt;` ومصفوفة RACI</h2>
+          <p>اضغط على أي دور وظيفي أدناه لمعاينة صلاحياته المالية، شاشة الهبوط الافتراضية (`homePath`)، ومسؤولياته داخل الـ 15 عملية قياسية.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Interactive Role Picker -->
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>👥 الأدوار الوظيفية المعتمدة في قاعدة البيانات (22 DB Roles)</span>
+            <span class="badge-violet mono">public.user_role</span>
+          </div>
+          <div class="grid-2" id="rolesGrid" style="gap:10px;margin-bottom:0;">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Role Inspector Card -->
+        <div class="panel-card" id="roleInspectorCard">
+          <div class="panel-title">
+            <span id="inspRoleName">👑 الرئيس التنفيذي (CEO)</span>
+            <span class="badge-emerald mono" id="inspRoleCode">ceo</span>
+          </div>
+          <div class="telemetry-grid" style="margin-bottom:16px;">
+            <div class="telemetry-item">
+              <span class="lbl">المسار الافتراضي عند الدخول (`homePath`)</span>
+              <span class="val mono" id="inspRoleHome" style="color:var(--cyan-light);font-size:17px;">/coo · /dashboard</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="lbl">صلاحية رؤية الأسعار (`&lt;PriceGate&gt;`)</span>
+              <span class="val" id="inspRolePrice" style="color:var(--emerald);font-size:16px;">🔓 مسموح بالكامل (Full Financial Access)</span>
+            </div>
+          </div>
+          <div style="background:var(--bg-subbox);border:1px solid var(--border-subtle);border-radius:14px;padding:16px;">
+            <h4 style="margin-bottom:8px;font-size:14px;color:var(--cyan-light);">الصلاحيات والمسؤوليات الحاكمة لهذا الدور:</h4>
+            <p id="inspRoleDesc" style="font-size:13.5px;color:var(--text-secondary);"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15 RACI Matrix Table -->
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>📋 مصفوفة الحوكمة والمسؤوليات القياسية (15 Core Enterprise RACI Processes)</span>
+          <span class="badge-cyan">R = Responsible · A = Accountable · C = Consulted · I = Informed</span>
+        </div>
+        <div class="table-wrap">
+          <table class="exec-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>العملية المؤسسية (ERP Process)</th>
+                <th>المسؤول عن التنفيذ (R)</th>
+                <th>صاحب القرار النهائي (A)</th>
+                <th>يُستشار (C)</th>
+                <th>يُخطر بالنتيجة (I)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><strong>إعداد وتجهيز المشاريع والبيانات المرجعية</strong></td><td>المدير التجاري، مدير المشروع</td><td>مدير النظام، COO</td><td>التكاليف، المالية، العقود</td><td>CEO، رئيس مجلس الإدارة</td></tr>
+              <tr><td>2</td><td><strong>دراسات المناقصات والتسعير الهندسي</strong></td><td>مهندس التقدير (Estimator)</td><td>CEO، COO</td><td>التكاليف، المشتريات، PM</td><td>رئيس مجلس الإدارة، المالية</td></tr>
+              <tr><td>3</td><td><strong>التحكم في الميزانية التقديرية والتكاليف</strong></td><td>مراقبة التكاليف (Cost Control)</td><td>المالية، CEO</td><td>مدير المشروع، مهندس التقدير</td><td>COO، رئيس مجلس الإدارة</td></tr>
+              <tr><td>4</td><td><strong>إعداد ورفع المستخلصات الدورية (IPC)</strong></td><td>مسؤول المستخلصات، إدارة العقود</td><td>مدير المشروع (PM)</td><td>مهندس الموقع، التكاليف، التخطيط</td><td>المالية، COO</td></tr>
+              <tr><td>5</td><td><strong>مراجعة واعتماد وتصديق المستخلصات</strong></td><td>إدارة العقود (Contract Admin)</td><td>الإدارة المالية</td><td>مدير المشروع، التكاليف</td><td>CEO، COO، رئيس مجلس الإدارة</td></tr>
+              <tr><td>6</td><td><strong>متابعة التحصيلات المالية وأعمار الديون</strong></td><td>الإدارة المالية (Finance)</td><td>CEO، COO</td><td>مدير المشروع، إدارة العقود</td><td>رئيس وأعضاء مجلس الإدارة</td></tr>
+              <tr><td>7</td><td><strong>التدفقات النقدية ومدفوعات المقاولين</strong></td><td>الإدارة المالية</td><td>الرئيس التنفيذي (CEO)</td><td>التكاليف، مدير المشروع</td><td>COO، رئيس مجلس الإدارة</td></tr>
+              <tr><td>8</td><td><strong>مراجعة أوامر التغيير والمطالبات (VO / Claims)</strong></td><td>إدارة العقود، التكاليف</td><td>مدير المشروع (PM)</td><td>المالية، مهندس الموقع</td><td>CEO، COO</td></tr>
+              <tr><td>9</td><td><strong>متابعة تقدم العمل الميداني والجدولة الزمنية</strong></td><td>مهندس التخطيط، مهندس الموقع</td><td>مدير المشروع (PM)</td><td>التكاليف، إدارة العقود</td><td>CEO، COO، المالية</td></tr>
+              <tr><td>10</td><td><strong>إدارة المشتريات والتوريدات والمستودعات</strong></td><td>المشتريات، المخازن</td><td>مدير المشروع (PM)</td><td>التكاليف، المالية</td><td>CEO، COO</td></tr>
+              <tr><td>11</td><td><strong>نشر لوحات المعلومات وتقارير مجلس الإدارة</strong></td><td>المالية، مراقبة التكاليف</td><td>CEO، COO</td><td>مدير النظام، مدير المشروع</td><td>رئيس وأعضاء مجلس الإدارة</td></tr>
+              <tr><td>12</td><td><strong>إدارة جدول الكميات (BOQ) وأكواد التكاليف</strong></td><td>مهندس التقدير، المدير التجاري</td><td>مدير المشروع (PM)</td><td>التكاليف، مهندس التخطيط</td><td>CEO، COO، رئيس مجلس الإدارة</td></tr>
+              <tr><td>13</td><td><strong>التخطيط الهندسي ومراقبة القيمة المكتسبة</strong></td><td>مهندس التخطيط، مهندس الموقع</td><td>مدير المشروع (PM)</td><td>التكاليف، المدير التجاري</td><td>CEO، COO</td></tr>
+              <tr><td>14</td><td><strong>متابعة التسليمات الهندسية E1/E2</strong></td><td>المكتب الفني، مهندس التخطيط</td><td>مدير المشروع (PM)</td><td>المدير التجاري</td><td>CEO، COO</td></tr>
+              <tr><td>15</td><td><strong>إدارة صلاحيات وأدوار مستخدمي النظام</strong></td><td>مدير النظام (Admin)</td><td>مدير النظام (Admin)</td><td>CEO، COO</td><td>رئيس مجلس الإدارة</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 7: 11 ADRs, SUPABASE SCALE & SARAKY / HR ECOSYSTEM
+         ===================================================================== -->
+    <section id="tab-arch" class="tab-pane">
+      <div class="section-hdr">
+        <div>
+          <h2>🏗️ القرارات المعمارية الـ 11 (ADRs) وتكامل منظومتي SARAKY (سركي العمالة) و HR</h2>
+          <p>توثيق هندسي كامل للقرارات المعمارية (`ADR-0001` إلى `ADR-0011`) وتكامل الأنظمة الشقيقة عبر قاعدة بيانات Supabase الموحدة.</p>
+        </div>
+      </div>
+
+      <!-- SARAKY & HR Integration Highlight -->
+      <div class="grid-2">
+        <div class="panel-card" style="border-color:#10b981;">
+          <div class="panel-title">
+            <span>👷 نظام سركي العمالة والحضور الذكي (SARAKY Field Labor System)</span>
+            <span class="badge-emerald">FINISHED &amp; LIVE IN SUPABASE</span>
+          </div>
+          <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:12px;">
+            تم إنجازه وربطه بـ 6 مواقع تنفيذية نشطة (`فيلا 36 دينا رأفت`، `R8 حمام سباحة 20 HAC`، `فور سيزون 2 الأقصر`، `Belle Ville أكتوبر`، `24-01 soul Parcel`، `بحيرات العلمين`) و5 أطقم فنية (`السويدي`، `فنيين حسام خطاب`، `عمال نظافة`، `إداريين`، `سيد صلاح`).
+          </p>
+          <div class="mod-features">
+            <span class="mod-chip mono">attendance_logs</span>
+            <span class="mod-chip mono">self_checkins (GPS)</span>
+            <span class="mod-chip mono">group_region_settings</span>
+            <span class="mod-chip mono">worker_groups</span>
+            <span class="mod-chip mono">site_nicknames</span>
+            <span class="mod-chip mono">project_bonuses</span>
+          </div>
+        </div>
+
+        <div class="panel-card" style="border-color:#0ea5e9;">
+          <div class="panel-title">
+            <span>👥 منظومة الموارد البشرية والهيكل التنظيمي (HR &amp; Workforce Registry)</span>
+            <span class="badge-cyan">FINISHED &amp; INTEGRATED</span>
+          </div>
+          <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:12px;">
+            تدير ملفات الكوادر الهندسية والعمالة (`workers` &amp; `HrService.getEmployees()`)، الفئات اليومية والرواتب، وتغذي تلقائياً دليل أصحاب المصلحة (`233 Stakeholder Record`) وأكواد التكلفة الإدارية (`E000–E010`) وأكواد العمالة المباشرة (`L`).
+          </p>
+          <div class="mod-features">
+            <span class="mod-chip mono">HrService.getEmployees()</span>
+            <span class="mod-chip mono">stakeholders (233)</span>
+            <span class="mod-chip mono">Cost Codes E000–E010</span>
+            <span class="mod-chip mono">RACI Assignments</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 ADRs Table -->
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>📐 سجل القرارات المعمارية الموثقة (11 Architecture Decision Records — `docs/adr/`)</span>
+          <span class="badge-violet mono">ADR-0001 → ADR-0011</span>
+        </div>
+        <div class="table-wrap">
+          <table class="exec-table">
+            <thead>
+              <tr>
+                <th>الكود</th>
+                <th>عنوان القرار المعماري</th>
+                <th>الأثر التشغيلي والتجاري المباشر</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="mono"><strong>ADR-0001</strong></td><td><strong>RLS `service_role` Bypass in RPCs</strong></td><td>تمكين مهام الجدولة الآلية (Cron Jobs) ورادار المواقع الصامتة من العمل بأمان دون جلسة مستخدم.</td></tr>
+              <tr><td class="mono"><strong>ADR-0002</strong></td><td><strong>Deliverable Item 9-State Lifecycle</strong></td><td>توسيع حالات اللوحات والعينات لتشمل دورة مراجعة الاستشاري الكاملة (`A / B / C / D`) وإعادة التقديم.</td></tr>
+              <tr><td class="mono"><strong>ADR-0003</strong></td><td><strong>`SITE_TASK_REQUIRED` Invariant</strong></td><td>منع حفظ أي تقرير يومي ميداني غير مرتبط بمهمة موقع معتمدة ومفتوحة.</td></tr>
+              <tr><td class="mono"><strong>ADR-0004</strong></td><td><strong>3-Layer DB Keep-Alive Strategy</strong></td><td>ضمان استمرارية قاعدة البيانات 24/7 عبر نبضات المتصفح، Vercel Cron، وGitHub Actions.</td></tr>
+              <tr><td class="mono"><strong>ADR-0005</strong></td><td><strong>3-Layer Progress &amp; Non-Blocking PM Soft Review</strong></td><td>فصل التقدم المُبلغ عن التقدم المعتمد والتقدم المفحوص (QC) لمنع تعطل التقارير اليومية.</td></tr>
+              <tr><td class="mono"><strong>ADR-0006</strong></td><td><strong>Site-Initiated Variation Order (VO) Drafts</strong></td><td>توليد مسودة أمر تغيير تلقائياً عند رصد كميات إضافية بالموقع لمنع تنفيذ أعمال غير مفوترة.</td></tr>
+              <tr><td class="mono"><strong>ADR-0007</strong></td><td><strong>Automatic Schedule Actuals Sync</strong></td><td>تحديث كميات ونسب إنجاز أنشطة الجدول الزمني ومنحنى S-Curve لحظياً فور اعتماد التقرير اليومي.</td></tr>
+              <tr><td class="mono"><strong>ADR-0008</strong></td><td><strong>Critical Path Obstruction → EOT Claim Bridge</strong></td><td>تحويل معوقات المسار الحرج بضغطة زر إلى مسودة مطالبة تمديد زمني EOT وفق FIDIC 8.4/20.1.</td></tr>
+              <tr><td class="mono"><strong>ADR-0009</strong></td><td><strong>Site Contextual Cockpit &amp; Quick Action Dials</strong></td><td>تجميع بيانات الطقس، العمالة، المعدات، وتقارير NCR في قمرة قيادة ميدانية سريعة لمهندس الموقع.</td></tr>
+              <tr><td class="mono"><strong>ADR-0010</strong></td><td><strong>Dual-Trigger EVM Cost Snapshots</strong></td><td>أخذ لقطات القيمة المكتسبة (`pm_cost_snapshots`) تلقائياً مع اعتماد التقارير اليومية أو عند الطلب الفوري.</td></tr>
+              <tr><td class="mono"><strong>ADR-0011</strong></td><td><strong>Frosted Spatial Modal Architecture</strong></td><td>تصميم نوافذ النظام بمعيار Industrial Chic ثلاثي الأبعاد مع دلالات لونية موحدة للحالات.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 8: FLAGSHIP WATER PORTFOLIO & DIRECT LAUNCHPAD
+         ===================================================================== -->
+    <section id="tab-launchpad" class="tab-pane">
+      <div class="section-hdr">
+        <div>
+          <h2>🚀 منصة الإطلاق المباشر لجميع الملفات التفاعلية وسابقة الأعمال المائية</h2>
+          <p>روابط فورية لفتح العروض ثلاثية الأبعاد (WebGL 3D)، استوديو Schedule Pulse، خرائط Mermaid التفاعلية، وأبرز المشروعات المنفذة.</p>
+        </div>
+      </div>
+
+      <!-- Standalone HTML Interactive Suite -->
+      <div class="panel-card" style="margin-bottom:24px;">
+        <div class="panel-title">
+          <span>💎 الملفات والاستوديوهات التفاعلية المستقلة الجاهزة للعرض الفوري (Standalone HTML Suite)</span>
+          <span class="badge-emerald">ZERO-LATENCY OFFLINE &amp; ONLINE</span>
+        </div>
+        <div class="grid-3" style="margin-bottom:0;">
+          <div class="module-card" onclick="window.open('Board Member DashBoard/index.html', '_blank')">
+            <div class="mod-top">
+              <div class="mod-icon">🧊</div>
+              <span class="mod-route">Board Member DashBoard/index.html</span>
+            </div>
+            <div>
+              <div class="mod-title">بوابة مجلس الإدارة ثلاثية الأبعاد (3D Spatial Hub)</div>
+              <div class="mod-desc">بطاقات CSS3D متحركة بفيزياء الزنبرك، مكعب هولوجرام دوار، تحليل محفظة الـ 2.056 مليار ج.م، وتنسيق طباعة A4 لمجلس الإدارة.</div>
+            </div>
+            <div class="mod-footer"><span class="status-ready">● جاهز للعرض</span><span class="preview-trigger">فتح الشاشة ↗</span></div>
+          </div>
+
+          <div class="module-card" onclick="window.open('Board Member DashBoard/3d-experience.html', '_blank')">
+            <div class="mod-top">
+              <div class="mod-icon">🌊</div>
+              <span class="mod-route">Board Member DashBoard/3d-experience.html</span>
+            </div>
+            <div>
+              <div class="mod-title">التجربة المائية ثلاثية الأبعاد (Three.js WebGL)</div>
+              <div class="mod-desc">مشهد WebGL تفاعلي بسطح مياه متحرك يحاكي بحيرات P.ZONE مع أعمدة ثلاثية الأبعاد لتحصيلات الشهور وأربع زوايا كاميرا سينمائية.</div>
+            </div>
+            <div class="mod-footer"><span class="status-ready">● جاهز للعرض</span><span class="preview-trigger">فتح الشاشة ↗</span></div>
+          </div>
+
+          <div class="module-card" onclick="window.open('Board Member DashBoard/swiss-deck.html', '_blank')">
+            <div class="mod-top">
+              <div class="mod-icon">🎞️</div>
+              <span class="mod-route">Board Member DashBoard/swiss-deck.html</span>
+            </div>
+            <div>
+              <div class="mod-title">عرض الشرائح السويسري التنفيذي (Swiss Deck 2026)</div>
+              <div class="mod-desc">عرض تقديمي تفاعلي بتصميم Swiss Editorial يشرح حلقة التحكم الرباعية وطبقات النظام المعمارية الأربع مع دعم أسهم لوحة المفاتيح.</div>
+            </div>
+            <div class="mod-footer"><span class="status-ready">● جاهز للعرض</span><span class="preview-trigger">فتح الشاشة ↗</span></div>
+          </div>
+
+          <div class="module-card" onclick="window.open('Project Management/2. Post Contract/1. Project Setup/1. Project/pzone-project-setup/public/schedule-pulse-ar.html', '_blank')">
+            <div class="mod-top">
+              <div class="mod-icon">📊</div>
+              <span class="mod-route">public/schedule-pulse-ar.html</span>
+            </div>
+            <div>
+              <div class="mod-title">استوديو النبض الزمني الجنائي (Schedule Pulse P6)</div>
+              <div class="mod-desc">محرك كامل (8,300 سطر) لتحليل ملفات P6 XER، مقارنة خط الأساس بالتحديثات الشهرية، المسار الأطول، وتوليد التقرير السردي بصيغة Word.</div>
+            </div>
+            <div class="mod-footer"><span class="status-ready">● جاهز للعرض</span><span class="preview-trigger">فتح الشاشة ↗</span></div>
+          </div>
+
+          <div class="module-card" onclick="window.open('Project Management/2. Post Contract/1. Project Setup/1. Project/pzone-project-setup/to-stakeholder-workflow-guide.html', '_blank')">
+            <div class="mod-top">
+              <div class="mod-icon">📐</div>
+              <span class="mod-route">to-stakeholder-workflow-guide.html</span>
+            </div>
+            <div>
+              <div class="mod-title">دليل مسارات عمل المكتب الفني وأصحاب المصلحة</div>
+              <div class="mod-desc">شرح تفاعلي لدورة عمل الأدوار الخمسة، دورة التسليم ذات الـ 6 خطوات، والضوابط الهندسية والمالية للمكتب الفني.</div>
+            </div>
+            <div class="mod-footer"><span class="status-ready">● جاهز للعرض</span><span class="preview-trigger">فتح الشاشة ↗</span></div>
+          </div>
+
+          <div class="module-card" onclick="window.open('Mermaid workflow chart/2/interactive_chart.html', '_blank')">
+            <div class="mod-top">
+              <div class="mod-icon">🕸️</div>
+              <span class="mod-route">Mermaid workflow chart/2/interactive_chart.html</span>
+            </div>
+            <div>
+              <div class="mod-title">الخريطة المعمارية الشاملة للمؤسسة (Enterprise Graph)</div>
+              <div class="mod-desc">مستعرض تفاعلي قابل للتكبير والتحريك (Pan &amp; Zoom) يعرض الـ 11 نطاقاً مؤسسياً وتكاملها مع الأنطولوجيا ومحرك Axiom.</div>
+            </div>
+            <div class="mod-footer"><span class="status-ready">● جاهز للعرض</span><span class="preview-trigger">فتح الشاشة ↗</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flagship Aquatic Projects -->
+      <div class="panel-card">
+        <div class="panel-title">
+          <span>🌊 أبرز المشروعات المائية والهيدروليكية الموثقة في النظام (`/case-studies`)</span>
+          <span class="badge-cyan">70+ COMPLETED WATER PROJECTS · 150,000 m²</span>
+        </div>
+        <div class="table-wrap">
+          <table class="exec-table">
+            <thead>
+              <tr>
+                <th>اسم المشروع</th>
+                <th>العميل</th>
+                <th>الموقع</th>
+                <th>التخصص المائي</th>
+                <th>المسطح المائي</th>
+                <th>معدل التدفق</th>
+                <th>قيمة العقد</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>البنية الهيدروليكية لشلالات البرج الأيقوني</strong></td>
+                <td>حسن علام / CSCEC</td>
+                <td>العاصمة الإدارية</td>
+                <td>بنية هيدروليكية ومساقط</td>
+                <td class="mono">28,000 m²</td>
+                <td class="mono">3,200 m³/h</td>
+                <td class="mono" style="color:var(--emerald);font-weight:800;">110,000,000 EGP</td>
+              </tr>
+              <tr>
+                <td><strong>بحيرة ومساقط مالي مراسي (Crystal Lagoon)</strong></td>
+                <td>إعمار مصر (Emaar)</td>
+                <td>الساحل الشمالي</td>
+                <td>بحيرات صناعية ونوافير</td>
+                <td class="mono">42,000 m²</td>
+                <td class="mono">1,800 m³/h</td>
+                <td class="mono" style="color:var(--emerald);font-weight:800;">85,000,000 EGP</td>
+              </tr>
+              <tr>
+                <td><strong>تحديث هيدروليك مارينا الجونة</strong></td>
+                <td>أوراسكوم للإنشاءات</td>
+                <td>الجونة - البحر الأحمر</td>
+                <td>فلترة وهيدروليك مياه مالحة</td>
+                <td class="mono">35,000 m²</td>
+                <td class="mono">2,400 m³/h</td>
+                <td class="mono" style="color:var(--cyan-light);font-weight:800;">65,000,000 EGP</td>
+              </tr>
+              <tr>
+                <td><strong>مجمع المسابح الأولمبية — سوديك فيليت</strong></td>
+                <td>سوديك (SODIC)</td>
+                <td>القاهرة الجديدة</td>
+                <td>مسابح أولمبية</td>
+                <td class="mono">12,500 m²</td>
+                <td class="mono">950 m³/h</td>
+                <td class="mono" style="color:var(--cyan-light);font-weight:800;">42,000,000 EGP</td>
+              </tr>
+              <tr>
+                <td><strong>شلالات ونوافير بالم هيلز سنترال</strong></td>
+                <td>بالم هيلز للتعمير</td>
+                <td>6 أكتوبر</td>
+                <td>نوافير ومساقط مائية</td>
+                <td class="mono">8,200 m²</td>
+                <td class="mono">1,200 m³/h</td>
+                <td class="mono" style="color:var(--amber);font-weight:800;">38,500,000 EGP</td>
+              </tr>
+              <tr>
+                <td><strong>مسابح ومنطقة الألعاب المائية — بادية</strong></td>
+                <td>بالم هيلز للتعمير</td>
+                <td>أكتوبر الجديدة</td>
+                <td>حمامات سباحة وأكوا بارك</td>
+                <td class="mono">9,400 m²</td>
+                <td class="mono">720 m³/h</td>
+                <td class="mono" style="color:var(--amber);font-weight:800;">29,000,000 EGP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       FROSTED GLASS INTERACTIVE MODULE SIMULATOR MODAL (ADR-0011)
+       ===================================================================== -->
+  <div class="modal-backdrop" id="moduleModal" onclick="if(event.target===this) closeModal()">
+    <div class="modal-window">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border-subtle);">
+        <div>
+          <span class="badge-cyan mono" id="mRoute">/dashboard</span>
+          <h2 id="mTitle" style="font-size:24px;font-weight:900;margin-top:6px;">اسم الموديول</h2>
+          <div id="mTitleEn" style="font-size:13px;color:var(--text-muted);font-weight:700;"></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕ إغلاق المعاينة (ESC)</button>
+      </div>
+
+      <p id="mDesc" style="font-size:14.5px;color:var(--text-secondary);margin-bottom:20px;"></p>
+
+      <div class="grid-2" style="margin-bottom:18px;">
+        <div class="telemetry-item">
+          <h4 style="color:var(--cyan-light);margin-bottom:8px;font-size:14px;">📑 التبويبات والمكونات الداخلية الجاهزة:</h4>
+          <ul id="mTabs" style="padding-right:18px;font-size:13px;color:var(--text-secondary);display:grid;gap:6px;"></ul>
+        </div>
+        <div class="telemetry-item">
+          <h4 style="color:var(--emerald);margin-bottom:8px;font-size:14px;">⚙️ القواعد الحاكمة، المعادلات والجداول المرتبطة:</h4>
+          <ul id="mRules" style="padding-right:18px;font-size:13px;color:var(--text-secondary);display:grid;gap:6px;"></ul>
+        </div>
+      </div>
+
+      <div class="telemetry-item" style="margin-bottom:20px;">
+        <span class="lbl">الأدوار المسموح لها بالدخول (Authorized RBAC Roles):</span>
+        <div id="mRoles" class="mod-features" style="margin-top:8px;"></div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+        <span class="status-ready" style="font-size:13px;font-weight:800;">● حالة الموديول: مكتمل وجاهز للإنتاج (100% Production Verified)</span>
+        <div style="display:flex;gap:10px;">
+          <button class="ctrl-btn" id="mCopyBtn" onclick="copyModalRoute()">📋 نسخ المسار</button>
+          <a class="ctrl-btn primary" id="mLaunchBtn" href="http://localhost:3000/dashboard" target="_blank">🚀 فتح الموديول في النظام الحي ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. COMPLETE VERIFIED MODULES DATASET (32 MODULES ACROSS 8 DOMAINS)
+    // =========================================================================
+    const MODULES_DATA = [
+      // EXECUTIVE (5)
+      {
+        id: 'exec-dashboard',
+        domain: 'executive',
+        icon: '🏛️',
+        route: '/dashboard',
+        title: 'اللوحة التنفيذية المركزية (CEO Central Dashboard)',
+        titleEn: 'DashboardPortalPage · Main Executive Command Center',
+        desc: 'اللوحة الرئيسية للرئيس التنفيذي: تعرض منحنى S-Curve المالي والزمني، الفواتير الشهرية مقابل التكلفة المباشرة (68%)، حوكمة أصول العقود الورقية، وتوزيع النطاقات المائية (Pools, Lagoons, Fountains, MEP).',
+        chips: ['S-Curve (PV/EV/Invoiced)', 'حوكمة أصول العقود', 'نطاقات المياه الـ 4', 'تغذية حية من DB'],
+        tabs: [
+          'وضع منحنى S-Curve التراكمي (PV vs EV vs Invoiced % + مؤشر SPI)',
+          'وضع الأعمدة المالية الشهرية (Monthly Billings vs Direct Cost)',
+          'وضع سرعة إنجاز مهام الموقع والتسليمات الهندسية (Velocity)',
+          'لوحة حوكمة أصول العقود الورقية (Missing Original at HQ vs Archived vs Social Insurance)',
+          'مصفوفة المواقع النشطة التفاعلية + شريط النطاقات المائية'
+        ],
+        rules: [
+          'تبديل فوري بين عرض المحفظة الكاملة (Portfolio) أو مشروع محدد (Single Project)',
+          'ربط حي مع جداول pm_projects, pm_site_tasks, pm_invoices, pm_deliverables',
+          'حساب تلقائي لقيمة العقود المعرضة للخطر بسبب غياب النسخة الأصلية بالمقر الرئيسي'
+        ],
+        roles: ['ceo', 'chairman', 'coo', 'admin', 'board_member', 'project_manager']
+      },
+      {
+        id: 'exec-board',
+        domain: 'executive',
+        icon: '👑',
+        route: '/board',
+        title: 'بوابة مجلس الإدارة والحوكمة (Board of Directors)',
+        titleEn: 'BoardDashboardPage + Standalone 3D Spatial & WebGL Suite',
+        desc: 'بوابة مخصصة لرئيس وأعضاء مجلس الإدارة والـ CEO: تعرض صافي قيمة المحفظة شاملة الضريبة، نسبة الإنجاز المرجحة بالقيمة، التعرض للمطالبات والنزاعات، ورادار المشاريع عالية المخاطر.',
+        chips: ['محفظة 2.056 مليار', 'مؤشرات الحوكمة', 'مراحل الإنجاز الـ 4', 'نسخة 3D WebGL'],
+        tabs: [
+          'sec-overview: الملخص التنفيذي للمحفظة (4 بطاقات كبرى شاملة ضريبة القيمة المضافة)',
+          'sec-governance: ضوابط الحوكمة (التزام المكتب الفني >=85%، سقف كود C/D <=15%، أيام EOT)',
+          'sec-milestones: سرعة المراحل الاستراتيجية (0-15%، 16-50%، 51-85%، 86-100%)',
+          'sec-analytics: رسوم Donut و6-Month S-Curve وقائمة المشاريع عالية المخاطر',
+          'sec-projects: مصفوفة محفظة المشاريع النشطة مع الفلترة الفورية'
+        ],
+        rules: [
+          'مدعومة أيضاً بـ 3 شاشات HTML مستقلة ثلاثية الأبعاد في مجلد Board Member DashBoard',
+          'تحليل تركز محتجزات الضمان (410.8M EGP) لدى كبار العملاء (حسن علام، أوراسكوم، ريدكون)',
+          'توافق كامل مع متطلبات المراجعة المالية وفق البند 14 من عقود FIDIC'
+        ],
+        roles: ['chairman', 'ceo', 'board_member', 'coo', 'admin', 'planning_manager']
+      },
+      {
+        id: 'exec-coo',
+        domain: 'executive',
+        icon: '📡',
+        route: '/coo',
+        title: 'رادار مدير العمليات والمواقع الصامتة (COO Radar)',
+        titleEn: 'COOExecutiveDashboardPage · Live Accountability & Silent Sites',
+        desc: 'مركز عمليات الـ COO والـ CEO لرصد الاختناقات اللحظية، محاسبة المقصرين (Ball-in-Court)، كشف المواقع الصامتة (>48 ساعة بدون تقرير)، وتوليد موجز الصباح التنفيذي وإرسال تصعيدات WhatsApp.',
+        chips: ['رادار المساءلة', 'المواقع الصامتة >48h', 'تصعيد WhatsApp', 'مصفوفة عبء العمل'],
+        tabs: [
+          'radar: رادار المساءلة الحي (COOExecutiveRadar) وتحديد لدى من تقف الكرة',
+          'portfolio: نظرة المحفظة والمسار الحرج وأهم أسباب التأخير الموحدة',
+          'workload: مصفوفة عبء العمل عبر المشاريع (stable / attention / critical)',
+          'deliverables: اختناقات التسليمات الهندسية (متاحة أيضاً عبر /coo/deliverables)',
+          'obstructions: المعوقات العابرة للمشاريع والمطالبات التعاقدية',
+          'risks: تنبيهات المواقع الصامتة (>48 ساعة بدون تقرير يومي)'
+        ],
+        rules: [
+          'ربط مباشر مع KpiService.getPortfolioExecutiveKPIs و CommandCenterService',
+          'مؤشر التزام المكتب الفني (الهدف >= 85%) ومعدل إعادة التقديم (السقف <= 15%)',
+          'مزامنة ثنائية الاتجاه مع useProjectStore'
+        ],
+        roles: ['coo', 'ceo', 'chairman', 'admin']
+      },
+      {
+        id: 'exec-3d-webgl',
+        domain: 'executive',
+        icon: '🌊',
+        route: 'Board Member DashBoard/3d-experience.html',
+        localFile: 'Board Member DashBoard/3d-experience.html',
+        title: 'التجربة المائية ثلاثية الأبعاد (3D WebGL Lagoon & CFO Hub)',
+        titleEn: 'Three.js r128 WebGL Interactive Portfolio Experience',
+        desc: 'مشهد ثلاثي الأبعاد بالكامل (Three.js WebGL) يجسد هوية P.ZONE المائية بسطح مياه متحرك وأعمدة مضيئة لتحصيلات الشهور التسعة (556.5 مليون ج.م) مع 4 أوضاع كاميرا سينمائية.',
+        chips: ['Three.js WebGL', '4 زوايا كاميرا', 'تفاعل Raycaster', 'محاكاة الأمواج'],
+        tabs: [
+          'وضع المنظور الهندسي (Isometric View)',
+          'المسقط الرأسي الشامل (Top View)',
+          'الواجهة الأمامية (Front View)',
+          'الدوران السينمائي الآلي (Cinematic Orbit)'
+        ],
+        rules: [
+          'يعمل فوراً بدون خادم (Zero-Dependency Standalone HTML)',
+          'يعرض بيانات التحصيل الحقيقية من يناير حتى سبتمبر 2026 مع تلميحات تفاعلية'
+        ],
+        roles: ['ceo', 'chairman', 'board_member', 'coo']
+      },
+      {
+        id: 'exec-swiss-deck',
+        domain: 'executive',
+        icon: '🎞️',
+        route: 'Board Member DashBoard/swiss-deck.html',
+        localFile: 'Board Member DashBoard/swiss-deck.html',
+        title: 'العرض التقديمي السويسري لمجلس الإدارة (Swiss Executive Deck)',
+        titleEn: 'Swiss Editorial Presentation Deck 2026',
+        desc: 'عرض شرائح تفاعلي مصمم بأسلوب Swiss Editorial يشرح للرئيس التنفيذي ومجلس الإدارة حلقة التحكم الرباعية (الحصر الميداني -> مسودة المستخلص -> تدقيق الاستشاري -> التحصيل والضمان).',
+        chips: ['Swiss Editorial', '3 مشاهد تفاعلية', 'تغيير الثيم اللوني', 'تحكم بالكيبورد'],
+        tabs: [
+          'المشهد 01: ملخص المحفظة المليارية (2.056B EGP / 50 Projects)',
+          'المشهد 02: حلقة الضبط الرباعية (Four-Step Controls Loop)',
+          'المشهد 03: الطبقات المعمارية الأربع للنظام (4-Layer Stack)'
+        ],
+        rules: [
+          'يدعم التبديل بين الوضع الليلي والورقي و3 لوحات ألوان فورية',
+          'تنقل سريع عبر أسهم لوحة المفاتيح لعروض الاجتماعات التنفيذية'
+        ],
+        roles: ['ceo', 'chairman', 'board_member', 'coo']
+      },
+
+      // PROJECTS SUITE (6)
+      {
+        id: 'proj-setup',
+        domain: 'projects',
+        icon: '🏗️',
+        route: '/project-setup',
+        title: 'بوابة إعداد وحوكمة المشاريع (Project Setup Portal)',
+        titleEn: 'ProjectSetupPortalPage · Master Registry & Verification',
+        desc: 'مركز التحكم في البيانات الأساسية للمشاريع وتعيين مديري المشاريع المعتمدين، مع 4 منصات وصول سريع (GIS، سجل المشاريع، أصحاب المصلحة، العملاء) واستوديو التقارير المخصصة.',
+        chips: ['4 منصات تحكم', 'رصد مشاريع بدون PM', 'استوديو 16 عمود', 'تزامن لحظي'],
+        tabs: [
+          '#MOD.01 // GIS -> لوحة التحليلات الجغرافية (/projects/dashboard)',
+          '#MOD.02 // PRJ -> سجل المشاريع الشامل (/projects)',
+          '#MOD.03 // STK -> دليل أصحاب المصلحة (/stakeholders)',
+          '#MOD.04 // CLI -> سجل العملاء والمطورين (/clients)',
+          'LIVE_GRID: جدول المشاريع الرئيسي مع فلتر المشاريع غير المعين لها مدير مشروع'
+        ],
+        rules: [
+          'تقييد تعديل البيانات المرجعية على المدير التجاري ومدير النظام فقط',
+          'توجيه آلي لمهندسي المكتب الفني غير المديرين إلى شاشة مهامهم (/to-tasks)'
+        ],
+        roles: ['admin', 'ceo', 'coo', 'commercial_manager', 'project_manager']
+      },
+      {
+        id: 'proj-list',
+        domain: 'projects',
+        icon: '📂',
+        route: '/projects',
+        title: 'سجل المشاريع الشامل وخريطة GIS (Projects Master Hub)',
+        titleEn: 'ProjectsPageClient · Table, Cards, Kanban & GIS Map',
+        desc: 'إدارة محفظة المشاريع بأربعة أوضاع عرض (جدول، بطاقات، كانبان، خريطة جغرافية تفاعلية) مع 12 بطاقة KPI تشمل المسطحات المائية (م²)، الحجوم المائية (م³)، وتنبيهات خطابات الضمان.',
+        chips: ['4 أوضاع عرض', '12 مؤشر KPI', 'خريطة الأقاليم', 'تقرير الضمانات والـ TOC'],
+        tabs: [
+          'table: الجدول التفصيلي للمشاريع (ProjectsTable)',
+          'card: شبكة البطاقات التفاعلية (ProjectCard Grid)',
+          'kanban: لوحة كانبان حسب حالة المشروع (KanbanView)',
+          'map: خريطة التوزيع الجغرافي والتحليلات الإقليمية (LocationAnalyticsMap)'
+        ],
+        rules: [
+          'فلاتر دقيقة للمشاريع بدون نسخة عقد أصلية، أو بدون شهادة استلام ابتدائي TOC، أو ضمانات منتهية',
+          'تصنيف إقليمي (الساحل الشمالي، القاهرة الكبرى، الجونة والبحر الأحمر، الصعيد)'
+        ],
+        roles: ['admin', 'ceo', 'coo', 'commercial_manager', 'project_manager', 'planning_manager']
+      },
+      {
+        id: 'proj-new',
+        domain: 'projects',
+        icon: '✨',
+        route: '/projects/new',
+        title: 'معالج إنشاء مشروع جديد (5-Step Project Wizard)',
+        titleEn: 'NewProjectPage · Hydraulic & Commercial Onboarding Wizard',
+        desc: 'معالج ذكي من 5 خطوات لتسجيل مشروع جديد مع حفظ تلقائي للمسودة، حساب آلي لعمق وحجم المسطحات المائية، تحديد الموقع على الخريطة، وحساب هامش الربح المستهدف وضريبة 14%.',
+        chips: ['5 خطوات محكومة', 'حساب هيدروليكي آلي', 'Reverse Geocoding', 'معاينة حية'],
+        tabs: [
+          'الخطوة 1: الهوية والنطاقات المائية (PZONE_WATER_SCOPES) وتوليد كود YYNN آلياً',
+          'الخطوة 2: الموقع الجغرافي والمواصفات الهيدروليكية (المساحة م²، الحجم م³، المنشآت المائية)',
+          'الخطوة 3: الجدول الزمني والمدد التعاقدية مع التحقق المنطقي من التواريخ',
+          'الخطوة 4: الماليات، ضريبة 14%، أوامر التغيير، وخطابات الضمان',
+          'الخطوة 5: المراجعة التنفيذية والاعتماد النهائي'
+        ],
+        rules: [
+          'مطابقة تلقائية بين إجمالي جدول المنشآت المائية وقيمة العقد (syncContractFromBoq)',
+          'حفظ المسودة تلقائياً في المتصفح لمنع فقدان البيانات'
+        ],
+        roles: ['admin', 'ceo', 'coo', 'commercial_manager', 'planning_manager']
+      },
+      {
+        id: 'proj-detail',
+        domain: 'projects',
+        icon: '🔍',
+        route: '/projects/[id]',
+        title: 'ملف المشروع الشامل ذو الـ 15 تبويباً (15-Tab Project Cockpit)',
+        titleEn: 'ProjectDetailPage · Complete Project Lifecycle Hub',
+        desc: 'غرفة عمليات متكاملة لكل مشروع تضم 15 تبويباً متخصصاً تغطي كل تفصيلة من العقود والمقايسات والـ WBS حتى قائمة الملاحظات (Snag List) وفترة الضمان (DLP) وإغلاق المشروع.',
+        chips: ['15 تبويب متخصص', 'Snag List & DLP', 'شهادة TOC', 'إغلاق الضمانات'],
+        tabs: [
+          '1. overview (الملخص والخريطة) · 2. contracts (العقود) · 3. wbs (هيكل تجزئة الأعمال)',
+          '4. boq (المقايسة) · 5. cost_control (التكاليف وEVM) · 6. milestones (المعالم)',
+          '7. change_orders (أوامر التغيير) · 8. invoices (المستخلصات) · 9. snags (ملاحظات التسليم DLP)',
+          '10. documents (الوثائق) · 11. team (الكادر) · 12. org_chart (الهيكل التنظيمي)',
+          '13. audit_log (سجل التدقيق) · 14. archive (الأرشيف) · 15. settings (حوكمة الحالة)'
+        ],
+        rules: [
+          'نوافذ حوكمة خاصة لتعليق المشروع (Hold)، الاستلام الابتدائي (TOC Checklist)، والإغلاق المالي النهائي (تحرير الدفعة الأولى والثانية من المحتجز)'
+        ],
+        roles: ['admin', 'ceo', 'coo', 'project_manager', 'commercial_manager', 'planning_engineer']
+      },
+      {
+        id: 'proj-analytics',
+        domain: 'projects',
+        icon: '🗺️',
+        route: '/projects/dashboard',
+        title: 'لوحة تحليلات محفظة المشاريع والأصول المائية',
+        titleEn: 'ProjectsDashboardPage · Portfolio & Aquatic Analytics',
+        desc: 'تحليلات بصرية لتوزيع المشاريع حسب الأقاليم الجغرافية، تركز العملاء، إجمالي المسطحات والحجوم المائية، ومعدلات الإنجاز.',
+        chips: ['توزيع إقليمي', 'تحليل الأصول المائية', 'تركز العملاء', 'فلترة حسب الصلاحية'],
+        tabs: [
+          'تحليل التوزيع الجغرافي للمشروعات (الساحل، القاهرة، الجونة، الصعيد)',
+          'تحليل الأصول المائية (بحيرات، مسابح، نوافير، شبكات هيدروليكية)',
+          'تحليل الحجم المالي حسب المطور العقاري ومدير المشروع'
+        ],
+        rules: [
+          'تخضع لفلترة الصلاحيات عبر ProjectService.getUserAssignedProjectIds'
+        ],
+        roles: ['admin', 'ceo', 'coo', 'commercial_manager', 'planning_manager', 'project_manager']
+      },
+      {
+        id: 'proj-archive',
+        domain: 'projects',
+        icon: '🗄️',
+        route: '/projects/archive',
+        title: 'بنك أرشيف المشاريع واستعادة اللقطات (Archive Bank)',
+        titleEn: 'ProjectArchiveBankPage · Soft-Delete & JSON Snapshots',
+        desc: 'خزنة مؤمنة للمشاريع المؤرشفة مع حفظ لقطات JSON كاملة، تتيح الاستعادة بضغطة زر أو الحذف النهائي المحكوم بكود تأكيد لتحرير كود المشروع.',
+        chips: ['استعادة بضغطة زر', 'لقطات JSON كاملة', 'حماية بكود تأكيد', 'سجل أرشفة'],
+        tabs: [
+          'عرض الجدول والبطاقات للمشاريع المؤرشفة',
+          'عارض لقطة البيانات الكاملة (Raw JSON Snapshot Inspector)',
+          'بوابة الاستعادة الفورية أو الحذف النهائي المحكوم'
+        ],
+        rules: [
+          'الحذف النهائي يتطلب كود تأكيد صريح ويحرر كود المشروع لإعادة الاستخدام'
+        ],
+        roles: ['admin', 'ceo', 'coo']
+      },
+
+      // PLANNING, BOQ & SCHEDULE PULSE (7)
+      {
+        id: 'plan-hub',
+        domain: 'planning',
+        icon: '🧭',
+        route: '/planning',
+        title: 'مركز قيادة التخطيط الهندسي (Planning Command Hub)',
+        titleEn: 'PlanningPage · Unified Planning & Controls Launcher',
+        desc: 'البوابة الموحدة لمهندسي ومديري التخطيط: تربط المقايسات، الأنشطة، خط الأساس P6، التقدم اليومي، وتوزيع الكميات مع شريط إطلاق سريع يحافظ على سياق المشروع المختار.',
+        chips: ['3 قطاعات تخطيط', 'DCMA-14 Badge', 'مزامنة المشروع النشط', 'وصول سريع'],
+        tabs: [
+          'core: التخطيط الأساسي (/boq, /planning/activities, /planning/baseline, /schedule-pulse)',
+          'field: التنفيذ الميداني (/planning/daily-progress, /planning/allocation, /planning/site-tasks)',
+          'commercial: التجاري والتسليمات (/planning/dashboard, /deliverables)'
+        ],
+        rules: [
+          'فلترة الموديولات المعروضة تلقائياً وفق صلاحيات الدور عبر useRouteAccess()'
+        ],
+        roles: ['planning_manager', 'planning_engineer', 'project_manager', 'coo', 'ceo', 'admin']
+      },
+      {
+        id: 'plan-boq',
+        domain: 'planning',
+        icon: '📑',
+        route: '/boq',
+        title: 'إدارة جداول الكميات، التسعير، والمواد الفرعية (BOQ & BOM)',
+        titleEn: 'BoqPage · 868 BOQ Items, Rate Inspector & BOM Wastage',
+        desc: 'إدارة كاملة لبنود المقايسة (868 بند حي) مربوطة بـ 403 كود تكلفة، مع مطابقة قيمة العقد، تفكيك المواد الفرعية ونسب الهالك (BOM)، ومعالج استيراد Excel متعدد الصفحات.',
+        chips: ['868 بند حي', 'حماية <PriceGate>', 'تفكيك خامات BOM', 'مطابقة العقد'],
+        tabs: [
+          'شجرة أقسام أكواد التكلفة (M, E, L, R, A, S) وتبويبات المباني/القطاعات',
+          'جدول المقايسة التفاعلي مع وضع مراقبة التكاليف (Cost Control View)',
+          'مفتش تحليل الفئة السعرية (Contract Qty vs Shop Drawing Qty)',
+          'نافذة المواد الفرعية ونسب الهالك (BoqSubMaterialsModal)',
+          'معالج استيراد المقايسات من Excel من 4 خطوات (BoqImportWizard)'
+        ],
+        rules: [
+          'إخفاء الأسعار تلقائياً عن غير المصرح لهم عبر <PriceGate>',
+          'تصنيف البنود: عقد أصلي، أمر تغيير معتمد، فئة مؤقتة (Star Rate)، متنازع عليه، موازنة داخلية'
+        ],
+        roles: ['commercial_manager', 'estimator', 'cost_control', 'planning_manager', 'planning_engineer', 'project_manager', 'ceo', 'coo', 'admin']
+      },
+      {
+        id: 'plan-baseline',
+        domain: 'planning',
+        icon: '📅',
+        route: '/planning/baseline',
+        title: 'الجدول الزمني، المسار الحرج CPM وفحص DCMA-14',
+        titleEn: 'ScheduleBaselinePage · XER/XML Parser, Gantt, CPM & S-Curve',
+        desc: 'استيراد ملفات Primavera P6 (.XER / .XML) مباشرة إلى قاعدة البيانات (حتى 2,000 نشاط في الدفعة)، رسم مخطط Gantt وشبكة المسار الحرج CPM، وحساب مؤشرات DCMA-14 الـ 14.',
+        chips: ['قارئ ملفات XER', 'مخطط Gantt & CPM', 'فحص DCMA-14', '60-Day Lookahead'],
+        tabs: [
+          'pulse: استوديو النبض الزمني المدمج (SchedulePulseView)',
+          'gantt: مخطط جانت التفاعلي للأنشطة (GanttChart)',
+          'graph: شبكة العلاقات والمسار الحرج (CPMNetworkGraph - FS/SS/FF/SF)',
+          'analytics: 6 مؤشرات EVM، منحنى S-Curve ثلاثي، والأنشطة المتأخرة وخطة 60 يوماً',
+          'reports: مقارنة إصدارات الجداول الزمنية والتقارير الأسبوعية'
+        ],
+        rules: [
+          'بناء شجرة WBS تلقائياً في جدول pm_wbs_items وحساب السماحية الكلية Total Float بالأيام',
+          'حساب مؤشري CPLI و BEI بدقة رياضية معتمدة'
+        ],
+        roles: ['planning_manager', 'planning_engineer', 'project_manager', 'coo', 'ceo', 'admin']
+      },
+      {
+        id: 'plan-pulse',
+        domain: 'planning',
+        icon: '⚡',
+        route: '/schedule-pulse',
+        title: 'محرك النبض الزمني الجنائي (Schedule Pulse P6 Studio)',
+        titleEn: 'SchedulePulsePage · Living P6 Forensic Engine & Telemetry',
+        desc: 'محرك فائق السرعة (زمن قراءة XER يبلغ 12.4ms وحساب CPM في 6.8ms بسرعة 60 FPS) لتحليل الجداول الزمنية، مقارنة التحديثات الشهرية، وتوليد التقرير السردي وسجل التغييرات آلياً.',
+        chips: ['سرعة 12.4ms', 'مقارنة تحديثات شهرية', 'توليد تقرير Word', 'تحليل الانحراف بالتقويم'],
+        tabs: [
+          'living_p6: استوديو P6 التفاعلي الكامل (تجميد خط الأساس + أرشيف التحديثات الشهرية)',
+          'analytics: لوحة قياس الأداء الهندسي للمحرك (Lexer -> Graph -> CPM -> EVM -> Render)',
+          'split: العرض المزدوج المتزامن'
+        ],
+        rules: [
+          'يفكك تقويمات P6 المعقدة (CALENDAR.clndr_data) لحساب أيام التأخير الفعلية حسب أيام العمل والعطلات',
+          'يميز تلقائياً بين الجدول الحي ونسخ خط الأساس المدمجة داخل ملف XER'
+        ],
+        roles: ['planning_manager', 'planning_engineer', 'project_manager', 'coo', 'ceo', 'admin']
+      },
+      {
+        id: 'plan-activities',
+        domain: 'planning',
+        icon: '📋',
+        route: '/planning/activities',
+        title: 'أنشطة المشروع والمكتبة القياسية (Activities & SOP Library)',
+        titleEn: 'PlanningActivitiesPage · WBS Activities & Task Generator',
+        desc: 'إدارة أنشطة المشروع المربوطة بهيكل WBS، مع مكتبة الأنشطة القياسية للشركة ومولد مهام الموقع الآلي حسب المناطق الجغرافية (Zones) ومكونات المشروع.',
+        chips: ['مكتبة أنشطة قياسية', 'مولد مهام آلي', 'إدارة المناطق Zones', 'ربط WBS'],
+        tabs: [
+          'project: جدول أنشطة المشروع الحالي (ProjectActivitiesTable)',
+          'library: كتالوج الأنشطة القياسية للمؤسسة (ActivityLibraryTable)',
+          'generate: مولد مهام الموقع من القوالب القياسية (LibraryTaskGenerator)'
+        ],
+        rules: [
+          'يدعم تقسيم المشروع إلى مناطق مكانية (pm_zones) لتتبع الإنجاز لكل حمام سباحة أو بحيرة'
+        ],
+        roles: ['planning_manager', 'planning_engineer', 'project_manager', 'admin']
+      },
+      {
+        id: 'plan-allocation',
+        domain: 'planning',
+        icon: '🔗',
+        route: '/planning/allocation',
+        title: 'لوحة توزيع وربط الكميات بالأنشطة (Allocation Board v3.1)',
+        titleEn: 'AllocationPage · Activity ↔ BOQ Linkage Matrix & Tree',
+        desc: 'ربط أنشطة الجدول الزمني ببنود المقايسة عبر وضعين (مصفوفة قابلة للفرز أو شجرة ثلاثية المستويات: التخصص -> المنشأ -> النشاط) مع محاكاة فورية للكميات المتبقية.',
+        chips: ['مصنف ذكي للتخصصات', 'وضع المصفوفة والشجرة', 'محاكاة السعة', 'كشف التخصيص الزائد'],
+        tabs: [
+          'matrix: مصفوفة الربط المباشر مع تعديل فوري للكمية المخططة وفلاتر التوازن',
+          'tree: شجرة التوزيع الجماعي (Discipline -> Structure -> Activities) مع محاكاة الرصيد'
+        ],
+        rules: [
+          'حالات التوازن الثلاث: متوازن بالكامل (Balanced)، موزع جزئياً (Partial)، أو متجاوز للكمية التعاقدية (Over-Allocated)'
+        ],
+        roles: ['planning_manager', 'planning_engineer', 'cost_control', 'project_manager', 'admin']
+      },
+      {
+        id: 'plan-dashboard',
+        domain: 'planning',
+        icon: '📈',
+        route: '/planning/dashboard',
+        title: 'لوحة تحكم التخطيط وطابور تصديق التقارير اليومية',
+        titleEn: 'PlanningDashboardPage · Planner Verification Queue & S-Curve',
+        desc: 'لوحة مهندس ومدير التخطيط لمراجعة وتصديق تقارير التقدم اليومية الواردة من الموقع، حساب انحراف الجدول الزمني، وإرسال إشعارات فورية لمهندس الموقع.',
+        chips: ['طابور تصديق التخطيط', 'منحنى S-Curve', 'حساب انحراف الوقت', 'إشعارات فورية'],
+        tabs: [
+          'بطاقات تقدم المشروع والوقت المنقضي والانحراف الزمني (Ahead / On Track / Delayed)',
+          'طابور تقارير التقدم اليومي المعلقة للتصديق أو الرفض مع ذكر السبب',
+          'منحنى S-Curve التفاعلي لتطور الإنجاز'
+        ],
+        rules: [
+          'تصديق مهندس التخطيط يرسل إشعاراً فورياً لمهندس الموقع ويحدث الفعليات في الجدول الزمني (ADR-0005 & ADR-0007)'
+        ],
+        roles: ['planning_manager', 'planning_engineer', 'project_manager', 'coo', 'admin']
+      },
+
+      // SITE EXECUTION, QC & HSE (6)
+      {
+        id: 'site-workspace',
+        domain: 'site',
+        icon: '👷',
+        route: '/site-workspace',
+        title: 'مساحة عمل مهندس الموقع الميدانية (Field-Hardened Site Cockpit)',
+        titleEn: 'SiteWorkspacePage · Offline-First, Daylight Mode & 1-Tap Log',
+        desc: 'واجهة ميدانية مصممة للعمل تحت أشعة الشمس وفي المواقع ضعيفة الاتصال: تدعم التخزين المحلي بدون إنترنت (Offline Cache)، وضع التباين العالي للشمس، الالتقاط الفوري بالكاميرا، والتسجيل بضغطة واحدة.',
+        chips: ['تعمل بدون إنترنت', 'وضع أشعة الشمس', 'كاميرا الموقع المباشرة', 'قمرة سياق الموقع'],
+        tabs: [
+          'kanban: لوحة كانبان الميدانية لمهام الموقع (SiteWorkspaceKanban)',
+          'grid: الشبكة السريعة للتحديث المكثف (SiteWorkspaceFastGrid)',
+          'cards: بطاقات المهام الميدانية مع شريط سياق اليوم (الطقس، العمالة، المعدات، NCRs)'
+        ],
+        rules: [
+          '4 أزرار إجراءات سريعة (ADR-0009): طلب فحص WIR، تسجيل إعاقة ميدانية، استعراض المقايسة، طلب أمر تغيير VO',
+          'مزامنة تلقائية فور عودة الاتصال بالإنترنت'
+        ],
+        roles: ['site_engineer', 'project_manager', 'planning_engineer', 'planning_manager', 'qc_inspector', 'admin']
+      },
+      {
+        id: 'site-daily-progress',
+        domain: 'site',
+        icon: '📝',
+        route: '/planning/daily-progress',
+        title: 'بوابة التقدم اليومي، المعوقات، وتشوينات الموقع (7-Tab Daily Ops)',
+        titleEn: 'DailyProgressPage · Field Logs, Obstructions, MOS & Wastage',
+        desc: 'بوابة العمليات اليومية الشاملة بسبعة تبويبات: تسجيل الإنتاجية اليومية، مراجعة البنود، سجل المعوقات، تشوينات المواد بالموقع (MOS)، حركات المخزن والهالك، وتفويض الصلاحيات.',
+        chips: ['7 تبويبات تشغيلية', 'تشوينات MOS', 'مراقبة هالك الخامات', 'سجل المعوقات'],
+        tabs: [
+          '1. work_hub: مركز العمل اليومي الموحد (DailyWorkHub)',
+          '2. new_form: نموذج إدخال التقرير اليومي وكميات البنود (DailyProgressForm)',
+          '3. logs_review: جدول مراجعة واعتماد التقارير والبنود وإعادة فتح التقارير',
+          '4. obstructions: سجل المعوقات الميدانية وحساب العمالة والمعدات المعطلة',
+          '5. mos: سجل المواد المشونة بالموقع (Materials on Site - MOS Register)',
+          '6. materials: حركات صرف المواد ونسب الهالك الفعلية مقابل المسموح',
+          '7. delegations: تفويض صلاحيات الاعتماد أثناء الإجازات'
+        ],
+        rules: [
+          'لا يقبل التقرير بدون مهمة موقع مفتوحة (SITE_TASK_REQUIRED)',
+          'يدعم إرفاق صور الإثبات الميداني وتحديد الطرف المتسبب في الإعاقة'
+        ],
+        roles: ['site_engineer', 'project_manager', 'planning_engineer', 'planning_manager', 'cost_control', 'admin']
+      },
+      {
+        id: 'site-tasks-control',
+        domain: 'site',
+        icon: '🎛️',
+        route: '/planning/site-tasks',
+        title: 'لوحة التحكم في مهام الموقع والاستثناءات (Task Control Board)',
+        titleEn: 'SiteTasksControlPage · 6-Lane Kanban, PM/QC Queues & Ontology',
+        desc: 'لوحة تحكم شاملة في مهام الموقع بستة تبويبات: كانبان 6 حارات، طابور مراجعة مدير المشروع، طابور فحص الجودة، إدارة مكونات المشروع، لوحة الاستثناءات، ومولد المهام.',
+        chips: ['كانبان 6 حارات', 'سجل أحداث غير قابل للمسح', 'إعادة إسناد وجدولة', 'لوحة الاستثناءات'],
+        tabs: [
+          'tasks_list: لوحة الكانبان ذات الـ 6 حارات + الجدول + درج سجل الأحداث (TaskOntologyService)',
+          'pm_queue: طابور مراجعة مدير المشروع (PMReviewQueue)',
+          'qc_queue: طابور فحوصات الجودة الميدانية (QCInspectionQueue)',
+          'components: إدارة مثيلات المكونات وحزم العمل (Lagoon Body, Pump Room, etc.)',
+          'exceptions: لوحة المهام المتأخرة والمعلقة والمعادة للعمل (TaskExceptionsDashboard)',
+          'generator: توليد المهام بالجملة من المكتبة القياسية'
+        ],
+        rules: [
+          'كل حركة انتقال تُسجل في pm_task_events كسجل تدقيق دائم لا يقبل التعديل أو الحذف'
+        ],
+        roles: ['planning_manager', 'planning_engineer', 'project_manager', 'site_engineer', 'qc_inspector', 'admin']
+      },
+      {
+        id: 'site-pm-dashboard',
+        domain: 'site',
+        icon: '👨‍💼',
+        route: '/pm-dashboard',
+        title: 'غرفة قيادة مدير المشروع الميدانية (PM Command Dashboard)',
+        titleEn: 'PMDashboardPage · Soft Review, WIR Routing & Discipline KPIs',
+        desc: 'شاشة الهبوط المخصصة لمدير المشروع: تعرض المهام المنتظرة للمراجعة، التقارير اليومية المرفوعة، المعوقات النشطة، وتقدم التخصصات الهندسية مع إمكانية الاعتماد أو التحويل للجودة WIR.',
+        chips: ['مراجعة PM الفورية', 'تحويل لفحص WIR', 'تقدم التخصصات', 'ملخص التكاليف'],
+        tabs: [
+          'actions: طابور قرارات مدير المشروع (اعتماد مباشر، تحويل لفحص الجودة WIR، أو رفض لإعادة العمل)',
+          'dailylogs: مراجعة التقارير اليومية وإضافة ملاحظات خاصة لمهندس التخطيط',
+          'obstructions: إدارة المعوقات الميدانية ومطالبات التمديد',
+          'kpis: مؤشرات أداء المشروع وتفصيل الإنجاز حسب التخصص الهندسي'
+        ],
+        rules: [
+          'يدمج ملخص مراقبة التكاليف مع نسب الإنجاز الفعلي في شاشة واحدة لمدير المشروع'
+        ],
+        roles: ['project_manager', 'coo', 'ceo', 'admin']
+      },
+      {
+        id: 'site-qc',
+        domain: 'site',
+        icon: '🔬',
+        route: '/qc-dashboard',
+        title: 'بوابة مراقبة الجودة والاستلامات الهندسية (QC & WIR/NCR Hub)',
+        titleEn: 'QCDashboardPage · WIR, MIR, Pre-Pour, Survey & First-Time Pass Rate',
+        desc: 'بوابة مهندسي الجودة لإدارة طلبات استلام الأعمال (WIR)، فحص المواد (MIR)، فحص ما قبل الصب (Pre-Pour)، الرفع المساحي، وتقارير عدم المطابقة (NCR) مع حساب نسبة القبول من أول مرة.',
+        chips: ['6 أنواع فحص هندسي', 'First-Time Pass Rate', 'بوابة صرف المستخلص', 'إثبات بالصور'],
+        tabs: [
+          'queue: طابور الفحوصات المعلقة لاتخاذ القرار الفوري (اعتماد أو إصدار NCR)',
+          'history: السجل التاريخي الكامل للفحوصات مع نافذة التفاصيل وصور الإثبات',
+          'kpis: مؤشر القبول من المرة الأولى (الهدف >= 90%) وتوزيع الفحوصات حسب النوع'
+        ],
+        rules: [
+          'اعتماد WIR يفتح البند تلقائياً للفوترة في المستخلص؛ بينما إصدار NCR يوقف النشاط لإعادة العمل'
+        ],
+        roles: ['qc_inspector', 'project_manager', 'planning_manager', 'coo', 'admin']
+      },
+      {
+        id: 'site-hse',
+        domain: 'site',
+        icon: '🦺',
+        route: '/hse',
+        title: 'منظومة السلامة والصحة المهنية وتصاريح العمل (HSE & PTW)',
+        titleEn: 'HSEPage · Safe Man-Hours, LTI-Free Days, Audits & Work Permits',
+        desc: 'متابعة ساعات العمل الآمنة نحو معلم الـ 500,000 ساعة، الأيام الخالية من الإصابات المضيعة للوقت (LTI-Free)، التحقيق في الحوادث (CAPA)، تفتيشات السلامة، وتصاريح العمل الخطرة (PTW).',
+        chips: ['معيار OSHA / ISO 45001', 'عداد 500 ألف ساعة آمنة', 'تصاريح العمل PTW', 'أمر إيقاف العمل'],
+        tabs: [
+          'incidents: سجل الحوادث والـ Near-Miss ومتابعة إجراءات الإغلاق التصحيحية CAPA',
+          'audits: جولات التفتيش الميداني للسلامة ونسب الامتثال وشارات إيقاف العمل الفوري',
+          'permits: تصاريح العمل الإلكترونية (الأعمال الساخنة، الارتفاعات >1.8م، الأماكن المغلقة، الحفر العميق >1.2م)'
+        ],
+        rules: [
+          'آلة حالة الحوادث: reported -> investigating -> closed مع حساب متوسط درجة الامتثال للسلامة'
+        ],
+        roles: ['admin', 'project_manager', 'site_engineer', 'coo']
+      },
+
+      // TECHNICAL OFFICE & EDMS (5)
+      {
+        id: 'to-portal',
+        domain: 'technical',
+        icon: '📐',
+        route: '/technical-office',
+        title: 'بوابة المكتب الفني المتكاملة ذات الـ 10 تبويبات (TO Workbench)',
+        titleEn: 'TechnicalOfficePortalPage · 10 Workspaces & Unifier Engine',
+        desc: 'المنصة الشاملة للمكتب الفني: تجمع متتبع اللوحات التنفيذية (E1)، اعتمادات الخامات (E2)، توزيع المهام، طابور مراجعة المدير، الإرساليات الرسمية، الضمانات المائية، والأوراق الميدانية.',
+        chips: ['10 تبويبات متكاملة', 'عداد SLA 14 يوم', 'الضمانات المائية', 'موجز الخمس نقاط'],
+        tabs: [
+          '1. drawings (متتبع لوحات الورشة E1) · 2. materials (متتبع اعتمادات الخامات E2)',
+          '3. team_assignment (إسناد اللوحات لمهندسي المشروع) · 4. queue (طابور مراجعة مدير المكتب)',
+          '5. transmittals (حوكمة الإرساليات الرسمية للاستشاري) · 6. aquatic (الضمانات الهيدروليكية والمائية)',
+          '7. field_paperwork (نماذج RFI, WIR/MIR, اختبارات الضغط، بوابة المستخلص)',
+          '8. register (السجل الموحد + موجز الخمس نقاط) · 9. radar (رادار الـ COO) · 10. role_guide (الدليل التفاعلي)'
+        ],
+        rules: [
+          'تبديل فوري بين 4 منظورات: جميع المراكز، منظور المهندس، منظور المدير، ومنظور الـ COO',
+          'حساب السماحية الزمنية للوحات الحرجة المربوطة بأنشطة التوريد والإنشاء'
+        ],
+        roles: ['technical_office', 'to_manager', 'to_engineer', 'project_manager', 'coo', 'ceo', 'admin']
+      },
+      {
+        id: 'to-manager',
+        domain: 'technical',
+        icon: '🎯',
+        route: '/to-dashboard',
+        title: 'مركز قيادة مدير المكتب الفني (TO Manager Command Hub)',
+        titleEn: 'TODashboardPage · Approvals, Consultant Codes A/B/C/D & KPIs',
+        desc: 'شاشة مخصصة لمدير المكتب الفني لمراجعة إنتاج المهندسين، اعتماد اللوحات داخلياً قبل إرسالها للاستشاري، متابعة أكواد المراجعة (A, B, C, D)، وقياس إنتاجية كل مهندس.',
+        chips: ['8 تبويبات قيادية', 'فلاتر كود A/B/C/D', 'تقييم إنتاجية المهندسين', 'حماية الصلاحية'],
+        tabs: [
+          '1. approvals (طابور الاعتماد الداخلي) · 2. submittals (تتبع التقديمات حسب كود الاستشاري)',
+          '3. transmittals (الإرساليات) · 4. field_paperwork (النماذج الميدانية)',
+          '5. aquatic (الضمانات المائية) · 6. assignments (توزيع المهام)',
+          '7. kpis (لوحة مؤشرات أداء مهندسي المكتب الفني) · 8. coo_radar (رادار الاختناقات)'
+        ],
+        rules: [
+          'يحول المهندسين غير المديرين تلقائياً إلى شاشة /to-tasks لضمان فصل الصلاحيات'
+        ],
+        roles: ['to_manager', 'technical_office', 'coo', 'ceo', 'admin']
+      },
+      {
+        id: 'to-tasks',
+        domain: 'technical',
+        icon: '✏️',
+        route: '/to-tasks',
+        title: 'مساحة عمل مهندس المكتب الفني (TO Engineer Workbench)',
+        titleEn: 'TOTasksPage · Assigned Projects & Daily Engineering Progress',
+        desc: 'شاشة تنفيذية من مستويين لمهندس المكتب الفني: تعرض أولاً بطاقات المشاريع المعين عليها فقط (Strict Staffing)، ثم تفتح مساحة عمل المشروع لتحديث نسب إنجاز اللوحات والعينات يومياً.',
+        chips: ['Strict Staffing', 'تحديث إنجاز يومي %', 'لوحات E1 وعينات E2', 'تسجيل معوقات فنية'],
+        tabs: [
+          'المستوى 1: شبكة المشاريع المسندة للمهندس (MyAssignedProjectsGrid)',
+          'المستوى 2: 7 تبويبات عمل (لوحات E1، خامات E2، الضمانات المائية، الأوراق الميدانية، طابور المراجعة)'
+        ],
+        rules: [
+          'يرى المهندس فقط المشاريع المعين عليها رسمياً في جدول أصحاب المصلحة'
+        ],
+        roles: ['to_engineer', 'to_manager', 'technical_office', 'admin']
+      },
+      {
+        id: 'to-deliverables',
+        domain: 'technical',
+        icon: '📦',
+        route: '/deliverables',
+        title: 'لوحة التسليمات الهندسية وسجل الاستفسارات الفنية (E1/E2 & RFI)',
+        titleEn: 'DeliverablesPage · Kanban, RFI Register (7-Day SLA) & Morning Center',
+        desc: 'متابعة حزم التسليمات E1/E2 عبر لوحة كانبان، مع سجل الاستفسارات الفنية السريع (RFI Register) المزود بنافذة رد تعاقدية مدتها 7 أيام وتحديد الأثر المالي والزمني.',
+        chips: ['كانبان التسليمات', 'سجل RFI (مهلة 7 أيام)', 'إنتاجية مقاولي الباطن', 'غرفة قيادة الصباح'],
+        tabs: [
+          '1. kanban (لوحة كانبان التسليمات) · 2. field_paperwork (الأوراق الميدانية)',
+          '3. aquatic (الضمانات المائية) · 4. transmittals (الإرساليات)',
+          '5. rfis (سجل الاستفسارات الفنية RFI) · 6. subs (إنتاجية مقاولي الباطن) · 7. command_center (مركز الصباح)'
+        ],
+        rules: [
+          'يربط كل RFI بالتسليمة المتأثرة ويحدد ما إذا كان يترتب عليه أثر مالي أو زمني'
+        ],
+        roles: ['technical_office', 'to_manager', 'to_engineer', 'planning_engineer', 'project_manager', 'coo', 'admin']
+      },
+      {
+        id: 'to-edms',
+        domain: 'technical',
+        icon: '🗃️',
+        route: '/document-control',
+        title: 'نظام إدارة الوثائق والأرشيف الهندسي (7-Folder EDMS)',
+        titleEn: 'DocumentControlPage · Drawings, Specs, Transmittals & Revisions',
+        desc: 'أرشيف إلكتروني مركزي (EDMS) مهيكل في 7 مجلدات قياسية (اللوحات، المواصفات، الاعتمادات، العقود، التقارير، شهادات الفحص، والمراسلات) مع تتبع الإرساليات وتاريخ الإصدارات.',
+        chips: ['هيكل 7 مجلدات قياسية', 'سجل الإرساليات الرسمية', 'تاريخ الإصدارات', 'فلاتر التخصص والحالة'],
+        tabs: [
+          'docs: سجل الوثائق والمخططات مع شجرة المجلدات الـ 7',
+          'transmittals: جدول الإرساليات الصادرة والواردة وحالات الاستلام',
+          'revisions: السجل الزمني لتطور الإصدارات (Revision History)'
+        ],
+        rules: [
+          'يتابع حالات الوثائق: APPROVED, UNDER_REVIEW, REVISE_AND_RESUBMIT, REJECTED, DRAFT, SUPERSEDED'
+        ],
+        roles: ['technical_office', 'to_manager', 'project_manager', 'coo', 'admin']
+      },
+
+      // COMMERCIAL, CONTRACTS, COST & TENDER (6)
+      {
+        id: 'comm-contracts',
+        domain: 'commercial',
+        icon: '📜',
+        route: '/contracts',
+        title: 'بوابة العقود، الدفعات المقدمة، وتقرير الضمانات (Contracts Hub)',
+        titleEn: 'ContractsPortalPage · FIDIC Red Book, Retention & Hardcopy Audit',
+        desc: 'إدارة عقود الملاك وفق شروط FIDIC Red Book: تحسب تلقائياً نسب الدفعة المقدمة، محتجز ضمان الأعمال، وخطابات الضمان النهائي، وترصد العقود التي تفتقر للنسخة الورقية الأصلية.',
+        chips: ['FIDIC Red Book', 'تقرير المحتجز والضمانات', 'حوكمة النسخ الأصلية', 'سلسلة أولويات الشروط'],
+        tabs: [
+          'عرض الجدول والبطاقات لجميع العقود المسجلة مع الفلترة حسب الحالة',
+          'درج التفاصيل التعاقدية الكامل (ContractDetailDrawer)',
+          'نافذة تعديل الشروط التجارية السريعة (QuickContractTermsModal)',
+          'تقرير محفظة المحتجزات وخطابات الضمان الشامل (RetentionAndBondsReportModal)'
+        ],
+        rules: [
+          'سلسلة استنتاج ذكية لنسب الضمان والدفعة المقدمة (بيانات المشروع -> الإعدادات التجارية -> أنشطة الجدول -> القيم الافتراضية 10%/15%/5%)'
+        ],
+        roles: ['commercial_manager', 'contract_admin', 'finance', 'project_manager', 'coo', 'ceo', 'chairman', 'admin']
+      },
+      {
+        id: 'comm-claims',
+        domain: 'commercial',
+        icon: '⚖️',
+        route: '/contracts/claims',
+        title: 'منظومة المطالبات، أوامر التغيير، والمستخلصات (FIDIC Claims & IPCs)',
+        titleEn: 'ContractsAndClaimsPage · FIDIC 20.1/8.4/13, VOs, EOTs & Net IPCs',
+        desc: 'إدارة متكاملة للمطالبات المالية والزمنية (FIDIC 20.1 بمهلة إخطار 28 يوماً ومفصل 42 يوماً)، أوامر التغيير (Clause 13)، طلبات تمديد الوقت (Clause 8.4)، وإصدار المستخلصات الجارية (IPCs).',
+        chips: ['مهلة 28/42 يوم FIDIC 20.1', 'أوامر التغيير VO', 'تمديد الوقت EOT', 'صافي المستخلص 80%'],
+        tabs: [
+          '1. contracts (سجل العقود) · 2. claims (المطالبات: جدول، كانبان، خط زمني)',
+          '3. vos (أوامر التغيير: إضافة، حذف، استبدال) · 4. eots (طلبات تمديد الوقت)',
+          '5. ipcs (شهادات الدفع المرحلية / المستخلصات مع حساب الاستقطاعات)'
+        ],
+        rules: [
+          'معادلة صافي المستخلص القابل للصرف: Net Payable = Gross - (10% Retention + 10% Advance Recovery)',
+          'تصنيف المطالبات وأوامر التغيير التي تتجاوز 1,000,000 ج.م أو 30 يوماً كحالات حرجة (Critical)'
+        ],
+        roles: ['commercial_manager', 'contract_admin', 'project_manager', 'coo', 'admin']
+      },
+      {
+        id: 'comm-cost-control',
+        domain: 'commercial',
+        icon: '💹',
+        route: '/cost-control',
+        title: 'مراقبة التكاليف والقيمة المكتسبة الحية (Live Cost Control & EVM)',
+        titleEn: 'CostControlPage · BAC, PV, EV, AC, CPI, SPI, EAC, VAC & TCPI',
+        desc: 'لوحة التحكم المالي للمشروع: تحسب حياً من قاعدة البيانات مؤشرات القيمة المكتسبة الـ 10، ترسم منحنى S-Curve ثلاثي (PV, EV, AC)، وتراقب استهلاك بنود الموازنة حسب كود التكلفة.',
+        chips: ['10 مؤشرات EVM حية', 'لقطات تكلفة يومية', 'تصدير Excel صفحتين', 'طباعة تقرير A4'],
+        tabs: [
+          '6 بطاقات أساسية (BAC, PV, EV, AC, SPI+SV, CPI+CV) + 4 بطاقات تنبؤ (EAC, ETC, VAC, TCPI)',
+          'مخطط Recharts AreaChart S-Curve لتطور التكاليف عبر الزمن',
+          'جدول مراقبة استهلاك خطوط الموازنة (On Track / Near Limit >=85% / Over Budget >100%)'
+        ],
+        rules: [
+          'يعمل بآلية Dual-Trigger (ADR-0010): لقطة تلقائية عند اعتماد التقرير اليومي + زر إعادة حساب فوري'
+        ],
+        roles: ['cost_control', 'commercial_manager', 'project_manager', 'finance', 'coo', 'ceo', 'admin']
+      },
+      {
+        id: 'comm-subcontractors',
+        domain: 'commercial',
+        icon: '🤝',
+        route: '/subcontractors',
+        title: 'بوابة مقاولي الباطن والتقييم الفني والمالي (Subcontractors Hub)',
+        titleEn: 'SubcontractorsPortalPage · Trade Directory, Ratings & IPC Retention',
+        desc: 'دليل وتقييم مقاولي الباطن عبر 7 تخصصات (مدني، كهروميكانيك، تشطيبات، تكييف، عزل مائي، بنية تحتية، منشآت معدنية) مع تصنيف الفئات (Class A/B/C) وتنبيهات ضعف الأداء.',
+        chips: ['7 تخصصات مقاولات', 'تصنيف Class A/B/C', 'كشف ضعف الإنجاز <70%', 'ربط العقود والمستخلصات'],
+        tabs: [
+          'عرض البطاقات والجدول لمقاولي الباطن مع فلاتر التخصص والحالة',
+          'نافذة الملف التفصيلي لمقاول الباطن والعقود المسندة إليه'
+        ],
+        rules: [
+          'يُصنف المقاول كضعيف الأداء تلقائياً إذا قل تقييمه عن 3.0/5.0 أو قلت نسبة إنجازه عن 70%'
+        ],
+        roles: ['commercial_manager', 'contract_admin', 'procurement', 'project_manager', 'coo', 'ceo', 'admin']
+      },
+      {
+        id: 'comm-tender',
+        domain: 'commercial',
+        icon: '🎯',
+        route: '/tender',
+        title: 'منظومة المناقصات وتقييم العروض قبل التعاقد (Pre-Contract Tender)',
+        titleEn: 'TenderPage · Bid Pipeline, Countdown Timer & 60/40 Evaluation',
+        desc: 'إدارة دورة المناقصات من المسودة حتى الترسية: تضم عداد تنازلي حي لموعد الإغلاق، وتقييم العروض الفنية والمالية بمعادلة موزونة (60% فني + 40% مالي) وحساب الانحراف عن الموازنة التقديرية.',
+        chips: ['عداد إغلاق المناقصة', 'تقييم 60% فني / 40% مالي', 'كانبان وجدول', 'نسبة الفوز بالعطاءات'],
+        tabs: [
+          'list: المناقصات النشطة (لوحة كانبان 5 مراحل + عرض الجدول)',
+          'evaluation: بطاقات التقييم الفني والمالي للمتنافسين (ProposalStatusCard)',
+          'awards: سجل العقود التي تمت ترسيتها وتحويلها للتنفيذ'
+        ],
+        rules: [
+          'تنبيهات نبضية حمراء للمناقصات التي يتبقى على إغلاقها أقل من 24 ساعة أو 3 أيام'
+        ],
+        roles: ['commercial_manager', 'estimator', 'project_manager', 'coo', 'ceo', 'chairman', 'board_member', 'admin']
+      },
+      {
+        id: 'comm-stakeholders',
+        domain: 'commercial',
+        icon: '🌐',
+        route: '/stakeholders',
+        title: 'دليل الشركاء، الكادر، والعملاء الموحد (`/stakeholders` & `/clients`)',
+        titleEn: 'StakeholdersDirectoryPage + ClientsPage · 233 Records & RACI',
+        desc: 'سجل مركزي يدمج كوادر P.ZONE (من نظام الـ HR)، ممثلي الملاك والمطورين، الاستشاريين، والموردين، مع إسناد مصفوفة RACI للمشاريع واستيراد/تصدير Excel.',
+        chips: ['233 سجل أصحاب مصلحة', 'دمج حي مع HR', 'تعيين RACI للمشاريع', 'بوابة العملاء /clients'],
+        tabs: [
+          '5 تبويبات فئات: الكل، موظفي بي زون، ممثلي العملاء، الاستشاريين، الموردين والمقاولين',
+          '3 أوضاع عرض: بطاقات Cyber-HUD، جدول تفصيلي، وتقرير بيانات الشركاء',
+          'بوابة العملاء المستقلة (/clients) لتصنيف الملاك والمقاولين الرئيسيين والاستشاريين'
+        ],
+        rules: [
+          'ربط تلقائي بين حساب المستخدم (auth_user_id) وسجل صاحب المصلحة لتوجيه الصلاحيات والمهام'
+        ],
+        roles: ['admin', 'coo', 'coo_assistant', 'commercial_manager', 'project_manager', 'ceo']
+      },
+
+      // ECOSYSTEM: REPORTS, WORKFLOW, ADMIN, SARAKY & CASE STUDIES (5)
+      {
+        id: 'eco-reports',
+        domain: 'ecosystem',
+        icon: '📊',
+        route: '/reports',
+        title: 'مستودع التقارير التنفيذية الشامل (106+ Reports Engine v3.0)',
+        titleEn: 'ReportsMasterHubPage · 10 Categories, 13 Chart Types, PDF & Excel',
+        desc: 'محرك تقارير مؤسسي يضم أكثر من 106 تقرير جاهز عبر 10 قطاعات، يدعم 13 نوعاً من الرسوم البيانية التفاعلية، التصدير الفوري إلى Excel، والطباعة الرسمية بـ 4 توقيعات معتمدة.',
+        chips: ['106+ تقرير جاهز', '13 نوع رسم بياني', 'توقيعات رسمية للطباعة', 'استوديو تخصيص الأعمدة'],
+        tabs: [
+          '10 تصنيفات: المحفظة، الماليات، أوامر التغيير، الجدول الزمني، التكاليف، التدفقات النقدية، المكتب الفني، الموقع، الشركاء، الضمانات',
+          'ReportChartsHub: Donut, Pie, Bar, Horizontal Bar, Line, Area, Composed, Radar, Radial, Funnel, Treemap, Scatter',
+          'UniversalReportModal: استوديو تخصيص الأعمدة والفلاتر وتصدير Excel/PDF'
+        ],
+        rules: [
+          'توليد تلقائي لبلوك التوقيعات الرسمية (مهندس التخطيط، مدير المكتب الفني، مدير PMO، الإدارة التنفيذية)'
+        ],
+        roles: ['ceo', 'chairman', 'coo', 'board_member', 'commercial_manager', 'planning_manager', 'cost_control', 'project_manager', 'admin']
+      },
+      {
+        id: 'eco-workflow',
+        domain: 'ecosystem',
+        icon: '🔄',
+        route: '/workflow',
+        title: 'مركز سير العمل الموحد ومراقبة اتفاقيات الخدمة (Universal SLA Hub)',
+        titleEn: 'WorkflowPage · Cross-Module Kanban & Khamsa 5-Point Brief',
+        desc: 'يجمع في شاشة واحدة حركات الاعتماد عبر 4 موديولات حيوية مع مراقبة عدادات الـ SLA لكل منها، وتوليد ملخص الذكاء الخماسي (Khamsa 5-Point Planning Brief).',
+        chips: ['SLA التقارير 24 ساعة', 'SLA المهام 48 ساعة', 'SLA الاستشاري 14 يوم', 'SLA الجودة 24 ساعة'],
+        tabs: [
+          '1. daily_reports: كانبان التقارير اليومية (مهلة الاعتماد الفني 24 ساعة)',
+          '2. site_tasks: كانبان مهام الموقع (مهلة المراجعة والاعتماد 48 ساعة)',
+          '3. deliverables: كانبان تسليمات المكتب الفني (مهلة الاستشاري 168 ساعة / 14 يوماً)',
+          '4. inspections: كانبان فحوصات الجودة QC (مهلة الفحص الميداني 24 ساعة)'
+        ],
+        rules: [
+          'يتضمن وضع ملخص الـ COO ومركز قرارات مدير المشروع وفلاتر متقدمة بالتخصص والتاريخ'
+        ],
+        roles: ['coo', 'ceo', 'project_manager', 'planning_manager', 'planning_engineer', 'to_manager', 'qc_inspector', 'admin']
+      },
+      {
+        id: 'eco-admin-users',
+        domain: 'ecosystem',
+        icon: '🔐',
+        route: '/user-management',
+        title: 'بوابة إدارة النظام، المستخدمين، ومصفوفة الصلاحيات (`/system-admin` & `/user-management`)',
+        titleEn: 'SystemAdminPortalPage + UserManagementPage · RBAC, Cron & Audit',
+        desc: 'مراقبة صحة قاعدة البيانات وذاكرة التخزين المؤقت، تشغيل مهام الـ Cron الآلية، تفعيل المستخدمين الجدد عبر WhatsApp، تخصيص صلاحيات الموديولات، واستعراض سجل التدقيق الشامل.',
+        chips: ['تفعيل عبر WhatsApp', 'مصفوفة صلاحيات ديناميكية', '3 مهام Cron آلية', 'سجل 500 حركة تدقيق'],
+        tabs: [
+          'pending: طلبات التفعيل المعلقة مع توليد رابط تفعيل WhatsApp مباشر',
+          'users: إدارة المستخدمين وتعيين الأدوار الـ 22 ومؤشرات ساعات العمل الحية',
+          'permissions: مصفوفة الوصول الديناميكية (hidden -> view -> edit) لكل موديول',
+          'raci: مصفوفة RACI المرجعية للـ 15 عملية · audit_logs: سجل التدقيق غير القابل للتعديل'
+        ],
+        rules: [
+          'مهام Cron المجدولة: رصد المواقع الصامتة يومياً 00:00، تنبيهات المهام المستحقة 06:00، والتقارير الأسبوعية كل أحد'
+        ],
+        roles: ['admin', 'ceo', 'coo', 'chairman']
+      },
+      {
+        id: 'eco-saraky-hr',
+        domain: 'ecosystem',
+        icon: '⏱️',
+        route: 'Supabase Live: attendance_logs / self_checkins',
+        title: 'منظومة سركي العمالة (SARAKY) والموارد البشرية (HR)',
+        titleEn: 'External Team-Completed Systems Live in Shared Supabase DB',
+        desc: 'نظام تسجيل حضور العمالة الميدانية (بصمة/GPS ذاتي أو عبر المشرف) وحساب تكلفة اليوميات والساعات الإضافية وبدلات السفر والوجبات عبر 6 مواقع نشطة و5 أطقم فنية.',
+        chips: ['6 مواقع نشطة', '5 أطقم عمالة', 'حضور ذاتي GPS', 'حساب إضافي وبدلات'],
+        tabs: [
+          'attendance_logs: سجل السركي اليومي وتكلفة العامل واعتماد المشرف',
+          'self_checkins: تسجيل الحضور والانصراف الذاتي عبر الموبايل',
+          'group_region_settings: تسعير الأقاليم (بدل سفر الساحل 800 ج.م، وجبات 200 ج.م)',
+          'worker_groups & project_bonuses: إدارة الفرق والمكافآت والخصومات'
+        ],
+        rules: [
+          'تغذي التكاليف الفعلية للعمالة المباشرة (أكواد L) والرواتب (أكواد E000-E010) في موديول مراقبة التكاليف'
+        ],
+        roles: ['admin', 'coo', 'ceo', 'cost_control', 'project_manager', 'finance']
+      },
+      {
+        id: 'eco-case-studies',
+        domain: 'ecosystem',
+        icon: '🏆',
+        route: '/case-studies',
+        title: 'معرض سابقة الأعمال المائية وشهادات كبار العملاء (`/case-studies`)',
+        titleEn: 'CaseStudiesPage · 70+ Water Projects, 150,000 m² & Testimonials',
+        desc: 'واجهة تسويقية وتنفيذية ثنائية اللغة (عربي/إنجليزي) تستعرض أبرز مشروعات P.ZONE المائية (مراسي، البرج الأيقوني، الجونة، سوديك، بالم هيلز) مع المواصفات الهيدروليكية وشهادات العملاء.',
+        chips: ['70+ مشروع منفذ', '150,000 م² مسطح مائي', 'شهادات إعمار وسوديك وأوراسكوم', 'معرض تنفيذ حي'],
+        tabs: [
+          'فلاتر التخصص: البحيرات الصناعية (Lagoons)، المسابح الأولمبية، النوافير الشلالات، البنية الهيدروليكية',
+          'بطاقات المشاريع الستة الكبرى مع معدلات التدفق (m³/h) وقدرات الطلمبات (kW)',
+          'شهادات العملاء الموثقة وملفات القيادة التنفيذية ومعرض صور التنفيذ الميداني'
+        ],
+        rules: [
+          'متاحة للعرض المباشر أمام العملاء والمطورين العقاريين ومجلس الإدارة'
+        ],
+        roles: ['ceo', 'chairman', 'board_member', 'coo', 'commercial_manager', 'admin']
+      }
+    ];
+
+    // =========================================================================
+    // 2. RBAC 22 ROLES DATASET
+    // =========================================================================
+    const RBAC_ROLES = [
+      { code: 'ceo', name: '👑 الرئيس التنفيذي (CEO)', home: '/coo · /dashboard', price: true, desc: 'صلاحية تنفيذية عليا على كافة لوحات القيادة، المحفظة المليارية، التدفقات النقدية، تقارير الـ 106 تقرير، واعتماد السياسات المالية والمناقصات.' },
+      { code: 'chairman', name: '🏛️ رئيس مجلس الإدارة (Chairman)', home: '/board · /dashboard', price: true, desc: 'إشراف استراتيجي كامل على بوابة مجلس الإدارة، مؤشرات الحوكمة، التعرض للمطالبات، وموجز الأداء العام.' },
+      { code: 'board_member', name: '🎖️ عضو مجلس الإدارة (Board Member)', home: '/board', price: true, desc: 'استعراض تقارير مجلس الإدارة، نسب إنجاز المحفظة، والتحليلات المالية والائتمانية.' },
+      { code: 'coo', name: '📡 مدير العمليات (COO)', home: '/coo', price: true, desc: 'قيادة العمليات اليومية عبر جميع المشاريع، رادار المساءلة، المواقع الصامتة (>48 ساعة)، واختناقات المكتب الفني.' },
+      { code: 'admin', name: '⚙️ مدير النظام (System Admin)', home: '/system-admin', price: true, desc: 'إدارة كاملة للمنصة، مصفوفة الصلاحيات، تفعيل المستخدمين، مراقبة صحة قاعدة البيانات، وسجلات التدقيق.' },
+      { code: 'commercial_manager', name: '💼 المدير التجاري (Commercial Mgr)', home: '/contracts · /boq', price: true, desc: 'قيادة العقود، المناقصات، المقايسات BOQ، أوامر التغيير VO، والمطالبات التعاقدية.' },
+      { code: 'finance', name: '🏦 الإدارة المالية (Finance)', home: '/cost-control · /contracts', price: true, desc: 'إدارة التدفقات النقدية، التحصيلات، التصديق المالي على المستخلصات، ومدفوعات المقاولين.' },
+      { code: 'cost_control', name: '💹 مهندس التحكم بالتكاليف (Cost Control)', home: '/cost-control', price: true, desc: 'مراقبة الميزانيات، حساب مؤشرات القيمة المكتسبة الحية (CPI/SPI/EAC)، وإدارة شجرة أكواد التكلفة (403 كود).' },
+      { code: 'project_manager', name: '👨‍💼 مدير المشروع (Project Manager)', home: '/pm-dashboard', price: true, desc: 'القيادة الميدانية والتجارية للمشروع، المراجعة الأولية للتقارير اليومية، تحويل المهام لفحص الجودة WIR، واعتماد المستخلصات.' },
+      { code: 'planning_manager', name: '🧭 مدير التخطيط (Planning Manager)', home: '/planning/dashboard', price: true, desc: 'قيادة الجداول الزمنية P6، فحص DCMA-14، اعتماد خطوط الأساس، ومراقبة انحرافات المحفظة.' },
+      { code: 'planning_engineer', name: '📅 مهندس التخطيط (Planning Engineer)', home: '/planning', price: true, desc: 'إدارة ملفات XER، ربط الأنشطة بالمقايسة، والتصديق النهائي على كميات التقدم اليومي لتحديث منحنى S-Curve.' },
+      { code: 'estimator', name: '🧮 مهندس التقدير والعطاءات (Estimator)', home: '/tender · /boq', price: true, desc: 'دراسة وتسعير المناقصات، تحليل الفئات السعرية، وإعداد جداول الكميات والمواد الفرعية BOM.' },
+      { code: 'contract_admin', name: '📜 مسؤول إدارة العقود (Contract Admin)', home: '/contracts/claims', price: true, desc: 'متابعة إخطارات ومهل FIDIC 20.1، تسعير مسودات أوامر التغيير، ومراجعة شروط العقود والضمانات.' },
+      { code: 'ipc_clerk', name: '🧾 مسؤول المستخلصات (IPC Clerk)', home: '/contracts/claims', price: false, desc: 'إعداد وحصر كميات المستخلصات الدورية للمالك ومقاولي الباطن ومطابقتها مع شهادات الاستلام.' },
+      { code: 'to_manager', name: '🎯 مدير المكتب الفني (TO Manager)', home: '/to-dashboard', price: false, desc: 'توزيع حزم اللوحات E1 والعينات E2 على المهندسين، المراجعة الفنية الداخلية (خلال 3 أيام)، ومراقبة SLA الاستشاري.' },
+      { code: 'technical_office', name: '📐 المكتب الفني العام (Technical Office)', home: '/technical-office', price: false, desc: 'إدارة التسليمات الهندسية، الاستفسارات الفنية RFI، والضمانات الهيدروليكية والمائية.' },
+      { code: 'to_engineer', name: '✏️ مهندس المكتب الفني (TO Engineer)', home: '/to-tasks', price: false, desc: 'إعداد اللوحات التنفيذية وعينات المواد للمشاريع المسندة إليه فقط وتحديث نسب الإنجاز اليومية (الأسعار محجوبة عبر PriceGate).' },
+      { code: 'site_engineer', name: '👷 مهندس الموقع (Site Engineer)', home: '/site-workspace', price: false, desc: 'تنفيذ مهام الموقع، رفع تقارير التقدم اليومي والصور الميدانية، تسجيل المعوقات، وطلب فحوصات WIR (الأسعار محجوبة عبر PriceGate).' },
+      { code: 'qc_inspector', name: '🔬 مهندس مراقبة الجودة (QC Inspector)', home: '/qc-dashboard', price: false, desc: 'فحص طلبات WIR/MIR وفحوصات ما قبل الصب وإصدار شهادات القبول أو تقارير عدم المطابقة NCR.' },
+      { code: 'procurement', name: '🛒 إدارة المشتريات (Procurement)', home: '/subcontractors', price: false, desc: 'إدارة التوريدات، طلبات الشراء، والتنسيق مع الموردين ومقاولي الباطن.' },
+      { code: 'inventory', name: '📦 المستودعات والمخازن (Inventory)', home: '/planning/daily-progress', price: false, desc: 'متابعة تشوينات الموقع (MOS) وحركات صرف الخامات ومعدلات الهالك.' },
+      { code: 'coo_assistant', name: '🗂️ مساعد مدير العمليات (COO Assistant)', home: '/stakeholders', price: false, desc: 'تحديث بيانات وسجلات أصحاب المصلحة والكوادر عبر المشاريع دون صلاحية الاطلاع على اللوحات المالية.' }
+    ];
+
+    // =========================================================================
+    // 3. RENDER MODULES GRID
+    // =========================================================================
+    let currentDomain = 'all';
+    let currentSearch = '';
+
+    function renderModules() {
+      const grid = document.getElementById('modulesGrid');
+      const filtered = MODULES_DATA.filter(m => {
+        const matchDomain = currentDomain === 'all' || m.domain === currentDomain;
+        const q = currentSearch.trim().toLowerCase();
+        const matchSearch = !q ||
+          m.title.toLowerCase().includes(q) ||
+          m.titleEn.toLowerCase().includes(q) ||
+          m.route.toLowerCase().includes(q) ||
+          m.desc.toLowerCase().includes(q) ||
+          m.chips.some(c => c.toLowerCase().includes(q));
+        return matchDomain && matchSearch;
+      });
+
+      grid.innerHTML = filtered.map(m => `
+        <div class="module-card" onclick="openModuleModal('${m.id}')">
+          <div>
+            <div class="mod-top">
+              <div class="mod-icon">${m.icon}</div>
+              <span class="mod-route">${m.route}</span>
+            </div>
+            <div style="margin-top:12px;">
+              <div class="mod-title">${m.title}</div>
+              <div class="mod-title-en">${m.titleEn}</div>
+              <div class="mod-desc">${m.desc}</div>
+            </div>
+            <div class="mod-features" style="margin-top:12px;">
+              ${m.chips.map(c => `<span class="mod-chip">${c}</span>`).join('')}
+            </div>
+          </div>
+          <div class="mod-footer">
+            <span class="status-ready">● جاهز ومفحوص 100%</span>
+            <span class="preview-trigger">معاينة الموديول والتبويبات ◄</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterModules(domain, btn) {
+      currentDomain = domain;
+      document.querySelectorAll('#domainFilters .filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderModules();
+    }
+
+    function searchModules(val) {
+      currentSearch = val;
+      renderModules();
+    }
+
+    // =========================================================================
+    // 4. MODULE MODAL SIMULATOR
+    // =========================================================================
+    let activeModalRoute = '';
+
+    function openModuleModal(id) {
+      const mod = MODULES_DATA.find(x => x.id === id);
+      if (!mod) return;
+      activeModalRoute = mod.route;
+      document.getElementById('mRoute').textContent = mod.route;
+      document.getElementById('mTitle').textContent = mod.icon + ' ' + mod.title;
+      document.getElementById('mTitleEn').textContent = mod.titleEn;
+      document.getElementById('mDesc').textContent = mod.desc;
+      document.getElementById('mTabs').innerHTML = mod.tabs.map(t => `<li>${t}</li>`).join('');
+      document.getElementById('mRules').innerHTML = mod.rules.map(r => `<li>${r}</li>`).join('');
+      document.getElementById('mRoles').innerHTML = mod.roles.map(r => `<span class="badge-violet mono">${r}</span>`).join('');
+
+      const launchBtn = document.getElementById('mLaunchBtn');
+      if (mod.localFile) {
+        launchBtn.href = mod.localFile;
+      } else if (mod.route.startsWith('/')) {
+        launchBtn.href = 'http://localhost:3000' + mod.route.replace('[id]', '1');
+      } else {
+        launchBtn.href = 'http://localhost:3000/dashboard';
+      }
+
+      document.getElementById('moduleModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('moduleModal').classList.remove('open');
+    }
+
+    function copyModalRoute() {
+      navigator.clipboard.writeText(activeModalRoute);
+      const btn = document.getElementById('mCopyBtn');
+      btn.textContent = '✅ تم نسخ المسار!';
+      setTimeout(() => { btn.textContent = '📋 نسخ المسار'; }, 1800);
+    }
+
+    // =========================================================================
+    // 5. LIVE EVM SIMULATOR (EXACT FORMULAS FROM costControl.service.ts)
+    // =========================================================================
+    function runEvmSim() {
+      const bac = parseFloat(document.getElementById('simBac').value);
+      const pvPct = parseFloat(document.getElementById('simPvPct').value);
+      const evPct = parseFloat(document.getElementById('simEvPct').value);
+      const ac = parseFloat(document.getElementById('simAc').value);
+
+      document.getElementById('simBacVal').textContent = bac.toFixed(1) + 'M EGP';
+      document.getElementById('simPvPctVal').textContent = pvPct + '% (' + (bac * pvPct / 100).toFixed(1) + 'M)';
+      document.getElementById('simEvPctVal').textContent = evPct + '% (' + (bac * evPct / 100).toFixed(1) + 'M)';
+      document.getElementById('simAcVal').textContent = ac.toFixed(1) + 'M EGP';
+
+      const pv = bac * (pvPct / 100);
+      const ev = bac * (evPct / 100);
+      const cpi = ac > 0 ? (ev / ac) : 1;
+      const spi = pv > 0 ? (ev / pv) : 1;
+      const cv = ev - ac;
+      const sv = ev - pv;
+      const eac = cpi > 0 ? (bac / cpi) : bac;
+      const vac = bac - eac;
+      const tcpi = (bac - ac) > 0 ? ((bac - ev) / (bac - ac)) : 1.0;
+
+      const cpiEl = document.getElementById('outCpi');
+      cpiEl.textContent = cpi.toFixed(2);
+      cpiEl.style.color = cpi >= 1.0 ? 'var(--emerald)' : (cpi >= 0.95 ? 'var(--amber)' : 'var(--rose)');
+
+      const spiEl = document.getElementById('outSpi');
+      spiEl.textContent = spi.toFixed(2);
+      spiEl.style.color = spi >= 1.0 ? 'var(--emerald)' : (spi >= 0.95 ? 'var(--amber)' : 'var(--rose)');
+
+      document.getElementById('outCv').textContent = (cv >= 0 ? 'وفر مالي (CV): +' : 'تجاوز تكلفة (CV): ') + cv.toFixed(1) + 'M EGP';
+      document.getElementById('outSv').textContent = (sv >= 0 ? 'تقدم زمني (SV): +' : 'انحراف زمني (SV): ') + sv.toFixed(1) + 'M EGP';
+      document.getElementById('outEac').textContent = eac.toFixed(1) + 'M EGP';
+      document.getElementById('outVac').textContent = (vac >= 0 ? 'وفر متوقع عند الإتمام: +' : 'تجاوز متوقع عند الإتمام: ') + vac.toFixed(1) + 'M EGP';
+      document.getElementById('outTcpi').textContent = tcpi.toFixed(2);
+      document.getElementById('outStatus').textContent =
+        (cpi >= 1 && spi >= 1) ? '✅ المشروع متقدم زمنياً وضمن الميزانية' :
+        (cpi < 0.95 && spi < 0.95) ? '🚨 خطر مزدوج: تجاوز تكلفة وتأخر زمني' :
+        (cpi < 0.95) ? '⚠️ تنبيه: تجاوز في التكلفة الفعلية' : '⏱️ تنبيه: تأخر في الجدول الزمني مع كفاءة مالية';
+    }
+
+    // =========================================================================
+    // 6. RBAC ROLES INTERACTIVE INSPECTOR
+    // =========================================================================
+    function renderRoles() {
+      const grid = document.getElementById('rolesGrid');
+      grid.innerHTML = RBAC_ROLES.map((r, idx) => `
+        <button class="role-btn ${idx === 0 ? 'active' : ''}" onclick="inspectRole('${r.code}', this)">
+          <span>${r.name}</span>
+          <span class="mono" style="font-size:11px;color:${r.price ? 'var(--emerald)' : 'var(--amber)'};">${r.price ? '🔓' : '🔒***'}</span>
+        </button>
+      `).join('');
+      inspectRole('ceo', grid.firstElementChild);
+    }
+
+    function inspectRole(code, btn) {
+      const r = RBAC_ROLES.find(x => x.code === code);
+      if (!r) return;
+      document.querySelectorAll('#rolesGrid .role-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      document.getElementById('inspRoleName').textContent = r.name;
+      document.getElementById('inspRoleCode').textContent = r.code;
+      document.getElementById('inspRoleHome').textContent = r.home;
+      const priceEl = document.getElementById('inspRolePrice');
+      if (r.price) {
+        priceEl.textContent = '🔓 مسموح بالكامل (Full Financial Visibility)';
+        priceEl.style.color = 'var(--emerald)';
+      } else {
+        priceEl.textContent = '🔒 محجوب عبر <PriceGate> (تظهر الأسعار ***)';
+        priceEl.style.color = 'var(--amber)';
+      }
+      document.getElementById('inspRoleDesc').textContent = r.desc;
+    }
+
+    // =========================================================================
+    // 7. TAB NAVIGATION & PRESENTATION DECK CONTROLS
+    // =========================================================================
+    const TAB_ORDER = [
+      'tab-cockpit',
+      'tab-modules',
+      'tab-workflows',
+      'tab-pulse',
+      'tab-cost',
+      'tab-rbac',
+      'tab-arch',
+      'tab-launchpad'
+    ];
+    let currentTabIdx = 0;
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#mainTabs .nav-tab').forEach(b => b.classList.remove('active'));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const idx = TAB_ORDER.indexOf(tabId);
+        if (idx >= 0) document.querySelectorAll('#mainTabs .nav-tab')[idx].classList.add('active');
+      }
+      currentTabIdx = TAB_ORDER.indexOf(tabId);
+    }
+
+    function cycleSlide(delta) {
+      currentTabIdx = (currentTabIdx + delta + TAB_ORDER.length) % TAB_ORDER.length;
+      switchTab(TAB_ORDER[currentTabIdx]);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setTheme(mode) {
+      const btnWhite = document.getElementById('btnWhiteTheme');
+      const btnDark = document.getElementById('btnDarkTheme');
+      if (mode === 'light') {
+        document.body.classList.add('light-mode');
+        if (btnWhite) btnWhite.classList.add('active');
+        if (btnDark) btnDark.classList.remove('active');
+      } else {
+        document.body.classList.remove('light-mode');
+        if (btnDark) btnDark.classList.add('active');
+        if (btnWhite) btnWhite.classList.remove('active');
+      }
+    }
+
+    function toggleTheme() {
+      const isLight = document.body.classList.contains('light-mode');
+      setTheme(isLight ? 'dark' : 'light');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+      if (document.getElementById('moduleModal').classList.contains('open')) return;
+      if (e.target.tagName === 'INPUT') return;
+      if (e.key === 'ArrowLeft') cycleSlide(1);
+      if (e.key === 'ArrowRight') cycleSlide(-1);
+    });
+
+    // Init
+    renderModules();
+    renderRoles();
+    runEvmSim();
+  </script>
+</body>
+</html>

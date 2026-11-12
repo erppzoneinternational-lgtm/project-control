@@ -1,0 +1,59 @@
+name: E2E Playwright Automation Suite
+
+on:
+  push:
+    branches: [ master, remediation/qa-20260824 ]
+  pull_request:
+    branches: [ master, remediation/qa-20260824 ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run E2E Tests
+    timeout-minutes: 25
+    runs-on: ubuntu-latest
+
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Project Dependencies
+        run: npm ci
+
+      - name: Cache Playwright Browser Binaries
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright Browsers & OS Dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Next.js Application
+        run: npm run build
+
+      - name: Execute Playwright E2E Tests
+        run: npm run test:e2e
+        env:
+          CI: true
+
+      - name: Upload Test Report & Failure Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-test-report
+          path: playwright-report/
+          retention-days: 14

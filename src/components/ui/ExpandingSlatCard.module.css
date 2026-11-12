@@ -1,0 +1,116 @@
+/* From Uiverse.io by joe-watson-sbf */
+.card {
+  width: var(--card-width, 210px);
+  height: var(--card-height, 254px);
+  border-radius: 6px;
+  background: #212121;
+  display: flex;
+  gap: 5px;
+  padding: 0.4em;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.3);
+}
+
+:global(.light) .card {
+  background: #f8fafc;
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.08);
+}
+
+.slat {
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #212121;
+  border: 1px solid var(--slat-border-color, #ff5a91);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+  user-select: none;
+  padding: 0.25rem;
+}
+
+:global(.light) .slat {
+  background: #ffffff;
+}
+
+.slat:hover,
+.slat:focus-visible {
+  flex: 4;
+  outline: none;
+  background: #262626;
+}
+
+:global(.light) .slat:hover,
+:global(.light) .slat:focus-visible {
+  background: #f1f5f9;
+}
+
+.label {
+  min-width: 14em;
+  padding: 0.5em;
+  text-align: center;
+  transform: rotate(-90deg);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  color: var(--slat-text-color, #ff568e);
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.slat:hover .label,
+.slat:focus-visible .label {
+  transform: rotate(0);
+  min-width: auto;
+  width: 100%;
+  padding: 0.25em;
+}
+
+.iconWrapper {
+  opacity: 0;
+  max-height: 0;
+  transform: scale(0.7);
+  transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--slat-text-color, #ff568e);
+}
+
+.slat:hover .iconWrapper,
+.slat:focus-visible .iconWrapper {
+  opacity: 1;
+  max-height: 36px;
+  transform: scale(1);
+  margin-bottom: 6px;
+}
+
+.badge {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.3s ease 0.1s, max-height 0.3s ease;
+  overflow: hidden;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  background: rgba(255, 90, 145, 0.15);
+  color: var(--slat-text-color, #ff568e);
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.slat:hover .badge,
+.slat:focus-visible .badge {
+  opacity: 1;
+  max-height: 24px;
+}

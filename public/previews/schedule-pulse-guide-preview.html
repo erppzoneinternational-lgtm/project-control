@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نموذج دليل استخدام نبض الجدول الزمني | Schedule Pulse User Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --accent: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font: 'Cairo', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.2) 0%, rgba(16, 185, 129, 0.15) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px 32px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-title h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-title p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .badge-prototype {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--accent);
+      color: #34d399;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* Modal / Drawer preview container */
+    .guide-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+    }
+
+    .guide-tabs {
+      display: flex;
+      background: #0b1120;
+      border-bottom: 1px solid var(--card-border);
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 16px 20px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.03);
+    }
+    .tab-btn.active {
+      color: #38bdf8;
+      border-bottom-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .guide-body {
+      padding: 28px;
+      min-height: 480px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .step-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .step-desc {
+      font-size: 13.5px;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .feature-item {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .feature-item b {
+      font-size: 13px;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .feature-item p {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .callout {
+      border-right: 4px solid var(--accent);
+      background: rgba(16, 185, 129, 0.08);
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #e2e8f0;
+      margin: 16px 0;
+      line-height: 1.6;
+    }
+    .callout.warning {
+      border-right-color: var(--warning);
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    .key-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #38bdf8;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+      padding-top: 16px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="brand-title">
+      <h1>💡 دليل استخدام أداة نبض الجدول الزمني (Schedule Pulse)</h1>
+      <p>دليل تفاعلي متكامل لمهندسي ومديري التخطيط والمكتب الفني لإتقان تحليل ومزامنة الجداول الزمنية</p>
+    </div>
+    <div class="badge-prototype">مسودة للمعاينة والاعتماد</div>
+  </header>
+
+  <div class="guide-box">
+    <!-- Tabs Navigation -->
+    <div class="guide-tabs">
+      <button class="tab-btn active" onclick="switchTab(0)">
+        <span>🗺️</span> 1. نظرة عامة ودورة العمل
+      </button>
+      <button class="tab-btn" onclick="switchTab(1)">
+        <span>📥</span> 2. استيراد وتثبيت الـ Baseline
+      </button>
+      <button class="tab-btn" onclick="switchTab(2)">
+        <span>📅</span> 3. إضافة التحديثات الشهرية
+      </button>
+      <button class="tab-btn" onclick="switchTab(3)">
+        <span>📈</span> 4. قراءة الـ S-Curve ومؤشرات EVM
+      </button>
+      <button class="tab-btn" onclick="switchTab(4)">
+        <span>💾</span> 5. الحفظ في قاعدة بيانات المشروع
+      </button>
+      <button class="tab-btn" onclick="switchTab(5)">
+        <span>🖨️</span> 6. طباعة التقارير التنفيذية
+      </button>
+    </div>
+
+    <!-- Body Content -->
+    <div class="guide-body">
+
+      <!-- TAB 1: Overview -->
+      <div class="tab-content active" id="tab-0">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">1</div>
+            <h3>ما هي أداة Schedule Pulse وكيف تخدمك؟</h3>
+          </div>
+          <p class="step-desc">
+            أداة <strong>Schedule Pulse</strong> هي محرك تحليلي مالي وزمني مدمج بنظام الـ ERP، مخصص لفك شفرة ملفات <span class="key-badge">.XER</span> الصادرة من Primavera P6 بدون الحاجة لتثبيت بريمافيرا على جهازك، ومقارنة البرنامج الأساسي (Baseline) بالتحديثات الدورية وتحويلها إلى داشبورد متكامل مع قاعدة بيانات المشروع.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-item">
+              <b>⚡ قراءة فورية في المتصفح</b>
+              <p>تفسير كامل لبيانات الأنشطة والعلاقات والـ WBS والتواريخ وحسابات المسار الحرج في ثوانٍ معدودة محلياً في جهازك.</p>
+            </div>
+            <div class="feature-item">
+              <b>🔄 مزامنة ثنائية مع الـ Database</b>
+              <p>استيراد الأنشطة إلى الـ ERP أو تصدير المشروع المفتوح حالياً إلى المحرك بضغطة زر واحدة.</p>
+            </div>
+            <div class="feature-item">
+              <b>📊 حسابات القيمة المكتسبة (EVM)</b>
+              <p>استخراج تلقائي لمؤشرات SPI و SV و EAC ومنحنى التدفق التراكمي (Cashflow & S-Curve).</p>
+            </div>
+            <div class="feature-item">
+              <b>🔒 مرونة كاملة بدون قيود</b>
+              <p>إلغاء كلمات المرور المعقدة، مع إمكانية استبدال أو تحديث أي شهر أو نسخة أساسية بحرية تامة.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          💡 <strong>نصيحة المهندس:</strong> يمكنك التبديل بين واجهة المحرك باللغة العربية والإنجليزية من داخل الأداة بضغطة واحدة من زر اللغة أعلى اليمين.
+        </div>
+      </div>
+
+      <!-- TAB 2: Baseline -->
+      <div class="tab-content" id="tab-1">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">2</div>
+            <h3>كيفية استيراد وتثبيت البرنامج الأساسي (Baseline)</h3>
+          </div>
+          <p class="step-desc">
+            البرنامج الأساسي هو المرجع المعتمد الذي تُقاس عليه كافة الانحرافات والتأخيرات اللاحقة.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-item">
+              <b>طريقة أ: السحب التلقائي من المشروع</b>
+              <p>إذا كان المشروع المختار في الـ ERP يحتوي بالفعل على أنشطة، يقوم المحرك تلقائياً ببناء ملف XER في الذاكرة وعرضه مباشرة دون الحاجة لرفع ملفات.</p>
+            </div>
+            <div class="feature-item">
+              <b>طريقة ب: سحب وإفلات ملف .XER جديد</b>
+              <p>اسحب ملف <span class="key-badge">Project-Baseline.xer</span> وأفلته في منطقة الـ Dropzone المخصصة للـ Baseline.</p>
+            </div>
+            <div class="feature-item">
+              <b>استبدال Baseline قديم (Change)</b>
+              <p>إذا كان هناك ملف مثبت بالفعل وتريد تغييره، اضغط على زر <strong>"Change / استبدال"</strong> وسيتم فك القفل فوراً وإظهار منطقة الإفلات مجدداً دون طلب كلمة مرور.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Monthly Updates -->
+      <div class="tab-content" id="tab-2">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">3</div>
+            <h3>إضافة التحديثات الشهرية ومقارنة التقدم (Monthly Updates)</h3>
+          </div>
+          <p class="step-desc">
+            تتيح لك الأداة أرشفة تحديثات المشروع شهراً بشهر لمراقبة الانحراف الزمني ومقارنة التواريخ المتوقعة (Forecast) مقابل الـ Baseline.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-item">
+              <b>1. اختيار الشهر</b>
+              <p>حدد الشهر المستهدف من القائمة المنسدلة (مثلاً سبتمبر 2026).</p>
+            </div>
+            <div class="feature-item">
+              <b>2. إفلات ملف التحديث</b>
+              <p>أفلت ملف التحديث الشهري الصادر من الموقع أو المكتب الفني.</p>
+            </div>
+            <div class="feature-item">
+              <b>3. التحقق من Data Date</b>
+              <p>يقوم المحرك تلقائياً بمطابقة تاريخ القطع للملف مع الشهر المختار وتنبيهك إذا كان هناك أي اختلاف.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: S-Curve & EVM -->
+      <div class="tab-content" id="tab-3">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">4</div>
+            <h3>قراءة منحنى S-Curve ومؤشرات القيمة المكتسبة (EVM)</h3>
+          </div>
+          <p class="step-desc">
+            شرح عملي ومبسط لأهم المؤشرات المعروضة في الشاشة الرئيسية:
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-item">
+              <b>📈 منحنى S-Curve</b>
+              <p><strong>الأزرق (PV):</strong> القيمة المخططة وفق الـ Baseline.<br><strong>الأخضر (EV):</strong> القيمة المكتسبة المنفذة فعلياً.<br><strong>البرتقالي (AC):</strong> التكلفة الفعلية أو التوقع.</p>
+            </div>
+            <div class="feature-item">
+              <b>🎯 مؤشر الأداء الزمني (SPI)</b>
+              <p>إذا كان SPI = 1.0 فالأداء مطابق للجدول.<br>أكبر من 1.0 يعني المشروع متقدم.<br>أقل من 1.0 يعني وجود تأخير عن المخطط.</p>
+            </div>
+            <div class="feature-item">
+              <b>⏱️ الانحراف الزمني (Variance)</b>
+              <p>يتم حسابه بأيام العمل الرسمية وفق تقويم P6 الخاص بكل نشاط، ويظهر بالأحمر إذا كان النشاط متأخراً وبالأخضر إذا كان متقدماً.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: ERP Save -->
+      <div class="tab-content" id="tab-4">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">5</div>
+            <h3>حفظ واعتماد البيانات في قاعدة بيانات المشروع (ERP Database)</h3>
+          </div>
+          <p class="step-desc">
+            كيف تنقل ملف الـ XER المحلل داخل Pulse Engine ليصبح بيانات حية ومسجلة في جداول المشروع بالـ ERP:
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-item">
+              <b>زر "اعتماد وحفظ بالـ ERP"</b>
+              <p>عند إسقاط أي ملف في المحرك، يظهر لك زر بارز في الشريط العلوي باللون الأخضر باسم <strong>"اعتماد وحفظ بالـ ERP"</strong>.</p>
+            </div>
+            <div class="feature-item">
+              <b>ماذا يحدث عند الضغط عليه؟</b>
+              <p>يقوم النظام آلياً بإنشاء هيكل الـ WBS، وحفظ الأنشطة، والعلاقات، وإصدار نسخة جدول معتمدة (Version) مسندة للمشروع المفتوح حالياً.</p>
+            </div>
+            <div class="feature-item">
+              <b>انعكاس البيانات في الشاشات</b>
+              <p>تنعكس الأنشطة فوراً في شاشة الـ Gantt Chart وشبكة العلاقات CPM Graph والتقارير الأسبوعية.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 6: Printing & Export -->
+      <div class="tab-content" id="tab-5">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">6</div>
+            <h3>تصدير وطباعة التقارير وحفظها كـ PDF</h3>
+          </div>
+          <p class="step-desc">
+            طباعة تقارير احترافية بدون مشاكل حظر المتصفح:
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-item">
+              <b>🖨️ طباعة تقرير الـ PDF المباشر</b>
+              <p>تم تحديث النظام ليعمل بنظام الطباعة المباشرة، بحيث تفتح نافذة الطباعة الرسمية واختيار "حفظ كـ PDF" فوراً دون أن يمنعها مانع الإعلانات المنبثقة (Pop-up Blocker).</p>
+            </div>
+            <div class="feature-item">
+              <b>📋 تقارير الأسابيع المولدة</b>
+              <p>من تبويب "النسخ والتقارير الأسبوعية"، ستجد أمام كل تقرير زر <strong>"طباعة PDF"</strong> مخصص لطباعة بيانات الأسبوع وإنجاز المقايسة والمعوقات.</p>
+            </div>
+            <div class="feature-item">
+              <b>📑 تصدير Excel و CSV</b>
+              <p>يمكنك تصدير كشف كامل بجميع الأنشطة وتواريخها ونسب إنجازها بصيغة CSV المتوافقة مع الإكسيل العربي بنقرة واحدة.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    منصة Pzone للمكتب الفني وإدارة المشاريع الدولية · إعداد: م. حسن أحمد سليمان · 01229994728
+  </footer>
+</div>
+
+<script>
+  function switchTab(index) {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach((t, i) => {
+      if (i === index) t.classList.add('active');
+      else t.classList.remove('active');
+    });
+
+    contents.forEach((c, i) => {
+      if (i === index) c.classList.add('active');
+      else c.classList.remove('active');
+    });
+  }
+</script>
+
+</body>
+</html>

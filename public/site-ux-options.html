@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>خيارات تجربة مستخدم الموقع والتنفيذ — Pzone Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Cairo', sans-serif; }
+    .tab-btn.active {
+      background-color: #047857;
+      color: white;
+      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="p-2 rounded-xl bg-emerald-700 text-white text-lg font-black">PZ</span>
+        <div>
+          <h1 class="text-base font-extrabold flex items-center gap-2">
+            مقارنة واجهات وتجربة مستخدم الموقع (UX Direction Picker)
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">Hassan Soliman Mode</span>
+          </h1>
+          <p class="text-[11px] text-slate-400">اختر الواجهة الأسهل والأسرع لمهندس الموقع والتخطيط</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-xs">
+        <span class="text-slate-400">اختر نموذج للتجربة الحية:</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-7xl mx-auto px-4 border-t border-slate-800/80 overflow-x-auto">
+      <div class="flex items-center gap-2 py-2">
+        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn active px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2 whitespace-nowrap">
+          <span>⚡ 1. البطاقات السريعة (In-Card Stepper)</span>
+          <span class="text-[10px] bg-white/20 px-1.5 rounded">بدون Modal</span>
+        </button>
+        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition flex items-center gap-2 whitespace-nowrap">
+          <span>📊 2. جدول الإدخال السريع (Excel Grid)</span>
+          <span class="text-[10px] bg-white/20 px-1.5 rounded">تحديث 10 مهام معاً</span>
+        </button>
+        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition flex items-center gap-2 whitespace-nowrap">
+          <span>🎯 3. المعالج المركز (Focus Wizard)</span>
+          <span class="text-[10px] bg-white/20 px-1.5 rounded">3 خطوات مبسطة</span>
+        </button>
+        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition flex items-center gap-2 whitespace-nowrap">
+          <span>📋 4. كانبان الإنجاز اليومي (Daily Kanban)</span>
+          <span class="text-[10px] bg-white/20 px-1.5 rounded">لوحة سحب ومتابعة</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Areas -->
+  <main class="max-w-7xl mx-auto p-4 md:p-6">
+
+    <!-- ════════════════════════════════════════════════════════════════
+         OPTION 1: IN-CARD STEPPER (No modal, 5-second update)
+         ════════════════════════════════════════════════════════════════ -->
+    <section id="option-1" class="space-y-4">
+      <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-sm font-extrabold text-emerald-900">الخيار 1: التحديث المباشر من نفس الكارت (In-Card Slider & Stepper)</h2>
+          <p class="text-xs text-emerald-700 mt-0.5">
+            <strong>الفكرة:</strong> إلغاء الـ Modal المعقد تماماً! المهندس يرى مهمته ويزود النسبة بأزرار سريعة (+5% أو +10% أو يكتب الكمية) في 5 ثوانٍ فقط، والتراكمي يتحسب لحظياً.
+          </p>
+        </div>
+        <button onclick="chooseOption(1)" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-black rounded-lg shadow transition">
+          ✓ اعتماد هذا الخيار
+        </button>
+      </div>
+
+      <!-- Live Interactive Demo Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Card 1 -->
+        <div class="bg-white rounded-xl border-2 border-emerald-500 shadow-sm p-4 relative space-y-3">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-slate-400">#LB-001 • بحيرة 2</span>
+              <h3 class="text-xs font-black text-slate-800">حفر وتسوية قاع البحيرة الرئيسية</h3>
+            </div>
+            <span class="text-[10px] font-black px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200">قيد التنفيذ</span>
+          </div>
+
+          <!-- Progress Visual -->
+          <div>
+            <div class="flex justify-between text-[11px] font-black mb-1">
+              <span class="text-slate-500">نسبة الإنجاز:</span>
+              <span id="c1-pct" class="text-emerald-600 font-mono text-xs">45%</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div id="c1-bar" class="bg-emerald-500 h-2 transition-all duration-300" style="width: 45%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+              <span>التراكمي: <strong id="c1-cum" class="font-mono text-slate-700">450</strong> م3</span>
+              <span>عقد: 1,000 م3</span>
+            </div>
+          </div>
+
+          <!-- Direct Quick Entry Controls (IN CARD) -->
+          <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5 space-y-2">
+            <div class="text-[11px] font-bold text-slate-700 flex items-center justify-between">
+              <span>إنجاز اليوم:</span>
+              <span class="text-[10px] text-amber-600 font-bold" id="c1-diff">+50 م3 (+5%)</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button onclick="adjustCard1(-10)" class="w-7 h-7 rounded bg-white border border-slate-200 font-bold text-slate-600 hover:bg-slate-100 text-xs">-10</button>
+              <input type="number" id="c1-input" value="50" oninput="updateCard1(this.value)" class="w-20 text-center font-mono font-black text-xs py-1 border border-slate-300 rounded bg-white" />
+              <span class="text-[11px] text-slate-400">م3</span>
+              <button onclick="adjustCard1(10)" class="w-7 h-7 rounded bg-white border border-slate-200 font-bold text-slate-600 hover:bg-slate-100 text-xs">+10</button>
+              <button onclick="adjustCard1(50)" class="px-2 h-7 rounded bg-emerald-50 border border-emerald-300 font-black text-emerald-700 text-[11px] mr-auto">+50</button>
+            </div>
+          </div>
+
+          <!-- Bottom Actions -->
+          <div class="flex items-center justify-between pt-1">
+            <button onclick="toggleDetails('c1-extra')" class="text-[11px] text-slate-500 hover:text-slate-800 font-bold flex items-center gap-1">
+              <span>📷 ملاحظات وصور</span>
+              <span class="text-[9px]">▼</span>
+            </button>
+            <button onclick="saveCard(1)" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-black shadow-sm transition">
+              💾 حفظ الإنجاز
+            </button>
+          </div>
+
+          <!-- Collapsible Details -->
+          <div id="c1-extra" class="hidden border-t border-slate-100 pt-2 space-y-2 text-xs">
+            <input type="text" placeholder="ملاحظة سريعة للمكتب الفني..." class="w-full text-xs p-1.5 border border-slate-200 rounded" />
+            <div class="flex items-center gap-2 text-[11px] text-slate-500">
+              <label class="cursor-pointer flex items-center gap-1 bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded">
+                <span>📎 أرفق صورة من الموقع</span>
+                <input type="file" class="hidden" />
+              </label>
+              <label class="flex items-center gap-1">
+                <input type="checkbox" class="rounded text-emerald-600" />
+                <span>طلب استلام QC</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 space-y-3">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-slate-400">#LB-002 • خزان مياه</span>
+              <h3 class="text-xs font-black text-slate-800">صب خرسانة عادية للقواعد المسلحة</h3>
+            </div>
+            <span class="text-[10px] font-black px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200">قيد التنفيذ</span>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-[11px] font-black mb-1">
+              <span class="text-slate-500">نسبة الإنجاز:</span>
+              <span class="text-emerald-600 font-mono text-xs">70%</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div class="bg-emerald-500 h-2" style="width: 70%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+              <span>التراكمي: <strong class="font-mono text-slate-700">350</strong> م3</span>
+              <span>عقد: 500 م3</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5 space-y-2">
+            <div class="text-[11px] font-bold text-slate-700 flex items-center justify-between">
+              <span>إنجاز اليوم (% أو كمية):</span>
+              <span class="text-[10px] text-amber-600 font-bold">+25 م3 (+5%)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1 bg-white border border-slate-300 rounded px-2 py-1">
+                <span class="text-slate-400 text-xs">كمية:</span>
+                <input type="number" value="25" class="w-14 font-mono font-bold text-xs outline-none" />
+                <span class="text-slate-400 text-[10px]">م3</span>
+              </div>
+              <div class="flex items-center gap-1 bg-amber-50 border border-amber-300 rounded px-2 py-1">
+                <span class="text-amber-700 text-xs font-bold">%:</span>
+                <input type="number" value="5" class="w-10 font-mono font-bold text-xs outline-none text-amber-800 bg-transparent" />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <span class="text-[10px] text-slate-400">آخر تعديل: أمس 5:30 م</span>
+            <button onclick="alert('تم حفظ الإنجاز وتحديث النسبة لـ 75%')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-black shadow-sm transition">
+              💾 حفظ الإنجاز
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 space-y-3 opacity-90">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-slate-400">#LB-003 • سور المشروع</span>
+              <h3 class="text-xs font-black text-slate-800">أعمال مباني طوب أسمنتي بارتفاع 3م</h3>
+            </div>
+            <span class="text-[10px] font-black px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">لم يبدأ</span>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-[11px] font-black mb-1">
+              <span class="text-slate-500">نسبة الإنجاز:</span>
+              <span class="text-slate-400 font-mono text-xs">0%</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div class="bg-slate-300 h-2" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+              <span>التراكمي: <strong class="font-mono text-slate-700">0</strong> م2</span>
+              <span>عقد: 2,400 م2</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-center">
+            <button onclick="alert('بدء المهمة')" class="w-full py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition">
+              ▶ ابدأ تنفيذ المهمة
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         OPTION 2: EXCEL FAST-GRID (Bulk 10 tasks in 1 min)
+         ════════════════════════════════════════════════════════════════ -->
+    <section id="option-2" class="space-y-4 hidden">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-sm font-extrabold text-blue-900">الخيار 2: شيت الإدخال السريع المجمع (Excel Fast-Grid)</h2>
+          <p class="text-xs text-blue-700 mt-0.5">
+            <strong>الفكرة:</strong> مهندس الموقع مثل المحاسب أو المقاول يحب جدول إكسل. كل مهام وبنود اليوم معروضة في جدول مدمج، يدخل أرقام اليوم مباشرة بالـ Tab بدون أي فتح نوافذ، ويزرار واحد يحفظ الكل!
+          </p>
+        </div>
+        <button onclick="chooseOption(2)" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white text-xs font-black rounded-lg shadow transition">
+          ✓ اعتماد هذا الخيار
+        </button>
+      </div>
+
+      <!-- Excel Table -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-700">تاريخ اليوم:</span>
+            <input type="date" value="2026-09-14" class="px-2 py-1 border border-slate-300 rounded text-xs bg-white" />
+            <span class="text-slate-400">|</span>
+            <span class="text-slate-500">تم تعديل <strong class="text-emerald-600 font-mono" id="grid-modified-count">2</strong> مهام</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="alert('تم حفظ جميع التعديلات')" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-lg shadow-sm transition flex items-center gap-1.5">
+              <span>💾 حفظ واعتماد الكل دفعة واحدة</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-right">
+            <thead class="bg-slate-100 text-slate-600 font-bold border-b border-slate-200 text-[11px]">
+              <tr>
+                <th class="p-2.5">الكود</th>
+                <th class="p-2.5">بند الأعمال / المهمة</th>
+                <th class="p-2.5 text-center">الوحدة</th>
+                <th class="p-2.5 text-center">كمية العقد</th>
+                <th class="p-2.5 text-center">المنفذ سابقاً</th>
+                <th class="p-2.5 text-center bg-emerald-50 text-emerald-900 border-x border-emerald-200">منفذ اليوم (كمية)</th>
+                <th class="p-2.5 text-center bg-amber-50 text-amber-900 border-l border-amber-200">نسبة اليوم %</th>
+                <th class="p-2.5 text-center">التراكمي الجديد</th>
+                <th class="p-2.5 text-center">النسبة الكلية</th>
+                <th class="p-2.5">ملاحظات سريعة</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-2.5 font-mono font-bold text-slate-500">LB-001</td>
+                <td class="p-2.5 font-bold text-slate-800">حفر وتسوية قاع البحيرة الرئيسية</td>
+                <td class="p-2.5 text-center text-slate-500">م3</td>
+                <td class="p-2.5 text-center font-mono font-bold">1,000</td>
+                <td class="p-2.5 text-center font-mono text-slate-500">400</td>
+                <td class="p-2 bg-emerald-50/50 border-x border-emerald-100 text-center">
+                  <input type="number" value="50" oninput="calcGrid(this, 1000, 400, 'g1')" class="w-20 text-center font-mono font-black p-1 border border-emerald-300 rounded bg-white text-emerald-800" />
+                </td>
+                <td class="p-2 bg-amber-50/50 border-l border-amber-100 text-center font-mono font-bold text-amber-800" id="g1-pct">+5%</td>
+                <td class="p-2.5 text-center font-mono font-black text-slate-800" id="g1-cum">450 م3</td>
+                <td class="p-2.5 text-center">
+                  <span id="g1-total" class="px-2 py-0.5 rounded font-black font-mono text-[11px] bg-emerald-100 text-emerald-800">45%</span>
+                </td>
+                <td class="p-2">
+                  <input type="text" placeholder="ملاحظة..." value="انتهاء قطاع A" class="w-full p-1 border border-slate-200 rounded text-[11px]" />
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-2.5 font-mono font-bold text-slate-500">LB-002</td>
+                <td class="p-2.5 font-bold text-slate-800">صب خرسانة عادية للقواعد المسلحة</td>
+                <td class="p-2.5 text-center text-slate-500">م3</td>
+                <td class="p-2.5 text-center font-mono font-bold">500</td>
+                <td class="p-2.5 text-center font-mono text-slate-500">325</td>
+                <td class="p-2 bg-emerald-50/50 border-x border-emerald-100 text-center">
+                  <input type="number" value="25" oninput="calcGrid(this, 500, 325, 'g2')" class="w-20 text-center font-mono font-black p-1 border border-emerald-300 rounded bg-white text-emerald-800" />
+                </td>
+                <td class="p-2 bg-amber-50/50 border-l border-amber-100 text-center font-mono font-bold text-amber-800" id="g2-pct">+5%</td>
+                <td class="p-2.5 text-center font-mono font-black text-slate-800" id="g2-cum">350 م3</td>
+                <td class="p-2.5 text-center">
+                  <span id="g2-total" class="px-2 py-0.5 rounded font-black font-mono text-[11px] bg-emerald-100 text-emerald-800">70%</span>
+                </td>
+                <td class="p-2">
+                  <input type="text" placeholder="ملاحظة..." class="w-full p-1 border border-slate-200 rounded text-[11px]" />
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-2.5 font-mono font-bold text-slate-500">LB-003</td>
+                <td class="p-2.5 font-bold text-slate-800">أعمال مباني طوب أسمنتي بارتفاع 3م</td>
+                <td class="p-2.5 text-center text-slate-500">م2</td>
+                <td class="p-2.5 text-center font-mono font-bold">2,400</td>
+                <td class="p-2.5 text-center font-mono text-slate-500">0</td>
+                <td class="p-2 bg-emerald-50/50 border-x border-emerald-100 text-center">
+                  <input type="number" value="0" oninput="calcGrid(this, 2400, 0, 'g3')" class="w-20 text-center font-mono font-black p-1 border border-slate-200 rounded bg-white text-slate-400" />
+                </td>
+                <td class="p-2 bg-amber-50/50 border-l border-amber-100 text-center font-mono font-bold text-slate-400" id="g3-pct">0%</td>
+                <td class="p-2.5 text-center font-mono font-black text-slate-400" id="g3-cum">0 م2</td>
+                <td class="p-2.5 text-center">
+                  <span id="g3-total" class="px-2 py-0.5 rounded font-black font-mono text-[11px] bg-slate-100 text-slate-500">0%</span>
+                </td>
+                <td class="p-2">
+                  <input type="text" placeholder="ملاحظة..." class="w-full p-1 border border-slate-200 rounded text-[11px]" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         OPTION 3: FOCUS WIZARD (Clean, 3-Step, Zero Distraction)
+         ════════════════════════════════════════════════════════════════ -->
+    <section id="option-3" class="space-y-4 hidden">
+      <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-sm font-extrabold text-purple-900">الخيار 3: المعالج المركز ثلاثي الخطوات (Focus Wizard)</h2>
+          <p class="text-xs text-purple-700 mt-0.5">
+            <strong>الفكرة:</strong> توجيه المهندس خطوة بخطوة في شاشة نظيفة تركز على مهمة واحدة: (1) سجل الإنجاز والنسبة $\to$ (2) صور ومعوقات $\to$ (3) تأكيد ملخص الحساب والتكلفة $\to$ إرسال.
+          </p>
+        </div>
+        <button onclick="chooseOption(3)" class="px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-black rounded-lg shadow transition">
+          ✓ اعتماد هذا الخيار
+        </button>
+      </div>
+
+      <!-- Wizard Card -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm max-w-2xl mx-auto p-6 space-y-6">
+        <!-- Steps Indicator -->
+        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-600 text-white text-xs font-black flex items-center justify-center">1</span>
+            <span class="text-xs font-black text-slate-800">كميات اليوم والنسبة</span>
+          </div>
+          <div class="h-0.5 w-12 bg-slate-200"></div>
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 text-xs font-black flex items-center justify-center">2</span>
+            <span class="text-xs font-bold text-slate-400">الصور والمعوقات</span>
+          </div>
+          <div class="h-0.5 w-12 bg-slate-200"></div>
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 text-xs font-black flex items-center justify-center">3</span>
+            <span class="text-xs font-bold text-slate-400">المراجعة والإرسال</span>
+          </div>
+        </div>
+
+        <!-- Task Selector -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 mb-1.5">المهمة الجارية:</label>
+          <select class="w-full p-2.5 border border-slate-300 rounded-xl text-xs font-bold bg-slate-50">
+            <option>[LB-001] حفر وتسوية قاع البحيرة الرئيسية (عقد: 1,000 م3)</option>
+            <option>[LB-002] صب خرسانة عادية للقواعد المسلحة (عقد: 500 م3)</option>
+          </select>
+        </div>
+
+        <!-- Big Visual Gauge & Sliders -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 text-center space-y-4">
+          <div class="text-xs font-bold text-slate-500">حرك المؤشر أو اكتب النسبة/الكمية مباشرة:</div>
+
+          <div class="flex items-center justify-center gap-4">
+            <div class="text-center">
+              <span class="text-[11px] text-slate-400 block">المنفذ سابقاً</span>
+              <span class="text-base font-black font-mono text-slate-600">400 م3</span>
+              <span class="text-[10px] text-slate-400 block">(40%)</span>
+            </div>
+            <span class="text-xl font-black text-emerald-600">➔</span>
+            <div class="text-center bg-white border-2 border-emerald-500 rounded-xl px-4 py-2 shadow-sm">
+              <span class="text-[11px] text-emerald-700 font-bold block">التراكمي الجديد</span>
+              <span class="text-2xl font-black font-mono text-emerald-700" id="wiz-cum">450 م3</span>
+              <span class="text-xs font-black text-emerald-600 block" id="wiz-pct">(45%)</span>
+            </div>
+          </div>
+
+          <!-- Interactive Range Slider -->
+          <div class="space-y-1 pt-2">
+            <input type="range" min="400" max="1000" value="450" oninput="updateWizard(this.value)" class="w-full accent-emerald-600 cursor-pointer" />
+            <div class="flex justify-between text-[10px] text-slate-400 font-mono">
+              <span>السابق: 400 م3</span>
+              <span>عقد كامل: 1,000 م3 (100%)</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-2">
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-right">
+              <label class="text-[10px] font-bold text-slate-500 block mb-1">الكمية المنفذة اليوم:</label>
+              <div class="flex items-center gap-1">
+                <input type="number" id="wiz-qty-input" value="50" oninput="updateWizardFromQty(this.value)" class="w-full font-mono font-black text-sm outline-none text-slate-800" />
+                <span class="text-xs text-slate-400">م3</span>
+              </div>
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-right">
+              <label class="text-[10px] font-bold text-slate-500 block mb-1">نسبة الإنجاز الإجمالية %:</label>
+              <div class="flex items-center gap-1">
+                <input type="number" id="wiz-pct-input" value="45" oninput="updateWizardFromPct(this.value)" class="w-full font-mono font-black text-sm outline-none text-emerald-700" />
+                <span class="text-xs text-emerald-600 font-bold">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-2">
+          <button class="text-xs text-slate-400 hover:text-slate-600 font-bold">إلغاء</button>
+          <button onclick="alert('الانتقال للخطوة التالية')" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-black shadow transition flex items-center gap-2">
+            <span>التالي: الصور والمعوقات</span>
+            <span>➔</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         OPTION 4: DAILY KANBAN & DIAL (Visual Pipeline)
+         ════════════════════════════════════════════════════════════════ -->
+    <section id="option-4" class="space-y-4 hidden">
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-sm font-extrabold text-amber-900">الخيار 4: كانبان المتابعة الميدانية (Daily Pipeline Kanban)</h2>
+          <p class="text-xs text-amber-700 mt-0.5">
+            <strong>الفكرة:</strong> عرض مهام اليوم في أعمدة سير العمل (مخطط $\to$ جاري $\to$ أُنجز اليوم $\to$ معتمد). سحب الكارت أو الضغط عليه يفتح لوحة أرقام سريعة لتسجيل الإنجاز.
+          </p>
+        </div>
+        <button onclick="chooseOption(4)" class="px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white text-xs font-black rounded-lg shadow transition">
+          ✓ اعتماد هذا الخيار
+        </button>
+      </div>
+
+      <!-- 3 Kanban Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Col 1: Planned -->
+        <div class="bg-slate-100 rounded-xl p-3 space-y-3">
+          <div class="flex items-center justify-between text-xs font-black text-slate-600">
+            <span>مخطط اليوم (1)</span>
+            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm space-y-2">
+            <span class="text-[10px] font-bold text-slate-400">LB-003</span>
+            <h4 class="text-xs font-black text-slate-800">أعمال مباني طوب أسمنتي</h4>
+            <div class="text-[10px] text-slate-500">عقد: 2,400 م2 • نسبة: 0%</div>
+            <button class="w-full py-1 rounded bg-slate-100 hover:bg-emerald-50 text-[11px] font-bold text-emerald-700 transition">
+              ▶ بدء العمل الآن
+            </button>
+          </div>
+        </div>
+
+        <!-- Col 2: In Progress -->
+        <div class="bg-blue-50/60 border border-blue-100 rounded-xl p-3 space-y-3">
+          <div class="flex items-center justify-between text-xs font-black text-blue-800">
+            <span>جاري العمل بالموقع (2)</span>
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+          </div>
+
+          <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm space-y-2">
+            <span class="text-[10px] font-bold text-slate-400">LB-001</span>
+            <h4 class="text-xs font-black text-slate-800">حفر وتسوية قاع البحيرة</h4>
+            <div class="flex justify-between text-[10px]">
+              <span class="text-slate-500">الحالي: 40%</span>
+              <span class="font-bold text-emerald-600">اليوم: +5%</span>
+            </div>
+            <button onclick="alert('لوحة تسجيل سريعة')" class="w-full py-1.5 rounded bg-emerald-600 text-white text-[11px] font-bold shadow-sm">
+              ⚡ تسجيل إنجاز اليوم
+            </button>
+          </div>
+
+          <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm space-y-2">
+            <span class="text-[10px] font-bold text-slate-400">LB-002</span>
+            <h4 class="text-xs font-black text-slate-800">صب خرسانة عادية للقواعد</h4>
+            <div class="flex justify-between text-[10px]">
+              <span class="text-slate-500">الحالي: 65%</span>
+              <span class="font-bold text-emerald-600">اليوم: +5%</span>
+            </div>
+            <button onclick="alert('لوحة تسجيل سريعة')" class="w-full py-1.5 rounded bg-emerald-600 text-white text-[11px] font-bold shadow-sm">
+              ⚡ تسجيل إنجاز اليوم
+            </button>
+          </div>
+        </div>
+
+        <!-- Col 3: Ready for Planning Review -->
+        <div class="bg-emerald-50/60 border border-emerald-100 rounded-xl p-3 space-y-3">
+          <div class="flex items-center justify-between text-xs font-black text-emerald-800">
+            <span>تم الإنجاز وبانتظار التخطيط (1)</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-emerald-200 shadow-sm space-y-2">
+            <span class="text-[10px] font-bold text-slate-400">LB-004</span>
+            <h4 class="text-xs font-black text-slate-800">ردم حول القواعد على طبقات</h4>
+            <div class="text-[10px] text-emerald-700 font-bold">تم رفع 100% • في انتظار اعتماد مهندس التخطيط</div>
+            <span class="inline-block text-[9px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">Pending Review</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         COMPARISON MATRIX
+         ════════════════════════════════════════════════════════════════ -->
+    <section class="mt-8 bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4">
+      <h3 class="text-sm font-black text-slate-900 flex items-center gap-2">
+        <span>⚖️ مقارنة هندسية بين الخيارات (Hassan Soliman UX Benchmark)</span>
+      </h3>
+
+      <div class="overflow-x-auto text-xs">
+        <table class="w-full text-right border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold text-[11px]">
+              <th class="p-3">معيار المقارنة</th>
+              <th class="p-3 text-emerald-800 bg-emerald-50/40">1. البطاقات السريعة (In-Card)</th>
+              <th class="p-3 text-blue-800 bg-blue-50/40">2. جدول الإدخال الشامل (Excel Grid)</th>
+              <th class="p-3 text-purple-800 bg-purple-50/40">3. المعالج المركز (Wizard)</th>
+              <th class="p-3 text-amber-800 bg-amber-50/40">4. كانبان الإنجاز (Kanban)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr>
+              <td class="p-3 font-bold text-slate-700">سرعة إدخال التقرير</td>
+              <td class="p-3 font-bold text-emerald-600">⚡ فائقة (5 ثوانٍ للكارت)</td>
+              <td class="p-3 font-bold text-blue-600">⚡ فائقة (دقيقة لـ 10 مهام)</td>
+              <td class="p-3 text-slate-500">⏱ متوسطة (توجيه خطوة خطوة)</td>
+              <td class="p-3 text-slate-600">سريعة</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-700">سهولة الاستخدام على الموبايل</td>
+              <td class="p-3 font-bold text-emerald-600">ممتازة جداً (Touch Friendly)</td>
+              <td class="p-3 text-rose-500">متوسطة (تحتاج شاشة أوسع)</td>
+              <td class="p-3 text-purple-600">ممتازة</td>
+              <td class="p-3 text-amber-600">جيدة جداً</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-700">مستوى التركيز ومنع الخطأ</td>
+              <td class="p-3 text-slate-600">عالي (أزرار خطوية واضحة)</td>
+              <td class="p-3 text-slate-600">عالي للمحترفين</td>
+              <td class="p-3 font-bold text-purple-600">أعلى دقة ومنع للالتباس</td>
+              <td class="p-3 text-slate-600">عالي بصرياً</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-slate-700">أفضل استخدام لـ</td>
+              <td class="p-3 text-emerald-700 font-bold">مهندس الموقع الميداني في الشمس</td>
+              <td class="p-3 text-blue-700 font-bold">مهندس المكتب/الكرفان يدخل كل شيء مساءً</td>
+              <td class="p-3 text-purple-700 font-bold">تقارير مهام حرجة مع صور وفحص</td>
+              <td class="p-3 text-amber-700 font-bold">المتابعة الميدانية الصباحية</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function switchTab(num) {
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`option-${i}`).classList.add('hidden');
+        document.getElementById(`tab-btn-${i}`).classList.remove('active');
+        document.getElementById(`tab-btn-${i}`).classList.add('bg-slate-800', 'text-slate-300');
+      }
+      document.getElementById(`option-${num}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${num}`);
+      activeBtn.classList.add('active');
+      activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
+    }
+
+    // Card 1 Logic
+    let c1TodayQty = 50;
+    const c1PrevCum = 400;
+    const c1Contract = 1000;
+
+    function adjustCard1(delta) {
+      c1TodayQty = Math.max(0, c1TodayQty + delta);
+      document.getElementById('c1-input').value = c1TodayQty;
+      updateCard1(c1TodayQty);
+    }
+
+    function updateCard1(val) {
+      const q = parseFloat(val) || 0;
+      c1TodayQty = q;
+      const total = c1PrevCum + q;
+      const pct = Math.min(100, Math.round((total / c1Contract) * 100));
+      const diffPct = Math.round((q / c1Contract) * 100);
+
+      document.getElementById('c1-cum').innerText = total;
+      document.getElementById('c1-pct').innerText = pct + '%';
+      document.getElementById('c1-bar').style.width = pct + '%';
+      document.getElementById('c1-diff').innerText = `+${q} م3 (+${diffPct}%)`;
+    }
+
+    function toggleDetails(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    }
+
+    function saveCard(id) {
+      alert(`تم حفظ إنجاز المهمة بنجاح! التراكمي الجديد: ${c1PrevCum + c1TodayQty} م3 (${Math.round(((c1PrevCum + c1TodayQty)/c1Contract)*100)}%). وتم إشعار مهندس التخطيط.`);
+    }
+
+    // Grid Logic
+    function calcGrid(input, contract, prev, prefix) {
+      const q = parseFloat(input.value) || 0;
+      const total = prev + q;
+      const totalPct = Math.min(100, Math.round((total / contract) * 100));
+      const todayPct = Math.round((q / contract) * 100);
+
+      document.getElementById(`${prefix}-pct`).innerText = `+${todayPct}%`;
+      document.getElementById(`${prefix}-cum`).innerText = `${total} م3`;
+      document.getElementById(`${prefix}-total`).innerText = `${totalPct}%`;
+    }
+
+    // Wizard Logic
+    function updateWizard(totalVal) {
+      const total = parseFloat(totalVal) || 400;
+      const q = Math.max(0, total - 400);
+      const pct = Math.round((total / 1000) * 100);
+
+      document.getElementById('wiz-cum').innerText = `${total} م3`;
+      document.getElementById('wiz-pct').innerText = `(${pct}%)`;
+      document.getElementById('wiz-qty-input').value = q;
+      document.getElementById('wiz-pct-input').value = pct;
+    }
+
+    function updateWizardFromQty(qtyVal) {
+      const q = parseFloat(qtyVal) || 0;
+      const total = 400 + q;
+      updateWizard(total);
+    }
+
+    function updateWizardFromPct(pctVal) {
+      const p = parseFloat(pctVal) || 0;
+      const total = Math.round((p / 100) * 1000);
+      updateWizard(total);
+    }
+
+    function chooseOption(num) {
+      const names = [
+        "1. البطاقات السريعة المباشرة (In-Card Stepper)",
+        "2. جدول الإدخال السريع الشامل (Excel Fast-Grid)",
+        "3. المعالج المركز ثلاثي الخطوات (Focus Wizard)",
+        "4. كانبان الإنجاز اليومي (Daily Kanban)"
+      ];
+      alert(`مبروك! اخترت النموذج:\n\n${names[num-1]}\n\nارجع لمحادثة Antigravity وأخبره برقم الخيار المفضل لتنفيذه فوراً!`);
+    }
+  </script>
+</body>
+</html>

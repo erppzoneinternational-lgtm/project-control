@@ -1,0 +1,188 @@
+/* From Uiverse.io by uiverse-astronaut */ 
+.cirTabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--color-cloud, #ffffff);
+  border: 1px solid var(--color-edge, #e2e8f0);
+  border-radius: 999px;
+  box-shadow:
+    0 1px 2px rgba(14, 17, 22, 0.04),
+    0 8px 16px -8px rgba(14, 17, 22, 0.08);
+  font-family: inherit;
+  user-select: none;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.fullWidth {
+  display: flex;
+  width: 100%;
+  gap: 2px;
+}
+
+.fullWidth .cirTabsT {
+  flex: 1 1 0%;
+  min-width: 0;
+  padding: 0 4px;
+  justify-content: center;
+  text-align: center;
+}
+
+.cirTabsR {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cirTabsT {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-mist, #64748b);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 150ms ease;
+}
+
+.cirTabsT:hover {
+  color: var(--color-ink, #0f172a);
+}
+
+.cirTabsR:checked + .cirTabsT {
+  background: var(--color-ink, #0f172a);
+  color: var(--color-cloud, #ffffff);
+  box-shadow:
+    0 1px 2px rgba(14, 17, 22, 0.08),
+    0 4px 12px -4px rgba(14, 17, 22, 0.35);
+  font-weight: 700;
+}
+
+.cirTabsR:focus-visible + .cirTabsT {
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.4);
+}
+
+/* Badge inside Tab */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 5px;
+  font-size: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 999px;
+  background: rgba(14, 17, 22, 0.08);
+  color: inherit;
+  transition: background-color 200ms ease;
+}
+
+.cirTabsR:checked + .cirTabsT .badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Size: Small */
+.sm {
+  padding: 3px;
+  gap: 2px;
+}
+.sm .cirTabsT {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.fullWidth.sm {
+  padding: 3px;
+  gap: 2px;
+}
+.fullWidth.sm .cirTabsT {
+  height: 28px;
+  padding: 0 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+/* Variants */
+.blue .cirTabsR:checked + .cirTabsT {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(37, 99, 235, 0.15),
+    0 4px 12px -4px rgba(37, 99, 235, 0.45);
+}
+
+.emerald .cirTabsR:checked + .cirTabsT {
+  background: #059669;
+  color: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(5, 150, 105, 0.2),
+    0 4px 12px -4px rgba(5, 150, 105, 0.5);
+}
+
+/* Dark Mode Support */
+:global(.dark) .cirTabs {
+  background: #1c1917;
+  border-color: #292524;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 8px 16px -8px rgba(0, 0, 0, 0.6);
+}
+
+:global(.dark) .cirTabsT {
+  color: #a8a29e;
+}
+
+:global(.dark) .cirTabsT:hover {
+  color: #f5f5f4;
+}
+
+:global(.dark) .cirTabsR:checked + .cirTabsT {
+  background: #f8fafc;
+  color: #0f172a;
+  box-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.1),
+    0 4px 12px -4px rgba(255, 255, 255, 0.3);
+}
+
+:global(.dark) .cirTabsT .badge {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:global(.dark) .cirTabsR:checked + .cirTabsT .badge {
+  background: rgba(15, 23, 42, 0.15);
+  color: #0f172a;
+}
+
+:global(.dark) .blue .cirTabsR:checked + .cirTabsT {
+  background: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+:global(.dark) .blue .cirTabsR:checked + .cirTabsT .badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+:global(.dark) .emerald .cirTabsR:checked + .cirTabsT {
+  background: #10b981;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+:global(.dark) .emerald .cirTabsR:checked + .cirTabsT .badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}

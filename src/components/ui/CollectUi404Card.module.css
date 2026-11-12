@@ -1,0 +1,246 @@
+/* Design System Inspired by CollectUI — 404 Page UI Design Inspiration */
+.container {
+  min-height: 100vh;
+  width: 100%;
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-geist-sans), 'Geist', system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  position: relative;
+  overflow-x: hidden;
+}
+
+:global(.dark) .container {
+  background: #080d1a;
+  color: #f8fafc;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: #f5f6f8;
+  color: #248a3d;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+  border: 1px solid #eef0f4;
+}
+
+:global(.dark) .badge {
+  background: rgba(36, 138, 61, 0.15);
+  color: #4ade80;
+  border-color: rgba(36, 138, 61, 0.3);
+}
+
+.heroHeading {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -0.96px;
+  color: #000000;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .heroHeading {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+:global(.dark) .heroHeading {
+  color: #ffffff;
+}
+
+.heroSubtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.75px;
+  color: #666666;
+  margin: 0 0 32px 0;
+  text-align: center;
+  max-width: 480px;
+}
+
+:global(.dark) .heroSubtitle {
+  color: #94a3b8;
+}
+
+/* Central 404 Dark Card */
+.card {
+  background: #242424;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 1px 4px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bigCode {
+  font-family: var(--font-geist-mono), 'Geist Mono', monospace;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: #ffffff;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.bigCodeAccent {
+  color: #155dfc;
+}
+
+.cardDesc {
+  font-size: 13px;
+  line-height: 20px;
+  color: #a3a3a3;
+  margin: 0 0 24px 0;
+}
+
+/* Button Stylings matching CollectUI specs */
+.btnPrimary {
+  background: #f5f6f8;
+  color: #248a3d;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background: #e5e7eb;
+}
+
+.btnFilled {
+  background: #f5f6f8;
+  color: #464646;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnFilled:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.btnOutline {
+  background: transparent;
+  color: #d4d4d4;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnOutline:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Main CTA Button */
+.btnCta {
+  background: #155dfc;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(21, 93, 252, 0.35);
+}
+
+.btnCta:hover {
+  background: #0d4ed8;
+  transform: translateY(-1px);
+}
+
+.actionsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* Quick links footer */
+.quickLinks {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.quickLink {
+  font-size: 12px;
+  color: #666666;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease;
+}
+
+:global(.dark) .quickLink {
+  color: #94a3b8;
+}
+
+.quickLink:hover {
+  color: #155dfc;
+}

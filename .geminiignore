@@ -1,0 +1,81 @@
+# ==============================================================================
+# .geminiignore - PZONE PORTAL ERP FINOPS & CONTEXT OPTIMIZATION
+# ==============================================================================
+
+# 1. OS & Editor Noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.iml
+.history/
+
+# 2. Dependencies & Package Locks (Token FinOps Win)
+**/node_modules/
+node_modules/
+package-lock.json
+**/package-lock.json
+yarn.lock
+**/yarn.lock
+pnpm-lock.yaml
+**/pnpm-lock.yaml
+skills-lock.json
+vendor/
+**/vendor/
+
+# 3. Next.js, Turbopack, and Build Outputs
+**/.next/
+.next/
+**/out/
+out/
+**/dist/
+dist/
+**/build/
+build/
+**/.turbo/
+.turbo/
+
+# 4. Turbopack DB Caches
+**/*.sst
+*.sst
+**/*.ldb
+*.ldb
+**/.cache/
+
+# 5. Agent Chat Dumps & Trace Directories
+hermes_chat_*.md
+*.chat.md
+.hermes/
+.mimosa/
+
+# 6. Media & Binary Assets
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.ico
+*.psd
+*.pdf
+*.zip
+*.tar.gz
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# 7. Logs, Source Maps, Compiler Caches
+*.log
+**/*.log
+*.map
+**/*.map
+*.js.map
+*.css.map
+*.tsbuildinfo
+**/*.tsbuildinfo
+.eslintcache

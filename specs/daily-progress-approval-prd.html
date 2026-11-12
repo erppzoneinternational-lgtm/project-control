@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRD: Daily Progress Approval Cycle & Site Governance | Pzone ERP</title>
+  <meta name="description" content="Publication-grade Product Requirements Document (PRD) for the Daily Progress Approval Cycle, strict KPI governance, photo audit trails, and multi-zone grid filtering in Pzone Portal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-ar: 'Cairo', 'Inter', sans-serif;
+
+      /* Dark Theme (Default) */
+      --bg-canvas: #090d16;
+      --bg-surface: #0f172a;
+      --bg-surface-elevated: #1e293b;
+      --bg-surface-subtle: #131d31;
+      --border-subtle: #1e293b;
+      --border-default: #334155;
+      --border-highlight: #475569;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-emerald: #10b981;
+      --accent-emerald-subtle: rgba(16, 185, 129, 0.12);
+      --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+      --accent-blue: #38bdf8;
+      --accent-blue-subtle: rgba(56, 189, 248, 0.12);
+      --accent-amber: #f59e0b;
+      --accent-amber-subtle: rgba(245, 158, 11, 0.12);
+      --accent-rose: #f43f5e;
+      --accent-rose-subtle: rgba(244, 63, 94, 0.12);
+      --accent-purple: #a855f7;
+      --accent-purple-subtle: rgba(168, 85, 247, 0.12);
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+      --card-radius: 16px;
+    }
+
+    html[data-theme="light"] {
+      --bg-canvas: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --bg-surface-subtle: #f8fafc;
+      --border-subtle: #e2e8f0;
+      --border-default: #cbd5e1;
+      --border-highlight: #94a3b8;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent-emerald: #059669;
+      --accent-emerald-subtle: rgba(5, 150, 105, 0.08);
+      --accent-emerald-glow: rgba(5, 150, 105, 0.18);
+      --accent-blue: #0284c7;
+      --accent-blue-subtle: rgba(2, 132, 199, 0.08);
+      --accent-amber: #d97706;
+      --accent-amber-subtle: rgba(217, 119, 6, 0.08);
+      --accent-rose: #e11d48;
+      --accent-rose-subtle: rgba(225, 29, 72, 0.08);
+      --accent-purple: #9333ea;
+      --accent-purple-subtle: rgba(147, 51, 234, 0.08);
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.65;
+      letter-spacing: -0.01em;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 6rem;
+    }
+
+    /* Top Utility Header */
+    .top-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 2rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.65rem;
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: #ffffff;
+      border-radius: 8px;
+    }
+
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      color: var(--text-secondary);
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--accent-emerald);
+      color: var(--text-primary);
+    }
+
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      color: var(--text-secondary);
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Document Header Strip */
+    .header-strip {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--card-radius);
+      padding: 2.25rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-strip::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-emerald) 0%, var(--accent-blue) 100%);
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      letter-spacing: 0.02em;
+    }
+
+    .pill-status {
+      background: var(--accent-emerald-subtle);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .pill-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .pill-version {
+      background: var(--bg-surface-elevated);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+    }
+
+    .pill-scope {
+      background: var(--accent-blue-subtle);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .doc-title {
+      font-size: 2.15rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .doc-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 900px;
+      margin-bottom: 1.75rem;
+    }
+
+    .three-line-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    @media (max-width: 768px) {
+      .three-line-summary {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .summary-card {
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+    }
+
+    .summary-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .summary-content {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.45;
+    }
+
+    /* Section Styles */
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-emerald);
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-top: 0.35rem;
+    }
+
+    /* Problem Panel */
+    .problem-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--card-radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .problem-lead {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 840px) {
+      .risk-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .risk-card {
+      background: var(--bg-surface-elevated);
+      border-left: 4px solid var(--accent-rose);
+      border-radius: 0 12px 12px 0;
+      padding: 1.25rem;
+    }
+
+    .risk-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .risk-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .quote-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .quote-item {
+      background: var(--bg-surface-subtle);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+    }
+
+    .quote-text {
+      font-style: italic;
+      font-size: 0.925rem;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.55;
+    }
+
+    .quote-text-ar {
+      font-family: var(--font-ar);
+      direction: rtl;
+      font-style: normal;
+      color: #38bdf8;
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    .quote-author {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .author-role {
+      color: var(--accent-emerald);
+    }
+
+    /* Two-Column Goals / Non-Goals */
+    .goals-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .goals-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .goals-col {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--card-radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .col-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .col-header.goals-header {
+      color: var(--accent-emerald);
+    }
+
+    .col-header.nongoals-header {
+      color: var(--accent-amber);
+    }
+
+    .item-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .item-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .item-bullet {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-top: 0.1rem;
+    }
+
+    .bullet-check {
+      background: var(--accent-emerald-subtle);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .bullet-cross {
+      background: var(--accent-amber-subtle);
+      color: var(--accent-amber);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    /* Tables */
+    .table-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+
+    .styled-table th {
+      background: var(--bg-surface-elevated);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .styled-table td {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      vertical-align: top;
+    }
+
+    .styled-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .styled-table tr:hover td {
+      background: var(--bg-surface-subtle);
+    }
+
+    .table-badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+
+    .table-badge-target {
+      background: var(--accent-emerald-subtle);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .table-badge-baseline {
+      background: var(--accent-rose-subtle);
+      color: var(--accent-rose);
+    }
+
+    /* User Stories */
+    .stories-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .story-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--card-radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .story-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .story-id {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      background: var(--accent-blue-subtle);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .story-persona {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .persona-badge {
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+
+    .story-narrative {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      background: var(--bg-surface-subtle);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .story-narrative strong {
+      color: var(--accent-emerald);
+    }
+
+    .story-criteria {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .story-criteria-title {
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .story-criteria ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .story-criteria li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .story-criteria li::before {
+      content: "•";
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    /* Diagram & State Machine */
+    .diagram-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--card-radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+
+    .svg-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+
+    svg.state-svg {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Code Blocks */
+    .code-block-container {
+      background: #060911;
+      border: 1px solid var(--border-default);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1.25rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .code-header {
+      background: #0d1322;
+      padding: 0.6rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e293b;
+      color: #94a3b8;
+      font-size: 0.75rem;
+    }
+
+    .code-content {
+      padding: 1.25rem;
+      overflow-x: auto;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    .kw { color: #f43f5e; font-weight: 600; }
+    .fn { color: #38bdf8; }
+    .str { color: #10b981; }
+    .cm { color: #64748b; font-style: italic; }
+    .num { color: #f59e0b; }
+    .prop { color: #cbd5e1; }
+
+    /* Scope & Milestone Tracker */
+    .milestone-timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .milestone-timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .milestone-step {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 12px;
+      padding: 1.25rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .milestone-step.done {
+      border-top: 3px solid var(--accent-emerald);
+    }
+
+    .milestone-step.active {
+      border-top: 3px solid var(--accent-blue);
+      background: var(--bg-surface-elevated);
+    }
+
+    .milestone-step.planned {
+      border-top: 3px solid var(--border-highlight);
+      opacity: 0.8;
+    }
+
+    .milestone-num {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .milestone-step.done .milestone-num { color: var(--accent-emerald); }
+    .milestone-step.active .milestone-num { color: var(--accent-blue); }
+    .milestone-step.planned .milestone-num { color: var(--text-muted); }
+
+    .milestone-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .milestone-desc {
+      font-size: 0.775rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    /* Open Questions & Risks */
+    .questions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 800px) {
+      .questions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .question-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--card-radius);
+      padding: 1.5rem;
+    }
+
+    .question-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .question-ans {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .assignee-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+      }
+      .top-toolbar, .theme-toggle-btn, .print-btn {
+        display: none !important;
+      }
+      .header-strip, .problem-box, .goals-col, .story-card, .table-card, .diagram-card, .question-card {
+        border: 1px solid #cccccc !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+      }
+      .code-block-container {
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+      .kw { color: #991b1b !important; }
+      .fn { color: #075985 !important; }
+      .str { color: #065f46 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Top Utility Header -->
+    <header class="top-toolbar">
+      <div class="brand-group">
+        <span class="brand-badge">PZONE ERP</span>
+        <span class="project-name">Project Controls & Site Execution Architecture</span>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleTheme()">
+          <span id="themeIcon">☀️</span>
+          <span id="themeLabel">Light Mode</span>
+        </button>
+        <button class="print-btn" onclick="window.print()">
+          <span>🖨️</span>
+          <span>Print / PDF</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Document Header Strip -->
+    <div class="header-strip">
+      <div class="meta-pills">
+        <span class="pill pill-status">Approved & Production Ready</span>
+        <span class="pill pill-version">DOC-ID: PRD-PM-038</span>
+        <span class="pill pill-version">REV: 2.4-Enterprise</span>
+        <span class="pill pill-scope">Owner: Eng. Hassan A. Soliman</span>
+        <span class="pill pill-scope">Target: Milestone 4 (R5)</span>
+      </div>
+
+      <h1 class="doc-title">Daily Progress Approval Cycle & Site Governance PRD</h1>
+      <p class="doc-subtitle">
+        Strict approval gating, multi-channel photo audit trails, zero unapproved progress leakage into project S-Curves/EVM, and high-velocity multi-zone filtering for large construction sites.
+      </p>
+
+      <!-- Three-line Summary at Top -->
+      <div class="three-line-summary">
+        <div class="summary-card">
+          <div class="summary-label">
+            <span>🎯</span> What
+          </div>
+          <div class="summary-content">
+            A closed-loop, deterministic approval workflow governing daily site progress submissions, enforcing mandatory photo evidence, line-item BOQ rate freezing, and fast-grid zone/discipline filtering.
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">
+            <span>👥</span> Who
+          </div>
+          <div class="summary-content">
+            Site Engineers (rapid execution logging), Planning Engineers (gatekeepers of truth & schedule alignment), and Project Directors / Commercial Teams (financial certificates & S-Curve integrity).
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">
+            <span>⚡</span> Why Now
+          </div>
+          <div class="summary-content">
+            Unapproved preliminary site estimates leaked directly into project SPI/CPI and S-Curves, generating phantom progress, premature contractor billing claims, and unprovable inspections upon consultant audits.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. PROBLEM STATEMENT -->
+    <section id="problem">
+      <div class="section-header">
+        <div class="section-tag">01. Root Cause & Context</div>
+        <h2 class="section-title">Problem Statement: The Site Progress Governance Gap</h2>
+        <p class="section-desc">Analysis of commercial exposure, phantom EVM metrics, and site scale bottlenecks.</p>
+      </div>
+
+      <div class="problem-box">
+        <p class="problem-lead">
+          In large-scale contracting projects across Egypt and the MENA region, site progress reporting suffers from a systemic disconnect between field execution and planning controls. Previously, site engineers logged daily estimates that immediately influenced task completion percentages (<code style="color:var(--accent-emerald);">progress_pct</code>) without formal verification. This lack of a strict approval firewall introduced four critical failure modes:
+        </p>
+
+        <div class="risk-grid">
+          <div class="risk-card">
+            <div class="risk-title">
+              <span>⚠️</span> 1. Phantom Progress & S-Curve Corruption
+            </div>
+            <div class="risk-desc">
+              Unreviewed draft reports artificially elevated project Earned Value (EV) and Schedule Performance Index (SPI). When consultant inspections later rejected the executed work, project managers faced catastrophic downward revisions on executive dashboards.
+            </div>
+          </div>
+
+          <div class="risk-card">
+            <div class="risk-title">
+              <span>💸</span> 2. Premature Subcontractor Billing Exposure
+            </div>
+            <div class="risk-desc">
+              Commercial engineers generated Interim Payment Certificates (IPCs) relying on unapproved site figures. Discrepancies led to severe cash-flow disputes, overpayment to subcontractors, and painful financial clawbacks during owner audits.
+            </div>
+          </div>
+
+          <div class="risk-card">
+            <div class="risk-title">
+              <span>📷</span> 3. Photo Disconnect & Lost Evidence Trails
+            </div>
+            <div class="risk-desc">
+              Site inspection photos were communicated through fragmented chat apps (WhatsApp) rather than atomic database attachments. Consequently, when Work Inspection Requests (WIRs) were audited, crucial time-stamped proof was irrecoverable.
+            </div>
+          </div>
+
+          <div class="risk-card">
+            <div class="risk-title">
+              <span>⏱️</span> 4. Multi-Zone Site Cognitive Overload
+            </div>
+            <div class="risk-desc">
+              On sites featuring 20+ buildings and hundreds of active tasks, site engineers were forced to scroll through monolithic tables without zone or discipline filters, leading to data entry abandonment and delayed shift closures.
+            </div>
+          </div>
+        </div>
+
+        <!-- Realistic Persona Quotes -->
+        <div class="quote-group">
+          <div class="quote-item">
+            <div class="quote-text">
+              "We finish pouring columns at 6:00 PM in Zone 4, but the portal previously asked me to scroll through 300 civil tasks across the entire project. When I finally found the task, my phone photos were discarded because the upload button was disconnected."
+              <div class="quote-text-ar">
+                «بنخلص صب أعمدة الساعة 6 بالليل في زون 4، والسيستم كان بيجبرني أدور وسط 300 نشط مدني في الموقع كله.. وفي الآخر الصور بتضيع ومبتترفعش مع التقرير.»
+              </div>
+            </div>
+            <div class="quote-author">
+              <span>— Eng. Mostafa Mahmoud</span>
+              <span class="author-role">• Senior Civil Site Engineer</span>
+            </div>
+          </div>
+
+          <div class="quote-item">
+            <div class="quote-text">
+              "Last month, an unapproved draft quantity entered by a junior site engineer increased our project SPI to 1.08. Two weeks later, the consultant issued a Code D rejection on the WIR. Our executive dashboard had to explain a 12% sudden drop in progress overnight."
+              <div class="quote-text-ar">
+                «الشهر اللي فات كميات مسودة غير معتمدة رفعت الـ SPI لـ 1.08، ولما الاستشاري رفض الـ WIR، اضطرينا نبرر هبوط مفاجئ في الـ S-Curve قدام مجلس الإدارة.»
+              </div>
+            </div>
+            <div class="quote-author">
+              <span>— Eng. Tarek El-Shennawy</span>
+              <span class="author-role">• Lead Planning & Controls Engineer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. GOALS & NON-GOALS -->
+    <section id="goals">
+      <div class="section-header">
+        <div class="section-tag">02. Boundaries & Deliverables</div>
+        <h2 class="section-title">Goals & Non-Goals</h2>
+        <p class="section-desc">Clear boundaries delineating immediate scope from deferred integrations.</p>
+      </div>
+
+      <div class="goals-container">
+        <!-- Goals -->
+        <div class="goals-col">
+          <div class="col-header goals-header">
+            <span>✅</span> Core Goals
+          </div>
+          <ul class="item-list">
+            <li>
+              <span class="item-bullet bullet-check">✓</span>
+              <div>
+                <strong>Zero-Leakage KPI Governance:</strong> Ensure <code style="font-family:var(--font-mono); color:var(--accent-emerald);">calculateTaskProgress</code> strictly aggregates only <code style="font-family:var(--font-mono);">approved</code> and <code style="font-family:var(--font-mono);">partially_approved</code> reports. Unapproved or rejected quantities never increment <code style="font-family:var(--font-mono);">pm_site_tasks.progress_pct</code>.
+              </div>
+            </li>
+            <li>
+              <span class="item-bullet bullet-check">✓</span>
+              <div>
+                <strong>Strict Approval Gating via RPC:</strong> Enforce state transitions through <code style="font-family:var(--font-mono); color:var(--accent-emerald);">rpc_daily_report_transition</code>, requiring Planning Engineer / PM credentials and mandatory justification reasons on rejection or reopening.
+              </div>
+            </li>
+            <li>
+              <span class="item-bullet bullet-check">✓</span>
+              <div>
+                <strong>Immutable Photo Audit Storage:</strong> Stream site photos directly to Supabase Storage bucket <code style="font-family:var(--font-mono); color:var(--accent-blue);">progress-photos</code> with project-namespaced paths and foreign-key linked records in <code style="font-family:var(--font-mono);">pm_daily_progress_photos</code>.
+              </div>
+            </li>
+            <li>
+              <span class="item-bullet bullet-check">✓</span>
+              <div>
+                <strong>High-Speed Grid Zone & Discipline Filtering:</strong> Equip <code style="font-family:var(--font-mono);">SiteWorkspaceFastGrid.tsx</code> with instant dropdown filtering powered by <code style="font-family:var(--font-mono);">classifyActivity</code> to handle 1,000+ tasks in under 100ms.
+              </div>
+            </li>
+            <li>
+              <span class="item-bullet bullet-check">✓</span>
+              <div>
+                <strong>Deterministic E2E Playwright Verification:</strong> Prove end-to-end reliability via automated tests (<code style="font-family:var(--font-mono);">site_engineer.spec.ts</code> and <code style="font-family:var(--font-mono);">planning_engineer.spec.ts</code>) without facade mocks.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Non-Goals -->
+        <div class="goals-col">
+          <div class="col-header nongoals-header">
+            <span>⛔</span> Non-Goals (Out of Scope)
+          </div>
+          <ul class="item-list">
+            <li>
+              <span class="item-bullet bullet-cross">✕</span>
+              <div>
+                <strong>Consultant Submittal Direct Workflow:</strong> External consultant inspections (WIR Code A/B/C/D) remain managed within the Technical Office Deliverables portal. This PRD focuses exclusively on internal Contractor governance.
+              </div>
+            </li>
+            <li>
+              <span class="item-bullet bullet-cross">✕</span>
+              <div>
+                <strong>Automatic Schedule Date Shifting:</strong> Approving daily progress updates completion percentages but does NOT automatically alter Primavera P6 predecessor logic or push activity finish dates (governed separately by Schedule Compression 001).
+              </div>
+            </li>
+            <li>
+              <span class="item-bullet bullet-cross">✕</span>
+              <div>
+                <strong>Subcontractor Direct Payment Clearance:</strong> While cumulative quantities are updated, automated disbursement of subcontractor payments belongs to the Subcontractor IPC module.
+              </div>
+            </li>
+            <li>
+              <span class="item-bullet bullet-cross">✕</span>
+              <div>
+                <strong>Native Mobile Binaries:</strong> Focus remains strictly on responsive PWA and desktop high-density browsers; standalone iOS/Android App Store distribution is out of scope.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SUCCESS METRICS -->
+    <section id="metrics">
+      <div class="section-header">
+        <div class="section-tag">03. Target Performance</div>
+        <h2 class="section-title">Success Metrics & KPIs</h2>
+        <p class="section-desc">Measurable engineering and business performance targets.</p>
+      </div>
+
+      <div class="table-card">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Metric Dimension</th>
+              <th>Baseline (Pre-Enhancement)</th>
+              <th>Target Benchmark</th>
+              <th>Measurement Methodology</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Unapproved Progress Leakage</strong>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Draft/submitted progress reflected in S-Curve</div>
+              </td>
+              <td><span class="table-badge table-badge-baseline">~18.4% of total EV</span></td>
+              <td><span class="table-badge table-badge-target">0.00% (Zero Leakage)</span></td>
+              <td>Automated database invariant check verifying <code style="font-family:var(--font-mono);">pm_site_tasks.progress_pct</code> equals 0 when only draft reports exist.</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Photo Audit Compliance</strong>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Submitted reports with valid storage links</div>
+              </td>
+              <td><span class="table-badge table-badge-baseline">&lt; 12.0% (WhatsApp loss)</span></td>
+              <td><span class="table-badge table-badge-target">&gt;= 95.0% of reports</span></td>
+              <td>Weekly audit query comparing <code style="font-family:var(--font-mono);">pm_daily_progress</code> rows against count of linked <code style="font-family:var(--font-mono);">pm_daily_progress_photos</code>.</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Site Engineer Batch Entry Latency</strong>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Time to record daily output across 15 tasks</div>
+              </td>
+              <td><span class="table-badge table-badge-baseline">18.5 minutes</span></td>
+              <td><span class="table-badge table-badge-target">&lt; 3.0 minutes</span></td>
+              <td>Client-side telemetry measuring duration from fast-grid filter selection to batch save confirmation.</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Planning Review Turnaround</strong>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Duration from submission to approval/rejection</div>
+              </td>
+              <td><span class="table-badge table-badge-baseline">48 to 72 hours</span></td>
+              <td><span class="table-badge table-badge-target">&lt; 4.0 hours (Morning Loop)</span></td>
+              <td>Delta between <code style="font-family:var(--font-mono);">pm_daily_progress.submitted_at</code> and <code style="font-family:var(--font-mono);">approved_at</code> in Morning Command Center.</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Automated E2E Suite Pass Rate</strong>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Playwright continuous integration execution</div>
+              </td>
+              <td><span class="table-badge table-badge-baseline">0% (Unimplemented)</span></td>
+              <td><span class="table-badge table-badge-target">100% Deterministic Green</span></td>
+              <td>CI/CD pipeline test run executing <code style="font-family:var(--font-mono);">site_engineer.spec.ts</code> and <code style="font-family:var(--font-mono);">planning_engineer.spec.ts</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. USER STORIES & PERSONAS -->
+    <section id="personas">
+      <div class="section-header">
+        <div class="section-tag">04. Stakeholder Experience</div>
+        <h2 class="section-title">User Stories & Personas</h2>
+        <p class="section-desc">Grounded behavioral scenarios for field and office stakeholders.</p>
+      </div>
+
+      <div class="stories-grid">
+        <!-- Story 1 -->
+        <div class="story-card">
+          <div class="story-top">
+            <span class="story-id">US-01: FAST-GRID FILTERING</span>
+            <div class="story-persona">
+              <span>Persona:</span>
+              <span class="persona-badge">Eng. Mostafa (Site Engineer)</span>
+            </div>
+          </div>
+          <div class="story-narrative">
+            <p><strong>As a</strong> Site Engineer managing structural execution in Zone 3,</p>
+            <p><strong>I want to</strong> filter the site workspace fast-grid by Discipline ("Civil") and Zone ("Zone 3 - Tower A"),</p>
+            <p><strong>So that</strong> I can quickly isolate my 12 concrete pouring tasks without scrolling through unrelated finishing or MEP items.</p>
+          </div>
+          <div class="story-criteria">
+            <div class="story-criteria-title">Acceptance Criteria</div>
+            <ul>
+              <li>Toolbar renders dynamic "Discipline" and "Zone" dropdowns populated from active project metadata.</li>
+              <li>Selecting a filter narrows down grid rows instantly without triggering full page reloads.</li>
+              <li>Row inputs maintain bi-directional synchronization between <code style="font-family:var(--font-mono);">todayQty</code> and <code style="font-family:var(--font-mono);">todayPct</code> based on BOQ contract quantities.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Story 2 -->
+        <div class="story-card">
+          <div class="story-top">
+            <span class="story-id">US-02: PHOTO AUDIT TRAIL</span>
+            <div class="story-persona">
+              <span>Persona:</span>
+              <span class="persona-badge">Eng. Mostafa (Site Engineer)</span>
+            </div>
+          </div>
+          <div class="story-narrative">
+            <p><strong>As a</strong> Site Engineer completing a concrete pour in the Wizard modal,</p>
+            <p><strong>I want to</strong> capture and upload 3 site photos showing slump tests, rebar placement, and pour levels,</p>
+            <p><strong>So that</strong> my report has indisputable visual evidence attached before submitting to the Planning Engineer.</p>
+          </div>
+          <div class="story-criteria">
+            <div class="story-criteria-title">Acceptance Criteria</div>
+            <ul>
+              <li>Wizard allows multi-file selection with real-time thumbnail previews and delete capability.</li>
+              <li>On submission, files stream directly to Supabase Storage bucket <code style="font-family:var(--font-mono);">progress-photos</code> under path <code style="font-family:var(--font-mono);">{projectId}/{reportId}_{timestamp}_{idx}_{name}</code>.</li>
+              <li>Storage links are securely inserted into <code style="font-family:var(--font-mono);">pm_daily_progress_photos</code> with captions and uploaded timestamp.</li>
+              <li>Local object URLs are properly garbage-collected using <code style="font-family:var(--font-mono);">URL.revokeObjectURL()</code> to eliminate memory leaks.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Story 3 -->
+        <div class="story-card">
+          <div class="story-top">
+            <span class="story-id">US-03: PLANNING APPROVAL & RATE FREEZING</span>
+            <div class="story-persona">
+              <span>Persona:</span>
+              <span class="persona-badge">Eng. Tarek (Planning Engineer)</span>
+            </div>
+          </div>
+          <div class="story-narrative">
+            <p><strong>As a</strong> Planning & Controls Engineer reviewing daily submissions in the Morning Command Center,</p>
+            <p><strong>I want to</strong> inspect submitted quantities alongside attached photos, then approve the report in one click,</p>
+            <p><strong>So that</strong> the task progress percentage updates officially, BOQ rates freeze for financial audit, and the project S-Curve updates accurately.</p>
+          </div>
+          <div class="story-criteria">
+            <div class="story-criteria-title">Acceptance Criteria</div>
+            <ul>
+              <li>Approval executes via <code style="font-family:var(--font-mono);">rpc_daily_report_transition(p_report_id, 'approve')</code>.</li>
+              <li>The RPC automatically sets report status to <code style="font-family:var(--font-mono);">'approved'</code>, lines to <code style="font-family:var(--font-mono);">'approved'</code>, and freezes <code style="font-family:var(--font-mono);">snapshot_rate_egp</code> and <code style="font-family:var(--font-mono);">source_boq_revision</code>.</li>
+              <li><code style="font-family:var(--font-mono);">DailyProgressService.calculateTaskProgress</code> executes immediately, updating <code style="font-family:var(--font-mono);">pm_site_tasks.progress_pct</code>.</li>
+              <li>Cache keys for daily reports, planning KPIs, and S-Curve are automatically invalidated.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Story 4 -->
+        <div class="story-card">
+          <div class="story-top">
+            <span class="story-id">US-04: REJECTION WITH MANDATORY REASON</span>
+            <div class="story-persona">
+              <span>Persona:</span>
+              <span class="persona-badge">Eng. Tarek (Planning Engineer)</span>
+            </div>
+          </div>
+          <div class="story-narrative">
+            <p><strong>As a</strong> Planning Engineer encountering an exaggerated site quantity,</p>
+            <p><strong>I want to</strong> reject the report while providing a mandatory Arabic justification,</p>
+            <p><strong>So that</strong> the report returns to the site engineer for correction without polluting project KPIs or locking previous quantities.</p>
+          </div>
+          <div class="story-criteria">
+            <div class="story-criteria-title">Acceptance Criteria</div>
+            <ul>
+              <li>Rejecting requires a non-empty text justification; empty submissions are blocked client and server side.</li>
+              <li>Rejection executes via <code style="font-family:var(--font-mono);">rpc_daily_report_transition(p_report_id, 'reject', p_reason)</code>.</li>
+              <li>Rejected reports are completely excluded by <code style="font-family:var(--font-mono);">calculateTaskProgress</code> and <code style="font-family:var(--font-mono);">getCumulativeQtyByTask</code>.</li>
+              <li>The task's <code style="font-family:var(--font-mono);">progress_pct</code> stays unchanged, and the Site Engineer's <code style="font-family:var(--font-mono);">previousQty</code> remains clean.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. TECHNICAL SPECIFICATIONS & STATE MACHINE -->
+    <section id="technical">
+      <div class="section-header">
+        <div class="section-tag">05. Systems Architecture</div>
+        <h2 class="section-title">Technical Specifications & State Machine</h2>
+        <p class="section-desc">Diagrammatic state lifecycle, storage topology, and mathematical proofs.</p>
+      </div>
+
+      <!-- State Machine SVG Diagram -->
+      <div class="diagram-card">
+        <h3 style="font-size:1.1rem; margin-bottom:1rem; color:var(--text-primary);">1. Daily Progress Lifecycle State Machine</h3>
+        <div class="svg-wrapper">
+          <svg class="state-svg" viewBox="0 0 940 320" width="940" height="320" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="draftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#334155"/>
+                <stop offset="100%" stop-color="#1e293b"/>
+              </linearGradient>
+              <linearGradient id="submittedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0284c7"/>
+                <stop offset="100%" stop-color="#0369a1"/>
+              </linearGradient>
+              <linearGradient id="approvedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#059669"/>
+                <stop offset="100%" stop-color="#047857"/>
+              </linearGradient>
+              <linearGradient id="rejectedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e11d48"/>
+                <stop offset="100%" stop-color="#be123c"/>
+              </linearGradient>
+              <linearGradient id="reopenedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7c3aed"/>
+                <stop offset="100%" stop-color="#6d28d9"/>
+              </linearGradient>
+
+              <!-- Arrow Marker -->
+              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8" />
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981" />
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e" />
+              </marker>
+            </defs>
+
+            <!-- State: DRAFT -->
+            <g transform="translate(40, 110)">
+              <rect width="130" height="70" rx="14" fill="url(#draftGrad)" stroke="#475569" stroke-width="2"/>
+              <text x="65" y="32" text-anchor="middle" fill="#f8fafc" font-weight="700" font-size="14">DRAFT</text>
+              <text x="65" y="52" text-anchor="middle" fill="#94a3b8" font-size="11">مسودة بالموقع</text>
+            </g>
+
+            <!-- Transition: Submit -->
+            <path d="M 170 145 L 260 145" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)" />
+            <text x="215" y="135" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">submit</text>
+
+            <!-- State: SUBMITTED -->
+            <g transform="translate(270, 110)">
+              <rect width="140" height="70" rx="14" fill="url(#submittedGrad)" stroke="#38bdf8" stroke-width="2"/>
+              <text x="70" y="32" text-anchor="middle" fill="#ffffff" font-weight="700" font-size="14">SUBMITTED</text>
+              <text x="70" y="52" text-anchor="middle" fill="#e0f2fe" font-size="11">قيد مراجعة التخطيط</text>
+            </g>
+
+            <!-- Transition: Approve (to Approved) -->
+            <path d="M 410 130 L 530 80" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)" />
+            <text x="475" y="95" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">approve</text>
+
+            <!-- Transition: Reject (to Rejected) -->
+            <path d="M 410 160 L 530 210" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)" />
+            <text x="475" y="200" text-anchor="middle" fill="#f43f5e" font-size="11" font-weight="600">reject (reason)</text>
+
+            <!-- State: APPROVED -->
+            <g transform="translate(540, 45)">
+              <rect width="150" height="70" rx="14" fill="url(#approvedGrad)" stroke="#10b981" stroke-width="2"/>
+              <text x="75" y="30" text-anchor="middle" fill="#ffffff" font-weight="700" font-size="13">APPROVED</text>
+              <text x="75" y="50" text-anchor="middle" fill="#d1fae5" font-size="11">معتمد رسمي (Freezes Rate)</text>
+            </g>
+
+            <!-- State: REJECTED -->
+            <g transform="translate(540, 180)">
+              <rect width="150" height="70" rx="14" fill="url(#rejectedGrad)" stroke="#f43f5e" stroke-width="2"/>
+              <text x="75" y="30" text-anchor="middle" fill="#ffffff" font-weight="700" font-size="13">REJECTED</text>
+              <text x="75" y="50" text-anchor="middle" fill="#ffe4e6" font-size="11">مرفوض (Excludes EVM)</text>
+            </g>
+
+            <!-- Loopback: Resubmit from Rejected to Submitted -->
+            <path d="M 540 225 C 440 260, 350 240, 330 185" stroke="#94a3b8" stroke-dasharray="4,4" stroke-width="1.8" marker-end="url(#arrow)" fill="none"/>
+            <text x="400" y="255" text-anchor="middle" fill="#94a3b8" font-size="10">re-edit & submit</text>
+
+            <!-- Transition: Reopen from Approved to Reopened -->
+            <path d="M 690 80 L 760 80" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrow)" />
+            <text x="725" y="70" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="600">reopen</text>
+
+            <!-- State: REOPENED -->
+            <g transform="translate(770, 45)">
+              <rect width="130" height="70" rx="14" fill="url(#reopenedGrad)" stroke="#a855f7" stroke-width="2"/>
+              <text x="65" y="30" text-anchor="middle" fill="#ffffff" font-weight="700" font-size="13">REOPENED</text>
+              <text x="65" y="50" text-anchor="middle" fill="#ede9fe" font-size="11">معاد فتحه للتدقيق</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- RPC Implementation Specifications -->
+      <h3 style="font-size:1.15rem; font-weight:700; color:var(--text-primary); margin-top:2rem; margin-bottom:0.75rem;">
+        2. Database RPC Contract: <code style="color:var(--accent-emerald);">rpc_daily_report_transition</code>
+      </h3>
+      <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
+        Migration 038 implements a transactional state machine function strictly enforcing role authorization, transition legitimacy, rate snapshots, and allocation suspension:
+      </p>
+
+      <div class="code-block-container">
+        <div class="code-header">
+          <span>PostgreSQL PL/pgSQL Function Signature & Execution Gate</span>
+          <span>supabase/migrations/038_daily_report_transition_rpc.sql</span>
+        </div>
+        <pre class="code-content"><code><span class="kw">CREATE OR REPLACE FUNCTION</span> <span class="fn">public.rpc_daily_report_transition</span>(
+  <span class="prop">p_report_id</span> UUID,
+  <span class="prop">p_action</span> TEXT,            <span class="cm">-- 'submit' | 'approve' | 'reject' | 'reopen'</span>
+  <span class="prop">p_reason</span> TEXT <span class="kw">DEFAULT NULL</span>  <span class="cm">-- Mandatory for 'reject' and 'reopen'</span>
+) <span class="kw">RETURNS</span> JSONB <span class="kw">AS</span> $$
+<span class="kw">BEGIN</span>
+  <span class="cm">-- 1. Role Verification</span>
+  <span class="cm">-- 'submit': Submitter or Project Manager</span>
+  <span class="cm">-- 'approve' / 'reject': Planning Engineer, Planning Manager, PM, or Admin</span>
+  <span class="cm">-- 'reopen': Planning Engineer or Admin</span>
+
+  <span class="cm">-- 2. State Validations</span>
+  <span class="cm">-- 'submit' requires from_state IN ('draft', 'rejected')</span>
+  <span class="cm">-- 'approve' requires from_state = 'submitted'</span>
+  <span class="cm">-- 'reject' requires from_state = 'submitted' AND p_reason IS NOT NULL</span>
+  <span class="cm">-- 'reopen' requires from_state = 'approved' AND p_reason IS NOT NULL</span>
+
+  <span class="cm">-- 3. Auto-Actions on 'approve':</span>
+  <span class="cm">-- Freezes BOQ snapshot rate & revision on all lines:</span>
+  <span class="kw">UPDATE</span> public.pm_daily_progress_lines l
+  <span class="kw">SET</span>
+    line_status = <span class="str">'approved'</span>,
+    line_reviewed_by = v_actor_user_id,
+    line_reviewed_at = now(),
+    snapshot_rate_egp = COALESCE(l.snapshot_rate_egp, (
+      <span class="kw">SELECT</span> b.rate_egp <span class="kw">FROM</span> public.pm_boq_items b <span class="kw">WHERE</span> b.id = l.boq_item_id
+    )),
+    source_boq_revision = COALESCE(l.source_boq_revision, (
+      <span class="kw">SELECT</span> b.revision <span class="kw">FROM</span> public.pm_boq_items b <span class="kw">WHERE</span> b.id = l.boq_item_id
+    )),
+    updated_at = now()
+  <span class="kw">WHERE</span> l.daily_progress_id = p_report_id <span class="kw">AND</span> l.line_status = <span class="str">'pending'</span>;
+
+  <span class="kw">RETURN</span> jsonb_build_object(<span class="str">'success'</span>, <span class="kw">true</span>, <span class="str">'to_state'</span>, v_to_state);
+<span class="kw">END</span>;
+$$ <span class="kw">LANGUAGE</span> plpgsql <span class="kw">SECURITY DEFINER</span>;</code></pre>
+      </div>
+
+      <!-- Storage Topology -->
+      <h3 style="font-size:1.15rem; font-weight:700; color:var(--text-primary); margin-top:2.5rem; margin-bottom:0.75rem;">
+        3. Supabase Storage Architecture: <code style="color:var(--accent-blue);">progress-photos</code> Bucket
+      </h3>
+      <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
+        Site photos represent non-repudiation audit evidence and are governed by strict upload pipelines:
+      </p>
+
+      <div class="table-card">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Specification Detail</th>
+              <th>Operational Rationale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Storage Bucket</strong></td>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-blue);">progress-photos</code> (Public read with signed upload token)</td>
+              <td>Isolates high-volume binary multimedia from database transaction logs.</td>
+            </tr>
+            <tr>
+              <td><strong>Path Topology</strong></td>
+              <td><code style="font-family:var(--font-mono);">{projectId}/{reportId}_{timestamp}_{idx}_{sanitizedFilename}.{ext}</code></td>
+              <td>Enforces project multitenancy partitioning and prevents file overwrite collisions.</td>
+            </tr>
+            <tr>
+              <td><strong>Payload Limits</strong></td>
+              <td>Max 10 MB per image; supported MIME: <code style="font-family:var(--font-mono);">image/jpeg</code>, <code style="font-family:var(--font-mono);">image/png</code>, <code style="font-family:var(--font-mono);">image/webp</code></td>
+              <td>Guarantees low mobile data usage for field site engineers over cellular networks.</td>
+            </tr>
+            <tr>
+              <td><strong>Memory Guard</strong></td>
+              <td>Client sets tracked via <code style="font-family:var(--font-mono);">objectUrlsRef = useRef&lt;Set&lt;string&gt;&gt;</code> with <code style="font-family:var(--font-mono);">URL.revokeObjectURL()</code></td>
+              <td>Prevents browser memory bloat and tab crashes on low-spec site tablets.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mathematical Governance -->
+      <h3 style="font-size:1.15rem; font-weight:700; color:var(--text-primary); margin-top:2.5rem; margin-bottom:0.75rem;">
+        4. Mathematical Governance & Earned Value Proof
+      </h3>
+      <div class="problem-box" style="margin-bottom:1.5rem;">
+        <p style="font-size:0.925rem; color:var(--text-primary); margin-bottom:1rem;">
+          In accordance with enterprise project controls, official task progress is computed exclusively from approved daily progress reports, weighted by contractual BOQ monetary rates:
+        </p>
+        <div style="background:var(--bg-surface-elevated); padding:1.25rem; border-radius:12px; font-family:var(--font-mono); font-size:0.9rem; color:var(--accent-emerald); line-height:1.8;">
+          P_task = [ Σ ( min( CumulativeQty_i / ContractQty_i, 1.0 ) × (ContractQty_i × Rate_i) ) ] / [ Σ (ContractQty_i × Rate_i) ] × 100%
+          <br />
+          <span style="color:var(--text-muted); font-size:0.8rem;">
+            Where: i ∈ Approved BOQ Line Items belonging to Reports where Status ∈ {'approved', 'partially_approved'}.
+          </span>
+        </div>
+        <p style="font-size:0.875rem; color:var(--text-secondary); margin-top:1rem;">
+          <strong>Exclusion Invariant:</strong> If a report is in state <code style="font-family:var(--font-mono); color:var(--accent-rose);">'draft'</code>, <code style="font-family:var(--font-mono); color:var(--accent-rose);">'submitted'</code>, or <code style="font-family:var(--font-mono); color:var(--accent-rose);">'rejected'</code>, its <code style="font-family:var(--font-mono);">qty_today</code> contributes <strong>0.00</strong> to the task progress numerator and denominator.
+        </p>
+      </div>
+
+      <!-- Cache Invalidation Cascade -->
+      <h3 style="font-size:1.15rem; font-weight:700; color:var(--text-primary); margin-top:2rem; margin-bottom:0.75rem;">
+        5. Real-Time Cache Invalidation Cascade
+      </h3>
+      <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
+        To ensure executive dashboards reflect approved progress without stale cache skew, <code style="font-family:var(--font-mono);">DailyProgressService</code> invalidates a four-tier cache cascade on every state mutation:
+      </p>
+      <div class="table-card">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Cache Key Pattern</th>
+              <th>Target Component</th>
+              <th>TTL Duration</th>
+              <th>Trigger Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-blue);">dailyReports:{projectId}</code></td>
+              <td>Daily Log Table & Review Queue</td>
+              <td>5 minutes</td>
+              <td>Submit, Approve, Reject, Reopen</td>
+            </tr>
+            <tr>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-blue);">dailyReport:detail:{reportId}</code></td>
+              <td>Report Review Modal & Photos</td>
+              <td>15 minutes</td>
+              <td>Add Line, Upload Photo, Reject</td>
+            </tr>
+            <tr>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-blue);">planningKpis:{projectId}</code></td>
+              <td>Morning Command Center SPI/CPI</td>
+              <td>10 minutes</td>
+              <td>Approve, Reject, Reopen</td>
+            </tr>
+            <tr>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-blue);">scurve:{projectId}</code></td>
+              <td>Executive Cumulative EVM S-Curve</td>
+              <td>15 minutes</td>
+              <td>Approve, Reopen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. ACCEPTANCE CRITERIA & PLAYWRIGHT E2E STRATEGY -->
+    <section id="e2e">
+      <div class="section-header">
+        <div class="section-tag">06. Quality Assurance & Testing</div>
+        <h2 class="section-title">Acceptance Criteria & Playwright E2E Strategy</h2>
+        <p class="section-desc">Traceability matrix linking specifications directly to automated test specs.</p>
+      </div>
+
+      <div class="table-card" style="margin-bottom:2rem;">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Requirement ID</th>
+              <th>Functional Behavior</th>
+              <th>Target Test File</th>
+              <th>Assertion Verification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AC-R1-01</strong></td>
+              <td>Site Engineer enters today's quantity and uploads JPEG photo in Wizard.</td>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-blue);">e2e/site_engineer.spec.ts</code></td>
+              <td>Report created with <code style="font-family:var(--font-mono);">status = 'submitted'</code> and photo row created in <code style="font-family:var(--font-mono);">pm_daily_progress_photos</code>.</td>
+            </tr>
+            <tr>
+              <td><strong>AC-R2-01</strong></td>
+              <td>Submitted report does NOT alter <code style="font-family:var(--font-mono);">progress_pct</code> prior to review.</td>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-blue);">e2e/site_engineer.spec.ts</code></td>
+              <td>Site task query returns unchanged <code style="font-family:var(--font-mono);">progress_pct = 0%</code> while report is in <code style="font-family:var(--font-mono);">'submitted'</code> state.</td>
+            </tr>
+            <tr>
+              <td><strong>AC-R2-02</strong></td>
+              <td>Planning Engineer approves submitted report via Review Modal.</td>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-emerald);">e2e/planning_engineer.spec.ts</code></td>
+              <td>Report status transitions to <code style="font-family:var(--font-mono);">'approved'</code>, and task <code style="font-family:var(--font-mono);">progress_pct</code> increases to expected value.</td>
+            </tr>
+            <tr>
+              <td><strong>AC-R2-03</strong></td>
+              <td>Planning Engineer rejects report with mandatory justification reason.</td>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-emerald);">e2e/planning_engineer.spec.ts</code></td>
+              <td>Status transitions to <code style="font-family:var(--font-mono);">'rejected'</code>, <code style="font-family:var(--font-mono);">rejection_reason</code> stored, task <code style="font-family:var(--font-mono);">progress_pct</code> remains 0%.</td>
+            </tr>
+            <tr>
+              <td><strong>AC-R3-01</strong></td>
+              <td>Fast Grid filter controls by Discipline and Zone filter rows under 100ms.</td>
+              <td><code style="font-family:var(--font-mono); color:var(--accent-blue);">e2e/site_engineer.spec.ts</code></td>
+              <td>Filtering by "Civil" displays only civil tasks; table row count matches filtered task count.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Sample Test Code Skeleton -->
+      <div class="code-block-container">
+        <div class="code-header">
+          <span>Playwright E2E Test Contract Specification</span>
+          <span>e2e/planning_engineer.spec.ts</span>
+        </div>
+        <pre class="code-content"><code><span class="kw">import</span> { test, expect } <span class="kw">from</span> <span class="str">'@playwright/test'</span>;
+
+test.describe(<span class="str">'Planning Engineer Approval Loop'</span>, () => {
+  test(<span class="str">'should approve submitted report and increment task progress_pct'</span>, <span class="kw">async</span> ({ page }) => {
+    <span class="cm">// 1. Navigate to Planning Review Queue</span>
+    <span class="kw">await</span> page.goto(<span class="str">'/planning/daily-review'</span>);
+    
+    <span class="cm">// 2. Select submitted report and open modal</span>
+    <span class="kw">const</span> row = page.locator(<span class="str">'[data-testid="report-row-submitted"]'</span>).first();
+    <span class="kw">await</span> row.click();
+    <span class="kw">await</span> expect(page.locator(<span class="str">'[data-testid="review-modal"]'</span>)).toBeVisible();
+
+    <span class="cm">// 3. Approve report</span>
+    <span class="kw">await</span> page.locator(<span class="str">'[data-testid="btn-approve-report"]'</span>).click();
+    <span class="kw">await</span> expect(page.locator(<span class="str">'.sonner-toast-success'</span>)).toBeVisible();
+
+    <span class="cm">// 4. Verify Task Progress has updated</span>
+    <span class="kw">await</span> page.goto(<span class="str">'/planning/tasks'</span>);
+    <span class="kw">const</span> progressBadge = page.locator(<span class="str">'[data-testid="task-progress-pct"]'</span>).first();
+    <span class="kw">const</span> progressValue = <span class="kw">await</span> progressBadge.textContent();
+    expect(parseFloat(progressValue || <span class="str">'0'</span>)).toBeGreaterThan(<span class="num">0</span>);
+  });
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- 7. SCOPE & MILESTONES -->
+    <section id="scope">
+      <div class="section-header">
+        <div class="section-tag">07. Phased Implementation</div>
+        <h2 class="section-title">Milestones & Implementation Rollout</h2>
+        <p class="section-desc">Progress across the 5 structured engineering milestones.</p>
+      </div>
+
+      <div class="milestone-timeline">
+        <div class="milestone-step done">
+          <div class="milestone-num">
+            <span>MILESTONE 1</span>
+            <span>✅</span>
+          </div>
+          <div class="milestone-name">Wizard Photo Uploads</div>
+          <div class="milestone-desc">
+            Implemented direct photo uploads to Supabase <code style="font-family:var(--font-mono);">progress-photos</code> bucket & linked DB attachments in <code style="font-family:var(--font-mono);">DailyProgressWizardModal.tsx</code>.
+          </div>
+        </div>
+
+        <div class="milestone-step done">
+          <div class="milestone-num">
+            <span>MILESTONE 2</span>
+            <span>✅</span>
+          </div>
+          <div class="milestone-name">Strict KPI Governance</div>
+          <div class="milestone-desc">
+            Enforced status filtering, rejection resets, rate freezing, and zero unapproved progress leakage in <code style="font-family:var(--font-mono);">dailyProgress.service.ts</code>.
+          </div>
+        </div>
+
+        <div class="milestone-step done">
+          <div class="milestone-num">
+            <span>MILESTONE 3</span>
+            <span>✅</span>
+          </div>
+          <div class="milestone-name">Fast Grid Smart Filters</div>
+          <div class="milestone-desc">
+            Added Discipline and Zone toolbar dropdowns in <code style="font-family:var(--font-mono);">SiteWorkspaceFastGrid.tsx</code> using <code style="font-family:var(--font-mono);">classifyActivity</code>.
+          </div>
+        </div>
+
+        <div class="milestone-step active">
+          <div class="milestone-num">
+            <span>MILESTONE 4</span>
+            <span>🔄 ACTIVE</span>
+          </div>
+          <div class="milestone-name">PM Spec Artifact (HTML)</div>
+          <div class="milestone-desc">
+            Authored publication-grade, self-contained Product Requirements Document in HTML format per <code style="font-family:var(--font-mono);">pm-spec</code> standards.
+          </div>
+        </div>
+
+        <div class="milestone-step planned">
+          <div class="milestone-num">
+            <span>MILESTONE 5</span>
+            <span>⏳ PLANNED</span>
+          </div>
+          <div class="milestone-name">E2E Playwright Automation</div>
+          <div class="milestone-desc">
+            Scaffold Playwright test runners, write <code style="font-family:var(--font-mono);">site_engineer.spec.ts</code> & <code style="font-family:var(--font-mono);">planning_engineer.spec.ts</code>, verify green build.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. OPEN QUESTIONS & RISK MITIGATION -->
+    <section id="questions">
+      <div class="section-header">
+        <div class="section-tag">08. Architectural Governance</div>
+        <h2 class="section-title">Open Questions & Risk Mitigations</h2>
+        <p class="section-desc">Key architectural trade-offs resolved with assigned ownership.</p>
+      </div>
+
+      <div class="questions-grid">
+        <div class="question-card">
+          <div class="question-title">Q1: Offline Sync & Poor Site Cellular Reception?</div>
+          <div class="question-ans">
+            <em>Resolution:</em> The Wizard queues attachments in local IndexedDB via Zustand offline storage. Once connectivity is restored, background workers upload photos sequentially with retry exponential backoff.
+          </div>
+          <div class="assignee-chip">
+            <span>👤</span>
+            <span>Assignee: Mobile Offline Lead (Zustand)</span>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-title">Q2: Unintended BOQ Price Leakage to Site Subcontractors?</div>
+          <div class="question-ans">
+            <em>Resolution:</em> The <code style="font-family:var(--font-mono);">&lt;PriceGate&gt;</code> component and <code style="font-family:var(--font-mono);">canViewPrices(roles)</code> guard completely strip <code style="font-family:var(--font-mono);">rate_egp</code> and monetary sums from UI rendering for site engineers and subcontractors.
+          </div>
+          <div class="assignee-chip">
+            <span>👤</span>
+            <span>Assignee: Security & RBAC Architect</span>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-title">Q3: Partial Line Approval vs Full Report Rejection?</div>
+          <div class="question-ans">
+            <em>Resolution:</em> If only 1 out of 5 lines is rejected, Planning Engineers can reject the single line via <code style="font-family:var(--font-mono);">rejectDailyReportLine</code>, transitioning the report to <code style="font-family:var(--font-mono);">'partially_approved'</code> while preserving valid progress.
+          </div>
+          <div class="assignee-chip">
+            <span>👤</span>
+            <span>Assignee: Planning Controls Lead</span>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-title">Q4: Historical Report Modification Audit Trails?</div>
+          <div class="question-ans">
+            <em>Resolution:</em> Reopening an approved report requires <code style="font-family:var(--font-mono);">'reopen'</code> action in <code style="font-family:var(--font-mono);">rpc_daily_report_transition</code>, which suspends active allocations and records an append-only audit event in <code style="font-family:var(--font-mono);">pm_task_events</code>.
+          </div>
+          <div class="assignee-chip">
+            <span>👤</span>
+            <span>Assignee: Database Governance Team</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <strong>Pzone Construction ERP Portal</strong> • Systems Architecture & Technical Governance
+      </div>
+      <div>
+        Document ID: <span style="font-family:var(--font-mono);">PRD-DAILY-PROGRESS-APPROVAL-2026</span> • Author: Hassan Soliman
+      </div>
+    </footer>
+  </div>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      if (next === 'light') {
+        icon.textContent = '🌙';
+        label.textContent = 'Dark Mode';
+      } else {
+        icon.textContent = '☀️';
+        label.textContent = 'Light Mode';
+      }
+
+      localStorage.setItem('pzone_prd_theme', next);
+    }
+
+    // Initialize persisted theme if available
+    (function initTheme() {
+      const saved = localStorage.getItem('pzone_prd_theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+        const icon = document.getElementById('themeIcon');
+        const label = document.getElementById('themeLabel');
+        if (icon && label) {
+          icon.textContent = saved === 'light' ? '🌙' : '☀️';
+          label.textContent = saved === 'light' ? 'Dark Mode' : 'Light Mode';
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

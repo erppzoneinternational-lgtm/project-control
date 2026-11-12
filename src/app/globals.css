@@ -1,0 +1,1166 @@
+@import "tailwindcss";
+@import "../styles/fonts.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-slate-850: #12283B;
+  --color-slate-900: #0D1F30;
+  --color-slate-950: #07131F;
+
+  /* Semantic ERP Design Tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+
+  /* Remap legacy emerald-* brand utilities to P-Zone Lagoon Teal & Cyan (DESIGN.md §2 & §8) */
+  --color-emerald-50: #EEFAFC;
+  --color-emerald-100: #DCF3F6;
+  --color-emerald-200: #B5E6EE;
+  --color-emerald-300: #7CD3E2;
+  --color-emerald-400: #26C6DA;
+  --color-emerald-500: #0E8FA3;
+  --color-emerald-600: #0B7285;
+  --color-emerald-700: #095D6D;
+  --color-emerald-800: #074B58;
+  --color-emerald-900: #063D49;
+  --color-emerald-950: #0A2536;
+
+  /* Remap legacy warm stone-* neutrals to P-Zone Cool Slate-Navy (DESIGN.md §2 & §8) */
+  --color-stone-50: #F7FAFC;
+  --color-stone-100: #EDF2F6;
+  --color-stone-200: #D5DFE6;
+  --color-stone-300: #B6C6D4;
+  --color-stone-400: #8A9FB2;
+  --color-stone-500: #4A5C6D;
+  --color-stone-600: #334454;
+  --color-stone-700: #1D2D3D;
+  --color-stone-800: #12283B;
+  --color-stone-850: #0F2335;
+  --color-stone-900: #0D1F30;
+  --color-stone-950: #07131F;
+}
+
+@layer base {
+  :root {
+    /* Official P-Zone ERP Light Mode Tokens (erp.pzoneinternational.com) */
+    --background: #F7FAFC;
+    --foreground: #07131F;
+    --card: #FFFFFF;
+    --card-foreground: #07131F;
+    --popover: #FFFFFF;
+    --popover-foreground: #07131F;
+    --primary: #0B7285;
+    --primary-foreground: #FFFFFF;
+    --secondary: #E6EEF3;
+    --secondary-foreground: #07131F;
+    --muted: #EDF2F6;
+    --muted-foreground: #4A5C6D;
+    --accent: #DCF3F6;
+    --accent-foreground: #07131F;
+    --destructive: #C23636;
+    --border: #D5DFE6;
+    --input: #D5DFE6;
+    --ring: #0E8FA3;
+    --success: #157A57;
+    --warning: #B86B14;
+    --info: #0B7285;
+    --radius: 0.625rem;
+
+    /* Mapped Legacy Alias Variables */
+    --bg-canvas: #F7FAFC;
+    --card-bg: #FFFFFF;
+    --card-border: #D5DFE6;
+    --card-shadow: 0 1px 2px 0 rgba(7, 19, 31, 0.05);
+    --text-main: #07131F;
+    --text-muted: #4A5C6D;
+    --brand-primary: #0B7285;
+    --brand-cyan: #0E8FA3;
+
+    /* Accessible Focus Ring System (Light Mode - P-Zone Lagoon Teal) */
+    --focus-ring-color: #0E8FA3;
+    --focus-ring-offset: #F7FAFC;
+    --focus-ring-glow: rgba(14, 143, 163, 0.35);
+
+    /* Official P-Zone ERP Bilingual Typography Stack */
+    --font-sans: 'IBM Plex Sans Arabic', 'Manrope Variable', var(--font-arabic, 'IBM Plex Sans Arabic'), var(--font-english, 'Manrope Variable'), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-arabic-stack: 'IBM Plex Sans Arabic', 'Manrope Variable', var(--font-arabic, 'IBM Plex Sans Arabic'), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono-brutalist: var(--font-mono, 'JetBrains Mono'), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* Cross-browser Scrollbar Palette (Light Mode) */
+    --scrollbar-thumb: #9DB1C3;
+    --scrollbar-thumb-hover: #0B7285;
+    --scrollbar-track: #EDF2F6;
+  }
+
+  .dark {
+    /* Official P-Zone ERP Dark Mode Tokens (erp.pzoneinternational.com) */
+    --background: #07131F;
+    --foreground: #F7FAFC;
+    --card: #0D1F30;
+    --card-foreground: #F7FAFC;
+    --popover: #11263A;
+    --popover-foreground: #F7FAFC;
+    --primary: #26C6DA;
+    --primary-foreground: #05232E;
+    --secondary: #16314A;
+    --secondary-foreground: #F7FAFC;
+    --muted: #12283B;
+    --muted-foreground: #9DB1C3;
+    --accent: #143A4A;
+    --accent-foreground: #E6F8FB;
+    --destructive: #F27A7A;
+    --border: oklch(100% 0 0 / 0.12);
+    --input: oklch(100% 0 0 / 0.16);
+    --ring: #26C6DA;
+    --success: #3CC796;
+    --warning: #F5B546;
+    --info: #4DD0E1;
+
+    /* Mapped Legacy Alias Variables */
+    --bg-canvas: #07131F;
+    --card-bg: #0D1F30;
+    --card-border: rgba(255, 255, 255, 0.12);
+    --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45);
+    --text-main: #F7FAFC;
+    --text-muted: #9DB1C3;
+    --brand-primary: #26C6DA;
+    --brand-cyan: #4DD0E1;
+
+    /* Accessible Focus Ring System (Dark Mode - Luminous Aqua) */
+    --focus-ring-color: #26C6DA;
+    --focus-ring-offset: #07131F;
+    --focus-ring-glow: rgba(38, 198, 218, 0.4);
+
+    /* Cross-browser Scrollbar Palette (Dark Mode) */
+    --scrollbar-thumb: #1E3A52;
+    --scrollbar-thumb-hover: #26C6DA;
+    --scrollbar-track: #07131F;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-main);
+    font-family: var(--font-arabic-stack);
+    font-feature-settings: "liga" 1, "calt" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Arabic Script Typography Guardrails - scoped by language rather than macro layout direction */
+  html[lang="ar"],
+  [lang="ar"],
+  :lang(ar) {
+    font-family: var(--font-arabic-stack);
+    font-feature-settings: "liga" 1, "calt" 1, "kern" 1;
+    letter-spacing: normal !important; /* Preserves cursive character joining in Arabic */
+  }
+
+  /* Prevent any Tailwind tracking-* classes from breaking Arabic cursive joins */
+  html[lang="ar"] *,
+  [lang="ar"] *,
+  :lang(ar) * {
+    letter-spacing: normal !important;
+  }
+
+  /* Latin Script Typography Guardrails - active when English locale is selected */
+  html[lang="en"],
+  [lang="en"],
+  :lang(en) {
+    font-family: 'Manrope Variable', 'IBM Plex Sans Arabic', var(--font-english, 'Manrope Variable'), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  /* Zero-Flicker Theme Hydration Guardrail */
+  html.preload *,
+  html.preload *::before,
+  html.preload *::after {
+    transition: none !important;
+  }
+
+  /* Universal Accessible Keyboard Focus Outline (excluding ERP underline inputs) */
+  :focus-visible:not(.erp-underline-input) {
+    outline: 2px solid var(--focus-ring-color) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 2px var(--focus-ring-offset), 0 0 0 4px var(--focus-ring-glow);
+    transition: outline-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .erp-underline-input:focus-visible {
+    outline: none !important;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Default Focus Ring for Standard Interactive Elements */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible:not(.erp-underline-input),
+  select:focus-visible,
+  textarea:focus-visible,
+  [role="button"]:focus-visible,
+  [role="tab"]:focus-visible,
+  [tabindex]:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+
+  /* Reduced Motion Accommodation */
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+    *:not(.erp-underline-input),
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Keep ERP glass underline inputs transparent and properly colored during Chrome/Edge autofill & preview */
+  .erp-underline-input,
+  .erp-underline-input:hover,
+  .erp-underline-input:focus,
+  .erp-underline-input:active,
+  .erp-underline-input:-webkit-autofill,
+  .erp-underline-input:-webkit-autofill:hover,
+  .erp-underline-input:-webkit-autofill:focus,
+  .erp-underline-input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--foreground) !important;
+    caret-color: var(--foreground) !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    transition: background-color 99999s ease-in-out 0s, color 99999s ease-in-out 0s, border-color 0.15s ease, box-shadow 0.15s ease !important;
+  }
+
+  .dark .erp-underline-input,
+  .dark .erp-underline-input:hover,
+  .dark .erp-underline-input:focus,
+  .dark .erp-underline-input:active,
+  .dark .erp-underline-input:-webkit-autofill,
+  .dark .erp-underline-input:-webkit-autofill:hover,
+  .dark .erp-underline-input:-webkit-autofill:focus,
+  .dark .erp-underline-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #F7FAFC !important;
+    caret-color: #F7FAFC !important;
+  }
+}
+
+@layer components {
+  /* Card Architecture Utility (Defaults - overrideable by specific utility classes) */
+  .glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    border-radius: 0.75rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(14, 143, 163, 0.35);
+    box-shadow: 0 12px 28px -6px rgba(11, 114, 133, 0.12);
+  }
+
+  /* High-Contrast Input & Select Styling */
+  .glass-input {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.625rem;
+    padding: 0.625rem 1rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .dark .glass-input {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+  }
+
+  .glass-input:hover {
+    border-color: var(--brand-primary);
+  }
+
+  .glass-input:focus {
+    outline: none;
+    border-color: var(--focus-ring-color);
+    box-shadow: 0 0 0 3px var(--focus-ring-glow);
+    background: var(--card-bg);
+  }
+
+  .dark .glass-input:focus {
+    background: var(--card-bg);
+    border-color: var(--focus-ring-color);
+    box-shadow: 0 0 0 3px var(--focus-ring-glow);
+  }
+
+  .glass-input:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}
+
+/* Brutalist Scoped Interactive Elements (Zero Radius + Hard Borders) */
+.brutalist-sharp,
+.brutalist-card,
+.brutalist-input,
+.brutalist-btn,
+.brutalist-table {
+  border-radius: 0px !important;
+}
+
+/* P-Zone ERP Typography: Semibold/Bold Geometric Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4, html[lang="ar"] h5, html[lang="ar"] h6,
+[lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
+  letter-spacing: normal !important;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* Content-level BiDi flow & Directional Alignment Guardrails:
+   The macro layout (app shell, sidebars, topbars, button positions, column pinning)
+   is held stable in an RTL frame to prevent disorienting macro-layout flipping.
+   Meanwhile, textual content, inputs, headings, and descriptions adapt naturally to the active locale:
+   - English: LTR reading flow, left text alignment, correct trailing punctuation, LTR input typing
+   - Arabic: RTL reading flow, right text alignment, cursive ligature preservation
+*/
+
+/* 1. Alignment helpers: responsive to language */
+html[lang="en"] .text-start {
+  text-align: left !important;
+}
+html[lang="en"] .text-end {
+  text-align: right !important;
+}
+html[lang="ar"] .text-start {
+  text-align: right !important;
+}
+html[lang="ar"] .text-end {
+  text-align: left !important;
+}
+
+/* 2. Text blocks: Headings, paragraphs, descriptions, labels, blockquotes in English */
+html[lang="en"] p:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] h1:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] h2:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] h3:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] h4:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] h5:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] h6:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] label:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] li:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] blockquote:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] .prose:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] .bidi-text {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+
+/* 3. Form controls & inputs: English types LTR from left; Arabic types RTL from right */
+html[lang="en"] input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] textarea:not([dir="rtl"]):not(.text-right):not(.text-center),
+html[lang="en"] select:not([dir="rtl"]):not(.text-right):not(.text-center) {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+
+/* 4. Technical / Code / Credential inputs are strictly LTR when value is entered */
+input[type="email"]:not(.erp-underline-input),
+input[type="password"]:not(.erp-underline-input),
+input[type="tel"],
+input[type="url"],
+input.font-mono,
+textarea.font-mono {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* 5. BiDi isolate utility */
+.bidi-isolate {
+  unicode-bidi: isolate;
+}
+
+/* P-Zone Lagoon Teal & Cyan Selection */
+::selection {
+  background-color: #0B7285 !important;
+  color: #FFFFFF !important;
+}
+
+.dark ::selection {
+  background-color: #26C6DA !important;
+  color: #07131F !important;
+}
+
+/* ── Cross-Browser Scrollbar & Touch Scrolling ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Touch Scrolling Momentum & Containers */
+.touch-scroll,
+.overflow-y-auto,
+.overflow-x-auto,
+.overflow-auto {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Utility Scrollbar Classes (Used across ERP tables & dashboards) */
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  -webkit-overflow-scrolling: touch;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Tabular Numbers for Arabic / Financial / ERP Grid Data */
+.font-arabic-num,
+.font-tabular {
+  font-feature-settings: "liga" 1, "calt" 1, "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Leaflet Custom Marker & Popup Overrides */
+.leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+  padding: 4px !important;
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background: #0B132B !important;
+  border: 1px solid #334155 !important;
+}
+
+.leaflet-popup-tip {
+  background: #FFFFFF !important;
+}
+
+.dark .leaflet-popup-tip {
+  background: #0B132B !important;
+}
+
+/* ===== CRITICAL: Leaflet container sizing fix (prevents black map) ===== */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: #E2E8F0;
+}
+
+.dark .leaflet-container {
+  background: #0B132B;
+}
+
+/* Ensure Leaflet tiles render above the dark background */
+.leaflet-tile-container img,
+.leaflet-tile {
+  background: transparent !important;
+}
+
+/* Fix Leaflet z-index clashes with Tailwind (keep default relative hierarchy) */
+.leaflet-tile-pane { z-index: 200 !important; }
+.leaflet-overlay-pane { z-index: 400 !important; }
+.leaflet-shadow-pane { z-index: 500 !important; }
+.leaflet-marker-pane { z-index: 600 !important; }
+.leaflet-tooltip-pane { z-index: 650 !important; }
+.leaflet-popup-pane { z-index: 700 !important; }
+.leaflet-top, .leaflet-bottom { z-index: 800 !important; }
+.leaflet-control-container { z-index: 800 !important; }
+
+/* Custom marker no background square */
+.custom-leaflet-marker,
+.pzone-pin-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Cluster marker sizing and brand styles */
+.custom-cluster-marker,
+.pzone-cluster-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Custom PZone Cluster Marker Brand Themes & Clear Numeric Badges */
+.pzone-cluster-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pzone-cluster-marker:hover .pzone-cluster-badge {
+  transform: scale(1.08);
+}
+
+/* Standard Leaflet MarkerCluster CSS overrides & Brand Colors */
+.marker-cluster {
+  background-clip: padding-box;
+  border-radius: 9999px;
+}
+
+.marker-cluster div {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 800;
+  font-size: 12px;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Amber: Small Clusters (2-4 items) */
+.marker-cluster-small,
+.pzone-cluster-amber {
+  background-color: rgba(245, 158, 11, 0.35) !important;
+  border: 2px solid rgba(245, 158, 11, 0.6) !important;
+}
+.marker-cluster-small div,
+.pzone-cluster-amber .pzone-cluster-badge {
+  background-color: #f59e0b !important;
+  color: #ffffff !important;
+}
+
+/* Emerald: Medium Clusters (5-9 items) */
+.marker-cluster-medium,
+.pzone-cluster-emerald {
+  background-color: rgba(16, 185, 129, 0.35) !important;
+  border: 2px solid rgba(16, 185, 129, 0.6) !important;
+}
+.marker-cluster-medium div,
+.pzone-cluster-emerald .pzone-cluster-badge {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+/* Brand Blue (#2563eb): Large Clusters (10+ items) */
+.marker-cluster-large,
+.pzone-cluster-blue {
+  background-color: rgba(37, 99, 235, 0.35) !important;
+  border: 2px solid rgba(37, 99, 235, 0.6) !important;
+}
+.marker-cluster-large div,
+.pzone-cluster-blue .pzone-cluster-badge {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+/* Glass tooltip override for Leaflet */
+.leaflet-tooltip.custom-leaflet-glass-tooltip,
+.custom-leaflet-glass-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.leaflet-tooltip.custom-leaflet-glass-tooltip::before,
+.leaflet-tooltip.custom-leaflet-glass-tooltip::after,
+.custom-leaflet-glass-tooltip::before,
+.custom-leaflet-glass-tooltip::after {
+  display: none !important;
+}
+
+/* RTL Popup & Tooltip Fixes */
+[dir="rtl"] .leaflet-popup-close-button {
+  left: 8px !important;
+  right: auto !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-content {
+  margin: 0 !important;
+  line-height: inherit !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-tip-container {
+  display: none !important;
+}
+
+/* Ensure select dropdowns appear above map */
+.map-filter-bar {
+  position: relative;
+  z-index: 999;
+}
+
+/* Custom PZone Map Marker & Container */
+.custom-pzone-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-container {
+  font-family: inherit;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 240px;
+  z-index: 1;
+}
+
+.leaflet-container img.leaflet-tile,
+.leaflet-container .leaflet-marker-icon,
+.leaflet-container .leaflet-marker-shadow {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* ── Flow Auth Animations & Effects ── */
+.flow-auth .flow-form > * {
+  clip-path: inset(-10% -10% 100% -10%);
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flow-auth .flow-form > *:nth-child(1) { transition-delay: 0s; }
+.flow-auth .flow-form > *:nth-child(2) { transition-delay: 0.05s; }
+.flow-auth .flow-form > *:nth-child(3) { transition-delay: 0.10s; }
+.flow-auth .flow-form > *:nth-child(4) { transition-delay: 0.15s; }
+.flow-auth .flow-form > *:nth-child(5) { transition-delay: 0.20s; }
+.flow-auth .flow-form > *:nth-child(6) { transition-delay: 0.25s; }
+.flow-auth .flow-form > *:nth-child(7) { transition-delay: 0.30s; }
+.flow-auth .flow-form > *:nth-child(8) { transition-delay: 0.36s; }
+.flow-auth .flow-form > *:nth-child(9) { transition-delay: 0.42s; }
+.flow-auth .flow-form > *:nth-child(n+10) { transition-delay: 0.45s; }
+
+.flow-auth.is-open .flow-form > * {
+  clip-path: inset(-10% -10% -10% -10%);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.flow-auth .peek-btn {
+  transition: opacity 0.35s ease, transform 0.4s ease;
+}
+.flow-auth.is-open .peek-btn {
+  opacity: 0;
+  transform: scale(0.9) translateY(-8px);
+  pointer-events: none;
+}
+
+.flow-signin {
+  position: relative;
+  overflow: hidden;
+}
+.flow-signin::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 10%;
+  right: 10%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(0,220,255,0.25) 0%, transparent 70%);
+  transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.flow-signin.is-melting::after {
+  top: 0%;
+}
+
+.flow-card {
+  transition: box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s ease;
+}
+.flow-auth.is-open .flow-card {
+  box-shadow:
+    0 24px 70px -12px rgba(0, 0, 0, 0.85),
+    0 0 50px -10px rgba(6, 182, 212, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.flow-input {
+  color-scheme: dark;
+}
+
+.flow-input:focus {
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3), inset 0 0 12px rgba(6, 182, 212, 0.06);
+}
+
+.flow-input:-webkit-autofill,
+.flow-input:-webkit-autofill:hover,
+.flow-input:-webkit-autofill:focus,
+.flow-input:-webkit-autofill:active,
+.flow-input:autofill {
+  -webkit-box-shadow: 0 0 0 1000px #0c152b inset !important;
+  box-shadow: 0 0 0 1000px #0c152b inset !important;
+  -webkit-text-fill-color: #f1f5f9 !important;
+  color: #f1f5f9 !important;
+  caret-color: #38bdf8 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.flow-input:-webkit-autofill:focus,
+.flow-input:autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #0c152b inset, 0 0 0 2px rgba(6, 182, 212, 0.35) !important;
+  box-shadow: 0 0 0 1000px #0c152b inset, 0 0 0 2px rgba(6, 182, 212, 0.35) !important;
+  border-color: rgba(6, 182, 212, 0.45) !important;
+}
+
+/* ── Wizard Step Transitions & Utilities ── */
+@keyframes stepForwardRtl {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stepBackwardRtl {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-step-forward-rtl {
+  animation: stepForwardRtl 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-step-backward-rtl {
+  animation: stepBackwardRtl 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   ENTERPRISE PRINT HARNESS (@media print)
+   Standardized A4 PDF / Paper Output across P.ZONE ERP Portal
+   ══════════════════════════════════════════════════════════════════════════════ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 10mm;
+  }
+
+  /* 1. Reset color space, remove ink traps & background blurs */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
+  /* 2. Unclip all scrolling containers and 100dvh locks */
+  .h-\[100dvh\],
+  .min-h-\[100dvh\],
+  [class*="h-\[100dvh\]"],
+  [class*="min-h-\[100dvh\]"],
+  .overflow-hidden,
+  .overflow-y-auto,
+  .overflow-x-hidden,
+  .overflow-x-auto {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  #main-content {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* 3. Strip interactive chrome, navigation and transient widgets */
+  header.sticky,
+  header[class*="sticky"],
+  nav[role="navigation"],
+  nav[role="tablist"],
+  nav,
+  .scry-search,
+  button:not(.print-allow),
+  a[href="#main-content"],
+  [data-sonner-toaster],
+  [data-sonner-toast],
+  .uiverse-dock,
+  .no-print,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* ═══ Handover Taking-Over Certificate (TOC) Print Isolation ═══ */
+  body.handover-cert-modal-open {
+    background: #ffffff !important;
+  }
+
+  body.handover-cert-modal-open #main-content > div > *:not([data-testid="handover-certificate-modal"]) {
+    display: none !important;
+  }
+
+  body.handover-cert-modal-open [data-testid="handover-certificate-modal"] {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  body.handover-cert-modal-open [data-testid="handover-certificate-modal"] > div {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    background: #ffffff !important;
+  }
+
+  /* ═══ Official A4 Engineering Form Print Isolation ═══ */
+  .a4-printable-sheet .bg-slate-900 {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+  }
+
+  .a4-printable-sheet .bg-slate-900 * {
+    color: #ffffff !important;
+  }
+
+  /* 4. Contrast & Theme Inversion (Convert dark-mode cards to crisp monochrome/light) */
+  .dark,
+  :root[class~="dark"],
+  html.dark,
+  body.dark {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .dark .bg-slate-900,
+  .dark .bg-slate-950,
+  .dark .bg-stone-900,
+  .dark .bg-stone-950,
+  .dark .bg-black,
+  .dark [class*="bg-slate-900"],
+  .dark [class*="bg-stone-900"],
+  .dark [class*="dark:bg-slate-900"],
+  .dark [class*="dark:bg-slate-950"],
+  .dark [class*="dark:bg-stone-900"],
+  .dark [class*="dark:bg-stone-950"] {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .dark .text-white,
+  .dark .text-slate-100,
+  .dark .text-slate-200,
+  .dark [class*="dark:text-white"],
+  .dark [class*="dark:text-slate-100"],
+  .dark [class*="dark:text-slate-200"] {
+    color: #0f172a !important;
+  }
+
+  .dark .text-slate-400,
+  .dark .text-slate-500,
+  .dark [class*="dark:text-slate-400"] {
+    color: #475569 !important;
+  }
+
+  .dark .border-slate-800,
+  .dark .border-slate-700,
+  .dark .border-stone-800,
+  .dark [class*="dark:border-slate-800"],
+  .dark [class*="dark:border-slate-700"] {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* 5. Clean Card Borders & Backgrounds */
+  .rounded-2xl:not(.a4-printable-sheet):not(.a4-printable-sheet *),
+  .rounded-3xl:not(.a4-printable-sheet):not(.a4-printable-sheet *),
+  .card,
+  .glass-card,
+  fieldset,
+  section:not(.a4-printable-sheet *),
+  article {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 6. Typography & Headings Rules */
+  h1:not(.a4-printable-sheet .bg-slate-900 *),
+  h2:not(.a4-printable-sheet .bg-slate-900 *),
+  h3:not(.a4-printable-sheet .bg-slate-900 *),
+  h4:not(.a4-printable-sheet .bg-slate-900 *),
+  h5:not(.a4-printable-sheet .bg-slate-900 *),
+  h6:not(.a4-printable-sheet .bg-slate-900 *) {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+    color: #0f172a !important;
+  }
+
+  /* 7. Tables Pagination & Repeating Headers */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    break-inside: auto !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+    break-inside: avoid !important;
+  }
+
+  tr,
+  tbody tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  th:not(.a4-printable-sheet *):not(.a4-print-wrapper *),
+  td:not(.a4-printable-sheet *):not(.a4-print-wrapper *) {
+    border-bottom: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
+  }
+
+  /* 8. Links hygiene */
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
+  /* 9. Visual Assets & Charts Scale */
+  img,
+  svg,
+  canvas {
+    max-width: 100% !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+/* 10. Full-Width Edge-to-Edge Dashboard Layout (Eliminates horizontal side margins) */
+#main-content > main,
+#main-content > div:not([role="dialog"]):not([data-resize-guideline]):not(.fixed) {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* 11. Smooth Circular Reveal & Radial Wave Effect for Corner Theme Switcher */
+html.pzone-theme-transitioning::view-transition-old(root),
+html.pzone-theme-transitioning::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.pzone-theme-transitioning::view-transition-old(root) {
+  z-index: 1;
+}
+
+html.pzone-theme-transitioning::view-transition-new(root) {
+  z-index: 9999;
+}
+
+@keyframes pzoneThemeWave {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.95;
+  }
+  65% {
+    width: 250vmax;
+    height: 250vmax;
+    opacity: 0.5;
+  }
+  100% {
+    width: 310vmax;
+    height: 310vmax;
+    opacity: 0;
+  }
+}
+
+@keyframes pzoneShockwaveRing {
+  0% {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    border-width: 6px;
+  }
+  75% {
+    opacity: 0.65;
+    border-width: 2px;
+  }
+  100% {
+    width: 290vmax;
+    height: 290vmax;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+@keyframes pzoneOrbitSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pzoneFloatOrb {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+

@@ -1,0 +1,246 @@
+/* CollectUI Design System Inspired Sidebar (Inspiration 28281548-1c4b-4fba-8722-a90d83ae0b37) */
+
+.sidebarContainer {
+  box-sizing: border-box;
+  width: 240px;
+  max-width: 100%;
+  font-family: var(--font-geist-sans, 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  padding: 16px 12px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+/* Light Theme (Canvas #ffffff, Border oklch(0.922 0 0) / #eaeaea) */
+.themeLight {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid oklch(0.922 0 0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Theme (Background Secondary #242424 / Deep Black #181818) */
+.themeDark {
+  background: #181818;
+  color: #ffffff;
+  border: 1px solid #242424;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Pill Search Bar */
+.searchForm {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  border-radius: 999px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.themeLight .searchForm {
+  background: #f5f6f8;
+  border: 1px solid #eaeaea;
+}
+
+.themeLight .searchForm:focus-within {
+  border-color: #155dfc;
+  box-shadow: 0 0 0 2px rgba(21, 93, 252, 0.15);
+}
+
+.themeDark .searchForm {
+  background: #242424;
+  border: 1px solid #333333;
+}
+
+.themeDark .searchForm:focus-within {
+  border-color: #155dfc;
+  box-shadow: 0 0 0 2px rgba(21, 93, 252, 0.3);
+}
+
+.searchIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #71717b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.13px;
+  outline: none;
+}
+
+.themeLight .searchInput {
+  color: #000000;
+}
+
+.themeLight .searchInput::placeholder {
+  color: #71717b;
+}
+
+.themeDark .searchInput {
+  color: #ffffff;
+}
+
+.themeDark .searchInput::placeholder {
+  color: #888888;
+}
+
+/* Sections & Items */
+.sectionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  margin: 0;
+}
+
+.themeLight .sectionTitle {
+  color: #888888;
+}
+
+.themeDark .sectionTitle {
+  color: #666666;
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.itemButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.13px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: inherit;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.themeLight .itemButton {
+  color: #464646;
+}
+
+.themeLight .itemButton:hover {
+  background: #f5f6f8;
+  color: #000000;
+}
+
+.themeDark .itemButton {
+  color: #a0a0a0;
+}
+
+.themeDark .itemButton:hover {
+  background: #242424;
+  color: #ffffff;
+}
+
+/* Active item state */
+.themeLight .itemActive {
+  background: #f5f6f8;
+  color: #155dfc;
+  font-weight: 600;
+}
+
+.themeDark .itemActive {
+  background: #242424;
+  color: #155dfc;
+  font-weight: 600;
+}
+
+.itemLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.itemIcon {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.itemLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.countBadge {
+  font-family: var(--font-geist-mono, 'Geist Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.11px;
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+.themeLight .countBadge {
+  background: #eef1f6;
+  color: #666666;
+}
+
+.themeDark .countBadge {
+  background: #2c2c2c;
+  color: #aaaaaa;
+}
+
+.itemActive .countBadge {
+  background: rgba(21, 93, 252, 0.12);
+  color: #155dfc;
+}
+
+/* Direction adjustments */
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
