@@ -12,6 +12,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { DailyProgressPhoto } from '@/types/planning';
+import { useSignedStorageUrlMap } from '@/lib/hooks/useSignedStorageUrl';
 
 interface DailyPhotoModalProps {
   isOpen: boolean;
@@ -35,6 +36,29 @@ export const DailyPhotoModal: React.FC<DailyPhotoModalProps> = ({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const photoKeys = photos.map((p) =>
+    p.photo_url && p.photo_url.includes('/storage/v1/object/sign/')
+      ? p.photo_url
+      : p.storage_path || p.photo_url || ''
+  );
+  const signedPhotoUrls = useSignedStorageUrlMap('progress-photos', photoKeys, 3600);
+  const getPhotoSrc = (photo: DailyProgressPhoto | undefined, idx: number): string => {
+    if (!photo) return '';
+    const key = photoKeys[idx] || '';
+    const resolved = signedPhotoUrls[key];
+    if (resolved) return resolved;
+    if (
+      photo.photo_url &&
+      (photo.photo_url.startsWith('blob:') ||
+        photo.photo_url.startsWith('data:') ||
+        photo.photo_url.includes('/storage/v1/object/sign/'))
+    ) {
+      return photo.photo_url;
+    }
+    return '';
+  };
+  const currentPhotoSrc = getPhotoSrc(photos[currentIndex], currentIndex);
 
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -60,11 +84,11 @@ export const DailyPhotoModal: React.FC<DailyPhotoModalProps> = ({
     }
   }, [isOpen, initialIndex, photos.length]);
 
-  // Reset image load state on photo switch
+  // Reset image load state on photo switch or signed URL update
   useEffect(() => {
     setImageLoaded(false);
     setImageError(false);
-  }, [currentIndex]);
+  }, [currentIndex, currentPhotoSrc]);
 
   const currentPhoto = photos[currentIndex];
 
@@ -182,9 +206,9 @@ export const DailyPhotoModal: React.FC<DailyPhotoModalProps> = ({
 
         {/* Action Controls */}
         <div className="flex items-center gap-2">
-          {currentPhoto.photo_url && (
+          {currentPhotoSrc && (
             <a
-              href={currentPhoto.photo_url}
+              href={currentPhotoSrc}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition border border-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -243,10 +267,12 @@ export const DailyPhotoModal: React.FC<DailyPhotoModalProps> = ({
             </div>
           ) : (
             <img
-              src={currentPhoto.photo_url}
+              src={currentPhotoSrc || undefined}
               alt={accessibleAltText}
               onLoad={() => setImageLoaded(true)}
-              onError={() => setImageError(true)}
+              onError={() => {
+                if (currentPhotoSrc) setImageError(true);
+              }}
               className={`max-h-[75vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl transition-opacity duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
@@ -301,7 +327,7 @@ export const DailyPhotoModal: React.FC<DailyPhotoModalProps> = ({
                   aria-label={`عرض الصورة ${idx + 1}`}
                 >
                   <img
-                    src={photo.photo_url}
+                    src={getPhotoSrc(photo, idx) || undefined}
                     alt={photo.caption || `صورة مصغرة ${idx + 1}`}
                     className="w-full h-full object-cover"
                   />

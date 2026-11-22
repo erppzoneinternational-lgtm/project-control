@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase';
+import { getSignedStorageUrls, toCanonicalStorageValue } from '@/lib/supabase/storage';
 import { appCache, CACHE_KEYS, TTL } from '@/lib/cache';
 import {
   DailyProgress,
@@ -129,7 +130,7 @@ export class DailyProgressService {
     filterStr = ''
   ): Promise<DailyProgress[]> {
     const key = CACHE_KEYS.dailyProgress.list(projectId, filterStr);
-    return appCache.getOrFetch(key, TTL.dailyProgress, async () => {
+    const reports = await appCache.getOrFetch(key, TTL.dailyProgress, async () => {
       try {
         const { data, error } = await supabase
           .from('pm_daily_progress')
@@ -156,6 +157,7 @@ export class DailyProgressService {
         return [];
       }
     });
+    return DailyProgressService.signReportsMedia(reports);
   }
 
   /**
@@ -163,7 +165,7 @@ export class DailyProgressService {
    */
   static async getDailyReportById(id: string): Promise<DailyProgress | null> {
     const key = CACHE_KEYS.dailyProgress.detail(id);
-    return appCache.getOrFetch(key, TTL.dailyProgress, async () => {
+    const report = await appCache.getOrFetch(key, TTL.dailyProgress, async () => {
       try {
         const { data, error } = await supabase
           .from('pm_daily_progress')
@@ -190,6 +192,7 @@ export class DailyProgressService {
         return null;
       }
     });
+    return DailyProgressService.signReportMedia(report);
   }
 
   /**
@@ -606,7 +609,7 @@ export class DailyProgressService {
       const { data, error } = await query.limit(1).maybeSingle();
 
       if (error || !data) return null;
-      return data as unknown as DailyProgress;
+      return DailyProgressService.signReportMedia(data as unknown as DailyProgress);
     } catch (err) {
       logger.warn('DailyProgressService.checkExistingReport exception:', { detail: err });
       return null;
@@ -687,7 +690,7 @@ export class DailyProgressService {
         .maybeSingle();
 
       if (error || !data) return null;
-      return data as unknown as DailyProgress;
+      return DailyProgressService.signReportMedia(data as unknown as DailyProgress);
     } catch (err) {
       logger.warn('DailyProgressService.getExistingDraftForTaskToday exception:', { detail: err });
       return null;
@@ -1178,7 +1181,7 @@ export class DailyProgressService {
         logger.warn('DailyProgressService.getRejectedDailyReports error:', { detail: error });
         return [];
       }
-      return (data || []) as DailyProgress[];
+      return DailyProgressService.signReportsMedia((data || []) as DailyProgress[]);
     } catch (err) {
       logger.warn('DailyProgressService.getRejectedDailyReports exception:', { detail: err });
       return [];
@@ -1391,7 +1394,7 @@ export class DailyProgressService {
       const payload = {
         daily_progress_id: photo.daily_progress_id,
         storage_path: photo.storage_path || '',
-        photo_url: photo.photo_url || null,
+        photo_url: toCanonicalStorageValue('progress-photos', photo.photo_url),
         caption: photo.caption || null,
         uploaded_by: photo.uploaded_by || null,
         uploaded_at: new Date().toISOString(),
@@ -1494,7 +1497,7 @@ export class DailyProgressService {
         started_at: obstruction.started_at || new Date().toISOString(),
         resolved_at: obstruction.resolved_at || null,
         resolution_notes: obstruction.resolution_notes || null,
-        evidence_path: obstruction.evidence_path || null,
+        evidence_path: toCanonicalStorageValue('progress-photos', obstruction.evidence_path),
         created_at: new Date().toISOString(),
       };
 
@@ -1539,7 +1542,7 @@ export class DailyProgressService {
   }): Promise<DailyObstruction[]> {
     const cacheKey = `obstructions:cross:${JSON.stringify(options || {})}`;
 
-    return appCache.getOrFetch(cacheKey, TTL.dailyProgress || 15000, async () => {
+    const obstructions = await appCache.getOrFetch(cacheKey, TTL.dailyProgress || 15000, async () => {
       try {
         let query = supabase
           .from('pm_daily_obstructions')
@@ -1586,6 +1589,7 @@ export class DailyProgressService {
         return [];
       }
     });
+    return DailyProgressService.signObstructionsEvidence(obstructions);
   }
 
   /**
@@ -2392,5 +2396,60 @@ export class DailyProgressService {
       const errorMsg = err instanceof Error ? err.message : String(err);
       return { success: false, updatedCount: 0, error: errorMsg || 'حدث خطأ أثناء الحفظ المجمع' };
     }
+  }
+
+  private static async signObstructionsEvidence(
+    obstructions: DailyObstruction[]
+  ): Promise<DailyObstruction[]> {
+    if (!obstructions.length) return obstructions;
+    const signedMap = await getSignedStorageUrls(
+      'progress-photos',
+      obstructions.map((o) => o.evidence_path),
+      3600
+    );
+    return obstructions.map((o) => {
+      const signed = o.evidence_path ? signedMap.get(o.evidence_path) : undefined;
+      return signed ? { ...o, evidence_path: signed } : o;
+    });
+  }
+
+  private static async signReportsMedia(reports: DailyProgress[]): Promise<DailyProgress[]> {
+    if (!reports.length) return reports;
+    const paths: Array<string | null | undefined> = [];
+    for (const rep of reports) {
+      for (const p of rep.photos || []) {
+        paths.push(p.storage_path || p.photo_url);
+      }
+      for (const o of rep.obstructions || []) {
+        paths.push(o.evidence_path);
+      }
+    }
+    const signedMap = await getSignedStorageUrls('progress-photos', paths, 3600);
+    if (signedMap.size === 0) return reports;
+
+    return reports.map((rep) => ({
+      ...rep,
+      photos: rep.photos
+        ? rep.photos.map((p) => {
+            const key = p.storage_path || p.photo_url;
+            const signed = key ? signedMap.get(key) : undefined;
+            return signed ? { ...p, photo_url: signed } : p;
+          })
+        : rep.photos,
+      obstructions: rep.obstructions
+        ? rep.obstructions.map((o) => {
+            const signed = o.evidence_path ? signedMap.get(o.evidence_path) : undefined;
+            return signed ? { ...o, evidence_path: signed } : o;
+          })
+        : rep.obstructions,
+    }));
+  }
+
+  private static async signReportMedia(
+    report: DailyProgress | null
+  ): Promise<DailyProgress | null> {
+    if (!report) return null;
+    const [signed] = await DailyProgressService.signReportsMedia([report]);
+    return signed;
   }
 }

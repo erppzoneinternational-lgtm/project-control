@@ -19,6 +19,8 @@ import { useUserRoles } from '@/lib/hooks/useUserRoles';
 import { canViewPrices } from '@/components/planning/PriceGate';
 import { validateSafeUploadFile } from '@/lib/utils/security';
 import { supabase } from '@/lib/supabase';
+import { buildCanonicalStorageUrl } from '@/lib/supabase/storage';
+import { useSignedStorageUrlMap } from '@/lib/hooks/useSignedStorageUrl';
 import { logger } from '@/lib/logger';
 import { toast } from 'sonner';
 
@@ -114,6 +116,11 @@ export function DailyProgressWizardModal({
   // Photos & Visual Documentation (Step 3)
   const [photos, setPhotos] = useState<WizardPhoto[]>([]);
   const [existingPhotos, setExistingPhotos] = useState<ExistingPhoto[]>([]);
+  const signedExistingPhotoUrls = useSignedStorageUrlMap(
+    'progress-photos',
+    existingPhotos.map((p) => p.storage_path || p.photo_url),
+    3600
+  );
   const [uploadProgressText, setUploadProgressText] = useState<string>('');
   const [motionEnabled, setMotionEnabled] = useState(false);
   const objectUrlsRef = useRef<Set<string>>(new Set());
@@ -439,10 +446,7 @@ export function DailyProgressWizardModal({
               throw uploadErr;
             }
 
-            const { data: publicUrlData } = supabase.storage
-              .from('progress-photos')
-              .getPublicUrl(filePath);
-            const photoUrl = publicUrlData.publicUrl;
+            const photoUrl = buildCanonicalStorageUrl('progress-photos', filePath);
 
             const attached = await DailyProgressService.addPhotoAttachment({
               daily_progress_id: reportId,
@@ -1066,20 +1070,27 @@ export function DailyProgressWizardModal({
                     <div className="space-y-2">
                       <span className="text-[10px] font-bold text-slate-400 block">الصور المرفقة سابقاً:</span>
                       <div className={`grid grid-cols-2 sm:grid-cols-3 gap-3 ${motionEnabled ? 'preserve-3d perspective-[1000px]' : ''}`}>
-                        {existingPhotos.map((p, idx) => (
-                          <div key={p.id} className={`rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-800 ${motionEnabled ? `transform-gpu transition-all duration-500 hover:-translate-y-2 hover:rotate-x-[${(idx % 2 === 0 ? 10 : -10)}deg] hover:rotate-y-[${(idx % 2 === 0 ? -10 : 10)}deg] hover:shadow-2xl hover:z-10` : ''}`}>
-                            {p.photo_url ? (
-                              <img src={p.photo_url} alt="existing" className="w-full h-24 object-cover" />
-                            ) : (
-                              <div className="w-full h-24 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
-                                <Camera className="w-6 h-6" />
+                        {existingPhotos.map((p, idx) => {
+                          const photoKey =
+                            p.photo_url && p.photo_url.includes('/storage/v1/object/sign/')
+                              ? p.photo_url
+                              : p.storage_path || p.photo_url || '';
+                          const displayUrl = signedExistingPhotoUrls[photoKey] || p.photo_url;
+                          return (
+                            <div key={p.id} className={`rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-800 ${motionEnabled ? `transform-gpu transition-all duration-500 hover:-translate-y-2 hover:rotate-x-[${(idx % 2 === 0 ? 10 : -10)}deg] hover:rotate-y-[${(idx % 2 === 0 ? -10 : 10)}deg] hover:shadow-2xl hover:z-10` : ''}`}>
+                              {displayUrl ? (
+                                <img src={displayUrl} alt="existing" className="w-full h-24 object-cover" />
+                              ) : (
+                                <div className="w-full h-24 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+                                  <Camera className="w-6 h-6" />
+                                </div>
+                              )}
+                              <div className="p-1.5 text-[10px] text-slate-600 dark:text-slate-300 truncate">
+                                {p.caption || 'صورة توثيق'}
                               </div>
-                            )}
-                            <div className="p-1.5 text-[10px] text-slate-600 dark:text-slate-300 truncate">
-                              {p.caption || 'صورة توثيق'}
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   )}

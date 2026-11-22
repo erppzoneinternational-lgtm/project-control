@@ -33,6 +33,7 @@ import { contractsService } from '@/lib/services/contracts.service';
 import { supabase } from '@/lib/supabase';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { validateSafeUploadFile } from '@/lib/utils/security';
+import { buildCanonicalStorageUrl } from '@/lib/supabase/storage';
 import { logger } from '@/lib/logger';
 
 export interface DailyObstructionModalProps {
@@ -267,10 +268,7 @@ export const DailyObstructionModal: React.FC<DailyObstructionModalProps> = ({
         return;
       }
 
-      const { data: urlData } = supabase.storage
-        .from('progress-photos')
-        .getPublicUrl(path);
-      setEvidencePath(urlData.publicUrl || path);
+      setEvidencePath(buildCanonicalStorageUrl('progress-photos', path));
     } catch (err) {
       logger.warn('Evidence upload exception', { detail: err });
       setErrorMsg(

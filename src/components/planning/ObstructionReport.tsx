@@ -28,6 +28,7 @@ interface ObstructionWithProject {
 }
 import { DailyProgressService } from '@/lib/services/dailyProgress.service';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSignedStorageUrl } from '@/lib/hooks/useSignedStorageUrl';
 import { UNIFIED_TAXONOMY_CATEGORIES as ALL_CATEGORIES } from './DailyObstructionModal';
 
 export interface ObstructionReportProps {
@@ -117,6 +118,11 @@ export const ObstructionReport: React.FC<ObstructionReportProps> = ({
 
   // Detail Modal State
   const [viewingObstruction, setViewingObstruction] = useState<DailyObstruction | null>(null);
+  const signedViewingEvidenceUrl = useSignedStorageUrl(
+    'progress-photos',
+    viewingObstruction?.evidence_path,
+    3600
+  );
 
   // Fetch Cross-Project Obstructions
   const {
@@ -843,7 +849,7 @@ export const ObstructionReport: React.FC<ObstructionReportProps> = ({
               {viewingObstruction.evidence_path && (
                 <div className="pt-2">
                   <a
-                    href={viewingObstruction.evidence_path}
+                    href={signedViewingEvidenceUrl || viewingObstruction.evidence_path}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline"

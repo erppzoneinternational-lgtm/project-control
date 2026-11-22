@@ -1,5 +1,6 @@
 import type { WeeklyBoqItem, WeeklyAllocationRow } from '@/types/services-types';
 import { supabase } from '@/lib/supabase';
+import { getSignedStorageUrls } from '@/lib/supabase/storage';
 import { appCache, CACHE_KEYS, TTL } from '@/lib/cache';
 import {
   WeeklyReport,
@@ -163,7 +164,7 @@ export class WeeklyReportService {
             line_status,
             boq_item:pm_boq_items(id, item_code, description_ar, unit, contract_qty, rate_egp)
           ),
-          photos:pm_daily_progress_photos(photo_url, caption, uploaded_at),
+          photos:pm_daily_progress_photos(storage_path, photo_url, caption, uploaded_at),
           obstructions:pm_daily_obstructions(*)
         `)
         .eq('project_id', projectId)
@@ -206,10 +207,11 @@ export class WeeklyReportService {
           }
         });
 
-        (rep.photos || []).forEach((p) => {
-          if (p.photo_url) {
+        (rep.photos || []).forEach((p: { storage_path?: string | null; photo_url?: string | null; caption?: string }) => {
+          const sourceKey = p.storage_path || p.photo_url;
+          if (sourceKey) {
             photos.push({
-              photo_url: p.photo_url,
+              photo_url: sourceKey,
               caption: p.caption,
               date: rep.progress_date,
             });
@@ -220,6 +222,20 @@ export class WeeklyReportService {
           obstructionsRaw.push(obs);
         });
       });
+
+      if (photos.length > 0) {
+        const signedPhotoUrls = await getSignedStorageUrls(
+          'progress-photos',
+          photos.map((p) => p.photo_url),
+          3600
+        );
+        for (const photoItem of photos) {
+          const signed = signedPhotoUrls.get(photoItem.photo_url);
+          if (signed) {
+            photoItem.photo_url = signed;
+          }
+        }
+      }
 
       const weekly_boq_progress = Array.from(boqMap.values()).map((b) => ({
         boq_item_id: b.boq_item_id,
