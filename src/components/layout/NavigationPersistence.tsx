@@ -8,15 +8,11 @@ const LEGACY_LAST_PATH_KEY = 'pzone_last_path';
 
 const BLOCKED_EXACT_PATHS = new Set([
   '/',
-  '/login',
-  '/auth',
+  '/no-access',
   '/unauthorized',
-  '/signup',
-  '/forgot-password',
-  '/reset-password',
 ]);
 
-const BLOCKED_PATH_PREFIXES = ['/login/', '/auth/', '/unauthorized/'];
+const BLOCKED_PATH_PREFIXES = ['/no-access/', '/unauthorized/'];
 
 export function getScopedLastPathKey(userId: string): string {
   return `${LEGACY_LAST_PATH_KEY}:${userId}`;

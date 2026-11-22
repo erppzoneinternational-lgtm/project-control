@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { logger } from '@/lib/logger';
+import { portalLoginUrl } from '@/lib/supabase/config';
 
 export default function RootErrorBoundary({
   error,
@@ -120,13 +121,15 @@ export default function RootErrorBoundary({
             <span>لوحة التحكم</span>
           </Link>
 
-          <Link
-            href="/login"
+          <a
+            href={portalLoginUrl(
+              typeof window !== 'undefined' ? window.location.href : 'https://projects.pzoneinternational.com'
+            )}
             className="min-h-[44px] min-w-[44px] px-4 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors border border-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
           >
             <LogIn className="w-4 h-4" aria-hidden="true" />
             <span>تسجيل الدخول</span>
-          </Link>
+          </a>
 
           <button
             type="button"

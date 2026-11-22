@@ -1,29 +1,13 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { updateSession } from '@/lib/supabase/middleware';
+import { portalLoginUrl } from '@/lib/supabase/config';
 import { isE2EBypassAllowed } from '@/lib/middleware/e2e-bypass';
 import {
   FOCUSED_PROJECTS_HOME_PATH,
   isFocusedProjectsMode,
   isRouteAllowedInFocusedMode,
 } from '@/lib/config/module-visibility';
-
-/**
- * Public routes that do NOT require authentication.
- * Everything else requires a valid Supabase session.
- */
-const PUBLIC_ROUTES = new Set([
-  '/login',
-  '/signup',
-  '/forgot-password',
-  '/reset-password',
-  '/privacy-policy',
-  '/thank-you',
-  '/landing',
-  '/showcase',
-  '/auth/callback',
-  '/auth/confirm',
-]);
 
 /**
  * Matches genuine static file extensions — replaces the broad pathname.includes('.')
@@ -33,10 +17,11 @@ const STATIC_FILE_REGEX =
   /\.(ico|png|jpg|jpeg|svg|webp|woff|woff2|ttf|otf|css|js|map|html|mp4|webm|json|webmanifest|txt|xml)$/i;
 
 /**
- * Prefixes to always skip (static assets, API routes, etc.)
+ * Prefixes to always skip (static assets, health check, API routes)
  */
 function shouldSkip(pathname: string): boolean {
   return (
+    pathname === '/api/health' ||
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/static') ||
@@ -47,20 +32,9 @@ function shouldSkip(pathname: string): boolean {
 }
 
 export async function middleware(request: NextRequest) {
-  const { pathname, searchParams } = request.nextUrl;
+  const { pathname } = request.nextUrl;
 
-  // Forward loopback Google OAuth callbacks arriving at root ('/?code=...&state=google_local:...') to /auth/callback
-  if (
-    pathname === '/' &&
-    searchParams.has('code') &&
-    (searchParams.get('state') || '').startsWith('google_local:')
-  ) {
-    const callbackUrl = request.nextUrl.clone();
-    callbackUrl.pathname = '/auth/callback';
-    return NextResponse.redirect(callbackUrl);
-  }
-
-  // Skip static assets and internal routes
+  // Skip static assets, health route, and API routes (API routes enforce getUser() directly)
   if (shouldSkip(pathname)) {
     return NextResponse.next();
   }
@@ -82,40 +56,21 @@ export async function middleware(request: NextRequest) {
   // Refresh session and get user
   const { user, supabaseResponse } = await updateSession(request);
 
-  // Public routes: allow through (redirect to /projects if already logged in for auth pages)
-  if (PUBLIC_ROUTES.has(pathname)) {
-    if (user && (pathname === '/login' || pathname === '/signup' || pathname === '/forgot-password')) {
-      // Already authenticated — redirect away from login
-      const redirectUrl = request.nextUrl.clone();
-      redirectUrl.pathname = '/projects';
-      redirectUrl.search = ''; // Strip lingering ?redirect params
-      const redirectResponse = NextResponse.redirect(redirectUrl);
-      supabaseResponse.cookies.getAll().forEach((cookie) => {
-        redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
-      });
-      return redirectResponse;
-    }
-    return supabaseResponse;
-  }
-
-  // Protected routes: redirect to login if not authenticated
+  // Protected routes: redirect to Portal login if not authenticated
   if (!user) {
-    const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = '/login';
-    // Only append redirect param for meaningful deep links, never for root '/' or auth pages
-    if (pathname && pathname !== '/' && pathname !== '/login') {
-      redirectUrl.searchParams.set('redirect', pathname);
-    } else {
-      redirectUrl.searchParams.delete('redirect');
-    }
-    const redirectResponse = NextResponse.redirect(redirectUrl);
+    const redirectResponse = NextResponse.redirect(portalLoginUrl(request.nextUrl.href));
     supabaseResponse.cookies.getAll().forEach((cookie) => {
       redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
     });
     return redirectResponse;
   }
 
-  // Focused Projects Mode route boundary: redirect hidden module routes to /projects/dashboard
+  // Allow authenticated users to view /no-access regardless of Focused Projects Mode
+  if (pathname === '/no-access') {
+    return supabaseResponse;
+  }
+
+  // Focused Projects Mode route boundary: redirect hidden module routes to /projects
   if (isFocusedProjectsMode() && !isRouteAllowedInFocusedMode(pathname)) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = pathname === '/projects/import' ? '/projects' : FOCUSED_PROJECTS_HOME_PATH;

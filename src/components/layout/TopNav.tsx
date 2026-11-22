@@ -31,6 +31,7 @@ import { FontCustomizerButton } from './FontCustomizerButton';
 import { useProjectStore } from '@/lib/stores/useProjectStore';
 import { ProjectService } from '@/lib/services/project.service';
 import { supabase } from '@/lib/supabase';
+import { SUPABASE_SCHEMA } from '@/lib/supabase/config';
 import { Project } from '@/types';
 import { ThemeToggleSwitch } from '@/components/ui/ThemeToggleSwitch';
 import { ProjectStructureDropdown } from '@/components/ui/ProjectStructureDropdown';
@@ -407,7 +408,7 @@ export const TopNav: React.FC<{
         'postgres_changes',
         { 
           event: '*', 
-          schema: 'public', 
+          schema: SUPABASE_SCHEMA, 
           table: 'profiles',
           ...(user?.id ? { filter: `id=eq.${user.id}` } : {})
         },
@@ -1156,7 +1157,6 @@ export const TopNav: React.FC<{
                     onClick={async () => {
                       setShowUserMenu(false);
                       await signOut();
-                      router.replace('/login');
                     }}
                     className="w-full min-h-[44px] flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded-xl"
                   >
@@ -1481,7 +1481,6 @@ export const TopNav: React.FC<{
               onClick={async () => {
                 setMobileOpen(false);
                 await signOut();
-                router.replace('/login');
               }}
               className="w-full min-h-[44px] flex items-center gap-3 px-4 py-2.5 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded-xl"
             >
