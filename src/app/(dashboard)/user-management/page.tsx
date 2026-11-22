@@ -21,6 +21,7 @@ import {
   Sparkles,
   BookOpen,
   ExternalLink,
+  Check,
 } from 'lucide-react';
 import { PORTAL_URL, SUPABASE_SCHEMA } from '@/lib/supabase/config';
 import { useModuleAccess } from '@/lib/hooks/useModuleAccess';

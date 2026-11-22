@@ -95,7 +95,7 @@ export function extractStoragePath(
 
 /**
  * Constructs the canonical Supabase object path URL stored in DB columns that
- * hold full URLs (without calling getPublicUrl() and without appending signed tokens).
+ * hold full URLs (without calling public URL helpers and without appending signed tokens).
  */
 export function buildCanonicalStorageUrl(
   bucket: StorageBucket,

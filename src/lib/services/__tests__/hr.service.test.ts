@@ -1,13 +1,10 @@
-import type { Mock } from 'vitest';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { HrService } from '../hr.service';
-import * as clientModule from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase';
 
 describe('HrService (Strictly Read-Only HR Registry)', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    process.env.NEXT_PUBLIC_HR_SUPABASE_URL = 'https://ftmguacqywsucjhjiacn.supabase.co';
-    process.env.NEXT_PUBLIC_HR_SUPABASE_ANON_KEY = 'sb_publishable_test_key';
   });
 
   it('guarantees HrService exposes ONLY read methods (zero mutations on HR database)', () => {
@@ -22,26 +19,14 @@ describe('HrService (Strictly Read-Only HR Registry)', () => {
     expect(typeof HrService.getEmployees).toBe('function');
   });
 
-  it('safely handles missing environment variables returning empty array', async () => {
-    const origUrl = process.env.NEXT_PUBLIC_HR_SUPABASE_URL;
-    const origKey = process.env.NEXT_PUBLIC_HR_SUPABASE_ANON_KEY;
-    const origViteUrl = process.env.VITE_AUTH_SUPABASE_URL;
-    const origViteKey = process.env.VITE_AUTH_SUPABASE_ANON_KEY;
+  it('safely handles RPC errors returning empty array', async () => {
+    vi.spyOn(supabase, 'rpc').mockResolvedValue({
+      data: null,
+      error: { message: 'RPC unavailable' },
+    } as never);
 
-    try {
-      delete process.env.NEXT_PUBLIC_HR_SUPABASE_URL;
-      delete process.env.NEXT_PUBLIC_HR_SUPABASE_ANON_KEY;
-      delete process.env.VITE_AUTH_SUPABASE_URL;
-      delete process.env.VITE_AUTH_SUPABASE_ANON_KEY;
-
-      const employees = await HrService.getEmployees();
-      expect(employees).toEqual([]);
-    } finally {
-      process.env.NEXT_PUBLIC_HR_SUPABASE_URL = origUrl;
-      process.env.NEXT_PUBLIC_HR_SUPABASE_ANON_KEY = origKey;
-      process.env.VITE_AUTH_SUPABASE_URL = origViteUrl;
-      process.env.VITE_AUTH_SUPABASE_ANON_KEY = origViteKey;
-    }
+    const employees = await HrService.getEmployees();
+    expect(employees).toEqual([]);
   });
 
   it('fetches and maps active employees to StakeholderFull shape with is_hr_employee=true', async () => {
@@ -70,23 +55,14 @@ describe('HrService (Strictly Read-Only HR Registry)', () => {
       },
     ];
 
-    const mockQueryBuilder: Record<string, Mock> = {
-      select: vi.fn().mockReturnThis(),
-      in: vi.fn().mockReturnThis(),
-      order: vi.fn().mockResolvedValue({ data: mockEmployees, error: null }),
-    };
-
-    const mockClient: Record<string, Mock> = {
-      from: vi.fn().mockReturnValue(mockQueryBuilder),
-    };
-
-    vi.spyOn(clientModule, 'createHrDbClient').mockReturnValue(mockClient as never);
+    const rpcSpy = vi.spyOn(supabase, 'rpc').mockResolvedValue({
+      data: mockEmployees,
+      error: null,
+    } as never);
 
     const result = await HrService.getEmployees();
 
-    expect(clientModule.createHrDbClient).toHaveBeenCalled();
-    expect(mockClient.from).toHaveBeenCalledWith('employees');
-    expect(mockQueryBuilder.in).toHaveBeenCalledWith('status', ['active']);
+    expect(rpcSpy).toHaveBeenCalledWith('fn_hr_directory');
     expect(result.length).toBe(2);
 
     // Verify first employee mapping
@@ -125,17 +101,10 @@ describe('HrService (Strictly Read-Only HR Registry)', () => {
       },
     ];
 
-    const mockQueryBuilder: Record<string, Mock> = {
-      select: vi.fn().mockReturnThis(),
-      in: vi.fn().mockReturnThis(),
-      order: vi.fn().mockResolvedValue({ data: mockEmployees, error: null }),
-    };
-
-    const mockClient: Record<string, Mock> = {
-      from: vi.fn().mockReturnValue(mockQueryBuilder),
-    };
-
-    vi.spyOn(clientModule, 'createHrDbClient').mockReturnValue(mockClient as never);
+    vi.spyOn(supabase, 'rpc').mockResolvedValue({
+      data: mockEmployees,
+      error: null,
+    } as never);
 
     const filtered = await HrService.getEmployees({ search: 'Karim' });
     expect(filtered.length).toBe(1);
