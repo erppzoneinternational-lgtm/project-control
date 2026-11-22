@@ -1775,22 +1775,20 @@ export class ProjectService {
   static async getStakeholdersDirectory(params: { kind?: StakeholderKind | 'all'; search?: string } = {}): Promise<StakeholderFull[]> {
     const cacheKey = `stakeholders:directory:${JSON.stringify(params)}`;
     return appCache.getOrFetch(cacheKey, TTL.reference, async () => {
-      // 0. Fetch registered system users from profiles & user_roles
+      // 0. Fetch registered system users from profiles
       const systemUserProfilesMap = new Map<string, { full_name: string; role?: string }>();
       const systemUserEmailsMap = new Map<string, { full_name: string; role?: string }>();
 
       try {
-        const { data: profs } = await supabase.from('profiles').select('id, full_name, email');
-        const { data: uRoles } = await supabase.from('user_roles').select('user_id, role');
+        const { data: profs } = await supabase
+          .from('profiles')
+          .select('id, full_name, email, roles');
 
         if (profs && profs.length > 0) {
-          const roleByUserId: Record<string, string> = {};
-          (uRoles || []).forEach((r) => {
-            if (r.user_id) roleByUserId[r.user_id] = r.role;
-          });
-
-          profs.forEach((p) => {
-            const roleName = roleByUserId[p.id] || 'مستخدم بالبوابة';
+          profs.forEach((p: { id: string; full_name?: string | null; email?: string | null; roles?: string[] | null }) => {
+            const roleName =
+              (Array.isArray(p.roles) && p.roles.length > 0 ? p.roles[0] : null) ||
+              'مستخدم بالبوابة';
             if (p.full_name) {
               systemUserProfilesMap.set(p.full_name.trim().toLowerCase(), { full_name: p.full_name, role: roleName });
             }

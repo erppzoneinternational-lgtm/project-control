@@ -724,23 +724,31 @@ Please be advised that ongoing delay in resolving this matter constitutes disrup
     );
   };
 
-  // Escalation: resolve REAL recipient user ids from user_roles
+  // Escalation: resolve REAL recipient user ids from active profiles
   // (Target project_manager, technical_office, planning_manager, admin)
   const resolveEscalationRecipients = async (): Promise<string[]> => {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id, roles')
+      .eq('status', 'active');
+    if (error) {
+      console.warn('Failed to query profiles for escalation recipients:', error);
+      return [];
+    }
+    const activeProfiles = (data || []) as Array<{ id?: string | null; roles?: string[] | null }>;
     for (const roles of [
       ['project_manager', 'technical_office', 'technical_office_manager'],
       ['planning_manager', 'admin'],
       ['coo'],
     ]) {
-      const { data, error } = await supabase
-        .from('user_roles')
-        .select('user_id')
-        .in('role', roles);
-      if (error) {
-        console.warn('Failed to query user_roles for escalation recipients:', error);
-        continue;
-      }
-      const ids = Array.from(new Set((data || []).map((r) => r.user_id).filter(Boolean))) as string[];
+      const ids = Array.from(
+        new Set(
+          activeProfiles
+            .filter((p) => Array.isArray(p.roles) && p.roles.some((r) => roles.includes(r)))
+            .map((p) => p.id)
+            .filter((id): id is string => Boolean(id))
+        )
+      );
       if (ids.length > 0) return ids;
     }
     return [];

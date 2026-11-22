@@ -6,8 +6,6 @@ import { supabase } from '@/lib/supabase';
 import { toast } from 'sonner';
 import {
   Shield,
-  UserPlus,
-  Trash2,
   Search,
   Users,
   Database,
@@ -18,17 +16,13 @@ import {
   Loader2,
   X,
   RefreshCw,
-  Filter,
-  Info,
-  Check,
   ChevronDown,
-  CheckCircle2,
   SlidersHorizontal,
-  MessageCircle,
-  Calendar,
   Sparkles,
   BookOpen,
+  ExternalLink,
 } from 'lucide-react';
+import { PORTAL_URL, SUPABASE_SCHEMA } from '@/lib/supabase/config';
 import { useModuleAccess } from '@/lib/hooks/useModuleAccess';
 import { useUserRoles } from '@/lib/hooks/useUserRoles';
 import { useRouter } from 'next/navigation';
@@ -38,7 +32,7 @@ import { UserActivityService } from '@/lib/services/userActivity.service';
 import { UserAuditTab } from '@/components/users/UserAuditTab';
 import { UserChangelogModal } from '@/components/users/UserChangelogModal';
 import { UserAccessCustomizationModal } from '@/components/users/UserAccessCustomizationModal';
-import { UserService, UserProfileFull, generateAdminWhatsAppUrl, generateUserContactWhatsAppUrl } from '@/lib/services/userService';
+import { UserProfileFull } from '@/lib/services/userService';
 import { AuditLogEntry, UserWorkDuration } from '@/types';
 import {
   ROLE_LABELS,
@@ -168,6 +162,9 @@ interface ProfileRow {
   full_name?: string;
   full_name_ar?: string;
   email?: string;
+  roles?: string[] | null;
+  status?: string | null;
+  is_active?: boolean | null;
 }
 
 const AVATAR_PALETTES = [
@@ -219,7 +216,7 @@ export default function UserManagementPage() {
   const [roleFilter, setRoleFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<'all' | 'online' | 'active_today' | 'admins'>('all');
   const [expandedRolesUserId, setExpandedRolesUserId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'pending' | 'users' | 'permissions' | 'raci' | 'audit_logs'>('users');
+  const [activeTab, setActiveTab] = useState<'users' | 'permissions' | 'raci' | 'audit_logs'>('users');
   const [customizingUser, setCustomizingUser] = useState<UserProfileFull | null>(null);
   const [isCustomizationModalOpen, setIsCustomizationModalOpen] = useState(false);
   const [selectedUserChangelog, setSelectedUserChangelog] = useState<UserWorkDuration | null>(null);
@@ -250,31 +247,18 @@ export default function UserManagementPage() {
     },
   });
 
-  const {
-    data: userRoles,
-    isLoading: loadingRoles,
-    refetch: refetchRoles,
-  } = useQuery({
-    queryKey: ['admin-user-roles'],
-    queryFn: async () => {
-      const { data, error } = await supabase.from('user_roles').select('*');
-      if (error) throw error;
-      return data;
-    },
-  });
-
   // Sync tab from URL query params
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       const tab = params.get('tab');
-      if (tab === 'pending' || tab === 'audit_logs' || tab === 'permissions' || tab === 'raci' || tab === 'users') {
+      if (tab === 'audit_logs' || tab === 'permissions' || tab === 'raci' || tab === 'users') {
         setActiveTab(tab);
       }
     }
   }, []);
 
-  // Realtime subscription: Auto-reflect user updates (names, roles, status) across admin portal
+  // Realtime subscription: Auto-reflect user updates across admin portal
   useEffect(() => {
     const channelName = 'admin-profiles-realtime-listener';
     try {
@@ -294,17 +278,15 @@ export default function UserManagementPage() {
       .channel(channelName)
       .on(
         'postgres_changes',
-        { event: '*', schema: 'public', table: 'profiles' },
+        { event: '*', schema: SUPABASE_SCHEMA, table: 'profiles' },
         () => {
           queryClient.invalidateQueries({ queryKey: ['admin-profiles'] });
-          queryClient.invalidateQueries({ queryKey: ['admin-user-roles'] });
         }
       )
       .subscribe();
 
     const handleProfileUpdated = () => {
       queryClient.invalidateQueries({ queryKey: ['admin-profiles'] });
-      queryClient.invalidateQueries({ queryKey: ['admin-user-roles'] });
     };
 
     if (typeof window !== 'undefined') {
@@ -325,15 +307,6 @@ export default function UserManagementPage() {
     };
   }, [queryClient]);
 
-  // Pending activation users (active account with 0 roles assigned)
-  const pendingUsers = useMemo(() => {
-    return (profiles || []).filter((p: any) => {
-      if (p.is_active === false) return false;
-      if (p.status === 'pending_activation') return true;
-      return !p.roles || p.roles.length === 0;
-    });
-  }, [profiles]);
-
   // Fetch full audit logs for work duration calculation and changelog
   const {
     data: allAuditLogs = [],
@@ -349,7 +322,7 @@ export default function UserManagementPage() {
   const handleManualRefresh = async () => {
     setIsRefetching(true);
     try {
-      await Promise.all([refetchProfiles(), refetchRoles(), refetchLogs()]);
+      await Promise.all([refetchProfiles(), refetchLogs()]);
       toast.success('تم تحديث البيانات بنجاح');
       setSrAnnouncement('تم تحديث بيانات المستخدمين والصلاحيات بنجاح');
     } catch {
@@ -364,15 +337,14 @@ export default function UserManagementPage() {
     const map: Record<string, UserWorkDuration> = {};
     (profiles || []).forEach((prof: ProfileRow) => {
       const targetUserId = prof.id;
-      const rolesForUser = (userRoles || []).filter((r: { user_id: string; role: string }) => r.user_id === targetUserId);
-      const activeRoles = rolesForUser.map((r: { user_id: string; role: string }) => r.role);
+      const activeRoles = Array.isArray(prof.roles) ? prof.roles : [];
       map[targetUserId] = UserActivityService.getUserWorkMetrics(
         { ...prof, id: targetUserId, roles: activeRoles },
         allAuditLogs
       );
     });
     return map;
-  }, [profiles, userRoles, allAuditLogs]);
+  }, [profiles, allAuditLogs]);
 
   // Online count
   const onlineCount = useMemo(() => {
@@ -391,64 +363,8 @@ export default function UserManagementPage() {
 
   // Admins count
   const adminCount = useMemo(() => {
-    return (userRoles || []).filter((r: { role: string }) => r.role === 'admin').length;
-  }, [userRoles]);
-
-  // NOTE: user_roles is a non-updatable VIEW over profiles.roles (text[]).
-  // Writes must go through profiles.roles directly.
-  const addRole = useMutation({
-    mutationFn: async ({ userId, role }: { userId: string; role: string }) => {
-      const { data: prof, error: fetchErr } = await supabase
-        .from('profiles')
-        .select('roles')
-        .eq('id', userId)
-        .maybeSingle();
-      if (fetchErr) throw fetchErr;
-      const nextRoles = Array.from(new Set([...(((prof?.roles as string[]) ?? [])), role]));
-      const { error } = await supabase
-        .from('profiles')
-        .update({ roles: nextRoles, is_active: true, updated_at: new Date().toISOString() })
-        .eq('id', userId);
-      if (error) throw error;
-      return { userId, role };
-    },
-    onSuccess: (variables) => {
-      queryClient.invalidateQueries({ queryKey: ['admin-user-roles'] });
-      queryClient.invalidateQueries({ queryKey: ['admin-profiles'] });
-      queryClient.invalidateQueries({ queryKey: ['user-roles'] });
-      const roleLabel = ROLE_LABELS[variables.role] || variables.role;
-      toast.success(`تم إضافة دور ${roleLabel} بنجاح`);
-      setSrAnnouncement(`تم إضافة دور ${roleLabel} بنجاح للمستخدم`);
-    },
-    onError: (err: Error) => toast.error(err.message || 'فشل إضافة الدور'),
-  });
-
-  const removeRole = useMutation({
-    mutationFn: async ({ userId, role }: { userId: string; role: string }) => {
-      const { data: prof, error: fetchErr } = await supabase
-        .from('profiles')
-        .select('roles')
-        .eq('id', userId)
-        .maybeSingle();
-      if (fetchErr) throw fetchErr;
-      const nextRoles = (((prof?.roles as string[]) ?? [])).filter((r) => r !== role);
-      const { error } = await supabase
-        .from('profiles')
-        .update({ roles: nextRoles, updated_at: new Date().toISOString() })
-        .eq('id', userId);
-      if (error) throw error;
-      return { userId, role };
-    },
-    onSuccess: (variables) => {
-      queryClient.invalidateQueries({ queryKey: ['admin-user-roles'] });
-      queryClient.invalidateQueries({ queryKey: ['admin-profiles'] });
-      queryClient.invalidateQueries({ queryKey: ['user-roles'] });
-      const roleLabel = ROLE_LABELS[variables.role] || variables.role;
-      toast.success(`تم إزالة دور ${roleLabel} بنجاح`);
-      setSrAnnouncement(`تم إزالة دور ${roleLabel} بنجاح`);
-    },
-    onError: (err: Error) => toast.error(err.message || 'فشل إزالة الدور'),
-  });
+    return (profiles || []).filter((p: ProfileRow) => Array.isArray(p.roles) && p.roles.includes('admin')).length;
+  }, [profiles]);
 
   const { data: moduleAccessList, isLoading: loadingModuleAccess } = useModuleAccess();
 
@@ -511,7 +427,7 @@ export default function UserManagementPage() {
     onError: (err: Error) => toast.error(err.message || 'فشل تحديث الصلاحيات'),
   });
 
-  const isLoading = loadingProfiles || loadingRoles || loadingModuleAccess;
+  const isLoading = loadingProfiles || loadingModuleAccess;
 
   if (loadingViewerRoles) {
     return (
@@ -536,8 +452,7 @@ export default function UserManagementPage() {
   const filteredProfiles = useMemo(() => {
     return (profiles || []).filter((p: ProfileRow) => {
       const targetUserId = p.user_id || p.id;
-      const rolesForUser = (userRoles || []).filter((r: { user_id: string; role: string }) => r.user_id === targetUserId);
-      const activeRoles = rolesForUser.map((r: { user_id: string; role: string }) => r.role);
+      const activeRoles = Array.isArray(p.roles) ? p.roles : [];
       const metric = userMetricsMap[targetUserId];
 
       // Text search
@@ -561,7 +476,7 @@ export default function UserManagementPage() {
 
       return true;
     });
-  }, [profiles, userRoles, userMetricsMap, search, roleFilter, statusFilter]);
+  }, [profiles, userMetricsMap, search, roleFilter, statusFilter]);
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 w-full max-w-[1920px] mx-auto space-y-8" dir="rtl">
@@ -584,8 +499,18 @@ export default function UserManagementPage() {
           </p>
         </div>
 
-        {/* Stats Badges, Workflow Guide & Refresh */}
+        {/* Stats Badges, Console Link, Workflow Guide & Refresh */}
         <div className="flex flex-wrap items-center gap-2.5 self-start sm:self-auto">
+          <a
+            href={`${PORTAL_URL}/admin`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border border-primary/30 bg-primary/10 hover:bg-primary hover:text-primary-foreground text-primary transition-all shadow-xs"
+          >
+            <ExternalLink size={14} />
+            <span>إدارة الأدوار في لوحة التحكم / Manage roles in the Console</span>
+          </a>
+
           <button
             type="button"
             onClick={() => setShowWorkflowGuide((prev) => !prev)}
@@ -664,11 +589,11 @@ export default function UserManagementPage() {
                 <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
                   المرحلة 01
                 </span>
-                <UserPlus size={16} className="text-amber-500" />
+                <ExternalLink size={16} className="text-amber-500" />
               </div>
-              <h3 className="text-xs font-bold text-foreground">التسجيل والاعتماد الإداري</h3>
+              <h3 className="text-xs font-bold text-foreground">الحوكمة المركزية عبر البوابة</h3>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
-                يسجل المستخدم حسابه فتُحفظ بياناته بحالة معلقة بتبويب (طلبات التفعيل). يقوم مسؤول النظام بمراجعة الطلب، تحديد رقم الواتساب المعتمد، وتفعيل الحساب.
+                تتم إدارة حسابات المستخدمين والأدوار وحالة التفعيل مركزيًا من خلال لوحة التحكم في البوابة الرئيسية (Portal Console).
               </p>
             </div>
 
@@ -727,37 +652,12 @@ export default function UserManagementPage() {
           <button
             type="button"
             role="tab"
-            id="tab-pending"
-            aria-selected={activeTab === 'pending'}
-            aria-controls="panel-pending"
-            onClick={() => {
-              setActiveTab('pending');
-              setSrAnnouncement('تم الانتقال إلى تبويب طلبات التفعيل المعلقة');
-            }}
-            className={`px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer flex items-center gap-2 ${
-              activeTab === 'pending'
-                ? 'bg-amber-500 text-slate-950 shadow-xs font-bold'
-                : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-            }`}
-          >
-            <UserPlus size={16} />
-            <span>طلبات التفعيل المعلقة</span>
-            {pendingUsers.length > 0 && (
-              <span className="px-2 py-0.5 rounded-full text-[11px] font-black bg-amber-400 text-slate-950">
-                {pendingUsers.length}
-              </span>
-            )}
-          </button>
-
-          <button
-            type="button"
-            role="tab"
             id="tab-users"
             aria-selected={activeTab === 'users'}
             aria-controls="panel-users"
             onClick={() => {
               setActiveTab('users');
-              setSrAnnouncement('تم الانتقال إلى تبويب إدارة المستخدمين والأدوار');
+              setSrAnnouncement('تم الانتقال إلى تبويب عرض المستخدمين والأدوار');
             }}
             className={`px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer flex items-center gap-2 ${
               activeTab === 'users'
@@ -766,7 +666,7 @@ export default function UserManagementPage() {
             }`}
           >
             <Users size={16} />
-            <span>إدارة المستخدمين والأدوار</span>
+            <span>المستخدمون والأدوار (للقراءة فقط)</span>
           </button>
 
           <button
@@ -830,157 +730,7 @@ export default function UserManagementPage() {
           </button>
         </nav>
 
-        {/* Tab 0: Pending Activation Users */}
-        {activeTab === 'pending' && (
-          <section
-            id="panel-pending"
-            role="tabpanel"
-            aria-labelledby="tab-pending"
-            className="bg-card rounded-2xl border border-border p-4 sm:p-6 shadow-xs space-y-6"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
-              <div>
-                <h2 className="text-base font-bold text-foreground flex items-center gap-2">
-                  <UserPlus className="text-amber-500" size={20} />
-                  <span>طلبات التسجيل وتفعيل الحسابات الجديدة</span>
-                  {pendingUsers.length > 0 && (
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-500 border border-amber-500/30">
-                      {pendingUsers.length} طلب بانتظار المراجعة
-                    </span>
-                  )}
-                </h2>
-                <p className="text-xs text-muted-foreground mt-1">
-                  المستخدمون الجدد الذين أتموا التسجيل وبانتظار اعتماد الأدوار، نطاق المشاريع، وتفعيل الصلاحيات من قبل الإدارة
-                </p>
-              </div>
-
-              <div className="text-xs text-muted-foreground flex items-center gap-2">
-                <span className="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
-                <span>تحديث فوري للطلبات</span>
-              </div>
-            </div>
-
-            {pendingUsers.length === 0 ? (
-              <div className="py-16 text-center space-y-3 bg-muted/20 rounded-2xl border border-dashed border-border">
-                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 flex items-center justify-center mx-auto">
-                  <CheckCircle2 size={28} />
-                </div>
-                <div className="space-y-1">
-                  <h3 className="text-sm font-bold text-foreground">لا توجد طلبات تفعيل معلقة حالياً</h3>
-                  <p className="text-xs text-muted-foreground max-w-md mx-auto">
-                    جميع المستخدمين المسجلين في النظام تم تفعيل حساباتهم وتعيين أدوارهم بنجاح. أي تسجيل جديد سيظهر هنا فوراً.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {pendingUsers.map((pendingUser: any) => {
-                  const regDate = pendingUser.created_at
-                    ? new Date(pendingUser.created_at).toLocaleDateString('ar-EG', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                      })
-                    : '—';
-
-                  const contactWhatsAppUrl = generateUserContactWhatsAppUrl({
-                    phone: pendingUser.phone,
-                    fullName: pendingUser.full_name,
-                    email: pendingUser.email,
-                  });
-
-                  return (
-                    <div
-                      key={pendingUser.id}
-                      className="rounded-2xl border border-amber-500/20 bg-amber-500/5 hover:border-amber-500/40 transition-all p-4 flex flex-col justify-between space-y-4 shadow-xs"
-                    >
-                      <div className="space-y-3">
-                        {/* Top: Avatar & Badge */}
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-500 flex items-center justify-center font-black text-sm">
-                              {pendingUser.full_name?.charAt(0) || pendingUser.email?.charAt(0)?.toUpperCase() || 'U'}
-                            </div>
-                            <div>
-                              <h3 className="font-bold text-foreground text-sm leading-tight">
-                                {pendingUser.full_name || 'مستخدم بدون اسم'}
-                              </h3>
-                              <p className="text-xs text-muted-foreground font-mono dir-ltr text-end mt-0.5">
-                                {pendingUser.email}
-                              </p>
-                            </div>
-                          </div>
-                          <span className="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 shrink-0">
-                            بانتظار التفعيل
-                          </span>
-                        </div>
-
-                        {/* Details */}
-                        <div className="space-y-1.5 text-xs text-muted-foreground pt-1 border-t border-border/50">
-                          <div className="flex items-center justify-between">
-                            <span className="flex items-center gap-1.5">
-                              <Calendar size={12} className="text-muted-foreground/80" />
-                              <span>تاريخ التسجيل:</span>
-                            </span>
-                            <span className="font-medium text-foreground">{regDate}</span>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span className="flex items-center gap-1.5">
-                              <Shield size={12} className="text-muted-foreground/80" />
-                              <span>الحالة الحالية:</span>
-                            </span>
-                            <span className="font-medium text-amber-600 dark:text-amber-400">
-                              {pendingUser.status || 'معلق (بدون أدوار)'}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex items-center gap-2 pt-2 border-t border-border/50">
-                        {contactWhatsAppUrl ? (
-                          <a
-                            href={contactWhatsAppUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-emerald-600/15 hover:bg-emerald-600/25 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 transition-colors"
-                            title="مراسلة المستخدم عبر واتساب"
-                          >
-                            <MessageCircle size={14} />
-                            <span className="hidden sm:inline">واتساب</span>
-                          </a>
-                        ) : (
-                          <a
-                            href={`mailto:${pendingUser.email}?subject=${encodeURIComponent('بخصوص تفعيل حسابك على Pzone Portal')}`}
-                            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-500/10 hover:bg-slate-500/20 text-slate-600 dark:text-slate-400 border border-border transition-colors"
-                            title="لا يوجد هاتف مسجل — مراسلة عبر البريد الإلكتروني"
-                          >
-                            <MessageCircle size={14} className="opacity-50" />
-                            <span className="hidden sm:inline">بريد</span>
-                          </a>
-                        )}
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setCustomizingUser(pendingUser);
-                            setIsCustomizationModalOpen(true);
-                          }}
-                          className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all shadow-xs cursor-pointer hover:scale-[1.02]"
-                        >
-                          <SlidersHorizontal size={13} />
-                          <span>تخصيص وتفعيل الحساب</span>
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </section>
-        )}
-
-        {/* Tab 1: User Management */}
+        {/* Tab 1: User Directory (Read-Only Roles) */}
         {activeTab === 'users' && (
           <section
             id="panel-users"
@@ -988,6 +738,25 @@ export default function UserManagementPage() {
             aria-labelledby="tab-users"
             className="space-y-6"
           >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl border border-primary/25 bg-primary/5">
+              <div className="text-xs text-foreground space-y-0.5">
+                <div className="font-bold">
+                  الأدوار وحالة الحسابات للقراءة فقط (تُدار عبر البوابة الرئيسية)
+                </div>
+                <div className="text-muted-foreground">
+                  Roles and access status are managed centrally in the Portal Console. You can still inspect users and customize project scope or display name here.
+                </div>
+              </div>
+              <a
+                href={`${PORTAL_URL}/admin`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-bold transition-colors shrink-0"
+              >
+                <ExternalLink size={14} />
+                <span>manage roles in the Console</span>
+              </a>
+            </div>
             {/* KPI Summary Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {/* Card 1: All Users */}
@@ -1222,8 +991,7 @@ export default function UserManagementPage() {
                       <th scope="col" className="px-5 py-4 font-semibold text-end min-w-[360px]">الأدوار المعينة</th>
                       <th scope="col" className="px-4 py-4 font-semibold text-center min-w-[150px]">ساعات العمل</th>
                       <th scope="col" className="px-4 py-4 font-semibold text-center min-w-[140px]">سجل التعديلات</th>
-                      {isAdmin && <th scope="col" className="px-4 py-4 font-semibold text-start min-w-[180px]">إضافة دور</th>}
-                      {isAdmin && <th scope="col" className="px-4 py-4 font-semibold text-center min-w-[150px]">تخصيص الصلاحيات</th>}
+                      {isAdmin && <th scope="col" className="px-4 py-4 font-semibold text-center min-w-[150px]">تخصيص النطاق والبيانات</th>}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
@@ -1250,11 +1018,6 @@ export default function UserManagementPage() {
                         <td className="px-4 py-4 text-center">
                           <div className="h-7 w-24 bg-muted rounded-xl mx-auto" />
                         </td>
-                        {isAdmin && (
-                          <td className="px-4 py-4 text-start">
-                            <div className="h-8 w-28 bg-muted rounded-xl" />
-                          </td>
-                        )}
                         {isAdmin && (
                           <td className="px-4 py-4 text-center">
                             <div className="h-8 w-28 bg-muted rounded-xl mx-auto" />
@@ -1302,21 +1065,18 @@ export default function UserManagementPage() {
                       <th scope="col" className="px-5 py-4 font-bold text-end min-w-[360px]">الأدوار المعينة</th>
                       <th scope="col" className="px-4 py-4 font-bold text-center min-w-[150px]">ساعات العمل</th>
                       <th scope="col" className="px-4 py-4 font-bold text-center min-w-[140px]">سجل التعديلات</th>
-                      {isAdmin && <th scope="col" className="px-4 py-4 font-bold text-start min-w-[180px]">إضافة دور</th>}
-                      {isAdmin && <th scope="col" className="px-4 py-4 font-bold text-center min-w-[150px]">تخصيص الصلاحيات</th>}
+                      {isAdmin && <th scope="col" className="px-4 py-4 font-bold text-center min-w-[150px]">تخصيص النطاق والبيانات</th>}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border/60">
                     {filteredProfiles.map((prof: ProfileRow) => {
                       const targetUserId = prof.user_id || prof.id;
-                      const rolesForUser = (userRoles || []).filter((r: { user_id: string; role: string }) => r.user_id === targetUserId);
-                      const activeRoles = rolesForUser.map((r: { user_id: string; role: string }) => r.role);
+                      const activeRoles = Array.isArray(prof.roles) ? prof.roles : [];
                       const metric = userMetricsMap[targetUserId];
-                      const isAddingRoleForThisUser = addRole.isPending && addRole.variables?.userId === targetUserId;
 
                       const isRolesExpanded = expandedRolesUserId === targetUserId;
-                      const visibleRoles = isRolesExpanded || rolesForUser.length <= 3 ? rolesForUser : rolesForUser.slice(0, 3);
-                      const remainingRolesCount = rolesForUser.length - visibleRoles.length;
+                      const visibleRoles = isRolesExpanded || activeRoles.length <= 3 ? activeRoles : activeRoles.slice(0, 3);
+                      const remainingRolesCount = activeRoles.length - visibleRoles.length;
                       const avatarStyle = getUserAvatarStyle(prof.full_name || prof.email || prof.id);
 
                       return (
@@ -1358,46 +1118,23 @@ export default function UserManagementPage() {
                             </div>
                           </td>
 
-                          {/* Roles badges */}
+                          {/* Roles badges (read-only) */}
                           <td className="px-5 py-4">
                             <div className="flex flex-wrap items-center gap-1.5 max-w-none">
-                              {rolesForUser.length === 0 ? (
+                              {activeRoles.length === 0 ? (
                                 <span className="text-xs text-muted-foreground/60 italic">لا توجد أدوار معينة</span>
                               ) : (
                                 <>
-                                  {visibleRoles.map((r: { user_id: string; role: string }) => {
-                                    const isRemovingThisRole =
-                                      removeRole.isPending &&
-                                      removeRole.variables?.userId === targetUserId &&
-                                      removeRole.variables?.role === r.role;
-
-                                    return (
-                                      <span
-                                        key={`${r.user_id ?? targetUserId}-${r.role}`}
-                                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold border shadow-2xs transition-all ${
-                                          ROLE_COLORS[r.role] || 'bg-muted text-muted-foreground border-border'
-                                        }`}
-                                      >
-                                        <span>{ROLE_LABELS[r.role] || r.role}</span>
-                                        {isAdmin && (
-                                          <button
-                                            type="button"
-                                            disabled={removeRole.isPending}
-                                            onClick={() => removeRole.mutate({ userId: targetUserId, role: r.role })}
-                                            className="hover:text-red-600 dark:hover:text-red-400 p-0.5 rounded transition-colors cursor-pointer disabled:opacity-50 opacity-60 hover:opacity-100"
-                                            title={`إزالة دور ${ROLE_LABELS[r.role] || r.role}`}
-                                            aria-label={`إزالة دور ${ROLE_LABELS[r.role] || r.role} من المستخدم ${prof.full_name || prof.email}`}
-                                          >
-                                            {isRemovingThisRole ? (
-                                              <Loader2 size={11} className="animate-spin text-destructive" />
-                                            ) : (
-                                              <Trash2 size={11} />
-                                            )}
-                                          </button>
-                                        )}
-                                      </span>
-                                    );
-                                  })}
+                                  {visibleRoles.map((roleName) => (
+                                    <span
+                                      key={`${targetUserId}-${roleName}`}
+                                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold border shadow-2xs transition-all ${
+                                        ROLE_COLORS[roleName] || 'bg-muted text-muted-foreground border-border'
+                                      }`}
+                                    >
+                                      <span>{ROLE_LABELS[roleName] || roleName}</span>
+                                    </span>
+                                  ))}
 
                                   {remainingRolesCount > 0 && !isRolesExpanded && (
                                     <button
@@ -1410,7 +1147,7 @@ export default function UserManagementPage() {
                                     </button>
                                   )}
 
-                                  {isRolesExpanded && rolesForUser.length > 3 && (
+                                  {isRolesExpanded && activeRoles.length > 3 && (
                                     <button
                                       type="button"
                                       onClick={() => setExpandedRolesUserId(null)}
@@ -1470,43 +1207,7 @@ export default function UserManagementPage() {
                             </button>
                           </td>
 
-                          {/* Add Role Dropdown */}
-                          {isAdmin && (
-                            <td className="px-4 py-4 text-start">
-                              <div className="relative inline-flex items-center">
-                                <select
-                                  defaultValue=""
-                                  disabled={isAddingRoleForThisUser || ASSIGNABLE_ROLES.filter((r) => !activeRoles.includes(r)).length === 0}
-                                  onChange={(e) => {
-                                    if (e.target.value) {
-                                      addRole.mutate({ userId: targetUserId, role: e.target.value });
-                                      e.target.value = '';
-                                    }
-                                  }}
-                                  aria-label={`إضافة دور جديد للمستخدم ${prof.full_name || prof.email}`}
-                                  className="pe-7 ps-3 py-1.5 text-xs rounded-xl border border-input bg-card hover:bg-muted/80 text-foreground outline-none focus:ring-2 focus:ring-primary/40 cursor-pointer font-medium disabled:opacity-40 transition-all hover:border-primary/40 shadow-2xs"
-                                >
-                                  <option value="" disabled>
-                                    + إضافة دور...
-                                  </option>
-                                  {ASSIGNABLE_ROLES.filter((r) => !activeRoles.includes(r)).map((r) => (
-                                    <option key={r} value={r}>
-                                      {ROLE_LABELS[r] || r}
-                                    </option>
-                                  ))}
-                                </select>
-                                <span className="absolute left-2 pointer-events-none text-muted-foreground">
-                                  {isAddingRoleForThisUser ? (
-                                    <Loader2 size={12} className="animate-spin text-primary" />
-                                  ) : (
-                                    <ChevronDown size={13} />
-                                  )}
-                                </span>
-                              </div>
-                            </td>
-                          )}
-
-                          {/* Customize Permissions Button */}
+                          {/* Customize Project Scope & Profile Fields Button */}
                           {isAdmin && (
                             <td className="px-4 py-4 text-center">
                               <button
@@ -1515,11 +1216,11 @@ export default function UserManagementPage() {
                                   setCustomizingUser(prof as any);
                                   setIsCustomizationModalOpen(true);
                                 }}
-                                aria-label={`تخصيص صلاحيات المستخدم ${prof.full_name || prof.email}`}
+                                aria-label={`تخصيص نطاق وبيانات المستخدم ${prof.full_name || prof.email}`}
                                 className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-primary/30 bg-primary/10 hover:bg-primary hover:text-primary-foreground text-primary text-xs font-bold transition-all cursor-pointer shadow-2xs hover:shadow-xs hover:scale-[1.02]"
                               >
                                 <SlidersHorizontal size={13} />
-                                <span>تخصيص الصلاحيات</span>
+                                <span>تخصيص النطاق والبيانات</span>
                               </button>
                             </td>
                           )}

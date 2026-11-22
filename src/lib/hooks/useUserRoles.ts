@@ -3,6 +3,7 @@
 import { useEffect, useMemo } from 'react';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
+import { SUPABASE_SCHEMA } from '@/lib/supabase/config';
 import { useAuth } from '@/lib/stores/useAuthStore';
 import { logger } from '@/lib/logger';
 
@@ -39,21 +40,21 @@ export function profileImpliesCoo(department?: string | null, fullName?: string 
   return /\(COO\)|\bCOO\b/.test(n);
 }
 
-import { PRIMARY_ADMIN_EMAILS } from '@/lib/services/userService';
-
-export type UserAccountStatus = 'pending_activation' | 'active' | 'suspended' | 'rejected';
+export type UserAccountStatus = 'pending_activation' | 'active' | 'suspended' | 'rejected' | string;
 
 export interface UserRolesAndStatus {
   roles: string[];
-  status: UserAccountStatus;
+  status: UserAccountStatus | null;
+  isActive: boolean;
+  hasProfile: boolean;
 }
 
 export async function fetchUserRolesAndStatus(userId: string): Promise<UserRolesAndStatus> {
   try {
-    // 1. Fetch roles array and status from profiles (authoritative source)
+    // Authoritative source: profiles view (computed from Portal Console)
     const { data: profile, error: profError } = await supabase
       .from('profiles')
-      .select('roles, is_active, status, email')
+      .select('roles, is_active, status')
       .eq('id', userId)
       .maybeSingle();
 
@@ -61,53 +62,20 @@ export async function fetchUserRolesAndStatus(userId: string): Promise<UserRoles
       logger.warn('[useUserRoles] Profile query warning:', { detail: profError });
     }
 
-    let roles: string[] = [];
-    if (profile && Array.isArray(profile.roles) && profile.roles.length > 0) {
-      roles = profile.roles.map((r: any) => String(r));
-    } else {
-      // 2. Fall back to user_roles view/table only if profile.roles is missing
-      const { data: userRoles } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', userId);
-
-      if (userRoles && userRoles.length > 0) {
-        roles = userRoles.map((r: any) => String(r.role));
-      }
+    if (profError || !profile) {
+      return { roles: [], status: null, isActive: false, hasProfile: false };
     }
 
-    const email = profile?.email?.toLowerCase();
-    const isPrimaryAdmin = !!email && PRIMARY_ADMIN_EMAILS.map((e) => e.toLowerCase()).includes(email);
+    const roles: string[] = Array.isArray(profile.roles)
+      ? profile.roles.map((r: unknown) => String(r))
+      : [];
+    const status: UserAccountStatus | null = (profile.status as UserAccountStatus | null) ?? null;
+    const isActive = profile.status === 'active' && profile.is_active !== false;
 
-    if (isPrimaryAdmin && !roles.includes('admin')) {
-      roles.unshift('admin');
-    }
-
-    let computedStatus: UserAccountStatus = 'pending_activation';
-
-    if (isPrimaryAdmin) {
-      computedStatus = 'active';
-    } else if (profile?.status === 'suspended') {
-      computedStatus = 'suspended';
-    } else if (profile?.status === 'rejected') {
-      computedStatus = 'rejected';
-    } else if (profile?.status === 'pending_activation') {
-      computedStatus = 'pending_activation';
-    } else if (profile?.status === 'active') {
-      computedStatus = roles.length > 0 ? 'active' : 'pending_activation';
-    } else if (profile?.is_active === false) {
-      // Legacy fallback when status column is not populated
-      computedStatus = 'suspended';
-    } else if (profile?.is_active === true && roles.length > 0) {
-      computedStatus = 'active';
-    } else {
-      computedStatus = 'pending_activation';
-    }
-
-    return { roles, status: computedStatus };
+    return { roles, status, isActive, hasProfile: true };
   } catch (err) {
     logger.warn('[useUserRoles] Error loading roles and status', { detail: err });
-    return { roles: [], status: 'pending_activation' };
+    return { roles: [], status: null, isActive: false, hasProfile: false };
   }
 }
 
@@ -153,7 +121,7 @@ export function subscribeToUserProfileChanges(userId: string, onUpdate: () => vo
         'postgres_changes',
         {
           event: '*',
-          schema: 'public',
+          schema: SUPABASE_SCHEMA,
           table: 'profiles',
           filter: `id=eq.${userId}`,
         },
@@ -212,7 +180,7 @@ export function useUserRoles() {
     {
       queryKey: ['user-roles-status', user?.id],
       queryFn: async () => {
-        if (!user) return { roles: [], status: 'pending_activation' as UserAccountStatus };
+        if (!user) return { roles: [], status: null, isActive: false, hasProfile: false };
         return fetchUserRolesAndStatus(user.id);
       },
       enabled: !!user && !isE2EBypass,
@@ -232,22 +200,20 @@ export function useUserRoles() {
     return unsubscribe;
   }, [user?.id, isE2EBypass, queryClient]);
 
-  const userEmail = user?.email?.toLowerCase();
-  const isPrimaryAdmin = !!userEmail && PRIMARY_ADMIN_EMAILS.map((e) => e.toLowerCase()).includes(userEmail);
+  const roles = useMemo(
+    () => (isE2EBypass ? E2E_BYPASS_ROLES : (data?.roles ?? EMPTY_ROLES)),
+    [isE2EBypass, data?.roles]
+  );
+  const status: UserAccountStatus | null = isE2EBypass ? 'active' : (data?.status ?? null);
+  const hasProfile = isE2EBypass ? true : (data?.hasProfile ?? false);
+  const isActive = isE2EBypass ? true : (data?.isActive ?? false);
 
-  const roles = useMemo(() => {
-    const baseRoles = isE2EBypass ? E2E_BYPASS_ROLES : (data?.roles ?? EMPTY_ROLES);
-    return isPrimaryAdmin && !baseRoles.includes('admin') ? ['admin', ...baseRoles] : baseRoles;
-  }, [isE2EBypass, isPrimaryAdmin, data?.roles]);
-  const status: UserAccountStatus = (isE2EBypass || isPrimaryAdmin) ? 'active' : (data?.status || 'pending_activation');
-
-  const hasRole = (role: string) => isE2EBypass || isPrimaryAdmin || roles.includes(role);
-  const hasAnyRole = (checkRoles: string[]) => isE2EBypass || isPrimaryAdmin || checkRoles.some(r => roles.includes(r));
-  const isAdmin = isE2EBypass || isPrimaryAdmin || roles.includes('admin');
+  const hasRole = (role: string) => isE2EBypass || roles.includes(role);
+  const hasAnyRole = (checkRoles: string[]) => isE2EBypass || checkRoles.some((r) => roles.includes(r));
+  const isAdmin = isE2EBypass || roles.includes('admin');
   const isCoo = isE2EBypass || roles.includes('coo');
   const isCooAssistant = isCoo || roles.includes('coo_assistant') || roles.includes('assistant') || roles.includes('coo_sec');
 
-  const isActive = status === 'active';
   const isPending = status === 'pending_activation';
   const isSuspended = status === 'suspended' || status === 'rejected';
 
@@ -255,6 +221,7 @@ export function useUserRoles() {
     roles,
     status,
     isActive,
+    hasProfile,
     isPending,
     isSuspended,
     isLoading: isE2EBypass ? false : isLoading,

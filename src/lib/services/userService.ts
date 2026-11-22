@@ -2,7 +2,7 @@ import { supabase } from '@/lib/supabase';
 import { logger } from '@/lib/logger';
 import { AuditLogService } from './auditLog.service';
 
-export type UserAccountStatus = 'pending_activation' | 'active' | 'suspended' | 'rejected';
+export type UserAccountStatus = 'pending_activation' | 'active' | 'suspended' | 'rejected' | string;
 
 export interface UserProfileFull {
   id: string;
@@ -23,8 +23,6 @@ export interface UserProfileFull {
 export interface UpdateUserAccessPayload {
   userId: string;
   fullName?: string;
-  status: UserAccountStatus;
-  roles: string[];
   assignedProjectIds: string[];
   priceAccessGranted: boolean;
   adminUserId?: string;
@@ -37,12 +35,6 @@ export const ADMIN_DISPLAY_PHONE_INTL = '+20 122 999 4728';
 export const ADMIN_EMAIL = 'hassansolimanofficial@gmail.com';
 export const ADMIN_NAME = 'Eng. Hassan Soliman';
 export const ADMIN_NAME_AR = 'م/ حسن سليمان';
-export const PRIMARY_ADMIN_EMAILS = [
-  'hassansolimanofficial@gmail.com',
-  'solimane@pzoneinternational.com',
-  'admin.demo@pzone.com',
-  'admin@pzone.com',
-];
 
 /**
  * Generates an official WhatsApp click-to-chat URL with pre-filled bilingual payload
@@ -126,12 +118,7 @@ export class UserService {
 
     return (data || []).map((row) => {
       const roles = Array.isArray(row.roles) ? row.roles : [];
-      const isActive = row.is_active === true;
-      const status: UserAccountStatus = (row.status as UserAccountStatus) || (!isActive
-        ? 'suspended'
-        : roles.length > 0
-        ? 'active'
-        : 'pending_activation');
+      const status = (row.status as UserAccountStatus | undefined) ?? undefined;
 
       return {
         ...row,
@@ -188,8 +175,8 @@ export class UserService {
   }
 
   /**
-   * Atomically save user customization:
-   * 1. Update profiles table (is_active, roles, full_name, updated_at)
+   * Atomically save user customization (excluding roles/status which are managed in the Portal Console):
+   * 1. Update writable profile fields (full_name, price_access_granted, updated_at)
    * 2. Replace user records in pm_user_project_access (user_id, project_id, access_level, assigned_by)
    * 3. Record audit trail entry in pm_audit_logs
    */
@@ -197,8 +184,6 @@ export class UserService {
     const {
       userId,
       fullName,
-      status,
-      roles,
       assignedProjectIds,
       priceAccessGranted,
       adminUserId,
@@ -210,31 +195,17 @@ export class UserService {
     // 0. Fetch current profile
     const { data: existingProf } = await supabase
       .from('profiles')
-      .select('id, full_name, roles')
+      .select('id, full_name')
       .eq('id', userId)
       .maybeSingle();
 
     const profileId = existingProf?.id || userId;
 
-    // 1. Prepare profile update conforming strictly to database schema:
-    // Columns: id, email, full_name, full_name_ar, full_name_en, roles, is_active, status, price_access_granted, department, phone, updated_at
-    const cleanRoles = Array.from(new Set(roles));
+    // 1. Update only writable profile columns (roles, is_active, status are managed in Portal Console)
     const profileUpdate: Record<string, any> = {
-      is_active: status === 'active',
-      status: status,
-      roles: cleanRoles,
       price_access_granted: priceAccessGranted,
       updated_at: nowIso,
     };
-
-    if (status === 'active') {
-      profileUpdate.activated_at = nowIso;
-      if (adminUserId && typeof adminUserId === 'string' && adminUserId.trim().length > 0) {
-        profileUpdate.activated_by = adminUserId.trim();
-      } else {
-        profileUpdate.activated_by = null;
-      }
-    }
 
     if (fullName !== undefined && fullName.trim().length > 0) {
       const cleanName = fullName.trim();
@@ -293,8 +264,6 @@ export class UserService {
         action: 'UPDATE',
         newData: {
           full_name: fullName?.trim() || existingProf?.full_name,
-          status,
-          roles: cleanRoles,
           assigned_projects_count: assignedProjectIds.length,
           price_access_granted: priceAccessGranted,
           admin_user_id: adminUserId,
