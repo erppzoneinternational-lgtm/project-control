@@ -68,7 +68,7 @@ interface ConfirmModalConfig {
   danger?: boolean;
 }
 
-// ── Production Cron Jobs Defined in scheduled-tasks/route.ts ─────────────────
+// ── Production Cron Jobs Executed via Database (pg_cron) ─────────────────────
 const CRON_JOBS: CronJobItem[] = [
   {
     id: 'silent_sites',
@@ -862,8 +862,8 @@ export default function SystemAdminPortalPage() {
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
               {isAr
-                ? 'المهام المؤتمتة المنفذة دوريًا عبر مسار API الموحد: /api/cron/scheduled-tasks'
-                : 'Automated background tasks executed via: /api/cron/scheduled-tasks'}
+                ? 'المهام المؤتمتة المنفذة دوريًا عبر قاعدة البيانات (pg_cron)'
+                : 'Automated background jobs scheduled in the database (pg_cron)'}
             </p>
           </div>
 

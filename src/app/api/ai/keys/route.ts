@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { encryptSecret } from '@/lib/ai/crypto';
 import { AI_PROVIDERS, AiProvider, chatJSON } from '@/lib/ai/providers';
 
@@ -9,14 +8,16 @@ export const dynamic = 'force-dynamic';
 const MODEL_REGEX = /^[a-zA-Z0-9._:-]{1,64}$/;
 const MAX_API_KEY_LENGTH = 512;
 
+type ServerSupabaseClient = Awaited<ReturnType<typeof createSupabaseServerClient>>;
+
 type AuthorizedContext =
-  | { ok: true; uid: string; admin: ReturnType<typeof createSupabaseAdminClient> }
+  | { ok: true; uid: string; sb: ServerSupabaseClient }
   | { ok: false; response: NextResponse };
 
 async function requireActiveNonViewerUser(): Promise<AuthorizedContext> {
+  const sb = await createSupabaseServerClient();
   let uid: string | null = null;
   try {
-    const sb = await createSupabaseServerClient();
     const { data } = await sb.auth.getUser();
     uid = data.user?.id ?? null;
   } catch {
@@ -29,8 +30,7 @@ async function requireActiveNonViewerUser(): Promise<AuthorizedContext> {
     };
   }
 
-  const admin = createSupabaseAdminClient();
-  const { data: profile, error: profileErr } = await admin
+  const { data: profile, error: profileErr } = await sb
     .from('profiles')
     .select('roles, is_active, status')
     .eq('id', uid)
@@ -57,7 +57,7 @@ async function requireActiveNonViewerUser(): Promise<AuthorizedContext> {
     };
   }
 
-  return { ok: true, uid, admin };
+  return { ok: true, uid, sb };
 }
 
 /** GET: list my keys (masked). Never returns the key itself. */
@@ -65,8 +65,8 @@ export async function GET() {
   const auth = await requireActiveNonViewerUser();
   if (!auth.ok) return auth.response;
 
-  const { uid, admin } = auth;
-  const { data, error } = await admin
+  const { uid, sb } = auth;
+  const { data, error } = await sb
     .from('pm_user_ai_keys')
     .select('id, provider, model, key_last4, is_default, updated_at')
     .eq('user_id', uid)
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
   const auth = await requireActiveNonViewerUser();
   if (!auth.ok) return auth.response;
 
-  const { uid, admin } = auth;
+  const { uid, sb } = auth;
   const body = await req.json().catch(() => ({}));
   const provider = body.provider as AiProvider;
   if (!provider || !(provider in AI_PROVIDERS)) {
@@ -120,9 +120,9 @@ export async function POST(req: NextRequest) {
   }
 
   if (body.isDefault) {
-    await admin.from('pm_user_ai_keys').update({ is_default: false }).eq('user_id', uid);
+    await sb.from('pm_user_ai_keys').update({ is_default: false }).eq('user_id', uid);
   }
-  const { error } = await admin.from('pm_user_ai_keys').upsert(
+  const { error } = await sb.from('pm_user_ai_keys').upsert(
     {
       user_id: uid,
       provider,
@@ -143,12 +143,12 @@ export async function DELETE(req: NextRequest) {
   const auth = await requireActiveNonViewerUser();
   if (!auth.ok) return auth.response;
 
-  const { uid, admin } = auth;
+  const { uid, sb } = auth;
   const provider = new URL(req.url).searchParams.get('provider');
   if (!provider || !(provider in AI_PROVIDERS)) {
     return NextResponse.json({ error: 'invalid provider' }, { status: 400 });
   }
-  const { error } = await admin
+  const { error } = await sb
     .from('pm_user_ai_keys')
     .delete()
     .eq('user_id', uid)

@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
  * Format: base64(iv[12] | tag[16] | ciphertext)
  */
 function key(): Buffer {
-  const secret = process.env.AI_KEY_ENCRYPTION_SECRET || process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const secret = process.env.AI_KEY_ENCRYPTION_SECRET;
   if (!secret) throw new Error('AI_KEY_ENCRYPTION_SECRET not configured');
   return crypto.createHash('sha256').update(secret).digest();
 }
