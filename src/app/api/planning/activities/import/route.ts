@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { canEditPath } from '@/lib/rbac/access-control';
 
 export const dynamic = 'force-dynamic';
@@ -184,10 +183,9 @@ export async function POST(request: NextRequest) {
     }
 
     const userId = user.id;
-    const admin = createSupabaseAdminClient();
 
     // 2. Verify active profile & planning edit authorization
-    const { data: profile, error: profileError } = await admin
+    const { data: profile, error: profileError } = await serverSupabase
       .from('profiles')
       .select('roles, is_active, status, project_scope_mode')
       .eq('id', userId)
@@ -283,7 +281,7 @@ export async function POST(request: NextRequest) {
         !EXPLICIT_SCOPED_MODES.has(scopeMode));
 
     if (!isUnrestricted) {
-      const { data: accessRow, error: accessError } = await admin
+      const { data: accessRow, error: accessError } = await serverSupabase
         .from('pm_user_project_access')
         .select('access_level')
         .eq('user_id', userId)
@@ -303,7 +301,7 @@ export async function POST(request: NextRequest) {
     const wbsCodeToIdMap = new Map<string, string>();
     if (Array.isArray(wbsItems) && wbsItems.length > 0) {
       try {
-        const { data: existingWbs } = await admin
+        const { data: existingWbs } = await serverSupabase
           .from('pm_wbs_items')
           .select('id, wbs_code')
           .eq('project_id', cleanProjectId);
@@ -338,7 +336,7 @@ export async function POST(request: NextRequest) {
             };
           });
 
-          const { data: newWbs } = await admin
+          const { data: newWbs } = await serverSupabase
             .from('pm_wbs_items')
             .insert(toInsert)
             .select('id, wbs_code');
@@ -359,21 +357,21 @@ export async function POST(request: NextRequest) {
 
     // 6. Optionally archive or mark older activities as inactive
     if (Boolean(replaceExisting)) {
-      await admin
+      await serverSupabase
         .from('pm_project_activities')
         .update({ is_active: false })
         .eq('project_id', cleanProjectId)
         .eq('is_active', true);
     }
 
-    // 7. Perform bulk insertion using Admin Client after strict RBAC & column whitelisting
+    // 7. Perform bulk insertion using user-scoped Server Client (RLS enforced)
     const CHUNK_SIZE = 200;
     const insertedIds: string[] = [];
     const codeToId = new Map<string, string>();
 
     for (let i = 0; i < sanitizedActivities.length; i += CHUNK_SIZE) {
       const chunk = sanitizedActivities.slice(i, i + CHUNK_SIZE);
-      const { data, error } = await admin
+      const { data, error } = await serverSupabase
         .from('pm_project_activities')
         .insert(chunk)
         .select('id, code, activity_code');
@@ -433,7 +431,7 @@ export async function POST(request: NextRequest) {
         if (depsToInsert.length > 0) {
           for (let i = 0; i < depsToInsert.length; i += CHUNK_SIZE) {
             const dChunk = depsToInsert.slice(i, i + CHUNK_SIZE);
-            await admin
+            await serverSupabase
               .from('pm_activity_dependencies')
               .upsert(dChunk, { onConflict: 'predecessor_id,successor_id', ignoreDuplicates: true });
           }
@@ -446,7 +444,7 @@ export async function POST(request: NextRequest) {
     // 9. Register schedule version (Baseline for v1 or requested versionType)
     let versionRecord = null;
     try {
-      const { data: existingVersions } = await admin
+      const { data: existingVersions } = await serverSupabase
         .from('pm_schedule_versions')
         .select('version_no')
         .eq('project_id', cleanProjectId)
@@ -470,7 +468,7 @@ export async function POST(request: NextRequest) {
           ? 'الجدول الأساسي التعاقدي (Baseline)'
           : `تحديث — ${safeFileName}`;
 
-      const { data: ver, error: verErr } = await admin
+      const { data: ver, error: verErr } = await serverSupabase
         .from('pm_schedule_versions')
         .insert({
           project_id: cleanProjectId,
@@ -490,7 +488,7 @@ export async function POST(request: NextRequest) {
         versionRecord = ver;
         for (let i = 0; i < insertedIds.length; i += CHUNK_SIZE) {
           const idChunk = insertedIds.slice(i, i + CHUNK_SIZE);
-          await admin
+          await serverSupabase
             .from('pm_project_activities')
             .update({ schedule_version_id: ver.id })
             .in('id', idChunk);

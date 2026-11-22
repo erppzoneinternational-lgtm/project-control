@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { AI_PROVIDERS, chatJSON, resolveAiCredential } from '@/lib/ai/providers';
 
 export const dynamic = 'force-dynamic';
@@ -43,9 +42,9 @@ function checkUserRateLimit(userId: string): boolean {
  *      → { assignments: [{ itemId, pageId|null, newPageName?, confidence, reason }] }
  */
 export async function POST(req: NextRequest) {
+  const sb = await createSupabaseServerClient();
   let userId: string | null = null;
   try {
-    const sb = await createSupabaseServerClient();
     userId = (await sb.auth.getUser()).data.user?.id ?? null;
   } catch {
     /* ignore */
@@ -53,8 +52,7 @@ export async function POST(req: NextRequest) {
   if (!userId) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
 
   // Enforce active profile & block viewer-only users
-  const admin = createSupabaseAdminClient();
-  const { data: profile, error: profileErr } = await admin
+  const { data: profile, error: profileErr } = await sb
     .from('profiles')
     .select('roles, is_active, status')
     .eq('id', userId)
@@ -80,7 +78,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'rate_limit_exceeded' }, { status: 429 });
   }
 
-  const cred = await resolveAiCredential(userId);
+  const cred = await resolveAiCredential(userId, sb);
   if (!cred) return NextResponse.json({ error: 'no_ai_key', aiAvailable: false }, { status: 200 });
 
   const body = await req.json().catch(() => ({}));

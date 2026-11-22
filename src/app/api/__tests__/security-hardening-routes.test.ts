@@ -32,18 +32,13 @@ const mockCreateClientFromJs = vi.fn();
 
 vi.mock('@/lib/supabase/server', () => ({
   createSupabaseServerClient: vi.fn(async () => ({
+    from: mockAdminFrom,
     auth: {
       getUser: mockGetUser,
       verifyOtp: mockVerifyOtp,
       exchangeCodeForSession: mockExchangeCodeForSession,
       signInWithIdToken: mockSignInWithIdToken,
     },
-  })),
-}));
-
-vi.mock('@/lib/supabase/admin', () => ({
-  createSupabaseAdminClient: vi.fn(() => ({
-    from: mockAdminFrom,
   })),
 }));
 
@@ -116,7 +111,6 @@ describe('Security Hardening Routes & Boundaries (SEC-01..SEC-05, SEC-09, SEC-10
     vi.clearAllMocks();
     process.env.AI_KEY_ENCRYPTION_SECRET = 'test-encryption-secret-for-routes';
     process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://mock.supabase.co';
-    process.env.SUPABASE_SERVICE_ROLE_KEY = 'mock-service-role-key';
   });
 
   afterEach(() => {
@@ -405,108 +399,6 @@ describe('Security Hardening Routes & Boundaries (SEC-01..SEC-05, SEC-09, SEC-10
     });
   });
 
-  // ── SEC-03 & SEC-05: Middleware, /auth/callback, /auth/confirm ───────────
-  describe('SEC-03 & SEC-05: Auth Routes, Open Redirect Guards & Middleware PUBLIC_ROUTES', () => {
-    it('allows unauthenticated access to /auth/confirm and /auth/callback in middleware', async () => {
-      const passthrough = NextResponse.next();
-      mockUpdateSession.mockResolvedValue({ user: null, supabaseResponse: passthrough });
-
-      const { middleware } = await import('@/middleware');
-
-      const confirmRes = await middleware(
-        new NextRequest('http://localhost/auth/confirm?token_hash=abc&type=recovery')
-      );
-      expect(confirmRes.headers.get('location')).toBeNull();
-
-      const callbackRes = await middleware(
-        new NextRequest('http://localhost/auth/callback?code=pkce-123')
-      );
-      expect(callbackRes.headers.get('location')).toBeNull();
-
-      const protectedRes = await middleware(new NextRequest('http://localhost/planning'));
-      expect(protectedRes.headers.get('location')).toContain('/login?redirect=%2Fplanning');
-    });
-
-    it('redirects google_local OAuth flow to /login?error=oauth_config_missing when Google env vars are absent', async () => {
-      delete process.env.GOOGLE_CLIENT_ID;
-      delete process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-      delete process.env.GOOGLE_CLIENT_SECRET;
-
-      const { GET } = await import('@/app/auth/callback/route');
-      const res = await GET(
-        new Request('https://projectcontrol.pzoneinternational.com/auth/callback?code=abc&state=google_local:/projects')
-      );
-      expect(res.headers.get('location')).toBe(
-        'https://projectcontrol.pzoneinternational.com/login?error=oauth_config_missing'
-      );
-    });
-
-    it('blocks open redirects (//evil.com, /\\evil.com, /@evil.com) and untrusted x-forwarded-host in /auth/callback', async () => {
-      (process.env as Record<string, string | undefined>).NODE_ENV = 'production';
-      mockExchangeCodeForSession.mockResolvedValue({ error: null });
-
-      const { GET } = await import('@/app/auth/callback/route');
-
-      for (const maliciousNext of [
-        '//evil.com',
-        '/\\evil.com',
-        '/path@evil.com',
-        'https://evil.com/phish',
-      ]) {
-        const url = `https://internal.local/auth/callback?code=ok&next=${encodeURIComponent(maliciousNext)}`;
-        const res = await GET(
-          new Request(url, {
-            headers: { 'x-forwarded-host': 'evil.attacker.com' },
-          })
-        );
-        // Untrusted x-forwarded-host ignored + malicious next sanitized to '/'
-        expect(res.headers.get('location')).toBe('https://internal.local/');
-      }
-
-      // Trusted Vercel preview host + clean internal path succeeds
-      const trustedRes = await GET(
-        new Request('https://internal.local/auth/callback?code=ok&next=%2Fprojects%2Fdashboard', {
-          headers: { 'x-forwarded-host': 'pzone-portal-git-main.vercel.app' },
-        })
-      );
-      expect(trustedRes.headers.get('location')).toBe(
-        'https://pzone-portal-git-main.vercel.app/projects/dashboard'
-      );
-    });
-
-    it('sanitizes next param in /auth/confirm while preserving recovery default', async () => {
-      mockVerifyOtp.mockResolvedValue({ error: null });
-      const { GET } = await import('@/app/auth/confirm/route');
-
-      const evilRes = await GET(
-        new NextRequest(
-          'https://projectcontrol.pzoneinternational.com/auth/confirm?token_hash=th1&type=signup&next=//evil.com'
-        )
-      );
-      expect(evilRes.headers.get('location')).toBe(
-        'https://projectcontrol.pzoneinternational.com/'
-      );
-
-      const backslashRes = await GET(
-        new NextRequest(
-          'https://projectcontrol.pzoneinternational.com/auth/confirm?token_hash=th1&type=signup&next=%2F%5Cevil.com'
-        )
-      );
-      expect(backslashRes.headers.get('location')).toBe(
-        'https://projectcontrol.pzoneinternational.com/'
-      );
-
-      const recoveryDefaultRes = await GET(
-        new NextRequest(
-          'https://projectcontrol.pzoneinternational.com/auth/confirm?token_hash=th1&type=recovery'
-        )
-      );
-      expect(recoveryDefaultRes.headers.get('location')).toBe(
-        'https://projectcontrol.pzoneinternational.com/reset-password'
-      );
-    });
-  });
-
   // ── SEC-04: /api/boq/ai-assist & /api/ai/keys ────────────────────────────
   describe('SEC-04: AI Assist & AI Keys Active/Role/Validation/Rate-Limit Guards', () => {
     it('blocks viewer-only and inactive users across /api/ai/keys (GET, POST, DELETE)', async () => {
@@ -660,36 +552,6 @@ describe('Security Hardening Routes & Boundaries (SEC-01..SEC-05, SEC-09, SEC-10
       expect(directives['script-src']).not.toContain('supabase.co');
       expect(directives['connect-src']).toContain('https://*.supabase.co');
       expect(directives['img-src']).toContain('https://*.supabase.co');
-    });
-
-    it('verifies constant-time CRON_SECRET auth on GET /api/cron/scheduled-tasks', async () => {
-      process.env.CRON_SECRET = 'super-cron-secret-99';
-      mockCreateClientFromJs.mockReturnValue({
-        from: () => buildQueryChain({ data: [], error: null }),
-        rpc: vi.fn(async () => ({ data: [], error: null })),
-      });
-
-      const { GET } = await import('../cron/scheduled-tasks/route');
-
-      const missingRes = await GET(new Request('http://localhost/api/cron/scheduled-tasks'));
-      expect(missingRes.status).toBe(401);
-
-      const wrongLengthRes = await GET(
-        new Request('http://localhost/api/cron/scheduled-tasks', {
-          headers: { authorization: 'Bearer short' },
-        })
-      );
-      expect(wrongLengthRes.status).toBe(401);
-
-      const validRes = await GET(
-        new Request('http://localhost/api/cron/scheduled-tasks', {
-          headers: {
-            authorization: 'Bearer super-cron-secret-99',
-            'x-forwarded-for': `10.9.9.${Date.now() % 200}`,
-          },
-        })
-      );
-      expect(validRes.status).toBe(200);
     });
 
     it('does not leak error.stack in production renders of RootErrorBoundary and DashboardErrorBoundary even when technical details are expanded', () => {

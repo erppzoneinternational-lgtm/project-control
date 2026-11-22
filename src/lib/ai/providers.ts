@@ -1,5 +1,7 @@
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { decryptSecret } from './crypto';
+
+type ServerSupabaseClient = Awaited<ReturnType<typeof createSupabaseServerClient>>;
 
 export type AiProvider = 'gemini' | 'openai' | 'anthropic' | 'openrouter';
 
@@ -18,11 +20,14 @@ export interface AiCredential {
 }
 
 /** Resolve key: user's default (or first) BYOK key → system GEMINI_API_KEY → null. */
-export async function resolveAiCredential(userId: string | null): Promise<AiCredential | null> {
+export async function resolveAiCredential(
+  userId: string | null,
+  supabaseClient?: ServerSupabaseClient
+): Promise<AiCredential | null> {
   if (userId) {
     try {
-      const admin = createSupabaseAdminClient();
-      const { data } = await admin
+      const sb = supabaseClient ?? (await createSupabaseServerClient());
+      const { data } = await sb
         .from('pm_user_ai_keys')
         .select('provider, model, encrypted_key, is_default')
         .eq('user_id', userId)

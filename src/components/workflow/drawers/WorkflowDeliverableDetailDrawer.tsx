@@ -52,6 +52,7 @@ import { SLAProgressBar } from '@/components/workflow/SLAProgressBar';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
 import { logger } from '@/lib/logger';
+import { useSignedStorageUrlMap } from '@/lib/hooks/useSignedStorageUrl';
 
 export interface WorkflowDeliverableDetailDrawerProps {
   isOpen: boolean;
@@ -75,6 +76,11 @@ export const WorkflowDeliverableDetailDrawer: React.FC<WorkflowDeliverableDetail
   const [deliverable, setDeliverable] = useState<Deliverable | null>(null);
   const [events, setEvents] = useState<DeliverableEvent[]>([]);
   const [attachments, setAttachments] = useState<DeliverableAttachment[]>([]);
+  const attachmentPaths = useMemo(
+    () => attachments.map((att) => (att as any).file_path || att.storage_path || ''),
+    [attachments]
+  );
+  const signedAttachmentUrls = useSignedStorageUrlMap('deliverables', attachmentPaths, 3600);
   const [stakeholders, setStakeholders] = useState<StakeholderFull[]>([]);
   const [loading, setLoading] = useState(false);
   const [actionLoadingId, setActionLoadingId] = useState<string | null>(null);
@@ -333,7 +339,7 @@ export const WorkflowDeliverableDetailDrawer: React.FC<WorkflowDeliverableDetail
     const path = (att as any).file_path || att.storage_path || '';
     const name = att.file_name || path.split('/').pop() || (isAr ? 'مستند مرفق' : 'Attached File');
     const ext = name.split('.').pop()?.toLowerCase() || '';
-    const url = DeliverablesService.getAttachmentUrl(path);
+    const url = signedAttachmentUrls[path] || '';
 
     let typeLabel = ext.toUpperCase() || 'FILE';
     let badgeColor = 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700';
@@ -358,7 +364,7 @@ export const WorkflowDeliverableDetailDrawer: React.FC<WorkflowDeliverableDetail
     }
 
     return { path, name, ext, url, typeLabel, badgeColor, IconComponent };
-  }, [isAr]);
+  }, [isAr, signedAttachmentUrls]);
 
   // Audit trail event display configuration
   const getEventDisplayConfig = useCallback((evt: DeliverableEvent) => {

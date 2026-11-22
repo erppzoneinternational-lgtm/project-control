@@ -1,15 +1,11 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { encryptSecret, decryptSecret } from '../crypto';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
-describe('SEC-07: AI Crypto & Supabase Admin Client Guards', () => {
+describe('SEC-07: AI Crypto Guards', () => {
   const originalEnv = { ...process.env };
 
   beforeEach(() => {
     process.env.AI_KEY_ENCRYPTION_SECRET = 'unit-test-encryption-secret-32b!';
-    process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://mock.supabase.co';
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'mock-anon-key';
-    process.env.SUPABASE_SERVICE_ROLE_KEY = 'mock-service-role-key';
   });
 
   afterEach(() => {
@@ -53,35 +49,9 @@ describe('SEC-07: AI Crypto & Supabase Admin Client Guards', () => {
 
     it('throws when no encryption secret env var is configured', () => {
       delete process.env.AI_KEY_ENCRYPTION_SECRET;
-      delete process.env.SUPABASE_SERVICE_ROLE_KEY;
       expect(() => encryptSecret('sk-test-1234567890')).toThrow(
         /AI_KEY_ENCRYPTION_SECRET not configured/i
       );
-    });
-  });
-
-  describe('createSupabaseAdminClient', () => {
-    it('throws if SUPABASE_SERVICE_ROLE_KEY is missing even when NEXT_PUBLIC_SUPABASE_ANON_KEY is set', () => {
-      delete process.env.SUPABASE_SERVICE_ROLE_KEY;
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'anon-key-must-never-be-used-as-fallback';
-
-      expect(() => createSupabaseAdminClient()).toThrow(
-        /SUPABASE_SERVICE_ROLE_KEY is missing/i
-      );
-    });
-
-    it('throws if NEXT_PUBLIC_SUPABASE_URL is missing', () => {
-      delete process.env.NEXT_PUBLIC_SUPABASE_URL;
-
-      expect(() => createSupabaseAdminClient()).toThrow(
-        /NEXT_PUBLIC_SUPABASE_URL is missing/i
-      );
-    });
-
-    it('creates admin client when URL and SUPABASE_SERVICE_ROLE_KEY are present', () => {
-      const client = createSupabaseAdminClient();
-      expect(client).toBeDefined();
-      expect(typeof client.from).toBe('function');
     });
   });
 });

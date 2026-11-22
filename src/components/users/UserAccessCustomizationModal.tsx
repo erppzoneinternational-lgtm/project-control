@@ -1,15 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/lib/supabase';
 import { ProjectService } from '@/lib/services/project.service';
-import { UserService, UserProfileFull, UserAccountStatus } from '@/lib/services/userService';
+import { UserService, UserProfileFull } from '@/lib/services/userService';
+import { PORTAL_URL } from '@/lib/supabase/config';
 import {
   ROLE_LABELS,
   ROLE_COLORS,
-  MATRIX_ROLES,
-  ASSIGNABLE_ROLES,
 } from '@/lib/rbac/role-matrix';
 import { Project } from '@/types';
 import { toast } from 'sonner';
@@ -18,22 +16,15 @@ import {
   X,
   ShieldCheck,
   CheckCircle2,
-  AlertCircle,
   FolderKanban,
   DollarSign,
-  UserCheck,
   Building,
   Search,
   Check,
   Loader2,
   MessageCircle,
   Lock,
-  Layers,
-  Sparkles,
-  SlidersHorizontal,
-  ChevronRight,
-  ShieldAlert,
-  UserX,
+  ExternalLink,
   User
 } from 'lucide-react';
 
@@ -67,45 +58,6 @@ function getValidWhatsAppUrl(phone?: string | null, userName?: string | null): s
   return `https://wa.me/${internationalNumber}?text=${text}`;
 }
 
-// Logical grouping of the 22 canonical roles for clean visual presentation
-const ROLE_GROUPS: {
-  id: string;
-  titleAr: string;
-  iconName: string;
-  roles: string[];
-}[] = [
-  {
-    id: 'executive',
-    titleAr: 'الإدارة العليا والمجلس (Executive & Board)',
-    iconName: 'Crown',
-    roles: ['admin', 'chairman', 'ceo', 'coo', 'coo_assistant', 'board_member'],
-  },
-  {
-    id: 'commercial',
-    titleAr: 'الإدارة التجارية والمالية والعقود (Commercial & Finance)',
-    iconName: 'Receipt',
-    roles: ['commercial_manager', 'finance', 'contract_admin', 'cost_control', 'ipc_clerk', 'estimator'],
-  },
-  {
-    id: 'planning_to',
-    titleAr: 'التخطيط والمكتب الفني (Planning & Technical Office)',
-    iconName: 'FolderKanban',
-    roles: ['planning_manager', 'planning_engineer', 'technical_office'],
-  },
-  {
-    id: 'site_execution',
-    titleAr: 'التنفيذ الميداني وإدارة المشاريع (Site & Project Management)',
-    iconName: 'HardHat',
-    roles: ['project_manager', 'site_engineer'],
-  },
-  {
-    id: 'logistics',
-    titleAr: 'المشتريات والمخازن (Procurement & Stores)',
-    iconName: 'Truck',
-    roles: ['procurement', 'inventory'],
-  },
-];
-
 export function UserAccessCustomizationModal({
   user,
   isOpen,
@@ -118,10 +70,8 @@ export function UserAccessCustomizationModal({
   // Active Tab inside the modal
   const [activeTab, setActiveTab] = useState<'status_roles' | 'projects' | 'commercial'>('status_roles');
 
-  // Form State
+  // Form State (roles & status are read-only from Portal Console)
   const [fullName, setFullName] = useState('');
-  const [status, setStatus] = useState<UserAccountStatus>('active');
-  const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
   const [projectScopeMode, setProjectScopeMode] = useState<'all' | 'restricted'>('all');
   const [assignedProjectIds, setAssignedProjectIds] = useState<string[]>([]);
   const [priceAccessGranted, setPriceAccessGranted] = useState(false);
@@ -129,8 +79,10 @@ export function UserAccessCustomizationModal({
   const [saving, setSaving] = useState(false);
 
   // Filters
-  const [roleSearch, setRoleSearch] = useState('');
   const [projectSearch, setProjectSearch] = useState('');
+
+  const userRoles = user?.roles || [];
+  const userStatus = user?.status || (user?.is_active === false ? 'suspended' : 'inactive');
 
   // Fetch all projects for allocation
   const { data: allProjects = [], isLoading: loadingProjects } = useQuery<Project[]>({
@@ -150,13 +102,7 @@ export function UserAccessCustomizationModal({
   // Sync state when user prop changes
   useEffect(() => {
     if (user && isOpen) {
-      const initialStatus =
-        user.is_active === false
-          ? 'suspended'
-          : user.status || (user.roles && user.roles.length > 0 ? 'active' : 'pending_activation');
-      setStatus(initialStatus);
       setFullName(user.full_name || user.full_name_ar || user.full_name_en || '');
-      setSelectedRoles(user.roles || []);
       const hasFinancial = (user.roles || []).some((r) => FINANCIAL_ALLOWED_ROLES.includes(r));
       setPriceAccessGranted(Boolean(user.price_access_granted || hasFinancial));
       setAdminNotes('');
@@ -172,24 +118,14 @@ export function UserAccessCustomizationModal({
         setAssignedProjectIds(currentUserProjectIds);
       } else {
         // If user already has restricted role like PM or Site Engineer, default to restricted
-        const hasProjectRole = selectedRoles.some((r) => ['project_manager', 'site_engineer'].includes(r));
+        const hasProjectRole = (user?.roles || []).some((r) => ['project_manager', 'site_engineer'].includes(r));
         setProjectScopeMode(hasProjectRole ? 'restricted' : 'all');
         setAssignedProjectIds([]);
       }
     }
-  }, [currentUserProjectIds, isOpen, loadingAssigned]);
+  }, [currentUserProjectIds, isOpen, loadingAssigned, user?.roles]);
 
   if (!isOpen || !user) return null;
-
-  const handleRoleToggle = (role: string) => {
-    setSelectedRoles((prev) => {
-      const next = prev.includes(role) ? prev.filter((r) => r !== role) : [...prev, role];
-      if (FINANCIAL_ALLOWED_ROLES.includes(role) && !prev.includes(role)) {
-        setPriceAccessGranted(true);
-      }
-      return next;
-    });
-  };
 
   const handleProjectToggle = (projectId: string) => {
     setAssignedProjectIds((prev) =>
@@ -206,18 +142,12 @@ export function UserAccessCustomizationModal({
   };
 
   const handleSave = async () => {
-    if (status === 'active' && selectedRoles.length === 0) {
-      toast.error('يرجى تحديد دور وظيفي واحد على الأقل قبل تفعيل الحساب لمنع حظره من دخول المنظومة');
-      setActiveTab('status_roles');
-      return;
-    }
-
     setSaving(true);
     try {
       // Determine project ids to persist:
       // If user has restricted roles (e.g. project_manager, site_engineer) and scope is 'all',
       // map all available project IDs so pm_user_project_access is explicitly populated
-      const hasRestrictedRole = selectedRoles.some((r) => ['project_manager', 'site_engineer'].includes(r));
+      const hasRestrictedRole = userRoles.some((r) => ['project_manager', 'site_engineer'].includes(r));
       const targetProjectIds = projectScopeMode === 'restricted'
         ? assignedProjectIds
         : (hasRestrictedRole ? (allProjects || []).map((p: Project) => p.id) : []);
@@ -225,8 +155,6 @@ export function UserAccessCustomizationModal({
       await UserService.updateUserAccess({
         userId: user.id,
         fullName: fullName.trim() || undefined,
-        status,
-        roles: selectedRoles,
         assignedProjectIds: targetProjectIds,
         priceAccessGranted,
         adminUserId,
@@ -237,15 +165,10 @@ export function UserAccessCustomizationModal({
       queryClient.invalidateQueries({ queryKey: ['admin-user-assigned-projects', user.id] });
       queryClient.invalidateQueries({ queryKey: ['user-roles-status', user.id] });
       queryClient.invalidateQueries({ queryKey: ['user-roles'] });
-      queryClient.invalidateQueries({ queryKey: ['admin-user-roles'] });
       queryClient.invalidateQueries({ queryKey: ['admin-profiles'] });
 
       const displayName = fullName.trim() || user.full_name || user.email;
-      toast.success(
-        status === 'active'
-          ? `تم تفعيل حساب ${displayName} وتحديث بياناته وصلاحياته بنجاح!`
-          : `تم تحديث بيانات وصلاحيات ${displayName} بنجاح`
-      );
+      toast.success(`تم تحديث بيانات ونطاق مشاريع ${displayName} بنجاح`);
 
       onSaved();
       onClose();
@@ -290,18 +213,12 @@ export function UserAccessCustomizationModal({
                 </h2>
                 <span
                   className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
-                    status === 'active'
+                    userStatus === 'active'
                       ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
-                      : status === 'pending_activation'
-                      ? 'bg-amber-500/10 text-amber-400 border-amber-500/30'
                       : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
                   }`}
                 >
-                  {status === 'active'
-                    ? 'نشط ومعتمد'
-                    : status === 'pending_activation'
-                    ? 'بانتظار التفعيل'
-                    : 'معلق'}
+                  {userStatus === 'active' ? 'نشط ومعتمد' : userStatus}
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-mono mt-0.5" dir="ltr">
@@ -350,7 +267,7 @@ export function UserAccessCustomizationModal({
             }`}
           >
             <ShieldCheck size={15} />
-            <span>1. حالة الحساب والأدوار ({selectedRoles.length})</span>
+            <span>1. بيانات المستخدم والأدوار ({userRoles.length})</span>
           </button>
 
           <button
@@ -408,134 +325,43 @@ export function UserAccessCustomizationModal({
                 </div>
               </div>
 
-              {/* Account Status Switcher */}
-              <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3">
-                <label className="text-xs font-bold text-slate-300 block">
-                  الحالة التشغيلية للحساب (Account Lifecycle):
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => setStatus('active')}
-                    className={`flex items-center gap-2.5 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
-                      status === 'active'
-                        ? 'bg-emerald-500/15 border-emerald-500/50 text-emerald-300 shadow-sm'
-                        : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'
-                    }`}
-                  >
-                    <CheckCircle2 size={16} className={status === 'active' ? 'text-emerald-400' : 'text-slate-500'} />
-                    <div className="text-start">
-                      <div>نشط ومعتمد (Active)</div>
-                      <div className="text-[10px] text-slate-500 font-normal">يسمح بالدخول واستخدام البوابة</div>
-                    </div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setStatus('pending_activation')}
-                    className={`flex items-center gap-2.5 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
-                      status === 'pending_activation'
-                        ? 'bg-amber-500/15 border-amber-500/50 text-amber-300 shadow-sm'
-                        : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'
-                    }`}
-                  >
-                    <AlertCircle size={16} className={status === 'pending_activation' ? 'text-amber-400' : 'text-slate-500'} />
-                    <div className="text-start">
-                      <div>قيد المراجعة (Pending)</div>
-                      <div className="text-[10px] text-slate-500 font-normal">محظور الدخول لحين التفعيل</div>
-                    </div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setStatus('suspended')}
-                    className={`flex items-center gap-2.5 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
-                      status === 'suspended'
-                        ? 'bg-rose-500/15 border-rose-500/50 text-rose-300 shadow-sm'
-                        : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'
-                    }`}
-                  >
-                    <UserX size={16} className={status === 'suspended' ? 'text-rose-400' : 'text-slate-500'} />
-                    <div className="text-start">
-                      <div>معلق مؤقتاً (Suspended)</div>
-                      <div className="text-[10px] text-slate-500 font-normal">إيقاف فوري لصلاحيات الحساب</div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              {/* Roles Section */}
-              <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              {/* Read-only Console-managed Status & Roles */}
+              <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
                   <div>
                     <h3 className="text-sm font-bold text-white">
-                      تعيين الأدوار الوظيفية (Assigned RBAC Roles)
+                      الأدوار الوظيفية وحالة الحساب (للقراءة فقط)
                     </h3>
-                    <p className="text-xs text-slate-400">
-                      اختر دوراً أو أكثر لتحديد صلاحيات الوصول إلى بوابات النظام
+                    <p className="text-xs text-slate-400 mt-0.5">
+                      تتم إدارة الأدوار والحالة عبر لوحة التحكم في البوابة الرئيسية (Portal Console).
                     </p>
                   </div>
-
-                  <div className="relative w-full sm:w-60">
-                    <Search className="absolute right-3 top-2.5 w-3.5 h-3.5 text-slate-500 pointer-events-none" />
-                    <input
-                      type="text"
-                      placeholder="تصفية الأدوار..."
-                      value={roleSearch}
-                      onChange={(e) => setRoleSearch(e.target.value)}
-                      className="w-full pe-9 ps-3 py-1.5 text-xs rounded-xl bg-slate-950 border border-slate-800 text-white placeholder:text-slate-500 outline-none focus:border-cyan-400"
-                    />
-                  </div>
+                  <a
+                    href={`${PORTAL_URL}/admin`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-300 text-xs font-bold transition-colors shrink-0"
+                  >
+                    <ExternalLink size={13} />
+                    <span>إدارة الأدوار في لوحة التحكم / Manage roles in the Console</span>
+                  </a>
                 </div>
 
-                <div className="space-y-4">
-                  {ROLE_GROUPS.map((group) => {
-                    const visibleRoles = group.roles.filter((role) => {
-                      if (!roleSearch.trim()) return true;
-                      const label = (ROLE_LABELS[role] || role).toLowerCase();
-                      return label.includes(roleSearch.toLowerCase()) || role.includes(roleSearch.toLowerCase());
-                    });
-
-                    if (visibleRoles.length === 0) return null;
-
-                    return (
-                      <div key={group.id} className="bg-slate-950/40 border border-slate-800/80 rounded-2xl p-4 space-y-3">
-                        <span className="text-xs font-bold text-cyan-400 block border-b border-slate-800/60 pb-2">
-                          {group.titleAr}
-                        </span>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                          {visibleRoles.map((role) => {
-                            const isSelected = selectedRoles.includes(role);
-                            const label = ROLE_LABELS[role] || role;
-
-                            return (
-                              <button
-                                key={role}
-                                type="button"
-                                onClick={() => handleRoleToggle(role)}
-                                className={`flex items-center justify-between p-2.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer text-start ${
-                                  isSelected
-                                    ? 'bg-cyan-500/15 border-cyan-500/60 text-cyan-300 shadow-2xs ring-1 ring-cyan-500/30'
-                                    : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
-                                }`}
-                              >
-                                <span className="truncate">{label}</span>
-                                <div
-                                  className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 ms-2 ${
-                                    isSelected
-                                      ? 'bg-cyan-500 border-cyan-400 text-slate-950'
-                                      : 'border-slate-700 bg-slate-800'
-                                  }`}
-                                >
-                                  {isSelected && <Check size={12} strokeWidth={3} />}
-                                </div>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="flex flex-wrap items-center gap-2">
+                  {userRoles.length === 0 ? (
+                    <span className="text-xs text-slate-400 italic">لا توجد أدوار معينة</span>
+                  ) : (
+                    userRoles.map((role) => (
+                      <span
+                        key={role}
+                        className={`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold border ${
+                          ROLE_COLORS[role] || 'bg-slate-800 text-slate-200 border-slate-700'
+                        }`}
+                      >
+                        {ROLE_LABELS[role] || role}
+                      </span>
+                    ))
+                  )}
                 </div>
               </div>
             </div>
@@ -768,12 +594,12 @@ export function UserAccessCustomizationModal({
         {/* Modal Footer */}
         <div className="flex items-center justify-between p-4 sm:p-5 border-t border-slate-800 bg-slate-900/90">
           <div className="text-xs text-slate-400 hidden sm:block">
-            {selectedRoles.length > 0 ? (
+            {userRoles.length > 0 ? (
               <span>
-                الأدوار المختارة: <strong>{selectedRoles.map((r) => ROLE_LABELS[r] || r).join(', ')}</strong>
+                الأدوار: <strong>{userRoles.map((r) => ROLE_LABELS[r] || r).join(', ')}</strong>
               </span>
             ) : (
-              <span className="text-amber-400 font-semibold">تنبيه: لم يتم اختيار أي دور بعد</span>
+              <span className="text-slate-400">لا توجد أدوار معينة</span>
             )}
           </div>
 
@@ -801,9 +627,7 @@ export function UserAccessCustomizationModal({
               ) : (
                 <>
                   <ShieldCheck size={16} />
-                  <span>
-                    {status === 'active' ? 'حفظ وتفعيل الحساب' : 'حفظ التعديلات'}
-                  </span>
+                  <span>حفظ التعديلات</span>
                 </>
               )}
             </button>

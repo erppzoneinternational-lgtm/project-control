@@ -1,23 +1,20 @@
 /**
- * HR Database Service — reads from the company's canonical employee registry.
+ * HR Database Service — reads active employees from `project_control.fn_hr_directory()`.
  *
- * This is a READ-ONLY service. Never write to this database.
- * The HR DB is a separate Supabase project (NEXT_PUBLIC_HR_SUPABASE_URL).
- *
+ * This is a READ-ONLY service. Never write to the HR source tables.
  * Employee data here is the source of truth for:
  *   - Names (first_name + last_name, fullNameArabic in custom_fields)
- *   - Job titles (custom_fields.jobTitle)
+ *   - Job titles (custom_fields.jobTitle / positionTitle)
  *   - Employee codes
- *   - Departments, phone numbers
+ *   - Phone numbers
  *
  * Integration pattern:
  *   - The /stakeholders page shows HR employees as read-only entries
- *   - Assigning to a project creates a row in pzone-portal's project_stakeholders
- *     referencing the employee's id (UUID) from this HR DB
+ *   - Assigning to a project creates a row in project_stakeholders
+ *     referencing the employee's id (UUID)
  */
 
 import { supabase } from '@/lib/supabase';
-import { createHrDbClient } from '@/lib/supabase/client';
 import { StakeholderFull, StakeholderKind } from '@/types';
 
 export interface LocalStakeholderSyncInput {
@@ -219,37 +216,25 @@ export class HrService {
   static ensureLocalStakeholderForAssignment = ensureLocalStakeholderForAssignment;
 
   /**
-   * Fetch all active employees from the HR DB, mapped to StakeholderFull shape.
-   * Returns empty array if HR DB is not configured or unreachable.
+   * Fetch all active employees via `fn_hr_directory()`, mapped to StakeholderFull shape.
    */
   static async getEmployees(params: { search?: string } = {}): Promise<
     Array<StakeholderFull & { is_hr_employee: true }>
   > {
-    const hrUrl = process.env.NEXT_PUBLIC_HR_SUPABASE_URL || process.env.VITE_AUTH_SUPABASE_URL;
-    const hrKey = process.env.NEXT_PUBLIC_HR_SUPABASE_ANON_KEY || process.env.VITE_AUTH_SUPABASE_ANON_KEY;
-
-    if (!hrUrl || !hrKey || hrUrl === 'undefined') {
-      return [];
-    }
-
     try {
-      const hrClient = createHrDbClient();
-
-      const query = hrClient
-        .from('employees')
-        .select('id, first_name, last_name, email, phone, status, employee_code, department_id, position_id, custom_fields, created_at, updated_at')
-        .in('status', ['active'])
-        .order('first_name', { ascending: true });
-
-      const { data, error } = await query;
+      const { data, error } = await supabase.rpc('fn_hr_directory');
 
       if (error) {
         console.warn('[HrService] fetch error:', error.message);
         return [];
       }
 
-      let employees = (data || []).map((emp) =>
-        mapHrEmployeeToStakeholder(emp as HrEmployee)
+      const sortedRows = [...((data || []) as HrEmployee[])].sort((a, b) =>
+        (a.first_name || '').localeCompare(b.first_name || '')
+      );
+
+      let employees = sortedRows.map((emp) =>
+        mapHrEmployeeToStakeholder(emp)
       );
 
       // Client-side search filter

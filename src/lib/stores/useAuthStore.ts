@@ -3,6 +3,7 @@
 import { create } from 'zustand';
 import { Session, User } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
+import { PORTAL_URL } from '@/lib/supabase/config';
 
 interface AuthState {
   session: Session | null;
@@ -51,7 +52,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     await supabase.auth.signOut();
     set({ session: null, user: null, loading: false });
     if (typeof window !== 'undefined') {
-      window.location.replace('/login');
+      window.location.href = PORTAL_URL;
     }
   },
 }));

@@ -45,6 +45,7 @@ import { HistoryDrawer } from '@/components/planning/HistoryDrawer';
 import { DailyProgressReviewModal } from '@/components/planning/DailyProgressReviewModal';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useProjectStore } from '@/lib/stores/useProjectStore';
+import { useSignedStorageUrlMap } from '@/lib/hooks/useSignedStorageUrl';
 
 type TabKey = 'work_hub' | 'new_form' | 'logs_review' | 'obstructions' | 'mos' | 'materials' | 'delegations';
 
@@ -168,6 +169,12 @@ export default function DailyProgressPage() {
     });
     return list;
   }, [reports]);
+
+  const signedObstructionEvidenceUrls = useSignedStorageUrlMap(
+    'progress-photos',
+    allObstructions.map((o) => o.evidence_path),
+    3600
+  );
 
   // Tab navigation config with clean bilingual labels
   const tabs = useMemo(() => {
@@ -453,7 +460,7 @@ export default function DailyProgressPage() {
                           <td className="px-3 py-3.5 text-center">
                             {obs.evidence_path ? (
                               <a
-                                href={obs.evidence_path}
+                                href={signedObstructionEvidenceUrls[obs.evidence_path] || obs.evidence_path}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="text-emerald-700 dark:text-emerald-400 font-bold hover:underline"

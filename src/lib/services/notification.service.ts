@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase';
+import { SUPABASE_SCHEMA } from '@/lib/supabase/config';
 import { appCache, TTL } from '@/lib/cache';
 import {
   AppNotification,
@@ -277,7 +278,7 @@ export class NotificationService {
         'postgres_changes',
         {
           event: 'INSERT',
-          schema: 'public',
+          schema: SUPABASE_SCHEMA,
           table: 'pm_notifications',
           filter: `recipient_user_id=eq.${userId}`,
         },

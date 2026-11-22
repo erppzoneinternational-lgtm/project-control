@@ -102,14 +102,21 @@ export const TOObstructionModal: React.FC<TOObstructionModalProps> = ({
       try {
         const recipientUserIds = new Set<string>();
         try {
-          const { data: roleRows } = await supabase
-            .from('user_roles')
-            .select('user_id, role')
-            .in('role', ['coo', 'ceo', 'admin', 'technical_office_manager', 'to_manager']);
+          const targetRoles = ['coo', 'ceo', 'admin', 'technical_office_manager', 'to_manager'];
+          const { data: profileRows } = await supabase
+            .from('profiles')
+            .select('id, roles')
+            .eq('status', 'active');
 
-          (roleRows || []).forEach((row: { user_id?: string | null }) => {
-            if (row?.user_id && typeof row.user_id === 'string' && row.user_id.trim()) {
-              recipientUserIds.add(row.user_id.trim());
+          (profileRows || []).forEach((row: { id?: string | null; roles?: string[] | null }) => {
+            if (
+              row?.id &&
+              typeof row.id === 'string' &&
+              row.id.trim() &&
+              Array.isArray(row.roles) &&
+              row.roles.some((r) => targetRoles.includes(r))
+            ) {
+              recipientUserIds.add(row.id.trim());
             }
           });
 

@@ -62,6 +62,7 @@ import { getDisciplineMeta } from '../constants';
 import { DailyProgressReviewModal } from '@/components/planning/DailyProgressReviewModal';
 import { useAuth } from '@/lib/stores/useAuthStore';
 import { logger } from '@/lib/logger';
+import { useSignedStorageUrlMap } from '@/lib/hooks/useSignedStorageUrl';
 
 export interface DailyReportDetailDrawerProps {
   isOpen: boolean;
@@ -243,6 +244,33 @@ export const DailyReportDetailDrawer: React.FC<DailyReportDetailDrawerProps> = (
   const [activeTab, setActiveTab] = useState<'lines' | 'resources' | 'photos' | 'obstructions'>('lines');
   // Resources sub-tab (labor vs equipment)
   const [resourceSubTab, setResourceSubTab] = useState<'labor' | 'equipment'>('labor');
+
+  const signedDrawerPhotoUrls = useSignedStorageUrlMap(
+    'progress-photos',
+    (report?.photos || []).map((p) =>
+      p.photo_url && p.photo_url.includes('/storage/v1/object/sign/')
+        ? p.photo_url
+        : p.storage_path || p.photo_url || ''
+    ),
+    3600
+  );
+  const resolveDrawerPhotoUrl = (photo: DailyProgressPhoto): string => {
+    const key =
+      photo.photo_url && photo.photo_url.includes('/storage/v1/object/sign/')
+        ? photo.photo_url
+        : photo.storage_path || photo.photo_url || '';
+    const signed = signedDrawerPhotoUrls[key];
+    if (signed) return signed;
+    if (
+      photo.photo_url &&
+      (photo.photo_url.startsWith('blob:') ||
+        photo.photo_url.startsWith('data:') ||
+        photo.photo_url.includes('/storage/v1/object/sign/'))
+    ) {
+      return photo.photo_url;
+    }
+    return '';
+  };
 
   // Role permissions
   const normalizedRoles = useMemo(() => userRoles.map((r) => r.toLowerCase()), [userRoles]);
@@ -1616,7 +1644,7 @@ export const DailyReportDetailDrawer: React.FC<DailyReportDetailDrawerProps> = (
                               <div className="relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-950 aspect-video sm:aspect-16/9 max-h-96 w-full flex items-center justify-center shadow-lg group">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                  src={activePhoto.photo_url || activePhoto.storage_path}
+                                  src={resolveDrawerPhotoUrl(activePhoto) || undefined}
                                   alt={activePhoto.caption || `صورة تقدم الأعمال #${carouselIndex + 1}`}
                                   className="w-full h-full object-contain transition-all duration-300"
                                 />
@@ -1693,7 +1721,7 @@ export const DailyReportDetailDrawer: React.FC<DailyReportDetailDrawerProps> = (
                                 aria-label="شريط المعاينة السريعة للصور"
                               >
                                 {report.photos.map((photo: DailyProgressPhoto, idx: number) => {
-                                  const url = photo.photo_url || photo.storage_path;
+                                  const url = resolveDrawerPhotoUrl(photo);
                                   const isSelected = idx === carouselIndex;
 
                                   return (
@@ -1735,7 +1763,7 @@ export const DailyReportDetailDrawer: React.FC<DailyReportDetailDrawerProps> = (
                           {photoViewMode === 'grid' && (
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                               {report.photos.map((photo: DailyProgressPhoto, idx: number) => {
-                                const url = photo.photo_url || photo.storage_path;
+                                const url = resolveDrawerPhotoUrl(photo);
                                 return (
                                   <div
                                     key={photo.id || idx}
@@ -2044,7 +2072,7 @@ export const DailyReportDetailDrawer: React.FC<DailyReportDetailDrawerProps> = (
 
             <div className="flex items-center gap-2">
               <a
-                href={photosList[lightboxIndex].photo_url || photosList[lightboxIndex].storage_path}
+                href={resolveDrawerPhotoUrl(photosList[lightboxIndex]) || undefined}
                 target="_blank"
                 rel="noreferrer"
                 className="p-2 rounded-xl bg-white dark:bg-slate-900/10 hover:bg-white/20 dark:bg-slate-950/30 text-white transition-colors"
@@ -2091,7 +2119,7 @@ export const DailyReportDetailDrawer: React.FC<DailyReportDetailDrawerProps> = (
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={photosList[lightboxIndex].photo_url || photosList[lightboxIndex].storage_path}
+              src={resolveDrawerPhotoUrl(photosList[lightboxIndex]) || undefined}
               alt={photosList[lightboxIndex].caption || 'معاينة بالحجم الكامل'}
               className="max-h-[75vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10 select-none animate-in zoom-in-95 duration-200"
             />
@@ -2121,7 +2149,7 @@ export const DailyReportDetailDrawer: React.FC<DailyReportDetailDrawerProps> = (
             >
               {photosList.map((photo, pIdx) => {
                 const isSelected = pIdx === lightboxIndex;
-                const thumbUrl = photo.photo_url || photo.storage_path;
+                const thumbUrl = resolveDrawerPhotoUrl(photo);
                 return (
                   <button
                     key={photo.id || pIdx}

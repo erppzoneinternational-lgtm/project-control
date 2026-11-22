@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { canAccessPath } from '@/lib/rbac/access-control';
 import {
   generateProjectXer,
@@ -9,6 +8,8 @@ import {
 } from '@/lib/services/xer-generator';
 
 export const dynamic = 'force-dynamic';
+
+type ServerSupabaseClient = Awaited<ReturnType<typeof createSupabaseServerClient>>;
 
 const UNRESTRICTED_PLANNING_READ_ROLES = new Set([
   'admin',
@@ -24,13 +25,13 @@ const UNRESTRICTED_PLANNING_READ_ROLES = new Set([
 const EXPLICIT_SCOPED_MODES = new Set(['assigned', 'selected', 'custom', 'scoped']);
 
 async function getScopedAllowedProjectIds(
-  admin: ReturnType<typeof createSupabaseAdminClient>,
+  sb: ServerSupabaseClient,
   userId: string,
   userEmail: string | undefined
 ): Promise<Set<string>> {
   const allowedIds = new Set<string>();
 
-  const { data: directRows } = await admin
+  const { data: directRows } = await sb
     .from('pm_user_project_access')
     .select('project_id')
     .eq('user_id', userId);
@@ -44,7 +45,7 @@ async function getScopedAllowedProjectIds(
     ? `auth_user_id.eq.${userId},email.ilike.${cleanEmail}`
     : `auth_user_id.eq.${userId}`;
 
-  const { data: stks } = await admin
+  const { data: stks } = await sb
     .from('stakeholders')
     .select('id')
     .or(stakeholderFilter);
@@ -52,7 +53,7 @@ async function getScopedAllowedProjectIds(
   const stkIds = (stks || []).map((s: { id: string }) => s.id).filter(Boolean);
   if (stkIds.length > 0) {
     const todayIso = new Date().toISOString().slice(0, 10);
-    const { data: pStks } = await admin
+    const { data: pStks } = await sb
       .from('project_stakeholders')
       .select('project_id, is_active, end_date')
       .in('stakeholder_id', stkIds);
@@ -66,7 +67,7 @@ async function getScopedAllowedProjectIds(
       }
     );
 
-    const { data: pmDirect } = await admin
+    const { data: pmDirect } = await sb
       .from('projects')
       .select('id')
       .in('project_manager_stakeholder_id', stkIds)
@@ -93,10 +94,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
     }
 
-    const admin = createSupabaseAdminClient();
-
     // 2. Enforce active profile & RBAC access to /planning
-    const { data: profile, error: profileError } = await admin
+    const { data: profile, error: profileError } = await serverSupabase
       .from('profiles')
       .select('roles, is_active, status, project_scope_mode')
       .eq('id', user.id)
@@ -131,7 +130,7 @@ export async function GET(request: NextRequest) {
 
     let scopedAllowedIds: Set<string> | null = null;
     if (!isUnrestricted) {
-      scopedAllowedIds = await getScopedAllowedProjectIds(admin, user.id, user.email);
+      scopedAllowedIds = await getScopedAllowedProjectIds(serverSupabase, user.id, user.email);
       if (requestedProjectId && !scopedAllowedIds.has(requestedProjectId)) {
         return NextResponse.json({ success: false, error: 'Forbidden' }, { status: 403 });
       }
@@ -150,7 +149,7 @@ export async function GET(request: NextRequest) {
     } | null = null;
 
     if (requestedProjectId) {
-      const { data, error } = await admin
+      const { data, error } = await serverSupabase
         .from('pm_projects')
         .select('id, project_code, project_name, planned_start_date, planned_finish_date')
         .eq('id', requestedProjectId)
@@ -162,7 +161,7 @@ export async function GET(request: NextRequest) {
       }
       project = data;
     } else {
-      let query = admin
+      let query = serverSupabase
         .from('pm_projects')
         .select('id, project_code, project_name, planned_start_date, planned_finish_date')
         .is('deleted_at', null);
@@ -192,7 +191,7 @@ export async function GET(request: NextRequest) {
 
     // 4. Fetch activities (pm_project_activities first, legacy fallback)
     let actsToLoad: XerActivityRecord[] = [];
-    const { data: dbActs } = await admin
+    const { data: dbActs } = await serverSupabase
       .from('pm_project_activities')
       .select(
         'id, code, activity_code, name_ar, planned_start, planned_finish, actual_start, actual_finish, duration_days, remaining_duration_days, percent_complete, is_critical, is_milestone, total_float_days, wbs_item_id'
@@ -219,14 +218,14 @@ export async function GET(request: NextRequest) {
         wbs_id: a.wbs_item_id || null,
       }));
     } else {
-      const { data: legacySchedules } = await admin
+      const { data: legacySchedules } = await serverSupabase
         .from('schedules')
         .select('id')
         .eq('project_id', projectId);
 
       if (legacySchedules && legacySchedules.length > 0) {
         const schedIds = legacySchedules.map((s) => s.id);
-        const { data: legacyActs } = await admin
+        const { data: legacyActs } = await serverSupabase
           .from('activities')
           .select(
             'id, activity_code, name, planned_start, planned_finish, actual_start, actual_finish, duration_days, percent_complete, is_critical, is_milestone, total_float_days, wbs_node_id'
@@ -268,7 +267,7 @@ export async function GET(request: NextRequest) {
 
     // 5. Fetch dependencies
     let depsToLoad: XerDependencyRecord[] = [];
-    const { data: dbDeps } = await admin
+    const { data: dbDeps } = await serverSupabase
       .from('pm_activity_dependencies')
       .select('predecessor_id, successor_id, dependency_type, lag_days')
       .eq('project_id', projectId);

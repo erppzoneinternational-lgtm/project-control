@@ -7,7 +7,6 @@ import {
   ADMIN_WHATSAPP_NUMBER,
   ADMIN_EMAIL,
   ADMIN_DISPLAY_PHONE,
-  PRIMARY_ADMIN_EMAILS,
 } from '../userService';
 
 const mockFrom = vi.fn();
@@ -63,12 +62,11 @@ describe('UserService & WhatsApp Generators', () => {
     });
   });
 
-  describe('Admin Constants & Primary Admins', () => {
+  describe('Admin Constants', () => {
     it('exposes correct official admin email and phone', () => {
       expect(ADMIN_EMAIL).toBe('hassansolimanofficial@gmail.com');
       expect(ADMIN_DISPLAY_PHONE).toBe('01229994728');
       expect(ADMIN_WHATSAPP_NUMBER).toBe('201229994728');
-      expect(PRIMARY_ADMIN_EMAILS).toContain('hassansolimanofficial@gmail.com');
     });
   });
 
@@ -170,8 +168,6 @@ describe('UserService & WhatsApp Generators', () => {
       await UserService.updateUserAccess({
         userId: 'user-abc',
         fullName: 'Omar M.',
-        status: 'active',
-        roles: ['project_manager'],
         assignedProjectIds: ['p1', 'p2'],
         priceAccessGranted: true,
         adminUserId: 'admin-1',
@@ -182,8 +178,7 @@ describe('UserService & WhatsApp Generators', () => {
           full_name: 'Omar M.',
           full_name_ar: 'Omar M.',
           full_name_en: 'Omar M.',
-          is_active: true,
-          roles: ['project_manager'],
+          price_access_granted: true,
         })
       );
       expect(deleteMock).toHaveBeenCalled();
@@ -222,8 +217,6 @@ describe('UserService & WhatsApp Generators', () => {
       await expect(
         UserService.updateUserAccess({
           userId: 'user-abc',
-          status: 'active',
-          roles: ['project_manager'],
           assignedProjectIds: ['p1'],
           priceAccessGranted: false,
         })

@@ -43,6 +43,7 @@ import { useProjectStore } from '@/lib/stores/useProjectStore';
 import { ProjectService } from '@/lib/services/project.service';
 import { useAuth } from '@/lib/stores/useAuthStore';
 import { supabase } from '@/lib/supabase';
+import { buildCanonicalStorageUrl, getSignedStorageUrl } from '@/lib/supabase/storage';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserRoles } from '@/lib/hooks/useUserRoles';
 import type { InspectionType } from '@/types/task-ontology';
@@ -265,7 +266,7 @@ export const DailyProgressForm: React.FC<DailyProgressFormProps> = ({
 
   // Photos State — upload_failed marks photos that never reached the
   // 'progress-photos' bucket (local preview only, excluded from DB attach).
-  const [photos, setPhotos] = useState<{ storage_path: string; photo_url: string; caption: string; upload_failed?: boolean }[]>([]);
+  const [photos, setPhotos] = useState<{ storage_path: string; photo_url: string; preview_url?: string; caption: string; upload_failed?: boolean }[]>([]);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [previewPhotoIndex, setPreviewPhotoIndex] = useState<number | null>(null);
 
@@ -661,20 +662,15 @@ export const DailyProgressForm: React.FC<DailyProgressFormProps> = ({
           return;
         }
 
-        const { data: publicUrlData } = supabase.storage
-          .from('progress-photos')
-          .getPublicUrl(filePath);
-        const photoUrl = publicUrlData.publicUrl;
-        if (!photoUrl) {
-          setErrorMsg('تعذر الحصول على رابط الصورة بعد الرفع');
-          return;
-        }
+        const photoUrl = buildCanonicalStorageUrl('progress-photos', filePath);
+        const signedPreviewUrl = await getSignedStorageUrl('progress-photos', filePath, 3600);
 
         setPhotos((prev) => [
           ...prev,
           {
             storage_path: filePath,
             photo_url: photoUrl,
+            preview_url: signedPreviewUrl || undefined,
             caption: '',
             upload_failed: false,
           },
@@ -1670,7 +1666,7 @@ export const DailyProgressForm: React.FC<DailyProgressFormProps> = ({
                 >
                   <div className="relative h-28 sm:h-32 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800">
                     <img
-                      src={photo.photo_url}
+                      src={photo.preview_url || photo.photo_url}
                       alt={photo.caption ? `${photo.caption} - صورة توثيق موقع ${pIdx + 1}` : `صورة توثيق موقع رقم ${pIdx + 1}`}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
@@ -1895,7 +1891,7 @@ export const DailyProgressForm: React.FC<DailyProgressFormProps> = ({
           id: `photo-draft-${idx}`,
           daily_progress_id: initialReport?.id || '',
           storage_path: p.storage_path,
-          photo_url: p.photo_url,
+          photo_url: p.preview_url || p.photo_url,
           caption: p.caption,
         }))}
         initialIndex={previewPhotoIndex || 0}

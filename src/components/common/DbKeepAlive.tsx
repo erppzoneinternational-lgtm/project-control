@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase';
 
 const PING_INTERVAL_MS = 15 * 60 * 1000; // 15 minutes
 const STORAGE_KEY = 'pzone_last_db_ping';
-const AUTH_PUBLIC_PREFIXES = ['/login', '/signup', '/forgot-password', '/reset-password'];
+const AUTH_PUBLIC_PREFIXES = ['/no-access'];
 
 /**
  * Lightweight background component that mounts in the application shell.

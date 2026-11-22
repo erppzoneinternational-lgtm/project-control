@@ -1,5 +1,6 @@
 import type { ErrorLike } from '@/types/services-types';
 import { supabase } from '@/lib/supabase';
+import { getSignedStorageUrl, getSignedStorageUrls } from '@/lib/supabase/storage';
 import { appCache, CACHE_KEYS, TTL } from '@/lib/cache';
 import {
   Deliverable,
@@ -810,7 +811,7 @@ export class DeliverablesService {
    */
   static async getObstructions(projectId: string): Promise<DailyObstruction[]> {
     const key = CACHE_KEYS.deliverables.obstructions(projectId);
-    return appCache.getOrFetch(key, TTL.dailyProgress, async () => {
+    const rows = await appCache.getOrFetch(key, TTL.dailyProgress, async () => {
       try {
         const { data, error } = await supabase
           .from('pm_daily_obstructions')
@@ -827,6 +828,17 @@ export class DeliverablesService {
         logger.warn('DeliverablesService.getObstructions exception:', { detail: err });
         return [];
       }
+    });
+
+    if (!rows.length) return rows;
+    const signedMap = await getSignedStorageUrls(
+      'progress-photos',
+      rows.map((r) => r.evidence_path),
+      3600
+    );
+    return rows.map((r) => {
+      const signed = r.evidence_path ? signedMap.get(r.evidence_path) : undefined;
+      return signed ? { ...r, evidence_path: signed } : r;
     });
   }
 
@@ -941,18 +953,9 @@ export class DeliverablesService {
   /**
    * Resolve public or download URL for a deliverable attachment.
    */
-  static getAttachmentUrl(storagePath: string): string {
+  static async getSignedAttachmentUrl(storagePath: string, expiresIn = 3600): Promise<string> {
     if (!storagePath) return '';
-    if (storagePath.startsWith('http://') || storagePath.startsWith('https://')) {
-      return storagePath;
-    }
-    try {
-      const { data } = supabase.storage.from('deliverables').getPublicUrl(storagePath);
-      return data?.publicUrl || '';
-    } catch (err) {
-      logger.warn('DeliverablesService.getAttachmentUrl error:', { detail: err });
-      return '';
-    }
+    return getSignedStorageUrl('deliverables', storagePath, expiresIn);
   }
 
   /**
